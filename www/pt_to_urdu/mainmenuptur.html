@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Principal</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 30%;
+      height: 100vh;
+      background: linear-gradient(135deg, #0056b3, #001d4d);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+      overflow-y: auto;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar h2 {
+      margin-bottom: 40px;
+      font-size: 32px;
+      color: #ffffff;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      width: 100%;
+    }
+
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 8px;
+      transition: 0.3s;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar ul li:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .sidebar ul li img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sidebar ul li span {
+      font-size: 20px;
+      margin-left: 10px;
+      flex: 1;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+      background: #f0f4f8;
+      overflow-y: auto;
+    }
+
+    .progress-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .progress-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .progress-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .progress-card img {
+      width: 80px;
+      height: 80px;
+      margin-top: 20px;
+    }
+
+    .progress-card h3 {
+      font-size: 18px;
+      margin: 15px 0;
+      color: #333333;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .header {
+      background: linear-gradient(90deg, #001d4d, #0056b3);
+      color: #ffffff;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      border-bottom: 5px solid #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>LingoLand</h2>
+    <ul>
+      <li>
+        <img src="sidebar/lista.gif" alt="Categorias">
+        <span>Categorias</span>
+      </li>
+      <li>
+        <a href="verbos/verbos.html">
+          <img src="sidebar/dictionary.gif" alt="Verbos">
+          <span>Verbos</span>
+        </a>
+      </li>
+      <li>
+        <a href="translate.html">
+          <img src="sidebar/translator.gif" alt="Tradução">
+          <span>Tradução</span>
+        </a>
+      </li>
+      <li>
+        <img src="sidebar/profile.gif" alt="Missões">
+        <span>Missões</span>
+      </li>
+      <li>
+        <img src="sidebar/add-user.gif" alt="Contato">
+        <span>Contato</span>
+      </li>
+
+      <li>
+        <a href="javascript:void(0);" onclick="confirmLogout()">
+          <img src="sidebar/logout.gif" alt="Logout">
+          <span>Logout</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="header">Comece sua jornada de aprendizado de idiomas</div>
+
+    <div class="progress-section">
+      <div class="progress-card">
+        <a href="LESSONCARDSABC.html">
+          <img src="images/abc.webp" alt="Aprender o alfabeto">
+          <h3>Aprender o Alfabeto</h3>
+        </a>
+      </div>
+      <div class="progress-card">
+        <a href="LESSONCARD123.html">
+          <img src="images/123.jpg" alt="Aprender 123">
+          <h3>Aprender 123</h3>
+        </a>
+      </div>
+      <div class="progress-card">
+        <a href="LESSONCRADSURPTUR.html">
+          <img src="images/gree.jpg" alt="Saudações">
+          <h3>Saudações</h3>
+        </a>
+      </div>
+      <div class="progress-card">
+        <a href="BASIC GRAMMAR/LESSONCARD_BASICGRAMMAR.html">
+          <img src="images/gra.avif" alt="Gramática básica">
+          <h3>Gramática Básica</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="colors&lang.html">
+          <img src="images/c.jpeg" alt="Aprender Cores">
+          <h3>Aprender Cores</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="daysandmonth/lessoncard_days&month.html">
+          <img src="images/days.jpg" alt="Aprender dias e mes">
+          <h3>Aprender dias,semanas,mes</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="country&lang.html">
+          <img src="images/country.jpg" alt="País e Língua">
+          <h3>País e Língua</h3>
+        </a>
+      </div>
+      <div class="progress-card">
+        <a href="viagens/viagens.html">
+          <img src="images/VIAGENS.png" alt="travel">
+          <h3> Viagens </h3>
+        </a>
+      </div>
+     
+      <div class="progress-card">
+        <a href="FRUITS/FRUITS.HTML">
+          <img src="images/fruits.png" alt="fruits">
+          <h3> Frutos </h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="VEGETABLES/vegetables.html">
+          <img src="images/legumes.png" alt="vegetables">
+          <h3> Legumes</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="drinks/drinks.html">
+          <img src="images/drinks.png" alt="Bebidas">
+          <h3>Bebidas</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="ESTACOESECLIMA/seasons.html">
+          <img src="images/clima.png" alt="Estações e Clima">
+          <h3>Estações e Clima</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="animais/animais.html">
+          <img src="images/animais.png" alt="Animais">
+          <h3> Animais </h3>
+        </a>
+      </div>
+      
+
+      <div class="progress-card">
+        <a href="family/">
+          <img src="images/family.png" alt="Animais">
+          <h3> Família </h3>
+        </a>
+      </div>
+      
+      <div class="progress-card">
+        <a href="music/music.html">
+          <img src="images/music.png" alt="Música & Canções">
+          <h3>Música & Canções</h3>
+        </a>
+      </div>
+      
+
+
+      <div class="progress-card">
+        <a href="TrabalhoProfissões/trabalho.html">
+          <img src="images/profissoes.png" alt="Música & Canções">
+          <h3>Trabalho & Profissões</h3>
+        </a>
+      </div>
+      
+
+
+      <div class="progress-card">
+        <a href="Flowers/flowers.html">
+          <img src="images/flor.png" alt="Flowers">
+          <h3>Flores</h3>
+        </a>
+      </div>
+    
+     
+    </div>
+  </div>
+  <script>
+     function confirmLogout() {
+      const logout = confirm("Você realmente deseja sair?");
+      if (logout) {
+        window.location.href = "/www/index.html";
+      }}
+  </script>
+</body>
+</html>

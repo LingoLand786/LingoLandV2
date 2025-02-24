@@ -1,0 +1,179 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+background-color: WHITE;    color: #333;
+}
+
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #002D62;
+    color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+video {
+    width: 110%;
+    max-width: 700px;
+    border-radius: 10px;
+    display: block; /* Removes inline default spacing */
+    margin: 0; /* Eliminates margins that could cause visual gaps */
+}
+
+.header img {
+    height: 50px;
+}
+
+.header .language-select {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header select {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.header select:focus {
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-10px) scale(1.05) rotate(3deg);
+    }
+    50% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+    75% {
+        transform: translateY(10px) scale(0.95) rotate(-3deg);
+    }
+    100% {
+        transform: translateY(0) scale(1) rotate(0deg);
+    }
+}
+
+.main-content img {
+    max-width: 550px;
+    width: 100%;
+    animation: float 6s ease-in-out infinite; /* Adjusted for smoother, engaging effects */
+    filter: drop-shadow(0px 8px 12px rgba(0, 0, 0, 0.2)); /* Adds a subtle shadow for depth */
+    transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.main-content img:hover {
+    transform: scale(1.1) rotate(3deg); /* Slightly zoom and tilt on hover */
+    filter: drop-shadow(0px 12px 18px rgba(0, 0, 0, 0.3)); /* Enhances shadow when hovered */
+}
+
+
+.text-content {
+    max-width: 500px;
+    text-align: center;
+    margin: 30px;
+}
+
+.text-content h1 {
+    font-size: 2.5rem;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.text-content p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.buttons a {
+    text-decoration: none;
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 80%;
+    max-width: 300px;
+}
+
+.buttons a.start {
+    background-color: #002D62;
+    color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.buttons a.start:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.buttons a.login {
+    background-color: white;
+    color: #333;
+    border: 2px solid #ddd;
+}
+
+.buttons a.login:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+footer {
+    margin-top: 50px;
+    background-color: #f1f1f1;
+    color: #666;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer a {
+    color: #58cc02;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .text-content {
+        margin: 20px 0;
+    }
+}

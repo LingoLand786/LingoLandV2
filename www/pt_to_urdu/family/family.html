@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Família</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+      color: #1a1a2e;
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #1a1a2e, #243b55);
+      color: white;
+      padding: 30px 0;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    header h1 { font-size: 3.5rem; font-weight: bold; }
+    header p { font-size: 1.5rem; margin-top: 10px; }
+    .search-container { margin: 20px auto; max-width: 600px; }
+    .search-container input {
+      width: 100%; padding: 10px 20px;
+      border: 2px solid #1a1a2e;
+      border-radius: 20px;
+      font-size: 1.2rem; outline: none;
+    }
+    .family-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px; max-width: 1300px;
+      margin: 40px auto; padding: 0 20px;
+    }
+    .family-card {
+      background: white; border-radius: 15px;
+      overflow: hidden; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .family-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    .family-card img {
+      width: 100%; height: 200px; object-fit: cover;
+    }
+    .family-info { padding: 20px; text-align: center; }
+    .family-info h3 { font-size: 1.8rem; margin-bottom: 10px; color: #1a1a2e; }
+    .family-info button {
+      background: #1a1a2e; color: white;
+      padding: 10px 20px; border: none;
+      border-radius: 5px; cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .family-info button:hover { background: #0f3460; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Aprender Família</h1>
+    <p>Nesta lição, vamos aprender os nomes dos membros da família.</p>
+  </header>
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Pesquisa membros da família..." oninput="filterFamily(this.value)" />
+  </div>
+  <div id="family-grid" class="family-grid"></div>
+  <script>
+  const familyMembers = [
+  { name: "Mãe", urdu: "والدہ", image: "familyimg/mother.png", audio: "audio/mother.mp3" },
+  { name: "Pai", urdu: "والد", image: "familyimg/father.jpg", audio: "audio/father.mp3" },
+  { name: "Irmão", urdu: "بھائی", image: "familyimg/brother.png", audio: "audio/brother.mp3" },
+  { name: "Irmã", urdu: "بہن", image: "familyimg/sister.png", audio: "audio/sister.mp3" },
+  { name: "Avô (paterno)", urdu: "دادا", image: "familyimg/grandfather.png", audio: "audio/grandfather.mp3" },
+  { name: "Avó (paterna)", urdu: "دادی", image: "familyimg/grandmother.png", audio: "audio/grandmother.mp3" },
+  { name: "Tio (paterno)", urdu: "چچا", image: "familyimg/uncle.png", audio: "audio/uncle.mp3" },
+  { name: "Tia (paterna)", urdu: "پھوپھی", image: "familyimg/aunty.png", audio: "audio/aunt.mp3" },
+  
+  { name: "Primo", urdu: "کزن", image: "familyimg/cousin.png", audio: "audio/cousin.mp3" },
+  { name: "Filho", urdu: "بیٹا", image: "familyimg/son.png", audio: "audio/son.mp3" },
+  { name: "Filha", urdu: "بیٹی", image: "familyimg/daughter.png", audio: "audio/daughter.mp3" },
+  { name: "Sobrinho", urdu: "بھتیجا / بھانجا", image: "familyimg/nephew.png", audio: "audio/nephew.mp3" },
+  { name: "Sobrinha", urdu: "بھتیجی / بھانجی", image: "familyimg/niece.png", audio: "audio/niece.mp3" },
+  { name: "Enteado", urdu: "سوتیلا بیٹا", image: "familyimg/stepson.png", audio: "audio/stepson.mp3" },
+  { name: "Enteada", urdu: "سوتیلی بیٹی", image: "familyimg/stepdaughter.png", audio: "audio/stepdaughter.mp3" },
+  { name: "Padrasto", urdu: "سوتیلا باپ", image: "familyimg/stepfather.png", audio: "audio/stepfather.mp3" },
+  { name: "Madrasta", urdu: "سوتیلی ماں", image: "familyimg/stepmother.png", audio: "audio/stepmother.mp3" },
+  { name: "Marido", urdu: "شوہر", image: "familyimg/husband.png", audio: "audio/husband.mp3" },
+  { name: "Esposa", urdu: "بیوی", image: "familyimg/wife.png", audio: "audio/wife.mp3" },
+  { name: "Cunhado", urdu: "بہنوئی / دیور / جیٹھ", image: "familyimg/brother_in_law.png", audio: "audio/brother_in_law.mp3" },
+  { name: "Cunhada", urdu: "نند / بھابی / سالی", image: "familyimg/sister_in_law.png", audio: "audio/sister_in_law.mp3" },
+  { name: "Sogro", urdu: "سسر", image: "familyimg/father_in_law.png", audio: "audio/father_in_law.mp3" },
+  { name: "Sogra", urdu: "ساس", image: "familyimg/mother_in_law.png", audio: "audio/mother_in_law.mp3" }
+ 
+];
+
+    const familyGRID = document.getElementById("family-grid");
+    function loadFamily() {
+      familyGRID.innerHTML = "";
+      familyMembers.forEach((member) => {
+        const card = document.createElement("div");
+        card.className = "family-card";
+        card.innerHTML = `
+          <img src="${member.image}" alt="${member.name}" onerror="this.src='placeholder.jpg'">
+          <div class="family-info">
+            <h3>${member.name} - ${member.urdu}</h3>
+            <button onclick="playAudio('${member.audio}')">🔊 Listen Audio</button>
+          </div>
+        `;
+        familyGRID.appendChild(card);
+      });
+    }
+    function playAudio(audio) {
+      if (audio) {
+        const audioPlayer = new Audio(audio);
+        audioPlayer.play();
+      } else {
+        alert("Audio not available!");
+      }
+    }
+    function filterFamily(query) {
+      const cards = document.querySelectorAll(".family-card");
+      cards.forEach((card) => {
+        const name = card.querySelector("h3").innerText.toLowerCase();
+        card.style.display = name.includes(query.toLowerCase()) ? "block" : "none";
+      });
+    }
+    window.onload = loadFamily;
+  </script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Frases de Emergência - Curso de Urdu</title>
+    <style>
+        /* RESET STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        /* HEADER STYLES */
+        header {
+            background: linear-gradient(90deg, #001d4d, #0056b3);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 4px solid #0056b3;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d1e3f3;
+            border-bottom: 2px solid #d1e3f3;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            padding: 30px 10%;
+        }
+
+        .category-box,
+        .phrases-box,
+        .quiz-section,
+        .about-section {
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .category-box:hover,
+        .phrases-box:hover,
+        .quiz-section:hover {
+            transform: scale(1.05);
+        }
+
+        .category-box img {
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .category-content h3 {
+            font-size: 2em;
+            color: #001d4d;
+            margin-bottom: 10px;
+        }
+
+        .category-content p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .category-content a {
+            text-decoration: none;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .category-content a:hover {
+            background-color: #003f7d;
+        }
+
+        .phrases-box h4,
+        .quiz-section h4,
+        .about-section h4 {
+            font-size: 2em;
+            color: #001d4d;
+            margin-bottom: 20px;
+        }
+
+        .phrases-box p,
+        .quiz-section .question {
+            font-size: 1.2em;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .phrases-box button,
+        .quiz-section button {
+            background-color: #001d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        .phrases-box button:hover,
+        .quiz-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .quiz-section {
+            background-color: #f9fafb;
+        }
+
+        .about-section {
+            background-color: #e7f3f7;
+        }
+
+        footer {
+            background: #001d4d;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin-right: 15px;
+            }
+
+            .category-box,
+            .phrases-box,
+            .quiz-section,
+            .about-section {
+                padding: 15px;
+            }
+
+            .category-box img {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Curso de Urdu - Frases de Emergência</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#categoria">Categoria</a></li>
+                <li><a href="#frases">Frases</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="categoria">
+            <div class="category-box">
+                <div class="category-content">
+                    <h3>Frases de Emergência</h3>
+                    <p>Esteja preparado para situações de emergência em aeroportos, mercados e muito mais.</p>
+                    <a href="lesson_emergency_phrases.html">Iniciar Aula</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="frases">
+            <div class="phrases-box">
+                <h4>Frases de Emergência Essenciais</h4>
+                
+                <!-- Original Phrases -->
+                <p><span>Preciso de ajuda!</span> – مجھے مدد کی ضرورت ہے! (Mujhe madad ki zarurat hai!)</p>
+                <button onclick="playAudio('audio/preciso_de_ajuda.mp3')">Ouvir</button>
+        
+                <p><span>Chame uma ambulância!</span> – ایمبولینس بلائیں! (Ambulance bulayen!)</p>
+                <button onclick="playAudio('audio/ambulancia.mp3')">Ouvir</button>
+        
+                <p><span>Estou perdido(a).</span> – میں کھو گیا ہوں۔ (Main kho gaya hoon.)</p>
+                <button onclick="playAudio('audio/estou_perdido.mp3')">Ouvir</button>
+        
+                <p><span>Onde está o hospital?</span> – ہسپتال کہاں ہے؟ (Hospital kahaan hai?)</p>
+                <button onclick="playAudio('audio/hospital.mp3')">Ouvir</button>
+        
+                <p><span>Você pode me ajudar?</span> – کیا آپ میری مدد کر سکتے ہیں؟ (Kya aap meri madad kar sakte hain?)</p>
+                <button onclick="playAudio('audio/pode_me_ajudar.mp3')">Ouvir</button>
+        
+                <p><span>Há perigo aqui.</span> – یہاں خطرہ ہے۔ (Yahan khatra hai.)</p>
+                <button onclick="playAudio('audio/perigo_aqui.mp3')">Ouvir</button>
+        
+                <!-- Additional Emergency Phrases -->
+                <p><span>Eu estou ferido(a).</span> – میں زخمی ہوں۔ (Main zakhmi hoon.)</p>
+                <button onclick="playAudio('audio/eu_estou_ferido.mp3')">Ouvir</button>
+        
+                <p><span>Chame a polícia!</span> – پولیس کو بلاؤ! (Police ko bulao!)</p>
+                <button onclick="playAudio('audio/chame_a_policia.mp3')">Ouvir</button>
+        
+                <p><span>Eu perdi minha bagagem.</span> – میری سامان گم ہو گئی ہے۔ (Meri samaan gum ho gayi hai.)</p>
+                <button onclick="playAudio('audio/perdi_bagagem.mp3')">Ouvir</button>
+        
+                <p><span>Onde é o banheiro?</span> – باتھروم کہاں ہے؟ (Bathroom kahaan hai?)</p>
+                <button onclick="playAudio('audio/banheiro.mp3')">Ouvir</button>
+        
+                <p><span>Eu não me sinto bem.</span> – مجھے اچھا محسوس نہیں ہو رہا۔ (Mujhe achha mehsoos nahi ho raha.)</p>
+                <button onclick="playAudio('audio/nao_me_sinto_bem.mp3')">Ouvir</button>
+        
+                <p><span>Você tem um mapa?</span> – کیا آپ کے پاس نقشہ ہے؟ (Kya aap ke paas naqsha hai?)</p>
+                <button onclick="playAudio('audio/tem_um_mapa.mp3')">Ouvir</button>
+        
+                <p><span>Eu perdi meu passaporte.</span> – میں نے اپنا پاسپورٹ گم کر دیا ہے۔ (Maine apna passport gum kar diya hai.)</p>
+                <button onclick="playAudio('audio/perdi_passaporte.mp3')">Ouvir</button>
+        
+                <p><span>Onde é o posto de gasolina?</span> – پیٹرول پمپ کہاں ہے؟ (Petrol pump kahaan hai?)</p>
+                <button onclick="playAudio('audio/posto_de_gasolina.mp3')">Ouvir</button>
+        
+                <p><span>Você pode me levar até lá?</span> – کیا آپ مجھے وہاں لے جا سکتے ہیں؟ (Kya aap mujhe wahan le ja sakte hain?)</p>
+                <button onclick="playAudio('audio/me_levar_ate_la.mp3')">Ouvir</button>
+        
+                <p><span>Eu preciso de um médico.</span> – مجھے ڈاکٹر کی ضرورت ہے۔ (Mujhe doctor ki zarurat hai.)</p>
+                <button onclick="playAudio('audio/preciso_de_um_medico.mp3')">Ouvir</button>
+        
+                <p><span>Está chovendo muito!</span> – بہت بارش ہو رہی ہے! (Bahut baarish ho rahi hai!)</p>
+                <button onclick="playAudio('audio/esta_chovendo.mp3')">Ouvir</button>
+        
+                <p><span>Eu estou com fome.</span> – مجھے بھوک لگی ہے۔ (Mujhe bhook lagi hai.)</p>
+                <button onclick="playAudio('audio/estou_com_fome.mp3')">Ouvir</button>
+        
+                <p><span>Você pode me dar direções?</span> – کیا آپ مجھے راستہ بتا سکتے ہیں؟ (Kya aap mujhe raasta bata sakte hain?)</p>
+                <button onclick="playAudio('audio/me_dar_direcoes.mp3')">Ouvir</button>
+                
+                <p><span>Eu estou perdido no meu caminho.</span> – میں اپنے راستے میں کھو گیا ہوں۔ (Main apne raaste mein kho gaya hoon.)</p>
+                <button onclick="playAudio('audio/perdido_no_caminho.mp3')">Ouvir</button>
+        
+            </div>
+        </section>
+
+        <section id="quiz" class="quiz-section">
+            <h4>Teste Seus Conhecimentos</h4>
+            <div class="question">
+                <p><strong>Como se diz "Preciso de ajuda" em Urdu?</strong></p>
+                <button onclick="checkAnswer('Mujhe madad ki zarurat hai!')">Mujhe madad ki zarurat hai!</button>
+                <button onclick="checkAnswer('Kya aap meri madad kar sakte hain?')">Kya aap meri madad kar sakte hain?</button>
+                <button onclick="checkAnswer('Hospital kahaan hai?')">Hospital kahaan hai?</button>
+            </div>
+            <div id="quiz-result" style="margin-top: 20px; font-size: 1.2em;"></div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <h4>Sobre o Curso</h4>
+            <p>Este curso oferece uma introdução ao Urdu, com ênfase em frases de emergência que você pode precisar em situações do dia a dia, como aeroportos, hospitais e mercados.</p>
+            <p>Nosso objetivo é ajudar você a aprender de forma eficaz e rápida com a ajuda de áudios, quizzes e lições práticas.</p>
+        </section>
+    </main>
+
+
+    <script>
+        function playAudio(file) {
+            var audio = new Audio(file);
+            audio.play();
+        }
+
+        function checkAnswer(answer) {
+            const correctAnswer = "Mujhe madad ki zarurat hai!";
+            const resultDiv = document.getElementById('quiz-result');
+
+            if (answer === correctAnswer) {
+                resultDiv.textContent = "Correto! Muito bem!";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "Errado! Tente novamente.";
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

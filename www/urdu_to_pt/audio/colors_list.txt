@@ -1,0 +1,24 @@
+Vermelho - Vermelho
+Azul - Azul
+Verde - Verde
+Amarelo - Amarelo
+Preto - Preto
+Branco - Branco
+Laranja - Laranja
+Roxo - Roxo
+Cinzento - Cinzento
+Rosa - Rosa
+Castanho - Castanho
+Dourado - Dourado
+Prateado - Prateado
+Turquesa - Turquesa
+Bege - Bege
+Salmao - Salmão
+Caramelo - Caramelo
+Lavanda - Lavanda
+Ciano - Ciano
+Lima - Lima
+Bordo - Bordô
+Carmesim - Carmesim
+Fucsia - Fúcsia
+Turquesa Escuro - Turquesa Escuro

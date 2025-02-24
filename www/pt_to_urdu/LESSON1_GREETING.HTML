@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz de Língua Portuguesa</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background: #002D62;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+      color: white;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 1.5rem;
+      margin: 30px 0;
+      color: #ffffff;
+    }
+
+    .answers label {
+      display: block;
+      margin: 12px 0;
+      padding: 15px;
+      background: #f9f9f9;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #002D62;
+    }
+
+    .answers label:hover {
+      background: #e6f4e9;
+      border-color: #ffffff;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1rem;
+      background: #58cc02;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #4cb502;
+      transform: scale(1.05);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #feedback {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .correct {
+      color: #4cb502;
+    }
+
+    .incorrect {
+      color: #e63946;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .quiz-container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .question {
+        font-size: 1.2rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="quiz">
+      <!-- Perguntas aparecerão aqui -->
+    </div>
+    <div id="feedback"></div>
+    <button id="next" style="display: none;">Próxima</button>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "Como se diz 'Bom dia' em Urdu?",
+        answers: {
+          a: "صبح بخیر", // Correct answer
+          b: "شام بخیر",  // Incorrect
+          c: "دوپہر بخیر", // Incorrect
+        },
+        correct: "a", // Correct answer
+        audioText: "Bom dia em Urdu é 'صبح بخیر'", // Text for TTS
+      },
+      {
+        question: "Como se diz 'Boa noite' em Urdu?",
+        answers: {
+          a: "شام بخیر", // Correct
+          b: "صبح بخیر",  // Incorrect
+          c: "دوپہر بخیر", // Incorrect
+        },
+        correct: "a", // Correct answer
+        audioText: "Boa noite em Urdu é 'شام بخیر'", // Text for TTS
+      },
+      {
+        question: "Como se diz 'Boa tarde' em Urdu?",
+        answers: {
+          a: "دوپہر بخیر", // Correct
+          b: "شام بخیر",  // Incorrect
+          c: "صبح بخیر",  // Incorrect
+        },
+        correct: "a", // Correct answer
+        audioText: "Boa tarde em Urdu é 'دوپہر بخیر'", // Text for TTS
+      },
+      {
+        question: "Como se diz 'Olá' em Urdu?",
+        answers: {
+          a: "ہیلو", // Correct
+          b: "الوداع",  // Incorrect
+          c: "شکریہ"   // Incorrect
+        },
+        correct: "a",
+        audioText: "Olá em Urdu é 'ہیلو'" // Text for TTS
+      },
+      {
+        question: "Como se diz 'Adeus' em Urdu?",
+        answers: {
+          a: "شکریہ", // Incorrect
+          b: "الوداع",  // Correct
+          c: "ہیلو"     // Incorrect
+        },
+        correct: "b",
+        audioText: "Adeus em Urdu é 'الوداع'" // Text for TTS
+      }
+      // Add more questions here...
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let isAnswered = false;
+
+    function showQuestion() {
+      isAnswered = false;
+      const quizContainer = document.getElementById("quiz");
+      const feedbackContainer = document.getElementById("feedback");
+      const nextButton = document.getElementById("next");
+
+      feedbackContainer.innerHTML = "";
+      feedbackContainer.style.opacity = "0";
+      nextButton.style.display = "none";
+
+      const currentQuestion = quizData[currentQuestionIndex];
+      const answers = Object.keys(currentQuestion.answers).map(
+        (key) => `<label onclick="checkAnswer('${key}')">${key}: ${currentQuestion.answers[key]}</label>`
+      );
+
+      quizContainer.innerHTML = `
+        <div class="question">${currentQuestion.question}</div>
+        <div class="answers">${answers.join("")}</div>
+        <button id="audioButton" onclick="playAudio('${currentQuestion.audioText}')">🔊 Reproduzir Áudio</button>
+      `;
+    }
+
+    function playAudio(text) {
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'pt-PT'; // Language for Portuguese
+      synth.speak(utterance);
+    }
+
+    function checkAnswer(selectedAnswer) {
+      if (isAnswered) return;
+
+      const currentQuestion = quizData[currentQuestionIndex];
+      const feedbackContainer = document.getElementById("feedback");
+      const nextButton = document.getElementById("next");
+
+      isAnswered = true;
+
+      if (selectedAnswer === currentQuestion.correct) {
+        score++;
+        feedbackContainer.innerHTML = "<p class='correct'>Correct!</p>";
+      } else {
+        feedbackContainer.innerHTML = "<p class='incorrect'>Incorrect!</p>";
+      }
+
+      feedbackContainer.style.opacity = "1";
+      nextButton.style.display = "inline-block";
+    }
+
+    document.getElementById("next").onclick = function() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quizData.length) {
+        showQuestion();
+      } else {
+        showResults();
+      }
+    };
+
+    function showResults() {
+      const quizContainer = document.getElementById("quiz");
+      const resultsContainer = document.getElementById("results");
+      quizContainer.style.display = "none";
+      resultsContainer.innerHTML = `<h2>Resultado: ${score} de ${quizData.length}</h2>`;
+    }
+
+    showQuestion(); // Show the first question
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lessons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            background-color: #003366;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 200px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+        .card h2 {
+            margin: 10px 0;
+        }
+        .card p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+        .card button {
+            background-color: #ff7043;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .card button:hover {
+            background-color: #d65f33;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>Lesson 1</h2>
+            <p>Languages 1</p>
+            <button onclick="location.href='lesson1.html'">Start</button>
+        </div>
+        <div class="card">
+            <h2>Lesson 2</h2>
+            <p>Languages 2</p>
+            <button onclick="location.href='lesson2.html'">Start</button>
+        </div>
+        <div class="card">
+            <h2>Lesson 3</h2>
+            <p>Languages 3</p>
+            <button onclick="location.href='lesson3.html'">Start</button>
+        </div>
+        <div class="card">
+            <h2>Lesson 4</h2>
+            <p>Nationalities</p>
+            <button onclick="location.href='lesson4.html'">Start</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lingoland - Contact Us">
+    <title>Contact Us - Lingoland</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ffffff, #d9e8fc);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+        }
+
+        header {
+            background: linear-gradient(135deg, #004a99, #002D62);
+            padding: 25px;
+            width: 100%;
+            color: white;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .contact-container {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(15px);
+            width: 90%;
+            max-width: 650px;
+            margin: 50px auto;
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .contact-container:hover {
+            transform: scale(1.02);
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            border: 2px solid transparent;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #fff;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input:focus, textarea:focus {
+            border-color: #004a99;
+            box-shadow: 0 0 12px rgba(0, 74, 153, 0.6);
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(135deg, #004a99, #002D62);
+            color: white;
+            border: none;
+            padding: 18px 0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.07);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+<header>
+     Contact the Lingoland Team 📩
+</header>
+
+<main>
+    <div class="contact-container">
+        <h1> We'd Love to Hear from You!💬</h1>
+        <p> Have questions❓,  feedback 💡, or just want to connect? 🤝</p>
+
+        <form id="contact-form">
+            <label for="name">👤 Your Name:</label>
+            <input type="text" id="name" name="from_name" placeholder="Enter your name" required>
+
+            <label for="email">📧 Your Email:</label>
+            <input type="email" id="email" name="from_email" placeholder="Enter your email" required>
+
+            <label for="message">✍️ Your Message:</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+            <button type="submit"> Send Your Message 📨 </button>
+        </form>
+        <div id="response-message" class="message-box"></div>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    (function(){
+        emailjs.init("obUx4ADwk2qJTyRh1");
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+        const responseMessage = document.getElementById("response-message");
+        const submitButton = document.querySelector("button");
+
+        submitButton.textContent = "Sending...";
+        submitButton.disabled = true;
+
+        const params = {
+            from_name: name,
+            from_email: email,
+            message: message
+        };
+
+        emailjs.send("service_c6ynbmy", "template_717ryz5", params)
+        .then(function() {
+            responseMessage.textContent = "✅ Message sent successfully!";
+            responseMessage.style.color = "green";
+            document.getElementById("contact-form").reset();
+        })
+        .catch(function() {
+            responseMessage.textContent = "❌ Error sending message.";
+            responseMessage.style.color = "red";
+        })
+        .finally(() => {
+            submitButton.textContent = "📨 Send Your Message";
+            submitButton.disabled = false;
+        });
+        
+    });
+    
+</script>
+</body>
+</html>

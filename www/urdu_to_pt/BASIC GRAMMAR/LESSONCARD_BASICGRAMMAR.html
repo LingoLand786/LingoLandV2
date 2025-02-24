@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرتگالی سیکھیں - ایڈوانس زبان کے اسباق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f2f6;
+            color:  #002D62;
+            line-height: 1.6;
+            transition: background-color 0.3s;
+        }
+
+        /* Background Video */
+   
+
+        /* Header Section */
+        header {
+            padding: 50px;
+            background-color:  #002D62;
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: #555;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 50px;
+            justify-items: center;
+        }
+
+        .category-box {
+            position: relative;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s, box-shadow 0.4s;
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-box h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .category-box p {
+            font-size: 1.2rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .category-box a {
+            padding: 12px 30px;
+            background-color: #008080;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+        }
+
+        .category-box a:hover {
+            background-color: #006666;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 80%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        /* Animation for elements */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+
+
+<header class="fade-in">
+    <p>آج ہی اپنے تعلیمی سفر کا آغاز کریں، جو کامیابی کے لیے ڈیزائن کیا گیا ہے</p>
+</header>
+
+<!-- Dark Mode Toggle -->
+<div class="dark-mode-toggle" onclick="toggleDarkMode()">ڈارک موڈ</div>
+
+<!-- Lesson Cards -->
+<div class="category-container fade-in">
+    <div class="category-box">
+        <img src="IMG/P.png" alt="Pronouns">
+        <div class="category-content">
+            <h3>ضمائر</h3>
+            <p>یاد کریں کہ 'میں'، 'آپ'، 'وہ' جیسے الفاظ کا استعمال کیسے کریں۔</p>
+            <a href="LESSONpronouns.HTML">سبق شروع کریں</a>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="IMG/G.png" alt="Grammar">
+        <div class="category-content">
+            <h3>گرامر</h3>
+            <p>پرتگالی گرامر اور جملوں کی ساخت کو سمجھیں۔</p>
+            <a href="lesson1.html">سبق شروع کریں</a>
+        </div>
+    </div>
+    <div class="category-box">
+        <img src="IMG/T.avif" alt="Vocabulary">
+        <div class="category-content">
+            <h3>الفاظ</h3>
+            <p>ضروری الفاظ اور جملوں کے ساتھ اپنا لغت بڑھائیں۔</p>
+            <a href="lesson2.html">سبق شروع کریں</a>
+        </div>
+    </div>
+    <div class="category-box">
+        <img src="IMG/F.jpeg" alt="Pronunciation">
+        <div class="category-content">
+            <h3>تلفظ</h3>
+            <p>پرتگالی الفاظ کو مقامی انداز میں تلفظ کرنا سیکھیں۔</p>
+            <a href="lesson3.html">سبق شروع کریں</a>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="IMG/images.jpeg" alt="Adjectives">
+        <div class="category-content">
+            <h3>مفہوم</h3>
+            <p>بنیادی صفات کو سیکھیں اور انہیں جملوں میں استعمال کریں۔</p>
+            <a href="lesson4.html">سبق شروع کریں</a>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="IMG/TEST.png" alt="Final Test">
+        <div class="category-content">
+            <h3>حتمی امتحان</h3>
+            <p>اپنے سیکھے ہوئے علم کو جانچیں اور اپنی صلاحیتوں کو مضبوط کریں۔</p>
+            <a href="lesson5.html">امتحان شروع کریں</a>
+        </div>
+    </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Window (for Lesson Details) -->
+<div class="modal" id="lessonModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>سبق کی معلومات</h2>
+        <p>سبق کی تفصیلات یہاں ظاہر ہوں گی، بشمول انٹرایکٹو مشقوں، کوئز اور مزید!</p>
+    </div>
+</div>
+
+<script>
+    // Toggle Dark Mode
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    // Modal Open & Close Functions
+    function openModal() {
+        document.getElementById('lessonModal').style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById('lessonModal').style.display = "none";
+    }
+</script>
+
+</body>
+</html>

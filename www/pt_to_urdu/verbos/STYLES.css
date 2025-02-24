@@ -1,0 +1,129 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #f0f4f8, #ffffff);
+    color: #333;
+}
+
+h1, h2 {
+    color: #2575fc;
+    text-align: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+    color: white;
+    padding: 5rem 1rem;
+}
+.hero h1 {
+    font-size: 2.5rem;
+}
+.hero p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+}
+.hero .btn {
+    background: white;
+    color: #2575fc;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+.hero .btn:hover {
+    background: #2575fc;
+    color: white;
+}
+
+/* Menu */
+.menu {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+.menu ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+}
+.menu ul li {
+    margin: 0 1rem;
+}
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.menu ul li a:hover {
+    color: #6a11cb;
+}
+
+/* Flashcards */
+.flashcard-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.flashcard {
+    width: 150px;
+    height: 200px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    perspective: 1000px;
+    cursor: pointer;
+}
+.flashcard .front, .flashcard .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    transition: transform 0.6s;
+}
+.flashcard .front {
+    background: #2575fc;
+    color: white;
+}
+.flashcard .back {
+    background: #6a11cb;
+    color: white;
+    transform: rotateY(180deg);
+}
+.flashcard.flipped .front {
+    transform: rotateY(180deg);
+}
+.flashcard.flipped .back {
+    transform: rotateY(0);
+}
+
+/* Quiz */
+.quiz button {
+    background: #6a11cb;
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    margin: 0.5rem;
+    cursor: pointer;
+    border-radius: 5px;
+}

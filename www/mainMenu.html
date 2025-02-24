@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Menu</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    @media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .sidebar ul li.active {
+  background: #0056b3; /* Different shade to highlight */
+}
+
+  .main-content {
+    flex-grow: 1;
+    padding: 10px;
+  }
+  .progress-card {
+    flex: 1 1 45%;
+  }
+}
+
+    body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Prevents scrolling for the entire body */
+  }
+
+  .sidebar {
+    width: 50%;
+    height: 100vh; /* Fixed height for the sidebar */
+    background: #002D62; /* Green background */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+    overflow-y: auto; /* Add scrolling if sidebar content grows */
+  }
+
+    .sidebar h2 {
+      margin-bottom: 40px;
+      font-size: 28px;
+      color: #ffffff;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      width: 100%;
+    }
+
+    .sidebar ul li {
+      width: 100%;
+      margin: 15px 0;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      cursor: pointer;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      color: #ffffff;
+      text-transform: uppercase;
+      transition: 0.5s;
+    }
+
+    .sidebar ul li:hover {
+      background: #218838; /* Darker green on hover */
+      color: #ffffff;
+    }
+
+    .sidebar ul li img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sidebar ul li span {
+      font-size: 20px;
+    }
+
+    /* Main Content Styles */
+    .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto; /* Enables scrolling on the right side */
+    background-color: #ffffff; /* White background for main content */
+  }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      color: #000000;
+    }
+
+
+
+    .progress-section {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .progress-card {
+      flex: 1 1 30%;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .progress-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .progress-card img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+    }
+
+    .progress-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #000000;
+    }
+
+    .progress-card span {
+      font-size: 14px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>lingoLand</h2>
+    <ul>
+      <li>
+        <img src="img/sidebar/lista.gif" alt="Quests">
+        <span>Categorias</span>
+      </li>
+      <li>
+        <a href="verbos/verbos.html" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 15px;">
+          <img src="img/sidebar/dictionary.gif" alt="Verbos">
+          <span>Verbos</span>
+        </a>
+      </li>
+      <li>
+        <a href="translate.html" style="text-decoration: none; color: inherit;">
+          <img src="img/sidebar/translator.gif" alt="Translate">
+          <span>Translate</span>
+        </a>
+      </li>
+      <li>
+        <img src="img/sidebar/profile.gif" alt="Quests">
+        <span>Quests</span>
+      </li>
+      <li>
+        <img src="img/sidebar/add-user.gif" alt="Profile">
+        <span>Contact</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <h1></h1>
+      <button></button>
+    </div>
+
+    <!-- Progress Section -->
+    <div class="progress-section">
+      <div class="progress-card">
+        <a href="hellopt.html" style="text-decoration: none; color: inherit;">
+          <img src="img/CATEGORIAS/hello.webp" alt="Progress 1">
+          <h3>Learn Greetings</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="country&lang.html" style="text-decoration: none; color: inherit;">
+          <img src="img/CATEGORIAS/lang.jpeg" alt="Progress 2">
+          <h3>Country Language</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Objects and Numbers</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Grammar</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Travel</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Seasons and Weather</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Animals</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Fruits</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Vocabulary</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Foods</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Drinks</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Family</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>School</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Around the House</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Hotel</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Restaurant</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Introduction</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Shopping</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Airport</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Fun</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Sports</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Progress 3">
+        <h3>Public Transport</h3>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

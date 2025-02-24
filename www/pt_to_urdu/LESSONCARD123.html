@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprenda 123 em Urdu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+  font-family: 'Open Sans', sans-serif;
+  background: #f4f7fb;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Use full viewport height */
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 48px;
+      color: #3e5c6f;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .instructions {
+      font-size: 20px;
+      color: #7d8a94;
+      margin-bottom: 40px;
+      font-weight: 300;
+      animation: fadeIn 2s ease-out;
+    }
+
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin-top: 20px;
+      padding: 0 20px;
+      width: 100%;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .number-card {
+      background: #1f3a4c;
+      padding: 40px;
+      border-radius: 15px;
+      color: #fff;
+      font-size: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0.9;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease;
+    }
+
+    .number-card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
+      opacity: 1;
+    }
+
+    .number-card h2 {
+      font-size: 50px;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .number-card p {
+      font-size: 18px;
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+
+    .number-card small {
+      font-size: 16px;
+      margin-top: 5px;
+      opacity: 0.6;
+    }
+
+    .number-card:active {
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Custom Audio Player */
+    .audio-player {
+      margin-top: 40px;
+      padding: 15px;
+      background: #3a4a5b;
+      border-radius: 8px;
+      color: white;
+      width: 300px;
+      display: flex;
+      justify-content: center; /* Center the button */
+      align-items: center;
+    }
+
+    .audio-player button {
+      background: #1f3a4c;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      font-size: 18px;
+      transition: background 0.3s ease;
+    }
+
+    .audio-player button:hover {
+      background: #2c4f68;
+    }
+  </style>
+</head>
+<body>
+  <h1>Aprenda 123 em Urdu</h1>
+  <p class="instructions">Clique em cada número para ouvir sua pronúncia em Urdu</p>
+
+  <div class="numbers">
+    <div class="number-card" onclick="playAudio('ek')">
+      <h2>1</h2>
+      <p>ایک</p>
+      <small>Ek</small>
+    </div>
+    <div class="number-card" onclick="playAudio('do')">
+      <h2>2</h2>
+      <p>دو</p>
+      <small>Do</small>
+    </div>
+    <div class="number-card" onclick="playAudio('teen')">
+      <h2>3</h2>
+      <p>تین</p>
+      <small>Teen</small>
+    </div>
+    <div class="number-card" onclick="playAudio('chaar')">
+      <h2>4</h2>
+      <p>چار</p>
+      <small>Chaar</small>
+    </div>
+    <div class="number-card" onclick="playAudio('paanch')">
+      <h2>5</h2>
+      <p>پانچ</p>
+      <small>Paanch</small>
+    </div>
+    <div class="number-card" onclick="playAudio('cheh')">
+      <h2>6</h2>
+      <p>چھ</p>
+      <small>Cheh</small>
+    </div>
+    <div class="number-card" onclick="playAudio('saat')">
+      <h2>7</h2>
+      <p>سات</p>
+      <small>Saat</small>
+    </div>
+    <div class="number-card" onclick="playAudio('aath')">
+      <h2>8</h2>
+      <p>آٹھ</p>
+      <small>Aath</small>
+    </div>
+    <div class="number-card" onclick="playAudio('nao')">
+      <h2>9</h2>
+      <p>نو</p>
+      <small>Nao</small>
+    </div>
+    <div class="number-card" onclick="playAudio('das')">
+      <h2>10</h2>
+      <p>دس</p>
+      <small>Das</small>
+    </div>
+    <div class="number-card" onclick="playAudio('gyarah')">
+      <h2>11</h2>
+      <p>گیارہ</p>
+      <small>Gyarah</small>
+    </div>
+    <div class="number-card" onclick="playAudio('barah')">
+      <h2>12</h2>
+      <p>بارہ</p>
+      <small>Barah</small>
+    </div>
+    <div class="number-card" onclick="playAudio('terah')">
+      <h2>13</h2>
+      <p>تیرہ</p>
+      <small>Terah</small>
+    </div>
+    <div class="number-card" onclick="playAudio('chaudah')">
+      <h2>14</h2>
+      <p>چودہ</p>
+      <small>Chaudah</small>
+    </div>
+    <div class="number-card" onclick="playAudio('pandrah')">
+      <h2>15</h2>
+      <p>پندرہ</p>
+      <small>Pandrah</small>
+    </div>
+    <div class="number-card" onclick="playAudio('solah')">
+      <h2>16</h2>
+      <p>سولہ</p>
+      <small>Solah</small>
+    </div>
+    <div class="number-card" onclick="playAudio('satrah')">
+      <h2>17</h2>
+      <p>سترہ</p>
+      <small>Satrah</small>
+    </div>
+    <div class="number-card" onclick="playAudio('atharah')">
+      <h2>18</h2>
+      <p>اٹھارہ</p>
+      <small>Atharah</small>
+    </div>
+    <div class="number-card" onclick="playAudio('unnees')">
+      <h2>19</h2>
+      <p>انیس</p>
+      <small>Unnees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('bees')">
+      <h2>20</h2>
+      <p>بیس</p>
+      <small>Bees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('ikkees')">
+      <h2>21</h2>
+      <p>اکیس</p>
+      <small>Ikkees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('baees')">
+      <h2>22</h2>
+      <p>بائیس</p>
+      <small>Baees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('taees')">
+      <h2>23</h2>
+      <p>تئیس</p>
+      <small>Taees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('chobees')">
+      <h2>24</h2>
+      <p>چوبیس</p>
+      <small>Chobees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('pachees')">
+      <h2>25</h2>
+      <p>پچیس</p>
+      <small>Pachees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('chhabees')">
+      <h2>26</h2>
+      <p>چھبیس</p>
+      <small>Chhabees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('sattaees')">
+      <h2>27</h2>
+      <p>ستائیس</p>
+      <small>Sattaees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('atthaeis')">
+      <h2>28</h2>
+      <p>اٹھائیس</p>
+      <small>Atthaeis</small>
+    </div>
+    <div class="number-card" onclick="playAudio('untees')">
+      <h2>29</h2>
+      <p>انتیس</p>
+      <small>Untees</small>
+    </div>
+    <div class="number-card" onclick="playAudio('tees')">
+      <h2>30</h2>
+      <p>تیس</p>
+      <small>Tees</small>
+    </div>
+  </div>
+
+  
+
+  <!-- Custom Audio Player -->
+  <!-- Custom Audio Player -->
+  <div class="audio-player">
+    <button onclick="playAllAudio()">Tocar Todos os Áudios</button>
+  </div>
+
+  <div class="button-container">
+    <a href="LESSONCRADSURPTUR.html" class="button">Próxima Lição</a>
+</div>
+
+  <!-- Audio Script -->
+  <script>
+    function playAudio(number) {
+      const audio = new Audio(`audio/${number}.mp3`);
+      audio.play();
+    }
+
+    function playAllAudio() {
+      const numbers = ['ek', 'do', 'teen', 'chaar', 'paanch', 'cheh', 'saat', 'aath', 'nao', 'das', 'gyarah', 'barah', 'terah', 'chaudah', 'pandrah', 'solah', 'satrah', 'atharah', 'unnees', 'bees', 'ikkees', 'baees', 'taees', 'chobees', 'pachees', 'chhabees', 'sattaees', 'atthaeis', 'untees', 'tees'];
+      let index = 0;
+      
+      function playNext() {
+        if (index < numbers.length) {
+          const audio = new Audio(`audio/${numbers[index]}.mp3`);
+          audio.play();
+          index++;
+          audio.onended = playNext;  // Play the next audio when the current one ends
+        }
+      }
+      
+      playNext(); // Start playing the first audio
+    }
+  </script>
+</body>
+</html>

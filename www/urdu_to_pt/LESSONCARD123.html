@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اردو سے پرتگالی: 123 سیکھیں</title>
+  <style>
+    body {
+      font-family: "Noto Nastaliq Urdu", Arial, sans-serif;
+      background: linear-gradient(to bottom, #f8f9fa, #dfe4ea);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .instructions {
+      font-size: 18px;
+      color: #636e72;
+      margin-bottom: 20px;
+    }
+
+    .numbers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .number-card {
+      background:  #002D62;
+      color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .number-card:hover {
+      transform: translateY(-5px);
+      background: #bbdbf3;
+    }
+
+    .number-card h2 {
+      font-size: 40px;
+      margin: 0;
+    }
+
+    .number-card p {
+      font-size: 18px;
+      margin: 5px 0 0;
+    }
+
+    .audio-instruction {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #6c5ce7;
+    }
+
+    .replay-btn {
+      margin-top: 20px;
+      background-color:  #002D62;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .replay-btn:hover {
+      background-color: #bbdbf3;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>اردو سے پرتگالی: 123 سیکھیں</h1>
+    <p class="instructions">ہر نمبر پر کلک کریں تاکہ آپ پرتگالی میں نمبر سن سکیں۔</p>
+
+    <div class="numbers">
+      <div class="number-card" onclick="playAudio('um')">
+        <h2>1</h2>
+        <p>Um</p>
+        <small>ایک</small>
+      </div>
+      <div class="number-card" onclick="playAudio('dois')">
+        <h2>2</h2>
+        <p>Dois</p>
+        <small>دو</small>
+      </div>
+      <div class="number-card" onclick="playAudio('tres')">
+        <h2>3</h2>
+        <p>Três</p>
+        <small>تین</small>
+      </div>
+    </div>
+
+    <p class="audio-instruction">آخری آڈیو دوبارہ سننے کے لئے نیچے دبائیں:</p>
+    <button class="replay-btn" onclick="replayLastAudio()">آخری نمبر دوبارہ سنیں</button>
+  </div>
+
+
+  <audio id="um" src="data:audio/mp3;base64,//YourBase64AudioHereForUm"></audio>
+  <audio id="dois" src="data:audio/mp3;base64,//YourBase64AudioHereForDois"></audio>
+  <audio id="tres" src="data:audio/mp3;base64,//YourBase64AudioHereForTres"></audio>
+
+  <script>
+    let lastAudioId = null;
+
+    function playAudio(id) {
+      const audio = document.getElementById(id);
+      if (audio) {
+        audio.play();
+        lastAudioId = id;
+      }
+    }
+
+    function replayLastAudio() {
+      if (lastAudioId) {
+        const audio = document.getElementById(lastAudioId);
+        if (audio) {
+          audio.play();
+        }
+      } else {
+        alert("پہلے کوئی نمبر سنیں!");
+      }
+    }
+  </script>
+</body>
+</html>

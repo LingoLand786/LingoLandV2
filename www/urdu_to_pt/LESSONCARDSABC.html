@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprender o ABC em Português</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #f0f4f7, #dbe4ec);
+            color: #333;
+        }
+        .container {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        video {
+            width: 85%;
+            max-width: 750px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        video:hover {
+            transform: scale(1.05);
+        }
+        button {
+            background-color: #002D62;
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        button:hover {
+            background-color: #163c68;
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .lesson-info {
+            text-align: left;
+            padding: 30px;
+            max-width: 800px;
+            margin-top: 30px;
+            background-color: #ffffff;
+            border-radius: 25px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            display: none;
+            transform: scale(1);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .lesson-info h2 {
+            font-size: 2.5rem;
+            color: #002D62;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .lesson-info p {
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        table {
+            width: 100%;
+            margin-top: 30px;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #002D62;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            video {
+                width: 90%;
+            }
+            .lesson-info {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="welcome-screen">
+        <video id="welcome-video" autoplay>
+            <source src="WELCOME.mp4" type="video/mp4">
+            آپ کا براؤزر ویڈیو ٹیگ کو سپورٹ نہیں کرتا۔
+        </video>
+        <button onclick="startLesson()">آئیے سیکھیں</button>
+    </div>
+
+    <div class="container" id="second-video-container" style="display: none;">
+        <video id="second-video" controls>
+            <source src="learnabc.mp4" type="video/mp4">
+            آپ کا براؤزر ویڈیو ٹیگ کو سپورٹ نہیں کرتا۔
+        </video>
+        <button onclick="showLessonInfo()">اگلا</button>
+    </div>
+
+    <div class="lesson-info" id="lesson-info">
+        <h2>سبق کی معلومات</h2>
+        <p><strong>1. تلفظ:</strong> اردو اور پرتگالی میں حروفِ تہجی کی آوازیں مختلف ہیں، خاص طور پر آوازیں اور بعض حروفِ حلکے.</p>
+        <p><strong>2. آوازیں:</strong> پرتگالی میں ایسی آوازیں ہیں جو اردو میں نہیں ہیں۔ جیسے "A", "E", "I", "O", "U" کے مختلف آوازیں ہیں دونوں زبانوں میں۔</p>
+        <p><strong>3. منفرد آوازیں:</strong> پرتگالی میں 'sh' کی آواز جیسے "x" اور "ch" استعمال کی جاتی ہے، جو اردو میں نہیں ہیں۔</p>
+        <p><strong>4. حروفِ تہجی کی ساخت:</strong> اردو میں 38 حروف ہیں، جبکہ پرتگالی میں 26 حروف ہیں۔</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>خصوصیات</th>
+                    <th>اردو حروفِ تہجی</th>
+                    <th>پرتگالی حروفِ تہجی</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>حروف کی تعداد</td>
+                    <td>38</td>
+                    <td>26</td>
+                </tr>
+                <tr>
+                    <td>آوازیں</td>
+                    <td>مختصر اور طویل</td>
+                    <td>نزلہ والی آوازیں</td>
+                </tr>
+                <tr>
+                    <td>خاص حروف</td>
+                    <td>بہت سے اعشاری علامات</td>
+                    <td>لہجے اور اعشاری علامات</td>
+                </tr>
+                <tr>
+                    <td>منفرد حروف</td>
+                    <td>خ (خا)، غ (غہ)</td>
+                    <td>ç (سی سیڈِیا)، ão</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button onclick="goBack()">واپس جائیں</button>
+    </div>
+
+    <script>
+        function startLesson() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            const welcomeVideo = document.getElementById('welcome-video');
+            const secondVideoContainer = document.getElementById('second-video-container');
+
+            // Stop the welcome video
+            welcomeVideo.pause();
+            
+            // Hide the welcome screen and show the second video
+            welcomeScreen.style.display = 'none';
+            secondVideoContainer.style.display = 'flex';
+        }
+
+        function showLessonInfo() {
+            const secondVideoContainer = document.getElementById('second-video-container');
+            const secondVideo = document.getElementById('second-video');
+            const lessonInfo = document.getElementById('lesson-info');
+
+            // Pause the second video
+            secondVideo.pause();
+
+            // Hide the second video and show the lesson info
+            secondVideoContainer.style.display = 'none';
+            lessonInfo.style.display = 'block';
+        }
+
+        function goBack() {
+            const lessonInfo = document.getElementById('lesson-info');
+            const welcomeScreen = document.getElementById('welcome-screen');
+
+            // Hide the lesson info and show the welcome screen again
+            lessonInfo.style.display = 'none';
+            welcomeScreen.style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

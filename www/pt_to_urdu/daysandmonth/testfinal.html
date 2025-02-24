@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Final - Aprenda Urdu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-image: url('img/bg.jpeg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            font-size: 3.5rem;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease-in-out;
+        }
+
+        header:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-size: 4rem;
+        }
+
+        /* Lesson Section */
+        .lesson-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: #002D62;
+        }
+
+        p {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        /* Quiz Item Styles */
+        .quiz-item {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+
+        .quiz-question {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #002D62;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .quiz-options label {
+            padding: 15px 25px;
+            margin: 5px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            background-color: #002D62;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .quiz-options input[type="radio"] {
+            display: none;
+        }
+
+        .quiz-options input[type="radio"]:checked + label {
+            background-color: rgb(165, 184, 236);
+            color: #333;
+        }
+
+        .quiz-options label:hover {
+            background-color: #001b40;
+        }
+
+        .quiz-options label.correct {
+            background-color: #4CAF50; /* Green for correct */
+        }
+
+        .quiz-options label.incorrect {
+            background-color: #F44336; /* Red for incorrect */
+        }
+
+        /* Submit Button */
+        .btn {
+            padding: 15px 30px;
+            background-color: #002D62;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.4rem;
+            border-radius: 10px;
+            margin: 25px 0;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            align-self: center;
+        }
+
+        .btn:hover {
+            background-color: #001b40;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #002D62;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.3rem;
+            margin-top: 50px;
+        }
+
+        /* Results Page */
+        .results-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-item {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            header {
+                font-size: 2.5rem;
+                padding: 30px;
+            }
+
+            .lesson-container {
+                padding: 20px;
+            }
+
+            .btn {
+                font-size: 1.2rem;
+                padding: 12px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Teste Final - Aprenda os Dias e Meses em Urdu</h1>
+</header>
+
+<div class="lesson-container">
+    <section id="intro">
+        <h2>Teste seus conhecimentos</h2>
+        <p>Bem-vindo ao teste final! Responda todas as perguntas abaixo e clique em "Finalizar Teste" para ver sua pontuação detalhada.</p>
+    </section>
+
+    <form id="quizForm">
+        <!-- Question 1 -->
+        <div class="quiz-item">
+            <div class="quiz-question">1. Qual é o nome de "Segunda-feira" em Urdu?</div>
+            <div class="quiz-options">
+                <input type="radio" id="q1o1" name="question1" value="پیر" data-correct="true">
+                <label for="q1o1">پیر</label>
+
+                <input type="radio" id="q1o2" name="question1" value="بدھ">
+                <label for="q1o2">بدھ</label>
+
+                <input type="radio" id="q1o3" name="question1" value="اتوار">
+                <label for="q1o3">اتوار</label>
+            </div>
+        </div>
+
+        <!-- Repeat similar blocks for other questions -->
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Finalizar Teste</button>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2025 Aprenda Urdu - Todos os direitos reservados</p>
+</footer>
+
+<script>
+    const quizForm = document.getElementById('quizForm');
+    const totalQuestions = 10;
+
+    // Add event listener to handle form submission
+    quizForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Ensure all questions are answered
+        const unansweredQuestions = Array.from(quizForm.querySelectorAll('input[type="radio"]:not(:checked)'));
+        if (unansweredQuestions.length > 0) {
+            alert("Por favor, responda todas as perguntas antes de enviar o teste!");
+            return;
+        }
+
+        let correctAnswers = 0;
+        const answers = [];
+        const selectedAnswers = quizForm.querySelectorAll('input[type="radio"]:checked');
+
+        selectedAnswers.forEach(answer => {
+            if (answer.dataset.correct === "true") {
+                correctAnswers++;
+                answers.push({ question: answer.closest('.quiz-item').querySelector('.quiz-question').textContent, correct: true });
+            } else {
+                answers.push({ question: answer.closest('.quiz-item').querySelector('.quiz-question').textContent, correct: false });
+            }
+        });
+
+        // Redirect to results page with detailed feedback
+        localStorage.setItem('quizResults', JSON.stringify(answers));
+        window.location.href = 'results.html';
+    });
+</script>
+
+</body>
+</html>

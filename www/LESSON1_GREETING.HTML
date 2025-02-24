@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portuguese Language Quiz</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f9f9f9, #ffffff);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background: #002D62;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+      color: white;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 1.5rem;
+      margin: 30px 0;
+      color: #ffffff;
+    }
+
+    .answers label {
+      display: block;
+      margin: 12px 0;
+      padding: 15px;
+      background: #f9f9f9;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #002D62;
+    }
+
+    .answers label:hover {
+      background: #e6f4e9;
+      border-color: #ffffff;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 1rem;
+      background: #58cc02;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #4cb502;
+      transform: scale(1.05);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #feedback {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .correct {
+      color: #4cb502;
+    }
+
+    .incorrect {
+      color: #e63946;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .quiz-container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .question {
+        font-size: 1.2rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Portuguese Language Quiz</h1>
+    <div id="quiz">
+      <!-- Question and Answers will appear here -->
+    </div>
+    <div id="feedback"></div>
+    <button id="next" style="display: none;">Continue</button>
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "How do you say 'Good morning' in Portuguese?",
+        answers: {
+          a: "Boa tarde",  // Incorrect
+          b: "Bom dia",    // Correct
+          c: "Boa noite",  // Incorrect
+        },
+        correct: "b",  // Correct answer
+        audio: "audio_files/answer_2.mp3",  // Audio for the correct answer
+      },
+      {
+        question: "How do you say 'Good evening' in Portuguese?",
+        answers: {
+          a: "Boa tarde",  // Incorrect
+          b: "Bom dia",    // Incorrect
+          c: "Boa noite",  // Correct
+        },
+        correct: "c",  // Correct answer
+        audio: "audio_files/answer_3.mp3",  // Audio for the correct answer
+      },
+      {
+        question: "How do you say 'Good Afternoon' in Portuguese?",
+        answers: {
+          a: "Bom dia",  // Incorrect
+          b: "Boa tarde",    // Incorrect
+          c: "Boa noite",  // Correct
+        },
+        correct: "b",  // Correct answer
+        audio: "audio_files/answer_1.mp3",  // Audio for the correct answer
+      },
+      
+      {
+        question: "How do you say “Hello” in Portuguese?",
+        answers: {
+          a: "Adeus",
+          b: "Olá", // Correct
+          c: "Bom dia"
+        },
+        correct: "b",
+        audio: "audio_files/answer_4.mp3"
+      },
+      {
+        question: "What is the Portuguese word for “Goodbye”?",
+        answers: {
+          a: "Olá",
+          b: "Adeus", // Correct
+          c: "Obrigado"
+        },
+        correct: "b",
+        audio: "audio_files/answer_5.mp3"
+      },
+      {
+        question: "How do you ask “How are you?” in Portuguese?",
+        answers: {
+          a: "Como está você?", // Correct
+          b: "Quanto custa?",
+          c: "Bom dia"
+        },
+        correct: "a",
+        audio: "audio_files/answer_6.mp3"
+      },
+      {
+        question: "How do you say “I am fine, thank you” in Portuguese?",
+        answers: {
+          a: "Estou bem, obrigado", // Correct
+          b: "Boa tarde",
+          c: "Adeus"
+        },
+        correct: "a",
+        audio: "audio_files/answer_7.mp3"
+      },
+      {
+        question: "What is the Portuguese phrase for “See you later”?",
+        answers: {
+          a: "Até Logo!", // Correct
+          b: "Bom dia",
+          c: "Adeus"
+        },
+        correct: "a",
+        audio: "audio_files/answer_8.mp3"
+      },
+      {
+        question: "How do you say “Nice to meet you” in Portuguese?",
+        answers: {
+          a: "Prazer em conhecê-lo!", // Correct
+          b: "Com licença",
+          c: "Obrigado"
+        },
+        correct: "a",
+        audio: "audio_files/answer_9.mp3"
+      },
+      {
+        question: "What is the Portuguese phrase for “How’s it going?”?",
+        answers: {
+          a: "Como vai?", // Correct
+          b: "Adeus",
+          c: "Obrigado"
+        },
+        correct: "a",
+        audio: "audio_files/answer_10.mp3"
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let isAnswered = false;
+
+    function showQuestion() {
+      isAnswered = false;
+      const quizContainer = document.getElementById("quiz");
+      const feedbackContainer = document.getElementById("feedback");
+      const nextButton = document.getElementById("next");
+
+      feedbackContainer.innerHTML = "";
+      feedbackContainer.style.opacity = "0";
+      nextButton.style.display = "none";
+
+      const currentQuestion = quizData[currentQuestionIndex];
+      const answers = Object.keys(currentQuestion.answers).map(
+        (key) => `<label onclick="checkAnswer('${key}')">${key}: ${currentQuestion.answers[key]}</label>`
+      );
+
+      quizContainer.innerHTML = `
+        <div class="question">${currentQuestion.question}</div>
+        <div class="answers">${answers.join("")}</div>
+        <button id="audioButton" onclick="playAudio('${currentQuestion.audio}')">🔊 Play Audio</button>
+      `;
+    }
+
+    function playAudio(audioPath) {
+      if (!isAnswered) {
+        const audio = new Audio(audioPath);
+        audio.play();
+      }
+    }
+
+    function checkAnswer(selectedAnswer) {
+      if (isAnswered) return;
+
+      const currentQuestion = quizData[currentQuestionIndex];
+      const feedbackContainer = document.getElementById("feedback");
+      const nextButton = document.getElementById("next");
+
+      isAnswered = true;
+
+      if (selectedAnswer === currentQuestion.correct) {
+        score++;
+        feedbackContainer.innerHTML = "Correct!";
+        feedbackContainer.className = "correct";
+      } else {
+        feedbackContainer.innerHTML = `Incorrect! Correct answer: ${currentQuestion.correct.toUpperCase()}`;
+        feedbackContainer.className = "incorrect";
+      }
+
+      feedbackContainer.style.opacity = "1";
+      nextButton.style.display = "block";
+    }
+
+    document.getElementById("next").addEventListener("click", () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quizData.length) {
+        showQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    function showResults() {
+      const quizContainer = document.getElementById("quiz");
+      const resultsContainer = document.getElementById("results");
+
+      quizContainer.style.display = "none";
+
+      resultsContainer.innerHTML = `
+        <p>Your score: ${score} / ${quizData.length}</p>
+        <button onclick="goToPage('hellopt.html')">Back to Home</button>
+        <button onclick="goToPage('les_2_hello.html')">Next Lesson</button>
+      `;
+    }
+
+    function goToPage(page) {
+      window.location.href = page;
+    }
+
+    showQuestion();
+  </script>
+</body>
+</html>

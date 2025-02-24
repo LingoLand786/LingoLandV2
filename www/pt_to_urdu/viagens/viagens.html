@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda Português - Frases Comuns para Viagem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f1f2f6, #c9cfd7);
+            color: #002D62;
+            line-height: 1.6;
+            transition: background-color 0.3s;
+        }
+
+        /* Header Section */
+        header {
+            padding: 80px 30px;
+            background: #002D62;
+            color: white;
+            text-align: center;
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 4.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            letter-spacing: 0.8px;
+            color: #f0f0f0;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 60px 50px;
+            justify-items: center;
+        }
+
+        .category-box {
+            position: relative;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s, box-shadow 0.4s;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #e8f2f8 100%);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s, opacity 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .category-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-content {
+            padding: 20px;
+        }
+
+        .category-box h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        .category-box p {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .category-box a {
+            padding: 14px 35px;
+            background-color: #008080;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .category-box a:hover {
+            background-color: #006666;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        /* Animations for elements */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Button Animations */
+        .category-box a {
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .category-box a:hover {
+            transform: translateY(-5px);
+            background-color: #006666;
+        }
+
+        /* Box shadow effect on hover */
+        .category-box:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Image hover effect */
+        .category-box img {
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+<header class="fade-in">
+    <p>Inicie sua jornada educacional hoje, projetada para o sucesso em viagens</p>
+    <h1>Aprenda Urdu para Viagem</h1>
+</header>
+
+<!-- Lesson Cards -->
+<div class="category-container fade-in">
+    <div class="category-box">
+        <img src="img/tra.jpeg" alt="Vocabulary for Transportation">
+        <div class="category-content">
+            <h3>Vocabulário para Transporte</h3>
+            <p>Aprenda frases essenciais para se locomover durante sua viagem.</p>
+            <a href="lesson_transportation.html">Iniciar Aula</a>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="img/hotelss.jpeg" alt="Booking a Hotel">
+        <div class="category-content">
+            <h3>Frases no Hotel</h3>
+            <p>Saiba como interagir com os funcionários do hotel de forma eficaz.</p>
+            <a href="lesson_hotel_booking.html">Iniciar Aula</a>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <img src="img/cultura.webp" alt="Cultural Etiquette">
+        <div class="category-content">
+            <h3>Etiqueta Cultural</h3>
+            <p>Entenda as regras e normas culturais para interagir de forma respeitosa.</p>
+            <a href="lesson_cultural_etiquette.html">Iniciar Aula</a>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <img src="IMG/emer.jpeg" alt="Emergency Phrases">
+        <div class="category-content">
+            <h3>Frases de Emergência</h3>
+            <p>Esteja preparado para situações de emergência em aeroportos, mercados e mais.</p>
+            <a href="lesson_emergency_phrases.html">Iniciar Aula</a>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <img src="IMG/airport.jpeg" alt="Phrases in the Airport">
+        <div class="category-content">
+            <h3>Frases no Aeroporto</h3>
+            <p>Aprenda frases essenciais para interagir no aeroporto.</p>
+            <a href="lesson_airport_phrases.html">Iniciar Aula</a>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <img src="IMG/super.jpeg" alt="Phrases in the Market">
+        <div class="category-content">
+            <h3>Frases no Mercado</h3>
+            <p>Aprenda frases úteis para compras e negociação em mercados locais.</p>
+            <a href="lesson_market_phrases.html">Iniciar Aula</a>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <img src="IMG/direc.jpg" alt="Phrases to Ask for Directions">
+        <div class="category-content">
+            <h3>Frases para Pedir Direções</h3>
+            <p>Aprenda a pedir e entender direções em português.</p>
+            <a href="lesson_directions_phrases.html">Iniciar Aula</a>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <img src="IMG/res.jpeg" alt="Phrases for Restaurants">
+        <div class="category-content">
+            <h3>Frases para Restaurantes</h3>
+            <p>Saiba como fazer pedidos e interagir em restaurantes portugueses.</p>
+            <a href="lesson_restaurant_phrases.html">Iniciar Aula</a>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <img src="IMG/med.jpeg" alt="Medical Phrases">
+        <div class="category-content">
+            <h3>Frases Médicas</h3>
+            <p>Frases úteis para quando você precisar de assistência médica.</p>
+            <a href="lesson_medical.html">Iniciar Aula</a>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

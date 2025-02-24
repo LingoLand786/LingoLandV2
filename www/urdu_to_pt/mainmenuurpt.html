@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مین مینو</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Noto Nastaliq Urdu', serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sidebar {
+      width: 30%;
+      height: 100vh;
+      background: linear-gradient(135deg, #0056b3, #001d4d);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+      overflow-y: auto;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .sidebar h2 {
+      margin-bottom: 40px;
+      font-size: 32px;
+      color: #ffffff;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      width: 100%;
+    }
+
+    .sidebar ul li {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 8px;
+      transition: 0.3s;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .sidebar ul li:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .sidebar ul li img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .sidebar ul li span {
+      font-size: 20px;
+      margin-right: 10px;
+      flex: 1;
+    }
+
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+      background: #f0f4f8;
+      overflow-y: auto;
+    }
+
+    .progress-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .progress-card {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .progress-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    .progress-card img {
+      width: 80px;
+      height: 80px;
+      margin-top: 20px;
+    }
+
+    .progress-card h3 {
+      font-size: 18px;
+      margin: 15px 0;
+      color: #333333;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .header {
+      background: linear-gradient(90deg, #001d4d, #0056b3);
+      color: #ffffff;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      border-bottom: 5px solid #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>لنگو لینڈ</h2>
+    <ul>
+      <li>
+        <img src="img/sidebar/lista.gif" alt="Quests">
+        <span>اقسام</span>
+      </li>
+      <li>
+        <a href="verbos/verbos.html">
+          <img src="img/sidebar/dictionary.gif" alt="افعال">
+          <span>افعال</span>
+        </a>
+      </li>
+      <li>
+        <a href="translate.html">
+          <img src="img/sidebar/translator.gif" alt="ترجمہ">
+          <span>ترجمہ</span>
+        </a>
+      </li>
+      <li>
+        <img src="img/sidebar/profile.gif" alt="Quests">
+        <span>کوئسٹ</span>
+      </li>
+      <li>
+        <img src="img/sidebar/add-user.gif" alt="رابطہ">
+        <span>رابطہ</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="header">اپنی زبان سیکھنے کے سفر کا آغاز کریں</div>
+
+    <div class="progress-section">
+      <div class="progress-card">
+        <a href="LESSONCARDSABC.html">
+          <img src="images/abc.webp" alt="Learn ABCs">
+          <h3>حروف تہجی سیکھیں</h3>
+        </a>
+      </div>
+      <div class="progress-card">
+        <a href="LESSONCARD123.html">
+          <img src="images/123.jpg" alt="١٢٣ سیکھیں">
+          <h3>١٢٣ سیکھیں</h3>
+        </a>
+      </div>
+      <div class="progress-card">
+        <a href="LESSONCRADSURPT.html">
+          <img src="images/gree.jpg" alt="Learn Greetings">
+          <h3>سلام کرنا سیکھیں</h3>
+        </a>
+      </div>
+      <div class="progress-card">
+        <a href="BASIC GRAMMAR/LESSONCARD_BASICGRAMMAR.html">
+          <img src="images/gra.avif" alt="بنیادی گرامر">
+          <h3>بنیادی گرامر</h3>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="colors&lang.html">
+          <img src="images/c.jpeg" alt="Learn Colors">
+          <h3>رنگ سیکھیں</h3>
+        </a>
+      </div>
+      
+      <div class="progress-card">
+        <a href="country&lang.html">
+          <img src="img/CATEGORIAS/lang.jpeg" alt="Country Language">
+          <h3>ملک اور زبان</h3>
+        </a>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Objects and Numbers">
+        <h3>اشیاء اور اعداد</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Grammar">
+        <h3>گرامر</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Travel">
+        <h3>سفر</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Seasons and Weather">
+        <h3>موسم اور موسم</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Animals">
+        <h3>جانور</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Fruits">
+        <h3>پھل</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Vocabulary">
+        <h3>الفاظ</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Foods">
+        <h3>کھانے</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Drinks">
+        <h3>مشروبات</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Family">
+        <h3>خاندان</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="School">
+        <h3>اسکول</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Around the House">
+        <h3>گھر کے ارد گرد</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Hotel">
+        <h3>ہوٹل</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Restaurant">
+        <h3>ریستوران</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Introduction">
+        <h3>تعارف</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Shopping">
+        <h3>خریداری</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Airport">
+        <h3>ایئرپورٹ</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Fun">
+        <h3>تفریح</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Sports">
+        <h3>کھیل</h3>
+      </div>
+      <div class="progress-card">
+        <img src="img/progress-icon3.png" alt="Public Transport">
+        <h3>عوامی نقل و حمل</h3>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

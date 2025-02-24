@@ -1,0 +1,38 @@
+from gtts import gTTS
+import os
+
+# List of Urdu phrases to generate audio for
+urdu_phrases = {
+    "مجھے مدد کی ضرورت ہے!": "audio/preciso_de_ajuda.mp3",
+    "ایمبولینس بلائیں!": "audio/ambulancia.mp3",
+    "میں کھو گیا ہوں۔": "audio/estou_perdido.mp3",
+    "ہسپتال کہاں ہے؟": "audio/hospital.mp3",
+    "کیا آپ میری مدد کر سکتے ہیں؟": "audio/pode_me_ajudar.mp3",
+    "یہاں خطرہ ہے۔": "audio/perigo_aqui.mp3",
+    "میں زخمی ہوں۔": "audio/eu_estou_ferido.mp3",
+    "پولیس کو بلاؤ!": "audio/chame_a_policia.mp3",
+    "میری سامان گم ہو گئی ہے۔": "audio/perdi_bagagem.mp3",
+    "باتھروم کہاں ہے؟": "audio/banheiro.mp3",
+    "مجھے اچھا محسوس نہیں ہو رہا۔": "audio/nao_me_sinto_bem.mp3",
+    "کیا آپ کے پاس نقشہ ہے؟": "audio/tem_um_mapa.mp3",
+    "میں نے اپنا پاسپورٹ گم کر دیا ہے۔": "audio/perdi_passaporte.mp3",
+    "پیٹرول پمپ کہاں ہے؟": "audio/posto_de_gasolina.mp3",
+    "کیا آپ مجھے وہاں لے جا سکتے ہیں؟": "audio/me_levar_ate_la.mp3",
+    "مجھے ڈاکٹر کی ضرورت ہے۔": "audio/preciso_de_um_medico.mp3",
+    "بہت بارش ہو رہی ہے!": "audio/esta_chovendo.mp3",
+    "مجھے بھوک لگی ہے۔": "audio/estou_com_fome.mp3",
+    "کیا آپ مجھے راستہ بتا سکتے ہیں؟": "audio/me_dar_direcoes.mp3",
+    "میں اپنے راستے میں کھو گیا ہوں۔": "audio/perdido_no_caminho.mp3"
+}
+# Directory to save audio files
+audio_dir = "audiosEMERGENY"
+os.makedirs(audio_dir, exist_ok=True)
+
+# Generate audio files
+for i, phrase in enumerate(phrases, start=1):
+    audio_file = os.path.join(audio_dir, f"audio{i}.mp3")
+    tts = gTTS(text=phrase, lang='ur')
+    tts.save(audio_file)
+    print(f"Saved: {audio_file}")
+
+print("All audio files have been generated.")

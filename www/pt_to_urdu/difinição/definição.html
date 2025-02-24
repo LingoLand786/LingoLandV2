@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f9f9f9;
+    }
+    .settings-container {
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .settings-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .settings-header h1 {
+      font-size: 24px;
+      color: #333;
+    }
+    .profile-picture {
+      display: block;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #ddd;
+      object-fit: cover;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background: #002d62;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .form-group button:hover {
+      background: #0041a8;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <div class="settings-header">
+      <h1>Settings</h1>
+    </div>
+    <div class="profile-section">
+      <!-- Profile Picture -->
+      <img id="profilePicture" class="profile-picture" src="https://via.placeholder.com/100" alt="Profile Picture">
+      <!-- Display Name -->
+      <div class="form-group">
+        <label for="displayName">Name</label>
+        <input type="text" id="displayName" placeholder="Enter your name">
+      </div>
+      <!-- Email (read-only) -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Your email" disabled>
+      </div>
+      <!-- Update Button -->
+      <div class="form-group">
+        <button id="updateProfileBtn">Save Changes</button>
+      </div>
+      <!-- Logout Button -->
+      <div class="form-group">
+        <button id="logoutBtn" style="background: #d9534f;">Log Out</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js"></script>
+  <script>
+    // Firebase Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+      authDomain: "appsitesync.firebaseapp.com",
+      projectId: "appsitesync",
+      storageBucket: "appsitesync.appspot.com",
+      messagingSenderId: "357510439971",
+      appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+      measurementId: "G-T0SX0NH50K"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // DOM Elements
+    const profilePicture = document.getElementById("profilePicture");
+    const displayNameInput = document.getElementById("displayName");
+    const emailInput = document.getElementById("email");
+    const updateProfileBtn = document.getElementById("updateProfileBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // Load User Data
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        // Display user data
+        profilePicture.src = user.photoURL || "https://via.placeholder.com/100";
+        displayNameInput.value = user.displayName || "";
+        emailInput.value = user.email;
+      } else {
+        // Redirect to login if not logged in
+        window.location.href = "login.html";
+      }
+    });
+
+    // Update Profile
+    updateProfileBtn.addEventListener("click", () => {
+      const displayName = displayNameInput.value;
+
+      auth.currentUser.updateProfile({
+        displayName: displayName,
+        photoURL: profilePicture.src
+      })
+      .then(() => {
+        alert("Profile updated successfully!");
+      })
+      .catch((error) => {
+        alert(`Error updating profile: ${error.message}`);
+      });
+    });
+
+    // Log Out
+    logoutBtn.addEventListener("click", () => {
+      auth.signOut()
+        .then(() => {
+          alert("Logged out successfully!");
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          alert(`Error logging out: ${error.message}`);
+        });
+    });
+  </script>
+</body>
+</html>

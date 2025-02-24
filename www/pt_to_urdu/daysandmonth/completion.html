@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conclusão do Teste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Same styles as before */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to left, #002D62, #ffffff);
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px;
+            background-color: #002D62;
+            color: #fff;
+            font-size: 3rem;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background-color: #002D62;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        footer {
+            background-color: #002D62;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Conclusão do Teste</h1>
+</header>
+
+<div class="lesson-container">
+    <h2>Você completou o teste!</h2>
+    <p id="finalScore">Carregando...</p>
+    <a href="final_test.html" class="btn">Fazer o Teste Novamente</a>
+</div>
+
+<footer>
+    <p>Desenvolvido por Sitara Learning. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    // Fetch the user's score from Firebase and display it on the completion page
+    const user = firebase.auth().currentUser;
+    if (user) {
+        const userEmail = user.email;
+
+        firebase.firestore().collection('results').doc(userEmail).get().then(doc => {
+            if (doc.exists) {
+                const result = doc.data();
+                document.getElementById('finalScore').textContent = `Sua pontuação final é: ${result.score} de 10`;
+            } else {
+                document.getElementById('finalScore').textContent = 'Você ainda não fez o teste.';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

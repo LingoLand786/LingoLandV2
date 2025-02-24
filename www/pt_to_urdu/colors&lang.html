@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرتگالی میں رنگ سیکھیں</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Noto Nastaliq Urdu', 'Arial', sans-serif;
+background: white;         
+   color: #333;
+            text-align: center;
+            direction: rtl;
+        }
+        header {
+            background: linear-gradient(135deg, #0056b3, #001d4d);
+            color: white;
+            padding: 20px 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .color-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .color-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .color-preview {
+            height: 100px;
+            border-bottom: 2px solid #ddd;
+        }
+        .color-name {
+            padding: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .color-name span {
+            font-size: 1rem;
+            font-style: italic;
+            color: #666;
+        }
+  
+    </style>
+</head>
+<body>
+    <header>Aprenda as Cores em Urdu</header>
+    <div class="container">
+        <!-- Color Cards -->
+        <div class="color-grid">
+            
+                <div class="color-card" onclick="selectColor('audioVermelho')">
+                    <div class="color-preview" style="background-color: red;"></div>
+                    <div class="color-name">سرخ - <span>Vermelho</span></div>
+                    <audio id="audioVermelho">
+                        <source src="COLORS/surkh.mp3" type="audio/mp3">
+                    </audio>
+                </div>
+                
+                <div class="color-card" onclick="selectColor('audioAzul')">
+                    <div class="color-preview" style="background-color: blue;"></div>
+                    <div class="color-name">نیلا - <span>Azul</span></div>
+                    <audio id="audioAzul">
+                        <source src="COLORS/neela.mp3" type="audio/mp3">
+                    </audio>
+                </div>
+            <div class="color-card" onclick="selectColor('audioVerde')">
+                <div class="color-preview" style="background-color: green;"></div>
+                <div class="color-name">سبز - <span>Verde</span></div>
+                <audio id="audioVerde">
+                    <source src="COLORS/sabz.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioAmarelo')">
+                <div class="color-preview" style="background-color: yellow;"></div>
+                <div class="color-name">پیلا - <span>Amarelo</span></div>
+                <audio id="audioAmarelo">
+                    <source src="COLORS/peela.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioPreto')">
+                <div class="color-preview" style="background-color: black;"></div>
+                <div class="color-name">کالا - <span>Preto</span></div>
+                <audio id="audioPreto">
+                    <source src="COLORS/kala.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioBranco')">
+                <div class="color-preview" style="background-color: white;"></div>
+                <div class="color-name">سفید - <span>Branco</span></div>
+                <audio id="audioBranco">
+                    <source src="COLORS/safed.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioLaranja')">
+                <div class="color-preview" style="background-color: orange;"></div>
+                <div class="color-name">نارنجی - <span>Laranja</span></div>
+                <audio id="audioLaranja">
+                    <source src="COLORS/naranji.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioRoxo')">
+                <div class="color-preview" style="background-color: purple;"></div>
+                <div class="color-name">جامنی - <span>Roxo</span></div>
+                <audio id="audioRoxo">
+                    <source src="COLORS/jamni.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioCinza')">
+                <div class="color-preview" style="background-color: gray;"></div>
+                <div class="color-name">سرمئی - <span>Cinza</span></div>
+                <audio id="audioCinza">
+                    <source src="COLORS/sarmayi.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioRosa')">
+                <div class="color-preview" style="background-color: pink;"></div>
+                <div class="color-name">گلابی - <span>Rosa</span></div>
+                <audio id="audioRosa">
+                    <source src="COLORS/gulabi.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioMarrom')">
+                <div class="color-preview" style="background-color: brown;"></div>
+                <div class="color-name">بھورا - <span>Marrom</span></div>
+                <audio id="audioMarrom">
+                    <source src="COLORS/bhoora.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioDourado')">
+                <div class="color-preview" style="background-color: gold;"></div>
+                <div class="color-name">سنہری - <span>Dourado</span></div>
+                <audio id="audioDourado">
+                    <source src="COLORS/sunehri.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioPrata')">
+                <div class="color-preview" style="background-color: silver;"></div>
+                <div class="color-name">چاندی - <span>Prata</span></div>
+                <audio id="audioPrata">
+                    <source src="COLORS/chandi.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioTurquesa')">
+                <div class="color-preview" style="background-color: turquoise;"></div>
+                <div class="color-name">فیروزی - <span>Turquesa</span></div>
+                <audio id="audioTurquesa">
+                    <source src="COLORS/ferozi.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            
+            
+            <div class="color-card" onclick="selectColor('audioSalmon')">
+                <div class="color-preview" style="background-color: salmon;"></div>
+                <div class="color-name">سالمون - <span>Salmon</span></div>
+                <audio id="audioSalmon">
+                    <source src="COLORS/salmon.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            
+            <div class="color-card" onclick="selectColor('audioLavanda')">
+                <div class="color-preview" style="background-color: lavender;"></div>
+                <div class="color-name">لےوینڈا - <span>Lavanda</span></div>
+                <audio id="audioLavanda">
+                    <source src="COLORS/lavender.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            
+           
+            <div class="color-card" onclick="selectColor('audioVerdeLimão')">
+                <div class="color-preview" style="background-color: lime;"></div>
+                <div class="color-name">لیموں - <span>Verde Limão</span></div>
+                <audio id="audioVerdeLimão">
+                    <source src="COLORS/lemon.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioBordeaux')">
+                <div class="color-preview" style="background-color: darkred;"></div>
+                <div class="color-name">بورڈو - <span>Bordeaux</span></div>
+                <audio id="audioBordeaux">
+                    <source src="COLORS/bordeaux.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioCarmesim')">
+                <div class="color-preview" style="background-color: crimson;"></div>
+                <div class="color-name">کرمسی - <span>Carmesim</span></div>
+                <audio id="audioCarmesim">
+                    <source src="COLORS/crimson.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioFucsia')">
+                <div class="color-preview" style="background-color: fuchsia;"></div>
+                <div class="color-name">فیوکیا - <span>Fucsia</span></div>
+                <audio id="audioFucsia">
+                    <source src="COLORS/fuchsia.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('audioTurquesaEscuro')">
+                <div class="color-preview" style="background-color: darkturquoise;"></div>
+                <div class="color-name">گہرا فیروزی - <span>Turquesa Escuro</span></div>
+                <audio id="audioTurquesaEscuro">
+                    <source src="COLORS/gehra ferozi.mp3" type="audio/mp3">
+                </audio>
+            </div>
+           
+            
+        </div>
+    </div>
+    <script>
+        function selectColor(audioId) {
+    // Stop any currently playing audio
+    const allAudios = document.querySelectorAll("audio");
+    allAudios.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0; // Reset playback
+    });
+
+    // Play the selected audio
+    const audioElement = document.getElementById(audioId);
+    if (audioElement) {
+        audioElement.play();
+    }
+}
+    </script>
+
+</body>
+</html>

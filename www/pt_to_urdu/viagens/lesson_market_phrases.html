@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Frases de Emergência - Mercado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #001d4d, #0056b3);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 4px solid #0056b3;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d1e3f3;
+            border-bottom: 2px solid #d1e3f3;
+        }
+
+        main {
+            padding: 30px 10%;
+        }
+
+        .category-box,
+        .phrases-box,
+        .quiz-section,
+        .about-section {
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .category-box:hover,
+        .phrases-box:hover,
+        .quiz-section:hover {
+            transform: scale(1.05);
+        }
+
+        .category-content h3 {
+            font-size: 2em;
+            color: #001d4d;
+            margin-bottom: 10px;
+        }
+
+        .category-content p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .category-content a {
+            text-decoration: none;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .category-content a:hover {
+            background-color: #003f7d;
+        }
+
+        .phrases-box h4,
+        .quiz-section h4,
+        .about-section h4 {
+            font-size: 2em;
+            color: #001d4d;
+            margin-bottom: 20px;
+        }
+
+        .phrases-box p,
+        .quiz-section .question {
+            font-size: 1.2em;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .phrases-box button,
+        .quiz-section button {
+            background-color: #001d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        .phrases-box button:hover,
+        .quiz-section button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            background: #001d4d;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            .category-box,
+            .phrases-box,
+            .quiz-section,
+            .about-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Frases de Mercado</h1>
+        <nav>
+            <ul>
+                <li><a href="#categoria">Categoria</a></li>
+                <li><a href="#frases">Frases</a></li>
+                <li><a href="#quiz">Quiz</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="categoria">
+            <div class="category-box">
+                <div class="category-content">
+                    <h3>Frases de Mercado</h3>
+                    <p>Aprenda frases essenciais para compras em Urdu.</p>
+                    <a href="lesson_market_phrases.html">Iniciar Aula</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="frases">
+            <div class="phrases-box">
+                <h4>Frases Importantes para o Mercado</h4>
+                <p><span>Quanto custa isso?</span> – یہ کتنے کا ہے؟ (Yeh kitne ka hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios1.mp3')">Ouvir</button>
+        
+                <p><span>Você aceita cartão de crédito?</span> – کیا آپ کریڈٹ کارڈ قبول کرتے ہیں؟ (Kya aap credit card qabool karte hain?)</p>
+                <button onclick="playAudio('market_audios/market_audios2.mp3')">Ouvir</button>
+        
+                <p><span>Você tem isso em outro tamanho?</span> – کیا یہ دوسرے سائز میں ہے؟ (Kya yeh doosre size mein hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios3.mp3')">Ouvir</button>
+        
+                <p><span>Onde está a seção de vegetais?</span> – سبزیوں کا سیکشن کہاں ہے؟ (Sabziyon ka section kahaan hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios4.mp3')">Ouvir</button>
+        
+                <p><span>Eu gostaria de um desconto.</span> – مجھے رعایت چاہیے۔ (Mujhe riayat chahiye.)</p>
+                <button onclick="playAudio('market_audios/market_audios5.mp3')">Ouvir</button>
+        
+                <p><span>Onde fica o caixa?</span> – کاؤنٹر کہاں ہے؟ (Counter kahaan hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios6.mp3')">Ouvir</button>
+        
+                <p><span>Vocês vendem frutas frescas?</span> – کیا آپ تازہ پھل بیچتے ہیں؟ (Kya aap taaza phal bechte hain?)</p>
+                <button onclick="playAudio('market_audios/market_audios7.mp3')">Ouvir</button>
+        
+                <p><span>Qual é o horário de funcionamento?</span> – آپ کے اوقاتِ کار کیا ہیں؟ (Aap ke auqaat-e-kar kya hain?)</p>
+                <button onclick="playAudio('market_audios/market_audios8.mp3')">Ouvir</button>
+        
+                <p><span>Tem sacolas disponíveis?</span> – کیا بیگز دستیاب ہیں؟ (Kya bags dastiyab hain?)</p>
+                <button onclick="playAudio('market_audios/market_audios9.mp3')">Ouvir</button>
+        
+                <p><span>Eu preciso de ajuda.</span> – مجھے مدد کی ضرورت ہے۔ (Mujhe madad ki zarurat hai.)</p>
+                <button onclick="playAudio('market_audios/market_audios10.mp3')">Ouvir</button>
+        
+                <p><span>Posso pagar com dinheiro?</span> – کیا میں نقد ادائیگی کر سکتا ہوں؟ (Kya main naqad adaigi kar sakta hoon?)</p>
+                <button onclick="playAudio('market_audios/market_audios11.mp3')">Ouvir</button>
+        
+                <p><span>Onde está a seção de laticínios?</span> – دودھ کے سیکشن کہاں ہے؟ (Doodh ke section kahaan hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios12.mp3')">Ouvir</button>
+        
+                <p><span>Este produto está em promoção?</span> – کیا یہ پروڈکٹ رعایتی ہے؟ (Kya yeh product riayati hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios13.mp3')">Ouvir</button>
+        
+                <p><span>Vocês entregam em casa?</span> – کیا آپ ہوم ڈلیوری کرتے ہیں؟ (Kya aap home delivery karte hain?)</p>
+                <button onclick="playAudio('market_audios/market_audios14.mp3')">Ouvir</button>
+        
+                <p><span>Onde está o estacionamento?</span> – پارکنگ کہاں ہے؟ (Parking kahaan hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios15.mp3')">Ouvir</button>
+        
+                <p><span>Qual é o preço por quilo?</span> – فی کلو قیمت کیا ہے؟ (Fi kilo qeemat kya hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios16.mp3')">Ouvir</button>
+        
+                <p><span>Posso experimentar isso?</span> – کیا میں یہ آزما سکتا ہوں؟ (Kya main yeh azma sakta hoon?)</p>
+                <button onclick="playAudio('market_audios/market_audios17.mp3')">Ouvir</button>
+        
+                <p><span>Há um produto mais barato?</span> – کیا کوئی سستا پروڈکٹ ہے؟ (Kya koi sasta product hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios18.mp3')">Ouvir</button>
+        
+                <p><span>Quanto tempo demora para entregar?</span> – ترسیل میں کتنا وقت لگتا ہے؟ (Tarseel mein kitna waqt lagta hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios19.mp3')">Ouvir</button>
+        
+                <p><span>Vocês têm um catálogo?</span> – کیا آپ کے پاس کیٹلاگ ہے؟ (Kya aap ke paas catalog hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios20.mp3')">Ouvir</button>
+        
+                <p><span>Este produto tem garantia?</span> – کیا اس پروڈکٹ کی وارنٹی ہے؟ (Kya is product ki warranty hai?)</p>
+                <button onclick="playAudio('market_audios/market_audios21.mp3')">Ouvir</button>
+        
+                <p><span>Tem troco para este valor?</span> – کیا آپ کے پاس باقی پیسے ہیں؟ (Kya aap ke paas baqi paisay hain?)</p>
+                <button onclick="playAudio('market_audios/market_audios22.mp3')">Ouvir</button>
+            </div>
+        </section>
+        
+
+        <section id="quiz" class="quiz-section">
+            <h4>Teste Seus Conhecimentos</h4>
+            <div class="question">
+                <p><strong>Como se diz "Quanto custa isso?" em Urdu?</strong></p>
+                <button onclick="checkAnswer('Yeh kitne ka hai?')">Yeh kitne ka hai?</button>
+                <button onclick="checkAnswer('Yeh kahan hai?')">Yeh kahan hai?</button>
+            </div>
+            <div id="quiz-result" style="margin-top: 20px; font-size: 1.2em;"></div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <h4>Sobre o Curso</h4>
+            <p>Este curso oferece frases essenciais para situações no mercado, com áudios e um quiz interativo.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Curso de Urdu - 2025</p>
+    </footer>
+
+    <script>
+        function playAudio(file) {
+            var audio = new Audio(file);
+            audio.play();
+        }
+
+        function checkAnswer(answer) {
+            const correctAnswer = "Yeh kitne ka hai?";
+            const resultDiv = document.getElementById('quiz-result');
+
+            if (answer === correctAnswer) {
+                resultDiv.textContent = "Correto! Muito bem!";
+                resultDiv.style.color = "green";
+            } else {
+                resultDiv.textContent = "Errado! Tente novamente.";
+                resultDiv.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

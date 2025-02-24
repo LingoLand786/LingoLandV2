@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { display: flex; justify-content: center; align-items: center; height: 100vh; background-color: white; overflow: hidden; }
+        .container { display: flex; background: rgba(255, 255, 255, 0.1); border-radius: 20px; box-shadow: 0 10px 30px rgba(9, 2, 41, 0.2); overflow: hidden; max-width: 900px; width: 100%; }
+        .form-container { flex: 1; padding: 2rem; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: center; }
+        h2 { font-size: 2rem; font-weight: 600; color: #333; margin-bottom: 1.5rem; text-align: center; }
+        label { font-weight: 400; margin-bottom: 0.5rem; color: #555; }
+        input { width: 100%; padding: 0.8rem; margin-bottom: 1.5rem; border: none; border-radius: 10px; background: rgba(173, 187, 207, 0.5); color: #333; }
+        button { padding: 0.8rem; border: none; border-radius: 10px; background: #002D62; color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease; }
+        button:hover { background: #001a42; }
+        p { margin-top: 1rem; text-align: center; color: #333; }
+        a { color: #29094b; text-decoration: none; font-weight: 600; }
+        a:hover { text-decoration: underline; }
+        .visual { flex: 1; background-color: #002D62; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 1rem; }
+        .visual h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem; }
+        .visual p { font-size: 1.1rem; font-weight: 300; max-width: 80%; line-height: 1.5; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Form Section -->
+        <div class="form-container">
+            <h2 id="title">Cadastre-se</h2>
+            <form id="signupForm">
+                <label for="email" id="email-label">Email:</label>
+                <input type="email" id="email" placeholder="Digite seu email" required>
+
+                <label for="password" id="password-label">Senha:</label>
+                <input type="password" id="password" placeholder="Digite sua senha" required>
+
+                <button type="submit" id="signup-btn">Cadastre-se</button>
+            </form>
+            <p id="already-account">Já tem uma conta? <a href="login.html" id="login-link">Entrar</a></p>
+        </div>
+
+        <!-- Right Visual Section -->
+        <div class="visual">
+            <h1 id="welcome-text">Bem-vindo!</h1>
+            <p id="description">Junte-se a nós hoje para explorar oportunidades incríveis. Crie uma conta e comece agora!</p>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+            authDomain: "appsitesync.firebaseapp.com",
+            projectId: "appsitesync",
+            storageBucket: "appsitesync.appspot.com",
+            messagingSenderId: "357510439971",
+            appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+            measurementId: "G-T0SX0NH50K"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Handle form submission
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault(); 
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+
+                    // Store user data in Firestore
+                    db.collection('users').doc(user.uid).set({
+                        email: user.email,
+                        userId: user.uid,
+                        createdAt: new Date()
+                    })
+                    .then(() => {
+                        alert('Sign Up Successful');
+                        window.location.href = "getstarted.html";
+                    })
+                    .catch((error) => {
+                        alert(`Error storing user data: ${error.message}`);
+                    });
+                })
+                .catch((error) => {
+                    alert(`Error: ${error.message}`);
+                });
+        });
+
+        // Translations
+        const translations = {
+            pt: {
+                title: "Cadastre-se",
+                emailLabel: "Email:",
+                emailPlaceholder: "Digite seu email",
+                passwordLabel: "Senha:",
+                passwordPlaceholder: "Digite sua senha",
+                signupButton: "Cadastre-se",
+                alreadyAccount: "Já tem uma conta?",
+                loginLink: "Entrar",
+                welcomeText: "Bem-vindo!",
+                description: "Junte-se a nós hoje para explorar oportunidades incríveis. Crie uma conta e comece agora!"
+            },
+            ur: {
+                title: "سائن اپ کریں",
+                emailLabel: "ای میل:",
+                emailPlaceholder: "اپنا ای میل درج کریں",
+                passwordLabel: "پاس ورڈ:",
+                passwordPlaceholder: "اپنا پاس ورڈ درج کریں",
+                signupButton: "سائن اپ کریں",
+                alreadyAccount: "پہلے سے ہی اکاؤنٹ ہے؟",
+                loginLink: "لاگ ان کریں",
+                welcomeText: "خوش آمدید!",
+                description: "آج ہی ہمارے ساتھ شامل ہوں اور دلچسپ مواقع دریافت کریں۔ ایک اکاؤنٹ بنائیں اور ابھی شروع کریں!"
+            }
+        };
+
+        // Function to get language from URL
+        function getLanguageFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang') || 'pt'; // Default to Portuguese
+        }
+
+        // Function to update the page language
+        function updateLanguage(lang) {
+            document.getElementById("title").textContent = translations[lang].title;
+            document.getElementById("email-label").textContent = translations[lang].emailLabel;
+            document.getElementById("email").placeholder = translations[lang].emailPlaceholder;
+            document.getElementById("password-label").textContent = translations[lang].passwordLabel;
+            document.getElementById("password").placeholder = translations[lang].passwordPlaceholder;
+            document.getElementById("signup-btn").textContent = translations[lang].signupButton;
+            document.getElementById("welcome-text").textContent = translations[lang].welcomeText;
+            document.getElementById("description").textContent = translations[lang].description;
+        }
+
+        // Set language when page loads
+        const selectedLang = getLanguageFromURL();
+        updateLanguage(selectedLang);
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cartões de lições</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #fff;
+      padding: 20px;
+      direction: rtl;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    /* Card Styles */
+    .card {
+      background: #002D62;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #ffffff;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(255, 255, 255, 0.7), 0 0 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px #000000, 0 0 10px #1c0c58;
+    }
+
+    .card span {
+      font-size: 18px;
+      color: #fff1f1;
+    }
+
+    .card button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 16px;
+      color: #ffffff;
+      background: transparent;
+      border: 2px solid #ffffff;
+      border-radius: 8px;
+      text-transform: uppercase;
+      text-shadow: 0 0 5px #041414;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .card button:hover {
+      background: #d8eaff;
+      color: #ffffff;
+      box-shadow: 0 4px 15px #03e9f4;
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+      margin-top: 20px;
+      width: 80%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar::before {
+      content: '';
+      display: block;
+      height: 100%;
+      width: 70%; /* Adjust width to simulate progress */
+      background: linear-gradient(to right, #03e9f4, #00d9ff);
+      border-radius: 10px;
+      animation: progressAnimation 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes progressAnimation {
+      0% {
+        width: 60%;
+      }
+      100% {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card-container">
+    <!-- Lesson 1 Card -->
+    <div class="card">
+      <h3>Lição 1</h3>
+      <span>Saudações e orações simples</span>
+      <a href="LESSON1_GREETING.HTML">
+        <button>Começar</button>
+      </a>
+      <div class="progress-bar"></div>
+    </div>
+
+    <!-- Lesson 2 Card -->
+    <div class="card">
+      <h3>Lição 2</h3>
+      <span>Respostas e etiquetas básicas</span>
+      <a href="les_2_hello.html">
+        <button>Começar</button>
+      </a>
+      <div class="progress-bar"></div>
+    </div>
+
+    <!-- Lesson 3 Card -->
+    <div class="card">
+      <h3>Lição 3</h3>
+      <span>Apresentações e pequenas conversas</span>
+      <a href="les_3_hello.html">
+        <button>Começar</button>
+      </a>
+      <div class="progress-bar"></div>
+    </div>
+
+    <!-- Lesson 4 Card -->
+    <div class="card">
+      <h3>Lição 4</h3>
+      <span>Saudações formais e informais</span>
+      <a href="les_4_hello.html">
+        <button>Começar</button>
+      </a>
+      <div class="progress-bar"></div>
+    </div>
+
+    <!-- Lesson 5 Card -->
+    <div class="card">
+      <h3>Lição 5</h3>
+      <span>Saudações e orações avançadas</span>
+      <a href="les_5_hello.html">
+        <button>Começar</button>
+      </a>
+      <div class="progress-bar"></div>
+    </div>
+
+    <!-- Final Test -->
+    <div class="card">
+      <h3>Prova Final</h3>
+      <span>Desafie-se</span>
+      <a href="final_test.html">
+        <button>Começar</button>
+      </a>
+      <div class="progress-bar"></div>
+    </div>
+  </div>
+</body>
+</html>

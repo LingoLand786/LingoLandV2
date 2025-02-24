@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portuguese Final Test</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: linear-gradient(135deg, #ffffff, #001d4d);
+      border-radius: 12px;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 600px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #001d4d;
+    }
+
+    header p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    #timer {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff0000;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .question.active {
+      display: block;
+      opacity: 1;
+    }
+
+    .question p {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #001d4d;
+    }
+
+    .options label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+      font-size: 18px;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #f9f9f9;
+      transition: all 0.3s ease-in-out;
+      text-align: left;
+    }
+
+    .options input:checked + label {
+      background: #28a745; /* Green for selected */
+      color: white;
+      border-color: #001d4d;
+    }
+
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 14px 28px;
+      background: #001d4d;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    button:hover:not(:disabled) {
+      background: #0056b3;
+    }
+
+    .result {
+      display: none;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .result.pass {
+      color: green;
+    }
+
+    .result.fail {
+      color: red;
+    }
+
+    #explanation {
+      margin-top: 15px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    /* Add smooth transitions to buttons */
+    .navigation button {
+      transition: transform 0.3s ease;
+    }
+
+    .navigation button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Portuguese Final Test</h1>
+      <p>Answer all questions to submit your test!</p>
+    </header>
+    <div id="timer">Time remaining: 5:00</div>
+    <form id="quizForm">
+      <div class="question active" data-question="1">
+        <p>1. What is the masculine article for "the" in Portuguese?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="o"> O</label>
+          <label><input type="radio" name="q1" value="a"> A</label>
+        </div>
+      </div>
+
+      <div class="question" data-question="2">
+        <p>2. Which noun is feminine?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="menino"> Menino</label>
+          <label><input type="radio" name="q2" value="menina"> Menina</label>
+        </div>
+      </div>
+
+      <div class="question" data-question="3">
+        <p>3. How do you say "a boy" in Portuguese?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="um menino"> Um menino</label>
+          <label><input type="radio" name="q3" value="uma menina"> Uma menina</label>
+        </div>
+      </div>
+
+      <div class="navigation">
+        <button type="button" id="prevBtn" disabled>Previous</button>
+        <button type="button" id="nextBtn">Next</button>
+        <button type="submit" id="submitBtn" disabled>Submit</button>
+      </div>
+    </form>
+
+    <div id="result" class="result"></div>
+    <div id="explanation"></div>
+  </div>
+
+  <script>
+    // Variables and Setup
+    const questions = document.querySelectorAll('.question');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultDiv = document.getElementById('result');
+    const explanationDiv = document.getElementById('explanation');
+    const timerDiv = document.getElementById('timer');
+    let currentQuestion = 0;
+    let timeLeft = 300; // 5 minutes
+    let timer;
+
+    const answers = {
+      q1: "o",
+      q2: "menina",
+      q3: "um menino",
+    };
+
+    const explanations = {
+      q1: "In Portuguese, 'o' is used for masculine nouns.",
+      q2: "The noun 'menina' refers to a girl, which is feminine.",
+      q3: "In Portuguese, 'um menino' means 'a boy'.",
+    };
+
+    function startTimer() {
+      timer = setInterval(() => {
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          alert("Time's up!");
+          document.getElementById('quizForm').submit();
+        } else {
+          timeLeft--;
+          timerDiv.textContent = `Time remaining: ${Math.floor(timeLeft / 60)}:${timeLeft % 60 < 10 ? '0' + timeLeft % 60 : timeLeft % 60}`;
+        }
+      }, 1000);
+    }
+
+    function showQuestion(index) {
+      questions.forEach((q, i) => {
+        q.classList.remove('active');
+        if (i === index) q.classList.add('active');
+      });
+      prevBtn.disabled = index === 0;
+      nextBtn.style.display = index === questions.length - 1 ? 'none' : 'inline-block';
+      submitBtn.style.display = index === questions.length - 1 ? 'inline-block' : 'none';
+    }
+
+    function validateAnswers() {
+      const allAnswered = Array.from(questions).every(q => q.querySelector('input:checked'));
+      submitBtn.disabled = !allAnswered;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (currentQuestion > 0) currentQuestion--;
+      showQuestion(currentQuestion);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentQuestion < questions.length - 1) currentQuestion++;
+      showQuestion(currentQuestion);
+    });
+
+    document.getElementById('quizForm').addEventListener('change', validateAnswers);
+
+    document.getElementById('quizForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      let score = 0;
+      for (let question in answers) {
+        const userAnswer = document.querySelector(`input[name="${question}"]:checked`);
+        if (userAnswer && userAnswer.value === answers[question]) score++;
+        else explanationDiv.textContent = `Explanation: ${explanations[question] || "No explanation available."}`;
+      }
+
+      const totalQuestions = Object.keys(answers).length;
+      resultDiv.style.display = 'block';
+      if (score / totalQuestions >= 0.7) {
+        resultDiv.textContent = `Congratulations! You passed with a score of ${score}/${totalQuestions}.`;
+        resultDiv.className = 'result pass';
+      } else {
+        resultDiv.textContent = `Try again! You scored ${score}/${totalQuestions}.`;
+        resultDiv.className = 'result fail';
+      }
+    });
+
+    showQuestion(currentQuestion);
+    startTimer();
+  </script>
+</body>
+</html>

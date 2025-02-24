@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سبق 2 - فعل اور تصریف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #004d6d, #008080);
+            color: #fff;
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px;
+            background-color: #006666;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 3rem;
+            font-weight: bold;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #fff;
+            color: #333;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #008080;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .accordion {
+            background-color: #008080;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 8px;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion:hover {
+            background-color: #004d4d;
+        }
+
+        .active, .accordion:hover {
+            background-color: #006666;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background-color: #008080;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #004d4d;
+        }
+
+        .quiz-container {
+            margin-top: 40px;
+            background-color: #e0f2f1;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .quiz-option {
+            padding: 12px 20px;
+            background-color: #fff;
+            color: #333;
+            border: 1px solid #008080;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .quiz-option:hover {
+            background-color: #008080;
+            color: white;
+        }
+
+        .quiz-feedback {
+            font-size: 1.3rem;
+            color: #008080;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+
+        .progress-bar div {
+            height: 20px;
+            background-color: #008080;
+            width: 30%;
+            border-radius: 10px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        footer {
+            background-color: #004d6d;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.2rem;
+            margin-top: 40px;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table th, table td {
+            padding: 15px 20px;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        table th {
+            background-color: #008080;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>فعل اور تصریف</h1>
+</header>
+
+<div class="lesson-container">
+    <section id="intro">
+        <h2>تعارف</h2>
+        <p>سبق 2 میں خوش آمدید! اس سبق میں ہم پرتگالی زبان کے افعال اور ان کی تصریف کا مطالعہ کریں گے۔ افعال کی تصریف جملے بنانے کے لیے ضروری ہے، اور تصریف کے اصولوں کو سمجھنا آپ کو پرتگالی زبان میں روانی سے بات کرنے میں مدد دے گا۔</p>
+    </section>
+
+    <section>
+        <h2>افعال اور تصریف کو سمجھنا</h2>
+        <p>پرتگالی زبان میں افعال کو تین گروپوں میں تقسیم کیا جاتا ہے: <strong>-ar</strong>, <strong>-er</strong>, اور <strong>-ir</strong>۔ ہر گروہ کی تصریف کا ایک مخصوص نمونہ ہوتا ہے۔</p>
+
+        <button class="accordion">-AR افعال</button>
+        <div class="panel">
+            <p>-AR افعال پرتگالی زبان میں سب سے زیادہ استعمال ہوتے ہیں۔ ایک عام -AR فعل کو موجودہ زمانے میں تصریف کرنے کے لیے، آپ کو فعل کے آخر سے -ar نکال کر ہر موضوع کے ضمیر کے مطابق مناسب اختتام شامل کرنا ہوتا ہے۔</p>
+            <ul>
+                <li><strong>Eu falo</strong> (میں بات کرتا ہوں)</li>
+                <li><strong>Tu falas</strong> (تم بات کرتے ہو)</li>
+                <li><strong>Ele/ela fala</strong> (وہ بات کرتا ہے)</li>
+                <li><strong>Nós falamos</strong> (ہم بات کرتے ہیں)</li>
+                <li><strong>Vós falais</strong> (تم سب بات کرتے ہو)</li>
+                <li><strong>Eles/elas falam</strong> (وہ بات کرتے ہیں)</li>
+            </ul>
+        </div>
+
+        <button class="accordion">-ER افعال</button>
+        <div class="panel">
+            <p>-ER افعال بھی ایک مشابہ نمونہ فالو کرتے ہیں، لیکن ہر ضمیر کے لیے مختلف اختتام ہوتے ہیں۔ یہاں فعل <strong>comer</strong> (کھانا) کا ایک مثال ہے:</p>
+            <ul>
+                <li><strong>Eu como</strong> (میں کھاتا ہوں)</li>
+                <li><strong>Tu comes</strong> (تم کھاتے ہو)</li>
+                <li><strong>Ele/ela come</strong> (وہ کھاتا ہے)</li>
+                <li><strong>Nós comemos</strong> (ہم کھاتے ہیں)</li>
+                <li><strong>Vós comeis</strong> (تم سب کھاتے ہو)</li>
+                <li><strong>Eles/elas comem</strong> (وہ کھاتے ہیں)</li>
+            </ul>
+        </div>
+
+        <button class="accordion">-IR افعال</button>
+        <div class="panel">
+            <p>-IR افعال کا اپنا تصریفی نمونہ ہوتا ہے۔ یہاں فعل <strong>partir</strong> (چھوڑنا) کا ایک مثال ہے:</p>
+            <ul>
+                <li><strong>Eu parto</strong> (میں چھوڑتا ہوں)</li>
+                <li><strong>Tu partes</strong> (تم چھوڑتے ہو)</li>
+                <li><strong>Ele/ela parte</strong> (وہ چھوڑتا ہے)</li>
+                <li><strong>Nós partimos</strong> (ہم چھوڑتے ہیں)</li>
+                <li><strong>Vós partis</strong> (تم سب چھوڑتے ہو)</li>
+                <li><strong>Eles/elas partem</strong> (وہ چھوڑتے ہیں)</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>جملے کا ڈھانچہ</h2>
+        <p>پرتگالی میں جملے کا بنیادی ڈھانچہ عموماً درج ذیل ہوتا ہے:</p>
+        <ul>
+            <li><strong>موضوع</strong>: جو کارروائی کر رہا ہے (مثلاً <em>Eu</em>, <em>Ele</em>, <em>Ela</em>)</li>
+            <li><strong>فعل</strong>: جو کارروائی ہو رہی ہے (مثلاً <em>Como</em>, <em>Bebo</em>, <em>Vou</em>)</li>
+            <li><strong>مفعول</strong>: جس پر کارروائی ہو رہی ہے (مثلاً <em>maçã</em>, <em>água</em>, <em>café</em>)</li>
+        </ul>
+        <p>نئے سیکھنے والوں کے لیے جملے کی مثالیں:</p>
+        <ul>
+            <li><strong>Eu sou estudante</strong> (میں طالب علم ہوں)</li>
+            <li><strong>Eu como maçã</strong> (میں سیب کھاتا ہوں)</li>
+            <li><strong>Ele bebe água</strong> (وہ پانی پیتا ہے)</li>
+        </ul>
+    </section>
+
+    <!-- Quiz Section -->
+    <div class="quiz-container">
+        <h2>اپنا علم آزماٶ!</h2>
+        <div class="quiz-question">"Eu (falar)" کے لیے موجودہ زمانے میں صحیح تصریف کیا ہے؟</div>
+        <button class="quiz-option" data-correct="true">Eu falo</button>
+        <button class="quiz-option">Eu falas</button>
+        <button class="quiz-option">Eu falam</button>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div></div>
+    </div>
+
+    <!-- Button to Next Lesson -->
+    <a href="lesson3.html" class="btn">اگلا سبق</a>
+</div>
+
+<script>
+    // Accordion functionality
+const acc = document.getElementsByClassName("accordion");
+Array.from(acc).forEach(button => {
+    button.addEventListener("click", () => {
+        button.classList.toggle("active");
+        const panel = button.nextElementSibling;
+        panel.style.display = panel.style.display === "block" ? "none" : "block";
+    });
+});
+
+// Quiz functionality
+const quizOptions = document.querySelectorAll('.quiz-option');
+const quizFeedback = document.getElementById('quizFeedback');
+
+quizOptions.forEach(option => {
+    option.addEventListener('click', function() {
+        if (this.dataset.correct) {
+            quizFeedback.textContent = 'صحیح! اچھا کام!';
+            quizFeedback.style.color = 'green';
+            updateProgressBar();
+        } else {
+            quizFeedback.textContent = 'اوہ! دوبارہ کوشش کریں۔';
+            quizFeedback.style.color = 'red';
+        }
+    });
+});
+
+// Progress Bar update
+function updateProgressBar() {
+    const progressBar = document.querySelector('.progress-bar div');
+    progressBar.style.width = '100%';
+}
+</script>
+
+</body>
+</html>

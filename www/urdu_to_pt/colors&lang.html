@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرتگالی میں رنگ سیکھیں</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Noto Nastaliq Urdu', 'Arial', sans-serif;
+background: white;         
+   color: #333;
+            text-align: center;
+            direction: rtl;
+        }
+        header {
+            background: linear-gradient(135deg, #0056b3, #001d4d);
+            color: white;
+            padding: 20px 0;
+            font-size: 2.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .color-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .color-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .color-preview {
+            height: 100px;
+            border-bottom: 2px solid #ddd;
+        }
+        .color-name {
+            padding: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .color-name span {
+            font-size: 1rem;
+            font-style: italic;
+            color: #666;
+        }
+  
+    </style>
+</head>
+<body>
+    <header>پرتگالی میں رنگ سیکھیں</header>
+    <div class="container">
+        <!-- Color Cards -->
+        <div class="color-grid">
+            <div class="color-card" onclick="selectColor('Vermelho')">
+                <div class="color-preview" style="background-color: red;"></div>
+                <div class="color-name">سرخ - <span>Vermelho</span></div>
+                <audio id="audioVermelho">
+                    <source src="audio/vermelho.mp3" type="audio/mp3">
+                </audio>
+            </div>
+            <div class="color-card" onclick="selectColor('Azul')">
+                <div class="color-preview" style="background-color: blue;"></div>
+                <div class="color-name">نیلا - <span>Azul</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Verde')">
+                <div class="color-preview" style="background-color: green;"></div>
+                <div class="color-name">سبز - <span>Verde</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Amarelo')">
+                <div class="color-preview" style="background-color: yellow;"></div>
+                <div class="color-name">پیلا - <span>Amarelo</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Preto')">
+                <div class="color-preview" style="background-color: black;"></div>
+                <div class="color-name">کالا - <span>Preto</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Branco')">
+                <div class="color-preview" style="background-color: white;"></div>
+                <div class="color-name">سفید - <span>Branco</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Laranja')">
+                <div class="color-preview" style="background-color: orange;"></div>
+                <div class="color-name">نارنجی - <span>Laranja</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Roxo')">
+                <div class="color-preview" style="background-color: purple;"></div>
+                <div class="color-name">جامنی - <span>Roxo</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Cinza')">
+                <div class="color-preview" style="background-color: gray;"></div>
+                <div class="color-name">سرمئی - <span>Cinza</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Rosa')">
+                <div class="color-preview" style="background-color: pink;"></div>
+                <div class="color-name">گلابی - <span>Rosa</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Marrom')">
+                <div class="color-preview" style="background-color: brown;"></div>
+                <div class="color-name">بھورا - <span>Marrom</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Dourado')">
+                <div class="color-preview" style="background-color: gold;"></div>
+                <div class="color-name">سنہری - <span>Dourado</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Prata')">
+                <div class="color-preview" style="background-color: silver;"></div>
+                <div class="color-name">چاندی - <span>Prata</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Turquesa')">
+                <div class="color-preview" style="background-color: turquoise;"></div>
+                <div class="color-name">فیروزی - <span>Turquesa</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Pêssego')">
+                <div class="color-preview" style="background-color: peach;"></div>
+                <div class="color-name">آڑو - <span>Pêssego</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Açúcar')">
+                <div class="color-preview" style="background-color: beige;"></div>
+                <div class="color-name">چینی - <span>Açúcar</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Salmon')">
+                <div class="color-preview" style="background-color: salmon;"></div>
+                <div class="color-name">سالمون - <span>Salmon</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Caramelo')">
+                <div class="color-preview" style="background-color: caramel;"></div>
+                <div class="color-name">کریم - <span>Caramelo</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Lavanda')">
+                <div class="color-preview" style="background-color: lavender;"></div>
+                <div class="color-name">لےوینڈا - <span>Lavanda</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Ciano')">
+                <div class="color-preview" style="background-color: cyan;"></div>
+                <div class="color-name">سیان - <span>Ciano</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Bege')">
+                <div class="color-preview" style="background-color: tan;"></div>
+                <div class="color-name">بیج - <span>Bege</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('VerdeLimão')">
+                <div class="color-preview" style="background-color: lime;"></div>
+                <div class="color-name">لیموں - <span>Verde Limão</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Bordeaux')">
+                <div class="color-preview" style="background-color: darkred;"></div>
+                <div class="color-name">بورڈو - <span>Bordeaux</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Carmesim')">
+                <div class="color-preview" style="background-color: crimson;"></div>
+                <div class="color-name">کرمسی - <span>Carmesim</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Fucsia')">
+                <div class="color-preview" style="background-color: fuchsia;"></div>
+                <div class="color-name">فیوکیا - <span>Fucsia</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('TurquesaEscuro')">
+                <div class="color-preview" style="background-color: darkturquoise;"></div>
+                <div class="color-name">گہرا فیروزی - <span>Turquesa Escuro</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('BegeClaro')">
+                <div class="color-preview" style="background-color: lightbeige;"></div>
+                <div class="color-name">ہلکا بیج - <span>Bege Claro</span></div>
+            </div>
+            <div class="color-card" onclick="selectColor('Ambar')">
+                <div class="color-preview" style="background-color: amber;"></div>
+                <div class="color-name">عنبر - <span>Ambar</span></div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+</body>
+</html>

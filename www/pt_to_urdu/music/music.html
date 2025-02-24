@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Música & Canções</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #001d4d, #0fb300);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 4px solid #0056b3;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.5em;
+            font-weight: bold;
+            padding: 10px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d1e3f3;
+            border-bottom: 2px solid #d1e3f3;
+        }
+
+        main {
+            padding: 30px 10%;
+        }
+
+        .category-box,
+        .phrases-box,
+        .quiz-section,
+        .about-section {
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .category-box:hover,
+        .phrases-box:hover,
+        .quiz-section:hover {
+            transform: scale(1.05);
+        }
+
+        .category-content h3 {
+            font-size: 2em;
+            color: #001d4d;
+            margin-bottom: 10px;
+        }
+
+        .category-content p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .category-content a {
+            text-decoration: none;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .category-content a:hover {
+            background-color: #003f7d;
+        }
+
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .category-box img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-box:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #001d4d;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin-right: 15px;
+            }
+
+            .category-box,
+            .phrases-box,
+            .quiz-section,
+            .about-section {
+                padding: 15px;
+            }
+
+            .category-box img {
+                width: 120px;
+            }
+
+            .category-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f1f2f6, #c9cfd7);
+            color: #002D62;
+            line-height: 1.6;
+            transition: background-color 0.3s;
+        }
+
+        /* Header Section */
+        header {
+            padding: 30px 30px;
+            background: #002D62;
+            color: white;
+            text-align: center;
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 4.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            letter-spacing: 0.8px;
+            color: #f0f0f0;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 60px 50px;
+            justify-items: center;
+        }
+
+        .category-box {
+            position: relative;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s, box-shadow 0.4s;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #e8f2f8 100%);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s, opacity 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .category-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-content {
+            padding: 20px;
+        }
+
+        .category-box h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        .category-box p {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .category-box a {
+            padding: 14px 35px;
+            background-color: #008080;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .category-box a:hover {
+            background-color: #006666;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        /* Animations for elements */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        .styled-button {
+    padding: 14px 35px;
+    background-color: #008080;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.styled-button:hover {
+    background-color: #006666;
+    transform: translateY(-5px);
+}
+
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Button Animations */
+        .category-box a {
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .category-box a:hover {
+            transform: translateY(-5px);
+            background-color: #006666;
+        }
+
+        /* Box shadow effect on hover */
+        .category-box:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Image hover effect */
+        .category-box img {
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Gêneros Musicais em Paquistão</h1>
+        <nav>
+            <ul>
+                <li><a href="#GênerosMusicais">Gêneros Musicais</a></li>
+                <li><a href="mundodomusic.html">A música no mundo</a></li> <!-- Link to Clima page -->
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Lesson Cards -->
+ <div class="category-container fade-in">
+     <!-- Pop -->
+ 
+ 
+      
+ 
+     <div class="category-box">
+        <img src="GENERESIMG/QAWALI.jpg" alt="Qawwali">
+        <div class="category-content">
+            <h3>Qawwali  – قوالی</h3>
+            <p>Uma forma de música devocional sufi, frequentemente apresentada por um grupo com vocais intensos e letras espirituais. Nusrat Fateh Ali Khan é uma figura lendária neste gênero.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Tumhein Dillagi Bhool Jaani Padegi _ Ustad Nusrat Fateh Ali Khan _ Qawwali Status.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+
+        </div>
+    </div> 
+
+    <div class="category-box">
+        <img src="GENERESIMG/SAD.jpg" alt="Ghazals">
+        <div class="category-content">
+            <h3>Ghazals  – غزلیں</h3>
+            <p>Canções líricas e expressivas que frequentemente abordam temas de amor, tristeza e saudade. São profundamente enraizadas na poesia urdu e são executadas com um toque clássico.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Rafta Rafta Woh Meri Hasti Ka Saman _ Whatsapp status _ Lyrics Songs _ Ub Writes.mp3')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+
+        </div>
+    </div> 
+
+    <div class="category-box">
+        <img src="GENERESIMG/POP.jpeg" alt="Pop Paquistanês ">
+        <div class="category-content">
+            <h3>Pop Paquistanês  – پاکستانی پاپ</h3>
+            <p>Um gênero mais moderno que mistura música tradicional com estilos ocidentais de pop. Este gênero tornou-se popular no final dos anos 1980.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Pasoori _ Ali Sethi x Shae Gill _ Status _ Lyrics _ shahabaZ Music Hub.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+
+        </div>
+    </div> 
+
+
+    <div class="category-box">
+        <img src="GENERESIMG/LHR.jpeg" alt="Pop Paquistanês ">
+        <div class="category-content">
+            <h3>Música Folclórica  – لوک موسیقی            </h3>
+            <p> Inclui estilos regionais como Punjabi, Pashto, Sindhi e Balochi. Está profundamente ligada às tradições culturais das diferentes províncias do Paquistão, com instrumentos como o dhol, flauta e harmónio.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/OST.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+
+        </div>
+    </div> 
+
+    <div class="category-box">
+        <img src="GENERESIMG/CLASSIC.jpg" alt="Música Clássica">
+        <div class="category-content">
+            <h3>Música Clássica – کلاسیکی موسیقی</h3>
+            <p>Música clássica tradicional, influenciada pela música clássica indiana, que utiliza instrumentos como sitar, tabla e harmónio. É altamente respeitada, com músicos famosos como Ustad Nusrat Fateh Ali Khan e Ustad Vilayat Khan.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/OOO.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="GENERESIMG/rock.jpg" alt="Rock/Alternativa">
+        <div class="category-content">
+            <h3>Rock/Alternativa – راک/متبادل موسیقی</h3>
+            <p>O Paquistão tem uma cena crescente de rock e música alternativa, com bandas como Junoon e Noori fazendo seu nome. O gênero mistura influências do rock ocidental com sons locais.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/ROCK.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+
+    
+
+     
+ 
+ 
+ 
+ 
+     
+ </div>
+ 
+ 
+     
+     </div>
+ </div>
+ <script>
+ var audioElement = null;
+ 
+ function playAudio(audioFile) {
+     if (audioElement) {
+         audioElement.pause(); // Pause any existing audio before starting a new one
+         audioElement.currentTime = 0; // Reset the audio to the start
+     }
+     audioElement = new Audio(audioFile);
+     audioElement.play();
+ }
+ 
+ function stopAudio() {
+     if (audioElement) {
+         audioElement.pause(); // Pause the audio
+         audioElement.currentTime = 0; // Reset the audio to the start
+     }
+ }
+    
+ </script>
+ 
+ 
+ </body>
+ </html>
