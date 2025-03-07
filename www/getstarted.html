@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Language Preferences</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Noto+Naskh+Urdu&display=swap" rel="stylesheet">
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+<!-- Firebase SDK (Must be before your script) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script> 
+
     <style>
         body {
             margin: 0;
@@ -97,14 +100,12 @@
             <label for="speakLanguage" id="speakLabel">I Speak:</label>
             <select id="speakLanguage" name="speakLanguage">
                 <option value="ur">Urdu</option>
-                <option value="en">English</option>
                 <option value="pt">Portuguese</option>
             </select>
 
             <label for="learnLanguage" id="learnLabel">I Want to Learn:</label>
             <select id="learnLanguage" name="learnLanguage">
                 <option value="ur">Urdu</option>
-                <option value="en">English</option>
                 <option value="pt">Portuguese</option>
             </select>
 
@@ -114,32 +115,69 @@
 
     <script>
 
-const firebaseConfig = {
-            apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
-            authDomain: "appsitesync.firebaseapp.com",
-            projectId: "appsitesync",
-            storageBucket: "appsitesync.appspot.com",
-            messagingSenderId: "357510439971",
-            appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
-            measurementId: "G-T0SX0NH50K"
-        };
+  // Firebase Configuration
+  const firebaseConfig = {
+        apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+        authDomain: "appsitesync.firebaseapp.com",
+        projectId: "appsitesync",
+        storageBucket: "appsitesync.appspot.com",
+        messagingSenderId: "357510439971",
+        appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+        measurementId: "G-T0SX0NH50K"
+    };
         
-        const form = document.getElementById('languageForm');
-        const title = document.getElementById('title');
-        const speakLabel = document.getElementById('speakLabel');
-        const learnLabel = document.getElementById('learnLabel');
-        const submitButton = document.getElementById('submitButton');
-        const speakLanguage = document.getElementById('speakLanguage');
-        const learnLanguage = document.getElementById('learnLanguage');
-    
-        // Dynamic text translations
+    firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // 🔹 Check if user is authenticated
+        auth.onAuthStateChanged(user => {
+            if (!user) {
+                alert("Please log in first!");
+                window.location.href = "login.html";  // Redirect to login page
+            }
+        });
+
+        // 🔹 Handle form submission
+        document.getElementById("languageForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const user = auth.currentUser;
+            if (user) {
+                const uid = user.uid;
+                const spokenLanguage = document.getElementById("speakLanguage").value;
+                const learningLanguage = document.getElementById("learnLanguage").value;
+
+                db.collection("users").doc(uid).set({
+                    spokenLanguage: spokenLanguage,
+                    learningLanguage: learningLanguage
+                }, { merge: true })
+                .then(() => {
+                    alert("Language preferences saved!");
+                                       // 🛠 Redirect based on language selection
+                                       if (spokenLanguage.toLowerCase() === "pt" && learningLanguage.toLowerCase() === "ur") {
+    console.log("Redirecting to: /www/pt_to_urdu/mainmenuptur.html");
+    window.location.href = "/www/pt_to_urdu/mainmenuptur.html";  
+} else if (spokenLanguage.toLowerCase() === "ur" && learningLanguage.toLowerCase() === "pt") {
+    console.log("Redirecting to: /www/urdu_to_pt/mainmenuurpt.html");
+    window.location.href = "/www/urdu_to_pt/mainmenuurpt.html";  
+} else {
+    console.log("Redirecting to: /www/dashboard.html");
+    window.location.href = "/www/dashboard.html";  
+}
+
+                })
+
+                .catch((error) => {
+                    alert("Error saving preferences: " + error.message);
+                });
+            } else {
+                alert("Authentication error. Please log in.");
+            }
+        });
+
+        // 🌍 Translations for Urdu & Portuguese
         const translations = {
-            en: {
-                title: 'Language Preferences',
-                speakLabel: 'I Speak:',
-                learnLabel: 'I Want to Learn:',
-                submitButton: 'Continue'
-            },
             ur: {
                 title: 'زبان کی ترجیحات',
                 speakLabel: 'میں بولتا ہوں:',
@@ -151,91 +189,23 @@ const firebaseConfig = {
                 speakLabel: 'Eu Falo:',
                 learnLabel: 'Eu Quero Aprender:',
                 submitButton: 'Continuar'
+            },
+            en: {
+                title: 'Language Preferences',
+                speakLabel: 'I speak:',
+                learnLabel: 'I want to learn:',
+                submitButton: 'Save & Continue'
             }
         };
-    
-        // Function to update UI dynamically
-        function updateUI(language) {
-            const translation = translations[language];
-            title.textContent = translation.title;
-            speakLabel.textContent = translation.speakLabel;
-            learnLabel.textContent = translation.learnLabel;
-            submitButton.textContent = translation.submitButton;
-    
-            if (language === 'ur') {
-                document.body.classList.add('urdu');
-            } else {
-                document.body.classList.remove('urdu');
-            }
+
+        // 📝 Function to update the language
+        function updateLanguage() {
+            const selectedLang = document.getElementById("languageSelect").value;
+            document.getElementById("title").textContent = translations[selectedLang].title;
+            document.getElementById("speakLabel").textContent = translations[selectedLang].speakLabel;
+            document.getElementById("learnLabel").textContent = translations[selectedLang].learnLabel;
+            document.getElementById("submitButton").textContent = translations[selectedLang].submitButton;
         }
-    
-        function updateLearnOptions(selectedSpeakLanguage) {
-    const options = {
-        ur: "Urdu",
-        en: "English",
-        pt: "Portuguese"
-    };
-
-    learnLanguage.innerHTML = ''; // Clear all options
-
-    Object.keys(options)
-        .filter(option => option !== selectedSpeakLanguage) // Exclude the selected "I Speak" language
-        .forEach(option => {
-            const opt = document.createElement('option');
-            opt.value = option;
-            opt.textContent = options[option]; // Set the language name
-            learnLanguage.appendChild(opt);
-        });
-
-    console.log('Updated Learn Language Options:', learnLanguage.innerHTML); // Debugging line
-}
-
-    
-        // Event listener for language changes
-        speakLanguage.addEventListener('change', function () {
-            const selectedLanguage = this.value;
-            console.log('Selected Speak Language:', selectedLanguage); // Debugging line
-            updateUI(selectedLanguage);
-            updateLearnOptions(selectedLanguage);
-        });
-    
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-    
-            const speakLang = speakLanguage.value;
-            const learnLang = learnLanguage.value;
-    
-            sessionStorage.setItem('speakLanguage', speakLang);
-            sessionStorage.setItem('learnLanguage', learnLang);
-    
-            // Redirect based on selected languages
-            let redirectPage = '';
-if (speakLang === 'ur' && learnLang === 'pt') {
-    redirectPage = 'urdu_to_pt/mainmenuurpt.html';
-} else if (speakLang === 'ur' && learnLang === 'en') {
-    redirectPage = 'urdu_to_en/mainmenuur.html';
-} else if (speakLang === 'pt' && learnLang === 'ur') {
-    redirectPage = 'pt_to_urdu/mainmenuptur.html';
-} else if (speakLang === 'pt' && learnLang === 'en') {
-    redirectPage = 'pt_to_en/mainmenupten.html';
-} else if (speakLang === 'en' && learnLang === 'ur') {
-    redirectPage = 'en_to_urdu/mainmenuenur.html';
-} else if (speakLang === 'en' && learnLang === 'pt') {
-    redirectPage = 'en_to_pt/mainmenuenpt.html';
-}
-
-// Redirect
-if (redirectPage) {
-    window.location.href = redirectPage;
-} else {
-    alert('Invalid language combination. Please try again.');
-}
-
-        });
-    
-        // Initialize UI on page load
-        updateUI(speakLanguage.value);
-        updateLearnOptions(speakLanguage.value);
     </script>
 </body>
 </html>

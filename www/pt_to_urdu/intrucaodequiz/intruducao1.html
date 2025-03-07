@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendendo Cumprimentos em Urdu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* White Background */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Container Styling */
+    .container {
+      background: #170a5f;
+      width: 90%;
+      max-width: 1000px;
+      padding: 50px 50px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      position: relative;
+    }
+
+    /* Elegant Heading */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      color: #f39c12;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    }
+
+    /* Introduction Text */
+    .introduction {
+      font-size: 1.5rem;
+      line-height: 2;
+      margin-top: 20px;
+      color: #ffffff;
+    }
+
+    /* List Styling */
+    ul {
+      list-style: none;
+      margin-top: 30px;
+    }
+
+    li {
+      font-size: 1.6rem;
+      color: #333;
+      background: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    li:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Call to Action Button */
+    .start-button {
+      background: linear-gradient(45deg, #f39c12, #e67e22);
+      color: white;
+      padding: 15px 40px;
+      font-size: 1.5rem;
+      border: none;
+      margin-top: 10px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .start-button:hover {
+      background: linear-gradient(45deg, #e67e22, #f39c12);
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.7);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Aprender Cumprimentos: Frases do Dia a Dia</h1>
+    <div class="introduction">
+      <p>Bem-vindo! Aprenda cumprimentos de forma simples.</p>
+      <ul>
+        <li onclick="playAudio('bomdia')"><strong>Bom dia</strong>: <span>صبح بخیر (Subah Bakhair)</span></li>
+        <li onclick="playAudio('ola')"><strong>Olá</strong>: <span>ہیلو (Hello)</span></li>
+        <li onclick="playAudio('boanoite')"><strong>Boa noite</strong>: <span>شب بخیر (Shab Bakhair)</span></li>
+
+        <li onclick="playAudio('adeus')"><strong>Adeus</strong>: <span>الوداع (Alvida)</span></li>
+        <li onclick="playAudio('boatarde')"><strong>Boa tarde</strong>: <span>دوپہر بخیر (Dopeher Bakhair)</span></li>
+
+        <li onclick="playAudio('comovaivc')"><strong>Como esté você?</strong>: <span>آپ کیسے ہیں؟ (Aap Kaise Hain?)</span></li>
+        <li onclick="playAudio('atelogo')"><strong>Até logo</strong>: <span>پھر ملیں گے (Phir Milenge)</span></li>
+        <li onclick="playAudio('estouBem')"><strong>Estou bem, obrigado</strong>: <span>میں ٹھیک ہوں، شکریہ (Main Theek Hoon, Shukriya)</span></li>
+        <li onclick="playAudio('prazer')"><strong>Prazer em conhecê-lo</strong>: <span>آپ سے مل کر خوشی ہوئی (Aap Se Mil Kar Khushi Hui)</span></li>
+
+
+        <li onclick="playAudio('obrigada')"><strong>Obrigada</strong>: <span>شکریہ (Shukriya)</span></li>
+        <li onclick="playAudio('prazer')"><strong>Prazer em conhecê-lo</strong>: <span>آپ سے مل کر خوشی ہوئی (Aap Se Mil Kar Khushi Hui)</span></li>
+      </ul>
+      <button class="start-button" onclick="window.location.href='../saudades/lesson1_greeting.html';">Começar Quiz</button>
+    </div>
+  </div>
+
+  <!-- Audio Files -->
+  <audio id="bomdia" src="audios/answer_1.mp3"></audio>
+  <audio id="boanoite" src="audios/answer_2.mp3"></audio>
+  <audio id="boatarde" src="audios/answer_3.mp3"></audio>
+  <audio id="ola" src="audios/answer_4.mp3"></audio>
+  <audio id="adeus" src="audios/answer_5.mp3"></audio>
+  <audio id="comovaivc" src="audios/answer_6.mp3"></audio>
+  <audio id="estouBem" src="audios/answer_7.mp3"></audio>
+  <audio id="atelogo" src="audios/answer_8.mp3"></audio>
+  <audio id="obrigada" src="audios/answer_10.mp3"></audio>
+  <audio id="prazer" src="audios/answer_9.mp3"></audio>
+
+  
+
+
+  <script>
+    function playAudio(id) {
+      let audio = document.getElementById(id);
+      if (audio) {
+        audio.play();
+      }
+    }
+  </script>
+
+</body>
+</html>

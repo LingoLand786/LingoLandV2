@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palavra Diária</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #004aad, #001c50);
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 20px 40px;
+            font-size: 40px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 0 0 20px 20px;
+        }
+        .points-container {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+        }
+        .points-container img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+        }
+        .day-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .day-box {
+            background: white !important; /* Ensure white background */
+            color: black;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .day-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 74, 173, 0.1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease-in-out;
+        }
+        .day-box:hover::before {
+            transform: scaleX(1);
+        }
+        .day-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        .day-box a {
+            color: #004aad;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Dias Diários
+        <div class="points-container">
+            <img src="estrela.png" alt="Estrela">
+            <span>Classificação: </span>
+        </div>
+    </header>
+    
+    <div class="day-container">
+        <div class="day-box"><a href="d1palavra1.html">Dia 1</a></div>
+        <div class="day-box"><a href="d2palavra1.html">Dia 2</a></div>
+        <div class="day-box"><a href="d3palavra1.html">Dia 3</a></div>
+        <div class="day-box"><a href="d4palavra1.html">Dia 4</a></div>
+        <div class="day-box"><a href="d5palavra1.html">Dia 5</a></div>
+        <div class="day-box"><a href="d6palavra1.html">Dia 6</a></div>
+        <div class="day-box"><a href="d7palavra1.html">Dia 7</a></div>
+        <div class="day-box"><a href="d8palavra1.html">Dia 8</a></div>
+        <div class="day-box"><a href="d9palavra1.html">Dia 9</a></div>
+        <div class="day-box"><a href="d10palavra1.html">Dia 10</a></div>
+        <div class="day-box"><a href="d11palavra1.html">Dia 11</a></div>
+        <div class="day-box"><a href="d12palavra1.html">Dia 12</a></div>
+        <div class="day-box"><a href="d13palavra1.html">Dia 13</a></div>
+        <div class="day-box"><a href="d14palavra1.html">Dia 14</a></div>
+        <div class="day-box"><a href="d15palavra1.html">Dia 15</a></div>
+        <div class="day-box"><a href="d16palavra1.html">Dia 16</a></div>
+        <div class="day-box"><a href="d17palavra1.html">Dia 17</a></div>
+        <div class="day-box"><a href="d18palavra1.html">Dia 18</a></div>
+    </div>
+</body>
+</html>

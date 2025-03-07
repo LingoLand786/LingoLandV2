@@ -137,6 +137,32 @@
       font-size: 18px;
       transition: background 0.3s ease;
     }
+    .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Add some space between buttons */
+    margin-top: 20px;
+  }
+
+  .audio-player, .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .audio-player button, .button-container a {
+    background: #1f3a4c;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    text-align: center;
+  }
+
+  .audio-player button:hover, .button-container a:hover {
+    background: #2c4f68;
+  }
 
     .audio-player button:hover {
       background: #2c4f68;
@@ -302,15 +328,15 @@
 
   
 
-  <!-- Custom Audio Player -->
-  <!-- Custom Audio Player -->
   <div class="audio-player">
     <button onclick="playAllAudio()">Tocar Todos os Áudios</button>
   </div>
-
+  
+  <!-- Button Container -->
   <div class="button-container">
     <a href="LESSONCRADSURPTUR.html" class="button">Próxima Lição</a>
-</div>
+  </div>
+  
 
   <!-- Audio Script -->
   <script>

@@ -291,7 +291,7 @@
     <div class="progress-bar">
       <div id="progressBar" class="progress"></div>
     </div>
-    <h1>Lição 3: Cumprimentos</h1>
+    <h1>Lição 2: Cumprimentos</h1>
     <div id="quiz">
       <!-- Perguntas aparecerão aqui -->
     </div>
@@ -301,109 +301,108 @@
   </div>
 
   <script>
-   const quizData = [
+    const quizData = [
   {
-    question: "Como você diz 'Eu sou de [....]' em português?",
+    question: "Como você se chama?",
     answers: {
-      a: "میں [...........] سے ہوں۔",  // Correct
-      b: "میں [...........] رہتا ہوں۔",  // Incorrect
-      c: "میں [...........] کا دوست ہوں۔",  // Incorrect
+      a: "آپ کیسے ہیں؟", // Incorrect
+      b: "آپ کہاں رہتے ہیں؟", // Incorrect
+      c: "آپ کا نام کیا ہے؟", // Correct
     },
-    correct: "a",  // Correct answer
-    audio: "answers_audio/answer_1.mp3",  // Audio for the correct answer
+    correct: "c", // Correct answer
+    audio: "audio_files/answer_1.mp3", // Audio for the correct answer
   },
   {
-    question: "Como se diz 'Boa tarde' em português?",
+    question: "Qual é a sua resposta para 'Meu nome é.....?'",
     answers: {
-      a: "صبح بخیر",  // Incorrect
-      b: "دوپہر بخیر",  // Correct
-      c: "رات بخیر",  // Incorrect
+      a: "میرا نام ہے۔", // Correct
+      b: "میں ٹھیک ہوں، شکریہ۔", // Incorrect
+      c: "آپ کا نام کیا ہے?" // Incorrect
     },
-    correct: "b",  // Correct answer
-    audio: "answers_audio/answer_2.mp3",  // Audio for the correct answer
+    correct: "a", // Correct answer
+    audio: "audio_files/answer_2.mp3", // Audio for the correct answer
   },
   {
-    question: "Como você pergunta 'Quantas horas sâo?' em português?",
+    question: "Como se diz 'Desculpe' em português?",
     answers: {
-      a: "کیا وقت ہوا ہے؟",  // Correct (translated to Urdu: "Que horas são?" in Portuguese)
-      b: "آج کیا دن ہے؟",  // Incorrect (translated to Urdu: "Que dia é hoje?")
-      c: "گھڑی کہاں ہے؟",  // Incorrect (translated to Urdu: "Onde está o relógio?")
+      a: "معاف کیجیے۔", // Correct
+      b: "کوئی بات نہیں۔", // Incorrect
+      c: "براہ کرم۔", // Incorrect
     },
-    correct: "a",  // Correct answer
-    audio: "answers_audio/answer_3.mp3",  // Audio for the correct answer
+    correct: "a", // Correct answer
+    audio: "audio_files/answer_3.mp3", // Audio for the correct answer
   },
   {
-    question: "Como você diz 'O que você está fazer?' em português?",
+    question: "Qual palavra se usa para 'Por favor' em português?",
     answers: {
-      a: " یہ اچھا ہے",  // Incorrect (translated to Urdu: "O que você faz?")
-      b: "آپ کیا کر رہے ہیں؟",  // Correct (translated to Urdu: "O que você está fazendo?")
-      c: "آپ کیا کرنا چاہتے ہیں؟",  // Incorrect (translated to Urdu: "O que você quer fazer?")
+      a: "شکریہ۔", // Incorrect
+      b: "براہ کرم۔", // Correct
+      c: "معاف کیجیے۔", // Incorrect
     },
-    correct: "b",  // Correct answer
-    audio: "answers_audio/answer_4.mp3",  // Audio for the correct answer
+    correct: "b", // Correct answer
+    audio: "audio_files/answer_4.mp3", // Audio for the correct answer
   },
   {
-    question: "Como se diz 'É um prazer' em português?",
+    question: "Como se diz 'Obrigado' em português?",
     answers: {
-      a: "یہ ایک خوشی کی بات ہے", // Correct (translated to Urdu: "É um prazer")
-      b: "یہ اچھا ہے",  // Incorrect (translated to Urdu: "É bom")
-      c: "مجھے پسند ہے",  // Incorrect (translated to Urdu: "Eu gosto")
+      a: "اللہ حافظ۔", // Incorrect
+      b: "شکریہ۔", // Correct
+      c: "معاف کیجیے۔", // Incorrect
     },
-    correct: "a",  // Correct answer
-    audio: "answers_audio/answer_5.mp3",  // Audio for the correct answer
+    correct: "b", // Correct answer
+    audio: "audio_files/answer_5.mp3", // Audio for the correct answer
   },
   {
-    question: "Como se pergunta 'Você está bem?' em português?",
+    question: "Como se diz 'De nada' em português?",
     answers: {
-      a: "آپ ٹھیک ہیں؟",  // Correct (translated to Urdu: "Você está bem?")
-      b: "آپ خوش ہیں؟",  // Incorrect (translated to Urdu: "Você está feliz?")
-      c: "کیا آپ جانا چاہتے ہیں؟",  // Incorrect (translated to Urdu: "Você quer sair?")
+      a: "کوئی بات نہیں۔", // Correct
+      b: "سب کچھ ٹھیک ہے۔", // Incorrect
+      c: "معاف کیجیے۔", // Incorrect
     },
-    correct: "a",  // Correct answer
-    audio: "answers_audio/answer_6.mp3",  // Audio for the correct answer
+    correct: "a", // Correct answer
+    audio: "audio_files/answer_6.mp3", // Audio for the correct answer
   },
   {
-    question: "Como se diz 'Eu estou triste' em português?",
+    question: "Como se diz 'Adeus' em português?",
     answers: {
-      a: "میں ٹھیک ہوں", // Correct (translated to Urdu: "Eu estou bem")
-      b: "میں بُرا ہوں",  // Incorrect (translated to Urdu: "Eu estou mal")
-      c: "میں اداس ہوں",  // Incorrect (translated to Urdu: "Eu estou triste")
+      a: "اللہ حافظ۔", // Incorrect
+      b: "براہ کرم۔", // Incorrect
+      c: "معاف کیجیے۔", // Correct
     },
-    correct: "c",  // Correct answer
-    audio: "answers_audio/answer_7.mp3",  // Audio for the correct answer
+    correct: "a", // Correct answer
+    audio: "audio_files/answer_7.mp3", // Audio for the correct answer
   },
   {
-    question: "Como você pergunta 'Há quanto tempo?' em português?",
+    question: "Como se diz 'Tudo bem' em português?",
     answers: {
-      a: "کتنی دیر ہو چکی ہے؟",  // Correct (translated to Urdu: "Há quanto tempo!")
-      b: "کتنا وقت باقی ہے؟",  // Incorrect (translated to Urdu: "Quanto tempo falta?")
-      c: "آپ کیسے ہیں؟",  // Incorrect (translated to Urdu: "Como você está?")
+      a: "شکریہ۔", // Incorrect
+      b: "سب کچھ ٹھیک ہے۔", // Correct
+      c: "کوئی بات نہیں۔", // Incorrect
     },
-    correct: "a",  // Correct answer
-    audio: "answers_audio/answer_8.mp3",  // Audio for the correct answer
+    correct: "b", // Correct answer
+    audio: "audio_files/answer_8.mp3", // Audio for the correct answer
   },
   {
-    question: "Como se diz 'Cuida de ti' em português?",
+    question: "Como se diz 'Tenha um bom dia' em português?",
     answers: {
-      a: "خود کا خیال رکھیں", // Correct (translated to Urdu: "Cuida de ti")
-      b: "الوداع",  // Incorrect (translated to Urdu: "Até logo")
-      c: "اللہ آپ کا حافظ",  // Incorrect (translated to Urdu: "Boa sorte")
+      a: "اچھا دن گزرے۔", // Correct
+      b: "معاف کیجیے۔", // Incorrect
+      c: "شکریہ۔", // Incorrect
     },
-    correct: "a",  // Correct answer
-    audio: "answers_audio/answer_9.mp3",  // Audio for the correct answer
+    correct: "a", // Correct answer
+    audio: "audio_files/answer_9.mp3", // Audio for the correct answer
   },
   {
-    question: "Como se diz 'Bom te ver' em português?",
+    question: "Como se pergunta 'De onde você é?' em português?",
     answers: {
-      a: "آپ کو دیکھ کر خوشی ہوئی",  // Correct (translated to Urdu: "Bom te ver")
-      b: "آپ سے مل کر خوشی ہوئی",  // Incorrect (translated to Urdu: "Prazer em ver você")
-      c: "ہیلو",  // Incorrect (translated to Urdu: "Olá")
+      a: "آپ کا نام کیا ہے؟", // Incorrect
+      b: "آپ کہاں سے ہیں؟", // Correct
+      c: "آپ کہاں رہتے ہیں؟", // Incorrect
     },
-    correct: "a",  // Correct answer
-    audio: "answers_audio/answer_10.mp3",  // Audio for the correct answer
-  },
+    correct: "b", // Correct answer
+    audio: "audio_files/answer_10.mp3", // Audio for the correct answer
+  }
 ];
-
 
 
     let currentQuestionIndex = 0;

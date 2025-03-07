@@ -1,304 +1,341 @@
 <!DOCTYPE html>
-<html lang="pt" dir="ltr">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu Principal</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap">
+  <title>LingoLand - Aprenda Idiomas</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Noto Sans', sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
-
     body {
       display: flex;
       height: 100vh;
-      overflow: hidden;
+      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
     }
-
     .sidebar {
-      width: 30%;
+      width: 350px;
       height: 100vh;
-      background: linear-gradient(135deg, #0056b3, #001d4d);
-      color: #ffffff;
+      background: rgba(0, 29, 77, 0.85);
+      color: white;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 10px;
-      overflow-y: auto;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+      padding: 25px 0;
+      box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      position: relative;
     }
-
     .sidebar h2 {
-      margin-bottom: 40px;
-      font-size: 32px;
-      color: #ffffff;
+      font-size: 28px;
+      font-weight: 700;
+      opacity: 0;
+      transform: translateY(-20px);
     }
-
     .sidebar ul {
       list-style: none;
       width: 100%;
+      padding: 0;
     }
-
     .sidebar ul li {
       display: flex;
       align-items: center;
-      margin: 15px 0;
-      padding: 15px;
+      padding: 14px 25px;
       border-radius: 8px;
-      transition: 0.3s;
+      margin: 12px;
       cursor: pointer;
-      background: rgba(255, 255, 255, 0.1);
+      transition: background 0.3s, transform 0.2s;
+      opacity: 0;
+      transform: translateX(-30px);
     }
-
     .sidebar ul li:hover {
-      background: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateX(5px);
     }
-
     .sidebar ul li img {
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
+      margin-right: 15px;
     }
-
-    .sidebar ul li span {
-      font-size: 20px;
-      margin-left: 10px;
-      flex: 1;
-    }
-
     .main-content {
       flex-grow: 1;
-      padding: 20px;
-      background: #f0f4f8;
+      padding: 40px;
       overflow-y: auto;
+      opacity: 0;
     }
-
+    .header {
+      background: linear-gradient(90deg, #001d4d, #0056b3);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 26px;
+      font-weight: bold;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+    }
     .progress-section {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+    .progress-card a {
+      text-decoration: none; /* Removes underline */
+      color: black; /* Text color */
+    }
+    .progress-card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      padding: 25px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      opacity: 0;
+      transform: translateY(30px);
     }
 
-    .progress-card {
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
 
     .progress-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
     }
-
     .progress-card img {
-      width: 80px;
-      height: 80px;
-      margin-top: 20px;
+      width: 90px;
+      height: 90px;
+      margin-bottom: 15px;
+      transition: transform 0.3s;
     }
-
-    .progress-card h3 {
-      font-size: 18px;
-      margin: 15px 0;
-      color: #333333;
+    .progress-card:hover img {
+      transform: scale(1.15);
     }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .header {
-      background: linear-gradient(90deg, #001d4d, #0056b3);
-      color: #ffffff;
-      padding: 15px;
+    .logout {
+      position: absolute;
+      bottom: 20px;
+      background: #ff4b5c;
+      padding: 14px 25px;
+      color: white;
+      border-radius: 8px;
       text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      border-bottom: 5px solid #0056b3;
+      cursor: pointer;
+      transition: background 0.3s;
     }
+    .logout:hover {
+      background: #d43545;
+    }
+ 
+      /* Mobile responsiveness */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 250px; /* Narrow down sidebar width */
+  }
+
+  .main-content {
+    padding: 20px; /* Reduce main content padding */
+  }
+
+  .header {
+    font-size: 22px; /* Adjust header font size */
+  }
+
+  /* Remove underlines and blue color from links in the sidebar */
+.sidebar ul li a {
+  text-decoration: none !important; /* Removes underline */
+  color: white !important; /* Ensures text is white */
+  font-weight: normal !important; /* Normal font weight */
+}
+
+/* Hover effect for the links inside the sidebar */
+.sidebar ul li a:hover {
+  background: rgba(255, 255, 255, 0.2) !important; /* Subtle background change on hover */
+  transform: translateX(5px) !important;
+}
+
+  .progress-card {
+    padding: 20px; /* Reduce card padding */
+  }
+}
   </style>
 </head>
 <body>
   <div class="sidebar">
     <h2>LingoLand</h2>
     <ul>
-      <li>
-        <img src="sidebar/lista.gif" alt="Categorias">
-        <span>Categorias</span>
-      </li>
-      <li>
-        <a href="verbos/verbos.html">
-          <img src="sidebar/dictionary.gif" alt="Verbos">
-          <span>Verbos</span>
-        </a>
-      </li>
-      <li>
-        <a href="translate.html">
-          <img src="sidebar/translator.gif" alt="Tradução">
-          <span>Tradução</span>
-        </a>
-      </li>
-      <li>
-        <img src="sidebar/profile.gif" alt="Missões">
-        <span>Missões</span>
-      </li>
-      <li>
-        <img src="sidebar/add-user.gif" alt="Contato">
-        <span>Contato</span>
-      </li>
+      <li><img src="sidebar/lista.gif" alt="Categorias"><span>Categorias</span></li>
 
-      <li>
-        <a href="javascript:void(0);" onclick="confirmLogout()">
-          <img src="sidebar/logout.gif" alt="Logout">
-          <span>Logout</span>
-        </a>
-      </li>
+     <li><a href="palavras_diarias/palavrasdiarias.html" style="text-decoration: none; color: white;">
+    <img src="sidebar/translator.gif" alt="Tradução"><span>Palavras Diárias</span>
+  </a>
+</li>
+
+<li><a href="contactpt.html" style="text-decoration: none; color: white;">
+  <img src="sidebar/add-user.gif" alt="Contato"><span>Contato</span>
+</a>
+</li>
+
     </ul>
+    <div class="logout" onclick="confirmLogout()">Sair</div>
+
+
+    
   </div>
+</div>
 
   <div class="main-content">
     <div class="header">Comece sua jornada de aprendizado de idiomas</div>
-
     <div class="progress-section">
-      <div class="progress-card">
-        <a href="LESSONCARDSABC.html">
-          <img src="images/abc.webp" alt="Aprender o alfabeto">
-          <h3>Aprender o Alfabeto</h3>
-        </a>
-      </div>
-      <div class="progress-card">
-        <a href="LESSONCARD123.html">
-          <img src="images/123.jpg" alt="Aprender 123">
-          <h3>Aprender 123</h3>
-        </a>
-      </div>
-      <div class="progress-card">
-        <a href="LESSONCRADSURPTUR.html">
-          <img src="images/gree.jpg" alt="Saudações">
-          <h3>Saudações</h3>
-        </a>
-      </div>
-      <div class="progress-card">
-        <a href="BASIC GRAMMAR/LESSONCARD_BASICGRAMMAR.html">
-          <img src="images/gra.avif" alt="Gramática básica">
-          <h3>Gramática Básica</h3>
-        </a>
-      </div>
+      <div class="progress-section">
+        <div class="progress-card">
+          <a href="LESSONCARDSABC.html">
+            <img src="images/abc.webp" alt="Aprender o alfabeto">
+            <h3>Aprender o Alfabeto</h3>
+          </a>
+        </div>
+        <div class="progress-card">
+          <a href="LESSONCARD123.html">
+            <img src="images/123.jpg" alt="Aprender 123">
+            <h3>Aprender 123</h3>
+          </a>
+        </div>
 
-      <div class="progress-card">
-        <a href="colors&lang.html">
-          <img src="images/c.jpeg" alt="Aprender Cores">
-          <h3>Aprender Cores</h3>
-        </a>
-      </div>
+        <div class="progress-card">
+          <a href="intrucaodequiz/introducao.html">
+            <img src="images/introducao.png" alt="Introdução">
+            <h3>Introdução</h3>
+          </a>
+        </div>
 
-      <div class="progress-card">
-        <a href="daysandmonth/lessoncard_days&month.html">
-          <img src="images/days.jpg" alt="Aprender dias e mes">
-          <h3>Aprender dias,semanas,mes</h3>
-        </a>
+        <div class="progress-card">
+          <a href="LESSONCRADSURPTUR.html">
+            <img src="images/gree.jpg" alt="Saudações">
+            <h3>Saudações</h3>
+          </a>
+        </div>
+        <div class="progress-card">
+          <a href="BASIC GRAMMAR/LESSONCARD_BASICGRAMMAR.html">
+            <img src="images/gra.avif" alt="Gramática básica">
+            <h3>Gramática Básica</h3>
+          </a>
+        </div>
+  
+        <div class="progress-card">
+          <a href="colors&lang.html">
+            <img src="images/c.jpeg" alt="Aprender Cores">
+            <h3>Aprender Cores</h3>
+          </a>
+        </div>
+  
+        <div class="progress-card">
+          <a href="daysandmonth/lessoncard_days&month.html">
+            <img src="images/days.jpg" alt="Aprender dias e mes">
+            <h3>Aprender dias,semanas,mes</h3>
+          </a>
+        </div>
+  
+        <div class="progress-card">
+          <a href="country&lang.html">
+            <img src="images/mapa.png" alt="País e Língua">
+            <h3>País e Língua</h3>
+          </a>
+        </div>
+        <div class="progress-card">
+          <a href="viagens/viagens.html">
+            <img src="images/VIAGENS.png" alt="travel">
+            <h3> Viagens </h3>
+          </a>
+        </div>
+       
+        <div class="progress-card">
+          <a href="FRUITS/FRUITS.HTML">
+            <img src="images/fruits.png" alt="fruits">
+            <h3> Frutos </h3>
+          </a>
+        </div>
+  
+        <div class="progress-card">
+          <a href="VEGETABLES/vegetables.html">
+            <img src="images/legumes.png" alt="vegetables">
+            <h3> Legumes</h3>
+          </a>
+        </div>
+  
+        <div class="progress-card">
+          <a href="drinks/drinks.html">
+            <img src="images/drinks.png" alt="Bebidas">
+            <h3>Bebidas</h3>
+          </a>
+        </div>
+  
+        <div class="progress-card">
+          <a href="ESTACOESECLIMA/seasons.html">
+            <img src="images/clima.png" alt="Estações e Clima">
+            <h3>Estações e Clima</h3>
+          </a>
+        </div>
+  
+        <div class="progress-card">
+          <a href="animais/animais.html">
+            <img src="images/animais.png" alt="Animais">
+            <h3> Animais </h3>
+          </a>
+        </div>
+        
+  
+        <div class="progress-card">
+          <a href="family/">
+            <img src="images/family.png" alt="Animais">
+            <h3> Família </h3>
+          </a>
+        </div>
+        
+        <div class="progress-card">
+          <a href="music/music.html">
+            <img src="images/music.png" alt="Música & Canções">
+            <h3>Música & Canções</h3>
+          </a>
+        </div>
+        
+  
+  
+        <div class="progress-card">
+          <a href="TrabalhoProfissões/trabalho.html">
+            <img src="images/profissoes.png" alt="Música & Canções">
+            <h3>Trabalho & Profissões</h3>
+          </a>
+        </div>
+        
+  
+  
+        <div class="progress-card">
+          <a href="Flowers/flowers.html">
+            <img src="images/flor.png" alt="Flowers">
+            <h3>Flores</h3>
+          </a>
+        </div>
       </div>
-
-      <div class="progress-card">
-        <a href="country&lang.html">
-          <img src="images/country.jpg" alt="País e Língua">
-          <h3>País e Língua</h3>
-        </a>
-      </div>
-      <div class="progress-card">
-        <a href="viagens/viagens.html">
-          <img src="images/VIAGENS.png" alt="travel">
-          <h3> Viagens </h3>
-        </a>
-      </div>
-     
-      <div class="progress-card">
-        <a href="FRUITS/FRUITS.HTML">
-          <img src="images/fruits.png" alt="fruits">
-          <h3> Frutos </h3>
-        </a>
-      </div>
-
-      <div class="progress-card">
-        <a href="VEGETABLES/vegetables.html">
-          <img src="images/legumes.png" alt="vegetables">
-          <h3> Legumes</h3>
-        </a>
-      </div>
-
-      <div class="progress-card">
-        <a href="drinks/drinks.html">
-          <img src="images/drinks.png" alt="Bebidas">
-          <h3>Bebidas</h3>
-        </a>
-      </div>
-
-      <div class="progress-card">
-        <a href="ESTACOESECLIMA/seasons.html">
-          <img src="images/clima.png" alt="Estações e Clima">
-          <h3>Estações e Clima</h3>
-        </a>
-      </div>
-
-      <div class="progress-card">
-        <a href="animais/animais.html">
-          <img src="images/animais.png" alt="Animais">
-          <h3> Animais </h3>
-        </a>
-      </div>
-      
-
-      <div class="progress-card">
-        <a href="family/">
-          <img src="images/family.png" alt="Animais">
-          <h3> Família </h3>
-        </a>
-      </div>
-      
-      <div class="progress-card">
-        <a href="music/music.html">
-          <img src="images/music.png" alt="Música & Canções">
-          <h3>Música & Canções</h3>
-        </a>
-      </div>
-      
-
-
-      <div class="progress-card">
-        <a href="TrabalhoProfissões/trabalho.html">
-          <img src="images/profissoes.png" alt="Música & Canções">
-          <h3>Trabalho & Profissões</h3>
-        </a>
-      </div>
-      
-
-
-      <div class="progress-card">
-        <a href="Flowers/flowers.html">
-          <img src="images/flor.png" alt="Flowers">
-          <h3>Flores</h3>
-        </a>
-      </div>
-    
-     
+  
     </div>
   </div>
   <script>
-     function confirmLogout() {
-      const logout = confirm("Você realmente deseja sair?");
-      if (logout) {
+    function confirmLogout() {
+      if (confirm("Você realmente deseja sair?")) {
         window.location.href = "/www/index.html";
-      }}
+      }
+    }
+    gsap.to(".sidebar h2", { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
+gsap.to(".sidebar ul li", { opacity: 1, x: 0, duration: 1, stagger: 0.2, ease: "power3.out" });
+gsap.to(".main-content", { opacity: 1, duration: 1, delay: 0.5, ease: "power3.out" });
+gsap.to(".header", { opacity: 1, duration: 1, delay: 0.7, ease: "power3.out" });
+gsap.to(".progress-card", { opacity: 1, y: 0, duration: 1, stagger: 0.2, delay: 0.9, ease: "power3.out" });
+
+
   </script>
 </body>
 </html>

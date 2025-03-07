@@ -52,50 +52,51 @@
 
     <script>
         // Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
-            authDomain: "appsitesync.firebaseapp.com",
-            projectId: "appsitesync",
-            storageBucket: "appsitesync.appspot.com",
-            messagingSenderId: "357510439971",
-            appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
-            measurementId: "G-T0SX0NH50K"
-        };
+ // Firebase configuration (Already present in your code)
+const firebaseConfig = {
+    apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+    authDomain: "appsitesync.firebaseapp.com",
+    projectId: "appsitesync",
+    storageBucket: "appsitesync.appspot.com",
+    messagingSenderId: "357510439971",
+    appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+    measurementId: "G-T0SX0NH50K"
+};
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const auth = firebase.auth();
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const auth = firebase.auth();
 
-        // Handle form submission
-        document.getElementById('signupForm').addEventListener('submit', function (e) {
-            e.preventDefault(); 
+document.getElementById('signupForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
 
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
+    auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
 
-                    // Store user data in Firestore
-                    db.collection('users').doc(user.uid).set({
-                        email: user.email,
-                        userId: user.uid,
-                        createdAt: new Date()
-                    })
-                    .then(() => {
-                        alert('Sign Up Successful');
-                        window.location.href = "getstarted.html";
-                    })
-                    .catch((error) => {
-                        alert(`Error storing user data: ${error.message}`);
-                    });
-                })
-                .catch((error) => {
-                    alert(`Error: ${error.message}`);
-                });
+            // Save user data in Firestore without spoken & learning language
+            return db.collection('users').doc(user.uid).set({
+                uid: user.uid,
+                email: user.email,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                createdBy: user.uid // Store who created the account
+            });
+        })
+        .then(() => {
+            alert('Sign Up Successful! Now choose your languages.');
+            window.location.href = `getstarted.html?uid=${auth.currentUser.uid}`; // Redirect to Get Started
+        })
+        .catch((error) => {
+            alert(`Error: ${error.message}`);
         });
+});
+
+
 
         // Translations
         const translations = {
