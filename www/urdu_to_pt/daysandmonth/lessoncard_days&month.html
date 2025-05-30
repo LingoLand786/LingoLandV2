@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprenda Português - Aulas Avançadas de Língua</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f2f6;
+            color:  #002D62;
+            line-height: 1.6;
+            transition: background-color 0.3s;
+        }
+
+        /* Header Section */
+        header {
+            padding: 50px;
+            background-color:  #002D62;
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            font-size: 4rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            background-color: #555;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 50px;
+            justify-items: center;
+        }
+
+        .category-box {
+            position: relative;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s, box-shadow 0.4s;
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 450px; /* Adjust the height to make it taller */
+           
+        }
+
+        /* Center the video properly inside the card */
+        .category-box video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .category-box:hover img, .category-box:hover video {
+            transform: scale(1.1);
+        }
+
+        .category-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-box h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .category-box p {
+            font-size: 1.2rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .category-box a {
+            padding: 12px 30px;
+            background-color: #008080;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: background-color 0.3s;
+        }
+
+        .category-box a:hover {
+            background-color: #006666;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 80%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        /* Animation for elements */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="fade-in">
+    <p>ہفتے کے دن سیکھیں</p>
+</header>
+
+<!-- سبق کے کارڈز -->
+<div class="category-container fade-in">
+    <!-- پہلا کارڈ ویڈیو کے ساتھ (کارڈ کے درمیان میں) -->
+    <div class="category-box">
+        <video autoplay loop muted class="background-video">
+            <source src="img/Untitled design.mp4" type="video/mp4">
+            آپ کا براؤزر ویڈیو ٹیگ کو سپورٹ نہیں کرتا۔
+        </video>
+    </div>
+
+    <!-- دوسرے کارڈز -->
+    <div class="category-box">
+        <img src="img/days.jpeg" alt="دن">
+        <div class="category-content">
+            <h3>دن</h3>
+            <p>ہفتے کے دن سیکھیں۔</p>
+            <a href="days.html">سبق شروع کریں</a>
+        </div>
+    </div>
+
+    <div class="category-box">
+        <img src="img/MONTH.jpg" alt="مہینے">
+        <div class="category-content">
+            <h3>مہینے</h3>
+            <p>سال کے مہینے سیکھیں۔</p>
+            <a href="month.html">سبق شروع کریں</a>
+        </div>
+    </div>
+</div>
+
+<!-- موڈل ونڈو (سبق کی تفصیلات کے لیے) -->
+<div class="modal" id="lessonModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>سبق کی تفصیلات</h2>
+        <p>سبق کی تفصیلات یہاں دکھائی جائیں گی، جن میں انٹرایکٹو مشقیں، کوئز اور مزید شامل ہوں گی!</p>
+    </div>
+</div>
+
+
+<script>
+    // Modal Open & Close Functions
+    function openModal() {
+        document.getElementById('lessonModal').style.display = "flex";
+    }
+
+    function closeModal() {
+        document.getElementById('lessonModal').style.display = "none";
+    }
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+</script>
+
+</body>
+</html>

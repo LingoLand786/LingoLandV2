@@ -28,25 +28,43 @@
     </header>      
 
     <main class="main-content">
-        <img src="ANAAMORSIMAO.jpg" alt="Lingoland Visual" style="width: 100%; max-width: 500px; border-radius: 10px;">
+<video width="100%" style="max-width: 500px; border-radius: 10px;" autoplay loop muted playsinline>
+  <source src="sitara.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
         <div class="text-content">
             <h1 id="main-heading">A maneira gratuita, divertida e eficaz de aprender um idioma!</h1>
             <p id="main-paragraph">Comece sua jornada para a fluência hoje com a Lingoland.</p>
             <div class="buttons">
                 <a href="signup.html" class="start" id="btn-start">Comece Agora</a>
+               
+               
+               
                 <a href="login.html" class="login" id="btn-login">Já Tenho uma Conta</a>
             </div>
         </div>
     </main>
 
     <footer>
-        &copy; 2024 <a href="contact.html">Lingoland</a>. Todos os direitos reservados.
+        <span id="footer-text">&copy; 2024 <a href="contact.html" id="footer-link">Lingoland</a>. <span id="rights-text">Todos os direitos reservados.</span></span>
     </footer>
 
     <script>
         const translations = {
-            pt: { heading: "A maneira gratuita, divertida e eficaz de aprender um idioma!", paragraph: "Comece sua jornada para a fluência hoje com a Lingoland.", start: "Comece Agora", login: "Já Tenho uma Conta" },
-            ur: { heading: "\u0632\u0628\u0627\u0646 \u0633\u06cc\u06a9\u06be\u0646\u06d2 \u06a9\u0627 \u0645\u0641\u062a\u060c \u062a\u0641\u0631\u06cc\u062d\u06cc \u0627\u0648\u0631 \u0645\u0648\u0624\u062b\u0631 \u0637\u0631\u06cc\u0642\u06c1!", paragraph: "\u0622\u062c \u06c1\u06cc Lingoland \u06a9\u06d2 \u0633\u0627\u062a\u06be \u0627\u067e\u0646\u06d2 \u0631\u0648\u0627\u0646\u06cc \u06a9\u06d2 \u0633\u0641\u0631 \u06a9\u0627 \u0622\u063a\u0627\u0632 \u06a9\u0631\u06cc\u06ba\u06d2۔", start: "\u0634\u0631\u0648\u0639 \u06a9\u0631\u06cc\u06ba", login: "\u0645\u06cc\u0631\u06d2 \u067e\u0627\u0633 \u067e\u06c1\u0644\u06d2 \u0633\u06d2 \u0627\u06a9\u0627\u0624\u0646\u0679 \u06c1\u06d2" }
+            pt: { 
+                heading: "A maneira gratuita, divertida e eficaz de aprender um idioma!", 
+                paragraph: "Comece sua jornada para a fluência hoje com a Lingoland.", 
+                start: "Comece Agora", 
+                login: "Já Tenho uma Conta",
+                rights: "Todos os direitos reservados."
+            },
+            ur: { 
+                heading: "\u0632\u0628\u0627\u0646 \u0633\u06cc\u06a9\u06be\u0646\u06d2 \u06a9\u0627 \u0645\u0641\u062a\u060c \u062a\u0641\u0631\u06cc\u062d\u06cc \u0627\u0648\u0631 \u0645\u0648\u0624\u062b\u0631 \u0637\u0631\u06cc\u0642\u06c1!", 
+                paragraph: "\u0622\u062c \u06c1\u06cc Lingoland \u06a9\u06d2 \u0633\u0627\u062a\u06be \u0627\u067e\u0646\u06d2 \u0631\u0648\u0627\u0646\u06cc \u06a9\u06d2 \u0633\u0641\u0631 \u06a9\u0627 \u0622\u063a\u0627\u0632 \u06a9\u0631\u06cc\u06ba\u06d2۔", 
+                start: "\u0634\u0631\u0648\u0639 \u06a9\u0631\u06cc\u06ba", 
+                login: "\u0645\u06cc\u0631\u06d2 \u067e\u0627\u0633 \u067e\u06c1\u0644\u06d2 \u0633\u06d2 \u0627\u06a9\u0627\u0624\u0646\u0679 \u06c1\u06d2",
+                rights: "\u062c\u0645\u06cc\u0639 \u062d\u0642\u0648\u0642 \u0645\u062d\u0641\u0648\u0638 \u06c1\u06cc\u06ba\u06d4"
+            }
         };
 
         const languageSelector = document.getElementById('language');
@@ -54,6 +72,8 @@
         const mainParagraph = document.getElementById('main-paragraph');
         const startButton = document.getElementById('btn-start');
         const loginButton = document.getElementById('btn-login');
+        const rightsText = document.getElementById('rights-text');
+        const footerLink = document.getElementById('footer-link');
 
         function updateLanguage(lang) {
             const translation = translations[lang];
@@ -62,16 +82,23 @@
                 mainParagraph.textContent = translation.paragraph;
                 startButton.textContent = translation.start;
                 loginButton.textContent = translation.login;
+                rightsText.textContent = translation.rights;
 
                 // Update links to pass the selected language
                 startButton.href = `signup.html?lang=${lang}`;
                 loginButton.href = `login.html?lang=${lang}`;
+                footerLink.href = `contact.html?lang=${lang}`;
+                
+                // Store the language preference
+                localStorage.setItem('preferredLanguage', lang);
             }
         }
 
-        // Set default language to Portuguese on load
+        // Set language based on stored preference or default to Portuguese
         document.addEventListener('DOMContentLoaded', () => {
-            updateLanguage('pt'); 
+            const storedLang = localStorage.getItem('preferredLanguage') || 'pt';
+            languageSelector.value = storedLang;
+            updateLanguage(storedLang);
         });
 
         languageSelector.addEventListener('change', (event) => {

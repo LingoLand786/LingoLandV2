@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>موسم و موسم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #ffffff;
+            --accent-color: #008080;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .weather-summary {
+            background: linear-gradient(135deg, var(--primary-color), #004080);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .pakistan-climate {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .climate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .month-selector {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .month-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: var(--secondary-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .month-button.active {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .month-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .climate-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .climate-card {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .climate-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .climate-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .season-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            background: rgba(0, 45, 98, 0.1);
+        }
+
+        .season-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .climate-map {
+            width: 100%;
+            height: 400px;
+            background: var(--secondary-color);
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pakistan-map {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .climate-region {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .climate-region:hover {
+            filter: brightness(1.2);
+        }
+
+        .region-tooltip {
+            position: absolute;
+            background: rgba(0, 45, 98, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .region-tooltip.active {
+            opacity: 1;
+        }
+
+        .region-info {
+            background: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .region-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .region-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .climate-tips {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--secondary-color);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .tips-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .tips-list li:before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .summary-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .summary-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-item p {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .weather-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .weather-card {
+            background: var(--secondary-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .weather-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .weather-icon {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .weather-card:hover .weather-icon {
+            transform: scale(1.05);
+        }
+
+        .weather-content {
+            padding: 1.5rem;
+        }
+
+        .weather-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .weather-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .temperature {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .temperature-range {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .temp-min, .temp-max {
+            font-size: 1.2rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+        }
+
+        .temp-min {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .temp-max {
+            background-color: #ffebee;
+            color: #d32f2f;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .styled-button {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .styled-button:hover {
+            background-color: #006666;
+            transform: translateY(-2px);
+        }
+
+        .audio-progress {
+            flex-grow: 1;
+            height: 4px;
+            background-color: var(--light-gray);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: absolute;
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+            width: 0%;
+        }
+
+        .weather-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .tag-normal { background-color: var(--success-color); }
+        .tag-warning { background-color: var(--warning-color); }
+        .tag-danger { background-color: var(--danger-color); }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .weather-container {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Loading animation */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+  <header>
+        <div class="header-content">
+            <h1>پرتگال کا موسم</h1>
+            <nav>
+                <ul>
+                    <li><a href="seasons.html"><i class="fas fa-leaf"></i> موسم</a></li>
+                    <li><a href="#clima"><i class="fas fa-cloud-sun"></i> موسم</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="weather-summary">
+            <h2>موسم کا خلاصہ</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <h3>اوسط درجہ حرارت</h3>
+                    <p>17°C</p>
+                </div>
+                <div class="summary-item">
+                    <h3>اوسط نمی</h3>
+                    <p>75%</p>
+                </div>
+                <div class="summary-item">
+                    <h3>ہوا کی رفتار</h3>
+                    <p>12 km/h</p>
+                </div>
+                <div class="summary-item">
+                    <h3>بارش</h3>
+                    <p>900mm</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="portugal-climate">
+            <div class="climate-header">
+                <h2>پرتگال کا موسم</h2>
+                <div class="season-indicator">
+                    <i class="fas fa-sun season-icon"></i>
+                    <span>موجودہ موسم: گرمی</span>
+                </div>
+            </div>
+
+            <div class="month-selector">
+                <button class="month-button active" data-month="jan">جنوری</button>
+                <button class="month-button" data-month="feb">فروری</button>
+                <button class="month-button" data-month="mar">مارچ</button>
+                <button class="month-button" data-month="apr">اپریل</button>
+                <button class="month-button" data-month="may">مئی</button>
+                <button class="month-button" data-month="jun">جون</button>
+                <button class="month-button" data-month="jul">جولائی</button>
+                <button class="month-button" data-month="aug">اگست</button>
+                <button class="month-button" data-month="sep">ستمبر</button>
+                <button class="month-button" data-month="oct">اکتوبر</button>
+                <button class="month-button" data-month="nov">نومبر</button>
+                <button class="month-button" data-month="dec">دسمبر</button>
+            </div>
+
+            <div class="climate-details">
+                <div class="climate-card">
+                    <h3><i class="fas fa-temperature-high"></i> درجہ حرارت</h3>
+                    <div class="climate-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">28°C</span>
+                            <span class="stat-label">زیادہ</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">15°C</span>
+                            <span class="stat-label">کم</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">21°C</span>
+                            <span class="stat-label">اوسط</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">+3°C</span>
+                            <span class="stat-label">تبدیلی</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="climate-card">
+                    <h3><i class="fas fa-tint"></i> بارش</h3>
+                    <div class="climate-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">75mm</span>
+                            <span class="stat-label">ماہانہ</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">75%</span>
+                            <span class="stat-label">نمی</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">8</span>
+                            <span class="stat-label">بارش کے دن</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">10h</span>
+                            <span class="stat-label">دھوپ کے گھنٹے</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="climate-tips">
+                <div class="tips-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>موجودہ موسم کی تجاویز</h3>
+                </div>
+                <ul class="tips-list">
+                    <li>دن کے وقت ہلکے کپڑے پہنیں</li>
+                    <li>گرمی سے بچنے کے لیے پانی پیتے رہیں</li>
+                    <li>سن اسکرین اور حفاظتی سامان استعمال کریں</li>
+                    <li>شدید دھوپ کے اوقات میں باہر کی سرگرمیاں کم کریں</li>
+                    <li>دھوپ سے بچنے کے لیے ٹوپی یا چھتری استعمال کریں</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="weather-container">
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-normal">عام</span>
+                <img src="clima/sol.jpg" alt="سورج" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-sun"></i> سورج</h3>
+                    <p>صاف آسمان کے ساتھ دھوپ والے دن، باہر کی سرگرمیوں کے لیے موزوں</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-high"></i> 28°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">کم: 20°C</span>
+                        <span class="temp-max">زیادہ: 35°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>ہوا: 10 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>نمی: 45%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio1.mp3')">
+                            <i class="fas fa-play"></i> سنیں
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-warning">بارش</span>
+                <img src="clima/chuva.jpg" alt="بارش" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-cloud-rain"></i> بارش</h3>
+                    <p>بارش والے دن، گھر کے اندر آرام کرنے کے لیے موزوں</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-low"></i> 18°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">کم: 15°C</span>
+                        <span class="temp-max">زیادہ: 22°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>ہوا: 15 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>نمی: 85%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio2.mp3')">
+                            <i class="fas fa-play"></i> سنیں
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-normal">عام</span>
+                <img src="clima/nuvem.jpg" alt="بادل" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-cloud"></i> بادل</h3>
+                    <p>بادل والے دن، ہلکی بارش کا امکان</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-half"></i> 20°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">کم: 16°C</span>
+                        <span class="temp-max">زیادہ: 24°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>ہوا: 12 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>نمی: 65%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio3.mp3')">
+                            <i class="fas fa-play"></i> سنیں
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-danger">سردی</span>
+                <img src="clima/neve.jpg" alt="برف" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-snowflake"></i> برف</h3>
+                    <p>برف والے سرد دن، موسم سرما کی کھیلوں کے لیے موزوں</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-empty"></i> -5°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">کم: -8°C</span>
+                        <span class="temp-max">زیادہ: -2°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>ہوا: 8 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>نمی: 75%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio4.mp3')">
+                            <i class="fas fa-play"></i> سنیں
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-warning">طوفان</span>
+                <img src="clima/tornado.jpg" alt="طوفان" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-bolt"></i> طوفان</h3>
+                    <p>شدید ہوا اور تیز بارش والے طوفانی دن</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-half"></i> 22°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">کم: 18°C</span>
+                        <span class="temp-max">زیادہ: 26°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>ہوا: 25 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>نمی: 90%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio5.mp3')">
+                            <i class="fas fa-play"></i> سنیں
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-normal">عام</span>
+                <img src="clima/vento.jpg" alt="ہوا" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-wind"></i> ہوا</h3>
+                    <p>ہوادار دن، پتنگ بازی اور دیگر ہوا کی کھیلوں کے لیے موزوں</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-half"></i> 19°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">کم: 16°C</span>
+                        <span class="temp-max">زیادہ: 22°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>ہوا: 30 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>نمی: 55%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio6.mp3')">
+                            <i class="fas fa-play"></i> سنیں
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+ 
+
+    <script>
+        // Audio player functionality
+      // Audio player functionality
+let currentAudio = null;
+let progressBars = document.querySelectorAll('.progress-bar');
+
+function playAudio(filePath) {
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+    }
+
+    currentAudio = new Audio(filePath);
+    currentAudio.play();
+
+    // Update progress bar
+    currentAudio.addEventListener('timeupdate', function() {
+        const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+        progressBars.forEach(bar => {
+            bar.style.width = progress + '%';
+        });
+    });
+
+    // Reset progress bar when audio ends
+    currentAudio.addEventListener('ended', function() {
+        progressBars.forEach(bar => {
+            bar.style.width = '0%';
+        });
+    });
+}
+
+// Add fade-in animation to elements as they come into view
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+document.querySelectorAll('.weather-card').forEach(card => {
+    observer.observe(card);
+});
+
+// Update weather summary with real-time data
+function updateWeatherSummary() {
+    const temperatures = document.querySelectorAll('.temperature');
+    const humidities = document.querySelectorAll('.detail-item:nth-child(2) span');
+    const winds = document.querySelectorAll('.detail-item:nth-child(1) span');
+
+    let totalTemp = 0;
+    let totalHumidity = 0;
+    let totalWind = 0;
+    let count = temperatures.length;
+
+    temperatures.forEach(temp => {
+        const tempValue = parseInt(temp.textContent.match(/-?\d+/)[0]);
+        totalTemp += tempValue;
+    });
+
+    humidities.forEach(humidity => {
+        const humidityValue = parseInt(humidity.textContent.match(/\d+/)[0]);
+        totalHumidity += humidityValue;
+    });
+
+    winds.forEach(wind => {
+        const windValue = parseInt(wind.textContent.match(/\d+/)[0]);
+        totalWind += windValue;
+    });
+
+    document.querySelector('.summary-item:nth-child(1) p').textContent = 
+        Math.round(totalTemp / count) + '°C';
+    document.querySelector('.summary-item:nth-child(2) p').textContent = 
+        Math.round(totalHumidity / count) + '%';
+    document.querySelector('.summary-item:nth-child(3) p').textContent = 
+        Math.round(totalWind / count) + ' km/h';
+}
+
+// Update summary on page load
+window.addEventListener('load', updateWeatherSummary);
+
+// Update climate data for Portugal with accurate monthly data
+const climateData = {
+    jan: { 
+        temp: { max: 15, min: 8, avg: 11 }, 
+        rain: 120, 
+        humidity: 80,
+        description: "سرد موسم، بارش کا امکان زیادہ",
+        season: "سردی"
+    },
+    feb: { 
+        temp: { max: 16, min: 8, avg: 12 }, 
+        rain: 100, 
+        humidity: 78,
+        description: "سرد موسم، بارش کا امکان",
+        season: "سردی"
+    },
+    mar: { 
+        temp: { max: 18, min: 10, avg: 14 }, 
+        rain: 80, 
+        humidity: 75,
+        description: "بہار کا موسم، معتدل درجہ حرارت",
+        season: "بہار"
+    },
+    apr: { 
+        temp: { max: 19, min: 11, avg: 15 }, 
+        rain: 90, 
+        humidity: 77,
+        description: "بہار کا موسم، بارش کا امکان",
+        season: "بہار"
+    },
+    may: { 
+        temp: { max: 22, min: 13, avg: 17 }, 
+        rain: 70, 
+        humidity: 75,
+        description: "گرمی کا آغاز، معتدل موسم",
+        season: "گرمی"
+    },
+    jun: { 
+        temp: { max: 25, min: 16, avg: 20 }, 
+        rain: 30, 
+        humidity: 70,
+        description: "گرمی کا موسم، کم بارش",
+        season: "گرمی"
+    },
+    jul: { 
+        temp: { max: 28, min: 18, avg: 23 }, 
+        rain: 10, 
+        humidity: 65,
+        description: "شدید گرمی، کم بارش",
+        season: "گرمی"
+    },
+    aug: { 
+        temp: { max: 28, min: 18, avg: 23 }, 
+        rain: 10, 
+        humidity: 65,
+        description: "شدید گرمی، کم بارش",
+        season: "گرمی"
+    },
+    sep: { 
+        temp: { max: 26, min: 17, avg: 21 }, 
+        rain: 40, 
+        humidity: 70,
+        description: "گرمی کا اختتام، معتدل موسم",
+        season: "گرمی"
+    },
+    oct: { 
+        temp: { max: 22, min: 15, avg: 18 }, 
+        rain: 100, 
+        humidity: 75,
+        description: "خزاں کا موسم، بارش کا آغاز",
+        season: "خزاں"
+    },
+    nov: { 
+        temp: { max: 18, min: 12, avg: 15 }, 
+        rain: 120, 
+        humidity: 78,
+        description: "خزاں کا موسم، زیادہ بارش",
+        season: "خزاں"
+    },
+    dec: { 
+        temp: { max: 15, min: 9, avg: 12 }, 
+        rain: 130, 
+        humidity: 80,
+        description: "سردی کا آغاز، زیادہ بارش",
+        season: "سردی"
+    }
+};
+
+// Function to update climate data display
+function updateClimateData(month) {
+    const data = climateData[month];
+    
+    // Update temperature values
+    document.querySelector('.stat-value:nth-child(1)').textContent = data.temp.max + '°C';
+    document.querySelector('.stat-value:nth-child(2)').textContent = data.temp.min + '°C';
+    document.querySelector('.stat-value:nth-child(3)').textContent = data.temp.avg + '°C';
+    
+    // Update precipitation values
+    document.querySelector('.stat-value:nth-child(5)').textContent = data.rain + 'mm';
+    document.querySelector('.stat-value:nth-child(6)').textContent = data.humidity + '%';
+    
+    // Update season indicator
+    const seasonIcon = document.querySelector('.season-icon');
+    const seasonText = document.querySelector('.season-indicator span');
+    
+    // Update season icon based on the season
+    switch(data.season) {
+        case 'گرمی':
+            seasonIcon.className = 'fas fa-sun season-icon';
+            break;
+        case 'سردی':
+            seasonIcon.className = 'fas fa-snowflake season-icon';
+            break;
+        case 'بہار':
+            seasonIcon.className = 'fas fa-leaf season-icon';
+            break;
+        case 'خزاں':
+            seasonIcon.className = 'fas fa-wind season-icon';
+            break;
+    }
+    
+    seasonText.textContent = `موجودہ موسم: ${data.season}`;
+    
+    // Update climate description
+    const climateDescription = document.querySelector('.climate-header p');
+    if (!climateDescription) {
+        const description = document.createElement('p');
+        description.className = 'climate-description';
+        description.textContent = data.description;
+        document.querySelector('.climate-header').appendChild(description);
+    } else {
+        climateDescription.textContent = data.description;
+    }
+}
+
+// Add click event listeners to month buttons
+const monthButtons = document.querySelectorAll('.month-button');
+monthButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        monthButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+        // Update climate data
+        updateClimateData(button.dataset.month);
+    });
+});
+
+// Initialize with current month
+const currentMonth = new Date().toLocaleString('en-US', { month: 'short' }).toLowerCase();
+updateClimateData(currentMonth);
+
+// Map Interaction
+const regions = [
+    {
+        name: "شمال",
+        description: "سمندری موسم کے ساتھ معتدل موسم",
+        climate: "درجہ حرارت: 5°C a 35°C\nسالانہ بارش: 1000-2000mm",
+        coordinates: { x: 50, y: 20, width: 30, height: 20 }
+    },
+    {
+        name: "وسط",
+        description: "معتدل موسم کے ساتھ مرکزی علاقہ",
+        climate: "درجہ حرارت: 0°C a 40°C\nسالانہ بارش: 800-1500mm",
+        coordinates: { x: 40, y: 40, width: 30, height: 30 }
+    },
+    {
+        name: "جنوب",
+        description: "گرم موسم کے ساتھ جنوبی علاقہ",
+        climate: "درجہ حرارت: 10°C a 45°C\nسالانہ بارش: 500-1000mm",
+        coordinates: { x: 30, y: 70, width: 40, height: 20 }
+    },
+    {
+        name: "جزائر",
+        description: "سمندری موسم کے ساتھ جزیرے",
+        climate: "درجہ حرارت: 15°C a 30°C\nسالانہ بارش: 600-1200mm",
+        coordinates: { x: 20, y: 50, width: 30, height: 30 }
+    }
+];
+
+function createRegionElements() {
+    const mapContainer = document.querySelector('.map-container');
+    const tooltip = document.querySelector('.region-tooltip');
+    const regionInfo = document.querySelector('.region-info');
+
+    regions.forEach(region => {
+        const element = document.createElement('div');
+        element.className = 'climate-region';
+        element.style.left = region.coordinates.x + '%';
+        element.style.top = region.coordinates.y + '%';
+        element.style.width = region.coordinates.width + '%';
+        element.style.height = region.coordinates.height + '%';
+        element.style.background = 'rgba(0, 45, 98, 0.2)';
+        element.style.border = '2px solid rgba(0, 45, 98, 0.5)';
+
+        element.addEventListener('mouseover', (e) => {
+            tooltip.textContent = region.name;
+            tooltip.style.left = e.pageX + 'px';
+            tooltip.style.top = (e.pageY - 30) + 'px';
+            tooltip.classList.add('active');
+        });
+
+        element.addEventListener('mouseout', () => {
+            tooltip.classList.remove('active');
+        });
+
+        element.addEventListener('click', () => {
+            regionInfo.innerHTML = `
+                <h4>${region.name}</h4>
+                <p>${region.description}</p>
+                <p><strong>Dados Climáticos:</strong><br>${region.climate}</p>
+            `;
+        });
+
+        mapContainer.appendChild(element);
+    });
+}
+
+// Initialize map regions
+createRegionElements();
+
+    </script>
+</body>
+</html>

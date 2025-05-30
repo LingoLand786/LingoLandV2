@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Vegetables</title>
+  <style>
+    /* Reset and Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+      color: #1a1a2e;
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Header Section */
+    header {
+      background: linear-gradient(135deg, #1a1a2e, #243b55);
+      color: white;
+      padding: 30px 0;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    header button {
+      margin-top: 20px;
+      background: #007ea7;
+      color: white;
+      font-size: 1.3rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0px 8px 15px rgba(0, 126, 167, 0.5);
+      transition: all 0.3s ease-in-out;
+    }
+
+    header button:hover {
+      background: #005f87;
+      transform: translateY(-3px);
+    }
+
+    /* Search Bar */
+    .search-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 10px 20px;
+      border: 2px solid #1a1a2e;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      outline: none;
+    }
+
+    /* Main Section - Vegetable Grid */
+    .vegetable-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      max-width: 1300px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Vegetable Cards */
+    .vegetable-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .vegetable-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .vegetable-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .vegetable-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .vegetable-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #1a1a2e;
+    }
+
+    .vegetable-info button {
+      background: #1a1a2e;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .vegetable-info button:hover {
+      background: #0f3460;
+    }
+
+    /* Popup Modal */
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      width: 90%;
+      max-width: 500px;
+      padding: 20px;
+      z-index: 10;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .modal img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .modal h3 {
+      margin-top: 20px;
+      font-size: 2rem;
+      color: #1a1a2e;
+    }
+
+    .modal button {
+      background: #007ea7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .modal img {
+      width: 100%;
+      border-radius: 10px;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    /* Modal Close Button */
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #1a1a2e;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .modal[style*="display: block"] {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 5;
+      display: none;
+    }
+
+    /* Footer Section */
+    footer {
+      background: #243b55;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #00a8cc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body onload="startLearning()">
+  <header>
+  <h1>سبزیاں سیکھیں</h1>
+<p>اس سبق میں ہم سبزیوں کے نام سیکھیں گے</p>
+</header>
+
+<div class="search-container">
+  <input
+    type="text"
+    id="search"
+    placeholder="سبزیوں کے نام سے تلاش کریں..."
+    oninput="filterVegetables(this.value)"
+  />
+</div>
+
+<div id="vegetable-grid" class="vegetable-grid"></div>
+
+<div id="modal" class="modal">
+  <button class="modal-close" onclick="closeModal()">×</button>
+  <img id="modal-image" src="" alt="سبزی کی تصویر">
+  <h3 id="modal-name"></h3>
+  <button onclick="playAudio()">🔊 تلفظ سنیں</button>
+</div>
+
+
+  <div id="overlay" class="overlay" onclick="closeModal()"></div>
+
+  <script>
+ const vegetables = [
+  // Common Vegetables
+  { name: "Batata (Alo)", urdu: "آلو", image: "Commonveg/Batata.jpg", audio: "vegetable_audios/vegetable_audio1.mp3" },
+  { name: "Cenoura (Kajar)", urdu: "گاجر", image: "Commonveg/Cenoura.jpg", audio: "vegetable_audios/vegetable_audio2.mp3" },
+  { name: "Cebola (Payz)", urdu: "پیاز", image: "Commonveg/Cebola.jpg", audio: "vegetable_audios/vegetable_audio3.mp3" },
+  { name: "Tomate (Tomatar)", urdu: "ٹماٹر", image: "Commonveg/Tomate.jpg", audio: "vegetable_audios/vegetable_audio4.mp3" },
+  { name: "Pimentão (chimla mirch)", urdu: "شلجم", image: "Commonveg/Pimentão.jpg", audio: "vegetable_audios/vegetable_audio5.mp3" },
+  { name: "Pepino (khira)", urdu: "کھیرا", image: "Commonveg/Pepino.jpg", audio: "vegetable_audios/vegetable_audio6.mp3" },
+  { name: "Alho (lasan)", urdu: "لہسن", image: "Commonveg/Alho.jpg", audio: "vegetable_audios/vegetable_audio7.mp3" },
+  { name: "Espinafre (palak)", urdu: "پالک", image: "Commonveg/Espinafre.jpg", audio: "vegetable_audios/vegetable_audio8.mp3" },
+  { name: "Repolho (ghobi)", urdu: "گوبھی", image: "Commonveg/Repolho.jpg", audio: "vegetable_audios/vegetable_audio9.mp3" },
+  { name: "Alface (salad patte)", urdu: "سلاد پتہ", image: "Commonveg/Alface.jpg", audio: "vegetable_audios/vegetable_audio10.mp3" },
+
+  // Root Vegetables
+  { name: "Beterraba (Beetroot)", urdu: "چقندر", image: "Rootveg/Beterraba.jpg", audio: "vegetable_audios/vegetable_audio11.mp3" },
+  { name: "Rabanete (Radish)", urdu: "مولی", image: "Rootveg/Rabanete.jpg", audio: "vegetable_audios/vegetable_audio12.mp3" },
+  { name: "Nabo (Turnip)", urdu: "شلجم", image: "Rootveg/Nabo.jpg", audio: "vegetable_audios/vegetable_audio13.mp3" },
+  { name: "Inhame (Yam)", urdu: "یام", image: "Rootveg/Inhame.jpg", audio: "vegetable_audios/vegetable_audio14.mp3" },
+
+  // Legumes
+  { name: "Feijão (Beans)", urdu: "لوبیا", image: "Legumesveg/Feijão.jpg", audio: "vegetable_audios/vegetable_audio15.mp3" },
+  { name: "Ervilha (Peas)", urdu: "مٹر", image: "Legumesveg/Ervilha.jpg", audio: "vegetable_audios/vegetable_audio16.mp3" },
+  { name: "Grão-de-bico (Chickpea)", urdu: "چنے", image: "Legumesveg/Grão-de-bico.jpg", audio: "vegetable_audios/vegetable_audio17.mp3" },
+
+  // Squash and Gourds
+  { name: "Abóbora (Pumpkin)", urdu: "کدو", image: "Gourdsveg/Abóbora.jpg", audio: "vegetable_audios/vegetable_audio18.mp3" },
+  { name: "Chuchu (Chayote)", urdu: "چوچو", image: "Gourdsveg/Chuchu.jpg", audio: "vegetable_audios/vegetable_audio19.mp3" },
+  { name: "Abobrinha (Zucchini)", urdu: "تورئی", image: "Gourdsveg/Abobrinha.jpg", audio: "vegetable_audios/vegetable_audio20.mp3" },
+
+  // Exotic Vegetables
+  { name: "Bok Choy", urdu: "بک چوئے", image: "Exoticveg/Bok Choy.jpg", audio: "vegetable_audios/vegetable_audio21.mp3" },
+  { name: "Jiló", urdu: "بینگن", image: "Exoticveg/Jiló.jpg", audio: "vegetable_audios/vegetable_audio22.mp3" },
+  { name: "Okra (Lady Finger)", urdu: "بھنڈی", image: "Exoticveg/Okra.jpg", audio: "vegetable_audios/vegetable_audio23.mp3" },
+
+  // Cruciferous Vegetables
+  { name: "Couve-flor (Cauliflower)", urdu: "گوبھی", image: "Cruciferousveg/Couve-flor.jpg", audio: "vegetable_audios/vegetable_audio24.mp3" },
+  { name: "Brócolis (Broccoli)", urdu: "بروکلی", image: "Cruciferousveg/Brócolis.jpg", audio: "vegetable_audios/vegetable_audio25.mp3" },
+  { name: "Couve (Kale)", urdu: "کیلے", image: "Cruciferousveg/Couve.jpg", audio: "vegetable_audios/vegetable_audio26.mp3" },
+
+  // Rare and Regional Vegetables
+  { name: "Coração-de-bananeira (Banana Flower)", urdu: "کیلے کا پھول", image: "Rareveg/Coração-de-bananeira.jpg", audio: "vegetable_audios/vegetable_audio27.mp3" },
+  { name: "Cassava", urdu: "کساوا", image: "Rareveg/Cassava.jpg", audio: "vegetable_audios/vegetable_audio29.mp3" }
+];
+
+    const vegetableGrid = document.getElementById("vegetable-grid");
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("overlay");
+
+    function startLearning() {
+      vegetableGrid.innerHTML = ""; // Prevent duplicates
+      vegetables.forEach((vegetable) => {
+        const card = document.createElement("div");
+        card.className = "vegetable-card";
+        card.innerHTML = `
+          <img src="${vegetable.image}" alt="${vegetable.name}" onerror="this.src='placeholder.jpg'">
+          <div class="vegetable-info">
+            <h3>${vegetable.name} - ${vegetable.urdu}</h3>
+            <button onclick="playAudio('${vegetable.audio}')">🔊 Listen Audio</button>
+          </div>
+        `;
+        vegetableGrid.appendChild(card);
+      });
+    }
+
+    function playAudio(audio) {
+      if (audio) {
+        const audioPlayer = new Audio(audio);
+        audioPlayer.play();
+      } else {
+        alert("Audio not available!");
+      }
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+      overlay.style.display = "none";
+      document.body.style.overflow = "auto"; // Restore scrolling
+    }
+
+    function filterVegetables(query) {
+      const cards = document.querySelectorAll(".vegetable-card");
+      cards.forEach((card) => {
+        const name = card.querySelector("h3").innerText.toLowerCase();
+        card.style.display = name.includes(query.toLowerCase()) ? "block" : "none";
+      });
+    }
+
+    // Automatically call startLearning when the page loads
+    window.onload = startLearning;
+  </script>
+</body>
+</html>

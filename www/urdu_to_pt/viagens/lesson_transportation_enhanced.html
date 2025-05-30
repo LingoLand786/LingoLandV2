@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lição - Vocabulário para Transporte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #001b40;
+            --accent-color: #4CAF50;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        section {
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        td {
+            background: white;
+            transition: var(--transition);
+        }
+
+        tr:hover td {
+            background: var(--light-bg);
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .quiz-option {
+            width: 100%;
+            padding: 20px;
+            margin: 10px 0;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            background: white;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: right;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-option::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .quiz-option:hover::before {
+            width: 100%;
+        }
+
+        .quiz-option:hover {
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .quiz-option span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .floating-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .floating-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .floating-nav a:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .floating-nav i {
+            font-size: 1.2rem;
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            width: 0;
+            transition: var(--transition);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 30px 20px;
+            }
+
+            .floating-nav {
+                display: none;
+            }
+
+            .quiz-option {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="floating-nav">
+    <a href="#inicio"><i class="fas fa-home"></i> آغاز</a>
+    <a href="#transporte"><i class="fas fa-bus"></i> نقل و حمل</a>
+    <a href="#quiz"><i class="fas fa-question-circle"></i> سوالنامہ</a>
+</div>
+
+<header>
+    <h1><i class="fas fa-bus"></i> نقل و حمل کے لیے الفاظ</h1>
+</header>
+
+<div class="lesson-container">
+    <section id="inicio">
+        <h2><i class="fas fa-book-open"></i> تعارف</h2>
+        <p>اس سبق میں، ہم اردو میں نقل و حمل سے متعلق ضروری الفاظ سیکھیں گے۔ ان اصطلاحات کو جاننا آپ کو زیادہ آسانی اور اعتماد کے ساتھ سفر کرنے میں مدد دے گا۔</p>
+    </section>
+
+    <section id="transporte">
+        <h2><i class="fas fa-bus"></i> ضروری الفاظ</h2>
+        <p>یہاں نقل و حمل سے متعلق کچھ اہم الفاظ دیے گئے ہیں:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>پرتگالی</th>
+                    <th>اردو</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>AutoCarro</strong></td>
+                    <td>(Bus) بس</td>
+                </tr>
+                <tr>
+                    <td><strong>Comboio</strong></td>
+                    <td>(Rail Gari) ریل گاڑی</td>
+                </tr>
+                <tr>
+                    <td><strong>Carro</strong></td>
+                    <td>(Car) کار</td>
+                </tr>
+                <tr>
+                    <td><strong>Táxi</strong></td>
+                    <td>(Taxi) ٹیکسی</td>
+                </tr>
+                <tr>
+                    <td><strong>Estação</strong></td>
+                    <td>(Station) اسٹیشن</td>
+                </tr>
+                <tr>
+                    <td><strong>Avião</strong></td>
+                    <td>(Jahaz) طیارہ</td>
+                </tr>
+                <tr>
+                    <td><strong>Bicicleta</strong></td>
+                    <td>(Saikal) سائیکل</td>
+                </tr>
+                <tr>
+                    <td><strong>Moto</strong></td>
+                    <td>(Motor Saikl) موٹر سائیکل</td>
+                </tr>
+                <tr>
+                    <td><strong>Barco</strong></td>
+                    <td>(Kashti) کشتی</td>
+                </tr>
+                <tr>
+                    <td><strong>Submarino</strong></td>
+                    <td>(Aabdoz) آبدوز</td>
+                </tr>
+                <tr>
+                    <td><strong>Helicóptero</strong></td>
+                    <td>(Helicopter) ہیلی کاپٹر</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="quiz" class="quiz-container">
+        <h2><i class="fas fa-question-circle"></i> اپنا علم آزمائیں</h2>
+        <div class="quiz-question">"Estação" کا اردو میں مطلب کیا ہے؟</div>
+        <button class="quiz-option" data-correct="true"><span>اسٹیشن (Station)</span></button>
+        <button class="quiz-option"><span>بس (Bus)</span></button>
+        <button class="quiz-option"><span>کار (Car)</span></button>
+        <div id="quizFeedback" class="quiz-feedback"></div>
+    </section>
+
+    <div class="navigation-buttons" style="display: flex; justify-content: space-between; margin-top: 40px;">
+        <a href="viagens.html" class="btn">
+            <i class="fas fa-home"></i>
+            <span>مرکزی مینو</span>
+        </a>
+        <a href="lesson_hotel_booking.html" class="btn">
+            <span>اگلا سبق</span>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+
+
+    <script>
+        // Progress bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Quiz functionality
+        const quizOptions = document.querySelectorAll('.quiz-option');
+        const quizFeedback = document.getElementById('quizFeedback');
+
+        quizOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Reset all options
+                quizOptions.forEach(opt => {
+                    opt.style.borderColor = 'var(--primary-color)';
+                    opt.style.background = 'white';
+                    opt.style.color = 'var(--primary-color)';
+                });
+
+                if (this.getAttribute('data-correct') === 'true') {
+                    this.style.borderColor = 'var(--accent-color)';
+                    this.style.background = 'var(--accent-color)';
+                    this.style.color = 'white';
+                    quizFeedback.innerHTML = '<i class="fas fa-check-circle"></i> Correto! Muito bem!';
+                    quizFeedback.style.color = 'var(--accent-color)';
+                } else {
+                    this.style.borderColor = '#ff3e3e';
+                    this.style.background = '#ff3e3e';
+                    this.style.color = 'white';
+                    quizFeedback.innerHTML = '<i class="fas fa-times-circle"></i> Ops! Tente novamente.';
+                    quizFeedback.style.color = '#ff3e3e';
+                }
+            });
+        });
+
+        // Audio playback functionality
+        function playAudio(audioId) {
+            const audio = new Audio(`${audioId}.mp3`);
+            audio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                alert('Desculpe, não foi possível reproduzir o áudio. Por favor, verifique se o arquivo de áudio existe.');
+            });
+        }
+    </script>
+</body>
+</html> 

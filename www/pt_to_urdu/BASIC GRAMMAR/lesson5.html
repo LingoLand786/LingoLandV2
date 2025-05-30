@@ -3,54 +3,256 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teste Final de Português</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>🔥 Teste Supremo - Desafio Final 🔥</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
   <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: white;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+    :root {
+      --primary-color: #002D62;
+      --secondary-color: #ffcc00;
+      --text-color: #333;
+      --light-gray: #f5f5f5;
+      --success-color: #28a745;
+      --error-color: #dc3545;
+      --border-radius: 12px;
+      --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .container {
-      background: linear-gradient(135deg, #ffffff, #001d4d);
-      border-radius: 12px;
-      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-      width: 90%;
-      max-width: 600px;
-      padding: 30px;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: white;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .landing-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, white 0%, var(--light-gray) 100%);
+    }
+
+    .landing-content {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      max-width: 1200px;
+      width: 95%;
+      box-shadow: var(--box-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .landing-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-color);
+    }
+
+    .landing-title {
+      font-size: 3.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
       text-align: center;
     }
 
-    header h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-      color: #001d4d;
+    .landing-subtitle {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin-bottom: 2rem;
+      text-align: center;
+      font-weight: 400;
     }
 
-    header p {
-      font-size: 18px;
-      margin-bottom: 20px;
-      color: #555;
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
     }
 
-    #timer {
-      font-size: 18px;
-      font-weight: bold;
-      color: #ff0000;
-      margin-bottom: 20px;
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 45, 98, 0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .feature-description {
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      min-width: 200px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: var(--text-color);
+      font-size: 1rem;
+    }
+
+    .leaderboard {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      margin: 3rem auto;
+      max-width: 800px;
+      box-shadow: var(--box-shadow);
+    }
+
+    .leaderboard-title {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .leaderboard-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(0, 45, 98, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .leaderboard-item:hover {
+      background-color: var(--light-gray);
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-top: 3rem;
+    }
+
+    .cta-button {
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 500;
+    }
+
+    .primary-button {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .secondary-button {
+      background: white;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .quiz-container {
+      display: none;
+      min-height: 100vh;
+      padding: 2rem;
+      background: linear-gradient(135deg, white 0%, var(--light-gray) 100%);
+    }
+
+    .quiz-container.active {
+      display: block;
+    }
+
+    .container {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 3rem;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: var(--box-shadow);
+      position: relative;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary-color);
     }
 
     .question {
       display: none;
       opacity: 0;
       transition: opacity 0.5s ease;
+      margin-bottom: 2rem;
     }
 
     .question.active {
@@ -59,293 +261,880 @@
     }
 
     .question p {
-      font-weight: bold;
-      font-size: 20px;
-      margin-bottom: 15px;
-      color: #001d4d;
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
     }
 
     .options label {
       display: block;
-      margin: 8px 0;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      border: 2px solid rgba(0, 45, 98, 0.2);
+      border-radius: var(--border-radius);
       cursor: pointer;
-      font-size: 18px;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      background: #f9f9f9;
-      transition: all 0.3s ease-in-out;
-      text-align: left;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .options label:hover {
+      background: var(--light-gray);
+      border-color: var(--primary-color);
     }
 
     .options input:checked + label {
-      background: #28a745; /* Green for selected */
+      background: var(--primary-color);
       color: white;
-      border-color: #001d4d;
+      border-color: var(--primary-color);
     }
 
     .navigation {
       display: flex;
       justify-content: space-between;
-      margin-top: 20px;
+      margin-top: 2rem;
+      gap: 1rem;
     }
 
     button {
-      padding: 14px 28px;
-      background: #001d4d;
-      color: white;
-      font-size: 18px;
+      padding: 1rem 2rem;
       border: none;
-      border-radius: 8px;
+      border-radius: var(--border-radius);
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: all 0.3s ease;
+      font-weight: 500;
     }
 
-    button:disabled {
-      background: #ccc;
-      cursor: not-allowed;
+    #prevBtn, #nextBtn {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    #submitBtn {
+      background: var(--primary-color);
+      color: white;
     }
 
     button:hover:not(:disabled) {
-      background: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .result {
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #results {
       display: none;
-      font-size: 24px;
-      font-weight: bold;
-      margin-top: 20px;
+      padding: 2rem;
+      background: white;
+      border-radius: var(--border-radius);
+      margin-top: 2rem;
     }
 
-    .result.pass {
-      color: green;
+    .score {
+      font-size: 3.5rem;
+      color: var(--primary-color);
+      text-align: center;
+      margin: 2rem 0;
+      font-weight: 700;
     }
 
-    .result.fail {
-      color: red;
+    .feedback {
+      font-size: 1.5rem;
+      text-align: center;
+      margin: 2rem 0;
+      padding: 1rem;
+      border-radius: var(--border-radius);
     }
 
-    #explanation {
-      margin-top: 15px;
-      font-size: 18px;
-      color: #333;
+    .recommendations, .wrong-answers {
+      background: var(--light-gray);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      margin: 2rem 0;
     }
 
-    /* Add smooth transitions to buttons */
-    .navigation button {
-      transition: transform 0.3s ease;
+    .recommendations h3, .wrong-answers h3 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-weight: 600;
     }
 
-    .navigation button:hover {
-      transform: scale(1.1);
+    .progress-bar {
+      width: 100%;
+      height: 10px;
+      background: var(--light-gray);
+      border-radius: 5px;
+      margin: 2rem 0;
+      overflow: hidden;
+    }
+
+    .progress {
+      height: 100%;
+      background: var(--primary-color);
+      transition: width 0.3s ease;
+    }
+
+    .user-profile {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      padding: 1rem 1.5rem;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--box-shadow);
+      z-index: 1000;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary-color);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .user-name {
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+
+    .logout-btn {
+      background: none;
+      border: none;
+      color: var(--primary-color);
+      cursor: pointer;
+      padding: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .landing-title {
+        font-size: 2.5rem;
+      }
+
+      .landing-subtitle {
+        font-size: 1.2rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .container {
+        padding: 2rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Teste Final de Português</h1>
-      <p>Responda todas as questões para enviar seu teste!</p>
-    </header>
-    <div id="timer">Tempo restante: 5:00</div>
-    <form id="quizForm">
-      <!-- Question 1 -->
-      <div class="question active" data-question="1">
-        <p>1. Qual é o significado da palavra "Quem?"</p>
-        <div class="options">
-          <label><input type="radio" name="q1" value="a"> کیا؟</label>
-          <label><input type="radio" name="q1" value="b"> کون؟</label>
-          <label><input type="radio" name="q1" value="c"> کب؟</label>
-          <label><input type="radio" name="q1" value="d"> کہاں؟</label>
+  <div class="landing-page" id="landingPage">
+    <div class="landing-content">
+      <h1 class="landing-title">Teste </h1>
+      <p class="landing-subtitle">Teste seus conhecimentos em urdu e descubra seu nível!</p>
+      
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <h3 class="feature-title">Prêmios</h3>
+          <p class="feature-description">Ganhe pontos e suba no ranking global</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3 class="feature-title">Progresso</h3>
+          <p class="feature-description">Acompanhe seu desenvolvimento</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="feature-title">Comunidade</h3>
+          <p class="feature-description">Compare com outros estudantes</p>
         </div>
       </div>
 
-      <!-- Question 2 -->
-      <div class="question" data-question="2">
-        <p>2. Qual das seguintes é a tradução correta para "آپ کہاں رہتے ہیں?" em português?</p>
-        <div class="options">
-          <label><input type="radio" name="q2" value="a"> O que você faz?</label>
-          <label><input type="radio" name="q2" value="b"> Onde você mora?</label>
-          <label><input type="radio" name="q2" value="c"> Como você está?</label>
-          <label><input type="radio" name="q2" value="d"> Quando você vai?</label>
+      <div class="stats">
+        <div class="stat-item">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">Estudantes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">20</div>
+          <div class="stat-label">Questões</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5min</div>
+          <div class="stat-label">Tempo</div>
         </div>
       </div>
 
-      <!-- Question 3 -->
-      <div class="question" data-question="3">
-        <p>3. O que significa a palavra "Como?" em português?</p>
-        <div class="options">
-          <label><input type="radio" name="q3" value="a"> کیسے؟</label>
-          <label><input type="radio" name="q3" value="b"> کون؟</label>
-          <label><input type="radio" name="q3" value="c"> کیا؟</label>
-          <label><input type="radio" name="q3" value="d"> کب؟</label>
+      <div class="leaderboard">
+        <h3 class="leaderboard-title">🏆 Top 5</h3>
+        <div id="leaderboardItems">
+          <!-- Leaderboard items will be loaded dynamically -->
+          <div class="leaderboard-loading">
+            <i class="fas fa-spinner fa-spin"></i> Carregando...
+          </div>
         </div>
       </div>
 
-      <!-- Question 4 -->
-      <div class="question" data-question="4">
-        <p>4. Como se diz "میں" em português?</p>
-        <div class="options">
-          <label><input type="radio" name="q4" value="a"> Ele</label>
-          <label><input type="radio" name="q4" value="b"> Eu</label>
-          <label><input type="radio" name="q4" value="c"> Ela</label>
-          <label><input type="radio" name="q4" value="d"> Nós</label>
+      <div class="cta-buttons">
+        <button class="cta-button primary-button" onclick="startQuiz()">
+          <i class="fas fa-play"></i>
+          Começar Quiz
+        </button>
+        <button class="cta-button secondary-button" onclick="showLogin()">
+          <i class="fas fa-user"></i>
+          Entrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="quiz-container" id="quizContainer">
+    <div class="user-profile">
+      <div class="user-avatar">
+        <i class="fas fa-user"></i>
+      </div>
+      <span class="user-name">Usuário</span>
+      <button class="logout-btn" onclick="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+      </button>
+    </div>
+    <div class="container">
+      <header>
+        <h1>Mostre seu conhecimento!</h1>
+      </header>
+      <div id="timer">Tempo restante: 5:00</div>
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+      <form id="quizForm">
+        <div class="question" data-question="1">
+          <p>1. Qual é o pronome correto para "ele" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q1" value="a"> وہ</label>
+            <label><input type="radio" name="q1" value="b"> تم</label>
+            <label><input type="radio" name="q1" value="c"> میں</label>
+            <label><input type="radio" name="q1" value="d"> ہم</label>
+          </div>
         </div>
-      </div>
-
-      <!-- Question 5 -->
-      <div class="question" data-question="5">
-        <p>5. Qual é o pronome correto para "وہ"  em português?</p>
-        <div class="options">
-          <label><input type="radio" name="q5" value="a"> Eles</label>
-          <label><input type="radio" name="q5" value="b"> Elas</label>
-          <label><input type="radio" name="q5" value="c"> Você</label>
-          <label><input type="radio" name="q5" value="d"> Nós</label>
+        
+        <div class="question" data-question="2">
+          <p>2. Como se diz "eu sou feliz" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q2" value="a"> میں خوش ہوں</label>
+            <label><input type="radio" name="q2" value="b"> تم اچھے ہو</label>
+            <label><input type="radio" name="q2" value="c"> وہ خوبصورت ہے</label>
+            <label><input type="radio" name="q2" value="d"> ہم استاد ہیں</label>
+          </div>
         </div>
-      </div>
-
-      <!-- Question 6 -->
-      <div class="question" data-question="6">
-        <p>6. Selecione a forma correta de "آپ"  em português.</p>
-        <div class="options">
-          <label><input type="radio" name="q6" value="a"> Tu</label>
-          <label><input type="radio" name="q6" value="b"> Você</label>
-          <label><input type="radio" name="q6" value="c"> Ele</label>
-          <label><input type="radio" name="q6" value="d"> Eles</label>
+        
+        <div class="question" data-question="3">
+          <p>3. Como perguntar "Quem?" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q3" value="a"> کون؟</label>
+            <label><input type="radio" name="q3" value="b"> کیا؟</label>
+            <label><input type="radio" name="q3" value="c"> کہاں؟</label>
+            <label><input type="radio" name="q3" value="d"> کب؟</label>
+          </div>
         </div>
-      </div>
-
-      <!-- Question 7 -->
-      <div class="question" data-question="7">
-        <p>7. Traduza a seguinte frase para o português: "میں ایک طالب علم ہوں۔."</p>
-        <div class="options">
-          <label><input type="radio" name="q7" value="a"> Ele está na escola.</label>
-          <label><input type="radio" name="q7" value="b"> Ele está em casa.</label>
-          <label><input type="radio" name="q7" value="c"> Eu sou estudante .</label>
-          <label><input type="radio" name="q7" value="d"> Ela está em casa.</label>
+        
+        <div class="question" data-question="4">
+          <p>4. Qual destes substantivos é masculino em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q4" value="a"> لڑکی</label>
+            <label><input type="radio" name="q4" value="b"> کتاب</label>
+            <label><input type="radio" name="q4" value="c"> لڑکا</label>
+            <label><input type="radio" name="q4" value="d"> ماں</label>
+          </div>
         </div>
-      </div>
-
-      <!-- Question 8 -->
-      <div class="question" data-question="8">
-        <p>8. Qual das seguintes é a palavra correta em português para "کیا?"</p>
-        <div class="options">
-          <label><input type="radio" name="q8" value="a"> Quem</label>
-          <label><input type="radio" name="q8" value="b"> O que</label>
-          <label><input type="radio" name="q8" value="c"> Onde</label>
-          <label><input type="radio" name="q8" value="d"> Como</label>
+        
+        <div class="question" data-question="5">
+          <p>5. Como se diz "Onde você mora?" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q5" value="a"> آپ کہاں رہتے ہیں؟</label>
+            <label><input type="radio" name="q5" value="b"> آپ کون ہیں؟</label>
+            <label><input type="radio" name="q5" value="c"> کیا حال ہے؟</label>
+            <label><input type="radio" name="q5" value="d"> کب جاؤ گے؟</label>
+          </div>
         </div>
+        
+        <div class="question" data-question="6">
+          <p>6. Como se diz "Eu falo" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q6" value="a"> میں بولتا ہوں</label>
+            <label><input type="radio" name="q6" value="b"> میں کھاتا ہوں</label>
+            <label><input type="radio" name="q6" value="c"> میں دیکھتا ہوں</label>
+            <label><input type="radio" name="q6" value="d"> میں پڑھتا ہوں</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="7">
+          <p>7. Qual é a forma formal de "você" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q7" value="a"> تم</label>
+            <label><input type="radio" name="q7" value="b"> آپ</label>
+            <label><input type="radio" name="q7" value="c"> وہ</label>
+            <label><input type="radio" name="q7" value="d"> میں</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="8">
+          <p>8. Como se diz "obrigado" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q8" value="a"> شکریہ</label>
+            <label><input type="radio" name="q8" value="b"> مہربانی</label>
+            <label><input type="radio" name="q8" value="c"> معاف کیجئے گا</label>
+            <label><input type="radio" name="q8" value="d"> خدا حافظ</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="9">
+          <p>9. Qual é o plural de "menino bonito" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q9" value="a"> خوبصورت لڑکے</label>
+            <label><input type="radio" name="q9" value="b"> خوبصورت لڑکی</label>
+            <label><input type="radio" name="q9" value="c"> لمبی لڑکی</label>
+            <label><input type="radio" name="q9" value="d"> بڑا آدمی</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="10">
+          <p>10. Qual adjetivo Urdu significa "grande"?</p>
+          <div class="options">
+            <label><input type="radio" name="q10" value="a"> لمبا</label>
+            <label><input type="radio" name="q10" value="b"> خوبصورت</label>
+            <label><input type="radio" name="q10" value="c"> بڑا</label>
+            <label><input type="radio" name="q10" value="d"> چھوٹا</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="11">
+          <p>11. Como se diz "Eu sou estudante" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q11" value="a"> میں طالب علم ہوں</label>
+            <label><input type="radio" name="q11" value="b"> میں خوش ہوں</label>
+            <label><input type="radio" name="q11" value="c"> میں کام کر رہا ہوں</label>
+            <label><input type="radio" name="q11" value="d"> میں کھیل رہا ہوں</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="12">
+          <p>12. Qual é a tradução de "nós estamos aqui" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q12" value="a"> ہم یہاں ہیں</label>
+            <label><input type="radio" name="q12" value="b"> تم یہاں ہو</label>
+            <label><input type="radio" name="q12" value="c"> وہ وہاں ہیں</label>
+            <label><input type="radio" name="q12" value="d"> وہ یہاں ہیں</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="13">
+          <p>13. Como se diz "você está feliz" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q13" value="a"> تم خوش ہو</label>
+            <label><input type="radio" name="q13" value="b"> آپ خوش ہیں</label>
+            <label><input type="radio" name="q13" value="c"> وہ خوش ہے</label>
+            <label><input type="radio" name="q13" value="d"> ہم خوش ہیں</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="14">
+          <p>14. Qual é o significado de "کیا؟" em português?</p>
+          <div class="options">
+            <label><input type="radio" name="q14" value="a"> O que?</label>
+            <label><input type="radio" name="q14" value="b"> Quem?</label>
+            <label><input type="radio" name="q14" value="c"> Onde?</label>
+            <label><input type="radio" name="q14" value="d"> Como?</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="15">
+          <p>15. Como se diz "ele é um bom rapaz" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q15" value="a"> وہ اچھا لڑکا ہے</label>
+            <label><input type="radio" name="q15" value="b"> وہ خوبصورت لڑکی ہے</label>
+            <label><input type="radio" name="q15" value="c"> وہ لڑکا ہے</label>
+            <label><input type="radio" name="q15" value="d"> وہ لڑکی ہے</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="16">
+          <p>16. Como se diz "Como você está?" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q16" value="a"> آپ کیسے ہیں؟</label>
+            <label><input type="radio" name="q16" value="b"> آپ کہاں ہیں؟</label>
+            <label><input type="radio" name="q16" value="c"> آپ کیا کرتے ہیں؟</label>
+            <label><input type="radio" name="q16" value="d"> آپ کہاں جا رہے ہیں؟</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="17">
+          <p>17. Qual é a tradução de "منہ" em português?</p>
+          <div class="options">
+            <label><input type="radio" name="q17" value="a"> Boca</label>
+            <label><input type="radio" name="q17" value="b"> Mão</label>
+            <label><input type="radio" name="q17" value="c"> Olhos</label>
+            <label><input type="radio" name="q17" value="d"> Pé</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="18">
+          <p>18. Como se diz "eu como" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q18" value="a"> میں کھاتا ہوں</label>
+            <label><input type="radio" name="q18" value="b"> میں پیتا ہوں</label>
+            <label><input type="radio" name="q18" value="c"> میں بولتا ہوں</label>
+            <label><input type="radio" name="q18" value="d"> میں سوتا ہوں</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="19">
+          <p>19. Qual é o plural de "خوبصورت لڑکی" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q19" value="a"> خوبصورت لڑکیاں</label>
+            <label><input type="radio" name="q19" value="b"> خوبصورت لڑکے</label>
+            <label><input type="radio" name="q19" value="c"> خوبصورت بچے</label>
+            <label><input type="radio" name="q19" value="d"> خوبصورت عورتیں</label>
+          </div>
+        </div>
+        
+        <div class="question" data-question="20">
+          <p>20. Como se diz "Nós estamos felizes" em urdu?</p>
+          <div class="options">
+            <label><input type="radio" name="q20" value="a"> ہم خوش ہیں</label>
+            <label><input type="radio" name="q20" value="b"> ہم تھکے ہیں</label>
+            <label><input type="radio" name="q20" value="c"> وہ خوش ہیں</label>
+            <label><input type="radio" name="q20" value="d"> تم خوش ہو</label>
+          </div>
+        </div>
+        <div class="navigation">
+          <button type="button" id="prevBtn" disabled>Anterior</button>
+          <button type="button" id="nextBtn">Próxima</button>
+          <button type="button" id="submitBtn" onclick="handleSubmit()">Enviar</button>
+        </div>
+      </form>
+      <div id="results">
+        <h2>Resultados do Teste</h2>
+        <div class="score" id="finalScore">0/100</div>
+        <div class="feedback" id="feedback"></div>
+        <div class="recommendations" id="recommendations"></div>
+        <div class="wrong-answers" id="wrongAnswers"></div>
+        <button onclick="restartQuiz()">Tentar Novamente</button>
       </div>
-
-      <div class="navigation">
-        <button type="button" id="prevBtn" disabled>Anterior</button>
-        <button type="button" id="nextBtn">Próxima</button>
-        <button type="submit" id="submitBtn" disabled>Enviar</button>
-      </div>
-    </form>
-
-    <div id="result" class="result"></div>
-    <div id="explanation"></div>
+    </div>
   </div>
 
   <script>
-    // Variáveis e Configuração
-    const questions = document.querySelectorAll('.question');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const submitBtn = document.getElementById('submitBtn');
-    const resultDiv = document.getElementById('result');
-    const explanationDiv = document.getElementById('explanation');
-    const timerDiv = document.getElementById('timer');
-    let currentQuestion = 0;
-    let timeLeft = 300; // 5 minutos
-    let timer;
-
-    const answers = {
-      q1: "b", // "کون؟"
-      q2: "b", // "Onde você mora?"
-      q3: "a", // "کیسے؟"
-      q4: "b", // "Eu"
-      q5: "a", // "Eles"
-      q6: "b", // "Você"
-      q7: "c", // "Ele está em casa."
-      q8: "b", // "O que"
+    // Initialize Firebase first
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+      authDomain: "appsitesync.firebaseapp.com",
+      projectId: "appsitesync",
+      storageBucket: "appsitesync.firebasestorage.app",
+      messagingSenderId: "357510439971",
+      appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+      measurementId: "G-T0SX0NH50K"
     };
 
-    const explanations = {
-      q1: "A palavra 'Quem?' é traduzida como 'کون؟' em Urdu, que significa 'Who?' em inglês.",
-      q2: "A frase 'Onde você mora?' traduz 'Where do you live?' em inglês.",
-      q3: "A tradução correta de 'Como?' é 'کیسے؟' em Urdu.",
-      q4: "O pronome 'Eu' significa 'I' em português.",
-      q5: "Para 'They' (masculino ou grupo misto) em português, usamos 'Eles'.",
-      q6: "O pronome informal para 'You' é 'Tu' em português.",
-      q7: "A tradução de 'He is at home' é 'Ele está em casa.'",
-      q8: "A tradução de 'What?' é 'O que?' em português.",
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const analytics = firebase.analytics();
+
+    let currentUser = null;
+    let quizResults = [];
+    let timerInterval;
+
+    // Auth state observer
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        currentUser = user;
+        document.querySelector('.user-name').textContent = user.displayName || 'Usuário';
+        loadLeaderboard();
+      } else {
+        currentUser = null;
+        document.querySelector('.user-name').textContent = 'Usuário';
+      }
+    });
+
+    // Load leaderboard from Firebase
+    function loadLeaderboard() {
+      const leaderboardItems = document.getElementById('leaderboardItems');
+      
+      // Create a real-time listener for quiz results
+      db.collection('quizResults')
+        .orderBy('score', 'desc')
+        .limit(5)
+        .onSnapshot((snapshot) => {
+          let leaderboardHTML = '';
+          
+          snapshot.forEach((doc) => {
+            const data = doc.data();
+            const userName = data.userName || 'Usuário Anônimo';
+            const score = data.score || 0;
+            const timestamp = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : '';
+            
+            leaderboardHTML += `
+              <div class="leaderboard-item">
+                <div class="user-info">
+                  <span class="user-name">${userName}</span>
+                  <span class="score">${score} pontos</span>
+                </div>
+                <small class="timestamp">${timestamp}</small>
+              </div>
+            `;
+          });
+          
+          if (leaderboardHTML === '') {
+            leaderboardHTML = `
+              <div class="leaderboard-empty">
+                <p>Ainda não há resultados</p>
+                <p>Seja o primeiro a completar o quiz!</p>
+              </div>
+            `;
+          }
+          
+          leaderboardItems.innerHTML = leaderboardHTML;
+        }, (error) => {
+          console.error("Error loading leaderboard:", error);
+          leaderboardItems.innerHTML = `
+            <div class="leaderboard-error">
+              <p>Erro ao carregar o ranking</p>
+              <p>Por favor, tente novamente mais tarde</p>
+            </div>
+          `;
+        });
+    }
+
+    // Save quiz results to Firebase
+    async function saveQuizResults(score, wrongAnswers) {
+      if (!currentUser) {
+        alert('Por favor, faça login para salvar seus resultados!');
+        return;
+      }
+
+      const quizResult = {
+        userId: currentUser.uid,
+        userName: currentUser.displayName || 'Usuário',
+        score: score,
+        wrongAnswers: wrongAnswers,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      try {
+        await db.collection('quizResults').add(quizResult);
+        analytics.logEvent('quiz_completed', {
+          score: score,
+          wrong_answers_count: wrongAnswers.length
+        });
+      } catch (error) {
+        console.error('Error saving quiz results:', error);
+        alert('Erro ao salvar resultados. Tente novamente.');
+      }
+    }
+
+    let timeLeft = 300;
+    const timerDisplay = document.getElementById("timer");
+    const progressBar = document.getElementById("progress");
+    const correctAnswers = {
+      q1: "a", q2: "a", q3: "a", q4: "c", q5: "a",
+      q6: "a", q7: "b", q8: "a", q9: "a", q10: "c",
+      q11: "a", q12: "a", q13: "a", q14: "a", q15: "a",
+      q16: "a", q17: "a", q18: "a", q19: "a", q20: "a"
     };
 
     function startTimer() {
-      timer = setInterval(() => {
+      timeLeft = 300; // Reset timer
+      timerInterval = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        timerDisplay.textContent = `Tempo restante: ${minutes}:${seconds}`;
         if (timeLeft <= 0) {
-          clearInterval(timer);
-          alert("O tempo acabou!");
-          document.getElementById('quizForm').submit();
-        } else {
-          timeLeft--;
-          timerDiv.textContent = `Tempo restante: ${Math.floor(timeLeft / 60)}:${timeLeft % 60 < 10 ? '0' + timeLeft % 60 : timeLeft % 60}`;
+          clearInterval(timerInterval);
+          timerDisplay.textContent = "Tempo esgotado!";
+          submitQuiz();
         }
+        timeLeft--;
       }, 1000);
     }
+    
+    startTimer();
+    let currentQuestionIndex = 0;
+    const questions = document.querySelectorAll(".question");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const submitBtn = document.getElementById("submitBtn");
 
+    function updateProgress() {
+      const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    // Add this new function to handle submit
+    function handleSubmit() {
+      const allAnswered = Array.from(questions).every((q, i) => {
+        return document.querySelector(`input[name="q${i + 1}"]:checked`);
+      });
+
+      if (!allAnswered) {
+        alert("Por favor, responda todas as questões antes de enviar!");
+        return;
+      }
+
+      submitQuiz();
+    }
+
+    // Modified showQuestion function
     function showQuestion(index) {
       questions.forEach((q, i) => {
-        q.classList.remove('active');
-        if (i === index) q.classList.add('active');
+        q.classList.remove("active");
+        q.style.display = "none";
       });
+      questions[index].classList.add("active");
+      questions[index].style.display = "block";
       prevBtn.disabled = index === 0;
-      nextBtn.style.display = index === questions.length - 1 ? 'none' : 'inline-block';
-      submitBtn.style.display = index === questions.length - 1 ? 'inline-block' : 'none';
-    }
-
-    function validateAnswers() {
-      const allAnswered = Array.from(questions).every(q => q.querySelector('input:checked'));
-      submitBtn.disabled = !allAnswered;
-    }
-
-    prevBtn.addEventListener('click', () => {
-      if (currentQuestion > 0) currentQuestion--;
-      showQuestion(currentQuestion);
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentQuestion < questions.length - 1) currentQuestion++;
-      showQuestion(currentQuestion);
-    });
-
-    document.getElementById('quizForm').addEventListener('change', validateAnswers);
-
-    document.getElementById('quizForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      let score = 0;
-      for (let question in answers) {
-        const userAnswer = document.querySelector(`input[name="${question}"]:checked`);
-        if (userAnswer && userAnswer.value === answers[question]) score++;
-        else explanationDiv.textContent = `Explicação: ${explanations[question] || "Sem explicação disponível."}`;
-      }
-
-      const totalQuestions = Object.keys(answers).length;
-      resultDiv.style.display = 'block';
-      if (score / totalQuestions >= 0.7) {
-        resultDiv.textContent = `Parabéns! Você passou com uma pontuação de ${score}/${totalQuestions}.`;
-        resultDiv.className = 'result pass';
+      
+      if (index === questions.length - 1) {
+        nextBtn.style.display = "none";
+        submitBtn.style.display = "inline-block";
+        submitBtn.disabled = false; // Enable submit button on last question
       } else {
-        resultDiv.textContent = `Você não passou. Sua pontuação foi ${score}/${totalQuestions}.`;
-        resultDiv.className = 'result fail';
+        nextBtn.style.display = "inline-block";
+        submitBtn.style.display = "none";
+      }
+      
+      updateProgress();
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        showQuestion(currentQuestionIndex);
       }
     });
 
-    // Inicializar o questionário
-    showQuestion(currentQuestion);
-    startTimer();
+    prevBtn.addEventListener("click", () => {
+      if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        showQuestion(currentQuestionIndex);
+      }
+    });
+
+    // Modified submitQuiz function
+    async function submitQuiz() {
+      clearInterval(timerInterval);
+      let score = 0;
+      let wrongAnswers = [];
+      
+      questions.forEach((q, index) => {
+        const questionNumber = index + 1;
+        const selectedAnswer = document.querySelector(`input[name="q${questionNumber}"]:checked`);
+        const questionText = q.querySelector("p").textContent;
+        
+        if (selectedAnswer) {
+          if (selectedAnswer.value === correctAnswers[`q${questionNumber}`]) {
+            score += 5;
+          } else {
+            wrongAnswers.push({
+              question: questionText,
+              correct: correctAnswers[`q${questionNumber}`],
+              selected: selectedAnswer.value
+            });
+          }
+        }
+      });
+
+      try {
+        if (currentUser) {
+          await saveQuizResults(score, wrongAnswers);
+        }
+        displayResults(score, wrongAnswers);
+      } catch (error) {
+        console.error('Error submitting quiz:', error);
+        alert('Erro ao enviar o quiz. Tente novamente.');
+      }
+    }
+
+    function displayResults(score, wrongAnswers) {
+      const quizForm = document.getElementById("quizForm");
+      const results = document.getElementById("results");
+      const finalScore = document.getElementById("finalScore");
+      const feedback = document.getElementById("feedback");
+      const recommendations = document.getElementById("recommendations");
+      const wrongAnswersDiv = document.getElementById("wrongAnswers");
+
+      quizForm.style.display = "none";
+      results.style.display = "block";
+
+      finalScore.textContent = `${score}/100`;
+
+      if (score >= 80) {
+        feedback.textContent = "Excelente! Você domina o conteúdo!";
+        feedback.style.color = "#28a745";
+      } else if (score >= 60) {
+        feedback.textContent = "Bom trabalho! Continue praticando!";
+        feedback.style.color = "#ffcc00";
+      } else {
+        feedback.textContent = "Você precisa estudar mais!";
+        feedback.style.color = "#dc3545";
+      }
+
+      // Generate personalized recommendations based on wrong answers
+      const recommendationsList = generateRecommendations(wrongAnswers);
+      recommendations.innerHTML = `
+        <h3>Recomendações de Estudo:</h3>
+        <ul>
+          ${recommendationsList.map(rec => `<li>${rec}</li>`).join('')}
+        </ul>
+      `;
+
+      if (wrongAnswers.length > 0) {
+        wrongAnswersDiv.innerHTML = `
+          <h3>Respostas Incorretas:</h3>
+          ${wrongAnswers.map((wrong, index) => `
+            <div class="wrong-answer">
+              <p><strong>Questão ${index + 1}:</strong> ${wrong.question}</p>
+              <p>Resposta correta: ${wrong.correct}</p>
+              <p>Sua resposta: ${wrong.selected}</p>
+              <p class="explanation">${getExplanation(wrong.question)}</p>
+            </div>
+          `).join('')}
+        `;
+      }
+    }
+
+    // Generate personalized recommendations
+    function generateRecommendations(wrongAnswers) {
+      const recommendations = new Set();
+      
+      wrongAnswers.forEach(wrong => {
+        if (wrong.question.includes("pronome")) {
+          recommendations.add("Revise os pronomes pessoais em urdu");
+        }
+        if (wrong.question.includes("substantivo")) {
+          recommendations.add("Estude os substantivos e seus gêneros");
+        }
+        if (wrong.question.includes("plural")) {
+          recommendations.add("Pratique a formação de plurais");
+        }
+        if (wrong.question.includes("frase")) {
+          recommendations.add("Pratique a formação de frases básicas");
+        }
+      });
+
+      if (recommendations.size === 0) {
+        recommendations.add("Faça exercícios de vocabulário");
+        recommendations.add("Use flashcards para memorização");
+      }
+
+      return Array.from(recommendations);
+    }
+
+    // Get explanation for wrong answers
+    function getExplanation(question) {
+      const explanations = {
+        "pronome": "Em urdu, os pronomes são essenciais para a comunicação. Pratique-os regularmente.",
+        "substantivo": "Os substantivos em urdu têm gênero. Preste atenção aos artigos e adjetivos.",
+        "plural": "Os plurais em urdu seguem regras específicas. Estude os padrões comuns.",
+        "frase": "A estrutura das frases em urdu é diferente do português. Pratique a ordem das palavras."
+      };
+
+      for (const [key, explanation] of Object.entries(explanations)) {
+        if (question.toLowerCase().includes(key)) {
+          return explanation;
+        }
+      }
+      return "Continue praticando para melhorar seu entendimento.";
+    }
+
+    function restartQuiz() {
+      location.reload();
+    }
+
+    function startQuiz() {
+      document.getElementById('landingPage').style.display = 'none';
+      document.getElementById('quizContainer').classList.add('active');
+      startTimer();
+    }
+
+    function showLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          currentUser = result.user;
+          document.querySelector('.user-name').textContent = currentUser.displayName || 'Usuário';
+          loadLeaderboard();
+        })
+        .catch((error) => {
+          console.error('Login error:', error);
+          alert(`Erro ao fazer login: ${error.message}`);
+        });
+    }
+
+    function logout() {
+      auth.signOut()
+        .then(() => {
+          document.getElementById('quizContainer').classList.remove('active');
+          document.getElementById('landingPage').style.display = 'flex';
+          currentUser = null;
+        })
+        .catch((error) => {
+          console.error('Logout error:', error);
+        });
+    }
+
+    showQuestion(currentQuestionIndex);
+    document.getElementById("quizForm").onsubmit = (e) => {
+      e.preventDefault();
+    };
+
+    // Initialize with landing page
+    document.getElementById('landingPage').style.display = 'flex';
+    
+    // Add error handling for Firebase initialization
+    window.addEventListener('load', () => {
+      if (!firebase.apps.length) {
+        console.error('Firebase não foi inicializado corretamente');
+        alert('Erro ao carregar o sistema. Por favor, recarregue a página.');
+      }
+    });
   </script>
 </body>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email Verified</title>
+  <style>
+    body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; }
+    h2 { margin-bottom: 1em; }
+    button { padding: 0.7em 2em; font-size: 1.1em; background: #002D62; color: #fff; border: none; border-radius: 8px; cursor: pointer; }
+    button:hover { background: #001a42; }
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <h2 id="status">Verificando...</h2>
+  <p id="desc">Aguarde um momento...</p>
+  <button id="loginBtn" style="display:none" onclick="window.location.href='login.html'">Go to Login</button>
+  <script>
+    // Your Firebase config here
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+      authDomain: "appsitesync.firebaseapp.com",
+      projectId: "appsitesync",
+      storageBucket: "appsitesync.appspot.com",
+      messagingSenderId: "357510439971",
+      appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+      measurementId: "G-T0SX0NH50K"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const params = new URLSearchParams(window.location.search);
+    const uid = params.get('uid');
+
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        await user.reload();
+        if (user.emailVerified) {
+          // Optionally, check if user has chosen a language
+          const userDoc = await db.collection('users').doc(user.uid).get();
+          const userData = userDoc.data();
+          document.getElementById('status').textContent = 'Email verificado! Redirecionando...';
+          document.getElementById('desc').textContent = '';
+          setTimeout(() => {
+            window.location.href = `getstarted.html?uid=${user.uid}`;
+          }, 1200);
+        } else {
+          document.getElementById('status').textContent = 'Seu email ainda não está verificado.';
+          document.getElementById('desc').textContent = 'Por favor, clique no link de verificação enviado ao seu email.';
+        }
+      } else {
+        document.getElementById('status').textContent = 'Sua sessão expirou.';
+        document.getElementById('desc').textContent = 'Por favor, faça login para continuar.';
+        document.getElementById('loginBtn').style.display = 'inline-block';
+      }
+    });
+  </script>
+</body>
+</html>

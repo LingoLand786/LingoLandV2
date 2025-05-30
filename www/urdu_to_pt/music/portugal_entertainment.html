@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Entretenimento Português - Telenovelas, Música e Cinema</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #006400;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #006400;
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 1rem;
+        }
+
+        .search-button {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-button:hover {
+            background: #c0392b;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-box {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .category-content p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item i {
+            color: var(--secondary-color);
+        }
+
+        .styled-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .styled-button:hover {
+            background: #004d00;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Section Styles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Active Navigation Link */
+        .nav-links a.active {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Entretenimento Português</h1>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquisar...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-links">
+            <a href="#telenovelas">Telenovelas</a>
+            <a href="#musica">Música</a>
+            <a href="#artistas">Artistas</a>
+            <a href="#cinema">Cinema</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Telenovelas Section -->
+        <section id="telenovelas" class="category-section active">
+            <div class="section-header">
+                <h2>Telenovelas Portuguesas</h2>
+                <p>Descubra as melhores telenovelas e séries de TV portuguesas.</p>
+            </div>
+            <div class="category-container">
+                <!-- Telenovela 1 -->
+                <div class="category-box fade-in">
+                    <img src="img/morangos.jpg" alt="Morangos com Açúcar">
+                    <div class="category-content">
+                        <h3>Morangos com Açúcar</h3>
+                        <p>Uma das telenovelas mais populares da TVI, focada na vida dos jovens.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2003-2012</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>TVI</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ver Trailer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Telenovela 2 -->
+                <div class="category-box fade-in">
+                    <img src="img/amor-maior.jpg" alt="Amor Maior">
+                    <div class="category-content">
+                        <h3>Amor Maior</h3>
+                        <p>Telenovela da SIC que conta uma história de amor e superação.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2016-2017</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>SIC</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ver Trailer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Telenovela 3 -->
+                <div class="category-box fade-in">
+                    <img src="img/vidago-palace.jpg" alt="Vidago Palace">
+                    <div class="category-content">
+                        <h3>Vidago Palace</h3>
+                        <p>Uma telenovela de época que se passa em um hotel de luxo.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>2016</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>SIC</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ver Trailer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Música Section -->
+        <section id="musica" class="category-section">
+            <div class="section-header">
+                <h2>Música Portuguesa</h2>
+                <p>Explore a rica tradição musical portuguesa, do Fado à música contemporânea.</p>
+            </div>
+            <div class="category-container">
+                <!-- Música 1 -->
+                <div class="category-box fade-in">
+                    <img src="img/fado.jpg" alt="Fado">
+                    <div class="category-content">
+                        <h3>Fado</h3>
+                        <p>Música tradicional portuguesa, Patrimônio Cultural da Humanidade.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Fado</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Amália Rodrigues</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Música 2 -->
+                <div class="category-box fade-in">
+                    <img src="img/pop.jpg" alt="Pop Português">
+                    <div class="category-content">
+                        <h3>Pop Português</h3>
+                        <p>Música pop contemporânea portuguesa.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Pop</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Ana Moura</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Artistas Section -->
+        <section id="artistas" class="category-section">
+            <div class="section-header">
+                <h2>Artistas Portugueses</h2>
+                <p>Conheça os talentosos artistas portugueses.</p>
+            </div>
+            <div class="category-container">
+                <!-- Artista 1 -->
+                <div class="category-box fade-in">
+                    <img src="img/artista1.jpg" alt="Cristina Ferreira">
+                    <div class="category-content">
+                        <h3>Cristina Ferreira</h3>
+                        <p>Apresentadora e atriz portuguesa.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Atriz</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tv"></i>
+                                <span>Apresentadora</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/Cristina_Ferreira" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Artista 2 -->
+                <div class="category-box fade-in">
+                    <img src="img/artista2.jpg" alt="José Mourinho">
+                    <div class="category-content">
+                        <h3>José Mourinho</h3>
+                        <p>Treinador de futebol e personalidade da TV.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-futbol"></i>
+                                <span>Treinador</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-tv"></i>
+                                <span>Comentarista</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/José_Mourinho" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cinema Section -->
+        <section id="cinema" class="category-section">
+            <div class="section-header">
+                <h2>Cinema Português</h2>
+                <p>Descubra os melhores filmes e diretores portugueses.</p>
+            </div>
+            <div class="category-container">
+                <!-- Filme 1 -->
+                <div class="category-box fade-in">
+                    <img src="img/filme1.jpg" alt="Tabu">
+                    <div class="category-content">
+                        <h3>Tabu</h3>
+                        <p>Filme premiado de Miguel Gomes.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>2012</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Diretor: Miguel Gomes</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ver Trailer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const contentBoxes = document.querySelectorAll('.category-box');
+            
+            contentBoxes.forEach(box => {
+                const title = box.querySelector('h3').textContent.toLowerCase();
+                const description = box.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Category Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link and corresponding section
+                this.classList.add('active');
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+
+                // Save the active section to local storage
+                localStorage.setItem('lastActiveSection', targetId);
+            });
+        });
+
+        // Restore the last active section when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const lastActiveSection = localStorage.getItem('lastActiveSection');
+            if (lastActiveSection) {
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to the last active section and its link
+                const activeLink = document.querySelector(`.nav-links a[href="#${lastActiveSection}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    document.getElementById(lastActiveSection).classList.add('active');
+                } else {
+                    // If the saved section doesn't exist, default to first section
+                    document.querySelector('.nav-links a').click();
+                }
+            } else {
+                // If no saved section, default to first section
+                document.querySelector('.nav-links a').click();
+            }
+        });
+    </script>
+</body>
+</html> 

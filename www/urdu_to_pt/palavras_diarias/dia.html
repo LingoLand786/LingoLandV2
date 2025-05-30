@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendizagem de Urdu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Estilos -->
+    <!-- Estilos da pagina dia -->
+    <link rel="stylesheet" href="css/dia-estilos.css">
+    
+  
+</head>
+<body>
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    
+    <div class="borda-superior">
+        <button id="botaoSair" onclick="mostrarModal()">Sair</button>
+        <span class="titulo-borda">Dia 1</span>
+        <div class="points-container">
+            <span>Score:</span>
+            <span class="score-value" id="scoreDisplay">0</span>
+        </div>
+    </div>
+
+    <div class="quadrado" id="conteudoPergunta">
+        <!-- O conteúdo será inserido dinamicamente -->
+    </div>
+
+    <div class="borda-inferior">
+        <button id="botaoProximo" onclick="proximaPergunta()">Próximo</button>
+    </div>
+
+    <!-- Modal de confirmação -->
+    <div id="modalSair" class="modal">
+        <div class="modal-content"> 
+            <p> O seu progresso está gravado.<br> Deseja regressar à página inicial?</p>
+            <div class="modal-buttons">
+                <button class="modal-button cancelar" onclick="fecharModal()">Cancelar</button>
+                <button class="modal-button ok" onclick="confirmarSair()">OK</button>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <!-- Logica da pagina dia -->
+    <script src="js/dia-codigo.js"></script>
+    <!-- Lista/Configuração das perguntas -->
+    <script src="js/dia-perguntas.js"></script>
+</body>
+</html> 

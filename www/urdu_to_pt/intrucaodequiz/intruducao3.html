@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendendo Cumprimentos em Urdu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Poppins:wght@400;600&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* White Background */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Container Styling */
+    .container {
+      background: linear-gradient(135deg, #170a5f 0%, #2c3e50 100%);
+      width: 90%;
+      max-width: 1000px;
+      padding: 50px 50px 20px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Decorative Elements */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') repeat;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    /* Elegant Heading */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      color: #f39c12;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    /* Introduction Text */
+    .introduction {
+      font-size: 1.5rem;
+      line-height: 2;
+      margin-top: 20px;
+      color: #ffffff;
+    }
+
+    /* List Styling */
+    ul {
+      list-style: none;
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    li {
+      font-size: 1.4rem;
+      color: #333;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(23, 10, 95, 0.1);
+    }
+
+    li:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      border-color: rgba(23, 10, 95, 0.3);
+    }
+
+    li strong {
+      color: #170a5f;
+      margin-bottom: 15px;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    li .urdu-text {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      color: #170a5f;
+      font-size: 2rem;
+      margin-bottom: 8px;
+      line-height: 1.8;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    li .translation {
+      color: #666;
+      font-size: 1.2rem;
+      font-style: italic;
+    }
+
+    /* Call to Action Button */
+    .start-button {
+      background: linear-gradient(45deg, #f39c12, #e67e22);
+      color: white;
+      padding: 20px 50px;
+      font-size: 1.5rem;
+      border: none;
+      margin-top: 30px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      animation: pulse 2s infinite;
+    }
+
+    .start-button:hover {
+      background: linear-gradient(45deg, #e67e22, #f39c12);
+      transform: scale(1.1);
+      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.7);
+    }
+
+    /* Audio Icon */
+    .audio-icon {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #170a5f;
+      font-size: 1.2rem;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    li:hover .audio-icon {
+      opacity: 1;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #f39c12, #e67e22);
+      transition: width 0.3s ease;
+    }
+
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      li {
+        font-size: 1.2rem;
+        padding: 20px;
+      }
+
+      li .urdu-text {
+        font-size: 1.8rem;
+      }
+      
+      .container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <h1>سلامی سیکھیں: اپنا تعارف اور عام گفتگو</h1>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+  <div class="introduction">
+    <ul>
+      <li onclick="playAudio('answer_1')">
+        <strong>میں [...........] سے ہوں۔</strong>
+        <span class="urdu-text">Eu sou de [....]</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_2')">
+        <strong>دوپہر بخیر</strong>
+        <span class="urdu-text">Boa tarde</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_3')">
+        <strong>کیا وقت ہوا ہے؟</strong>
+        <span class="urdu-text">Quantas horas são?</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_4')">
+        <strong>آپ کیا کر رہے ہیں؟</strong>
+        <span class="urdu-text">O que você está fazer?</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_5')">
+        <strong>یہ ایک خوشی کی بات ہے</strong>
+        <span class="urdu-text">É um prazer</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_6')">
+        <strong>آپ ٹھیک ہیں؟</strong>
+        <span class="urdu-text">Você está bem?</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_7')">
+        <strong>میں اداس ہوں</strong>
+        <span class="urdu-text">Eu estou triste</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_8')">
+        <strong>کتنی دیر ہو چکی ہے؟</strong>
+        <span class="urdu-text">Há quanto tempo?</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_9')">
+        <strong>خود کا خیال رکھیں</strong>
+        <span class="urdu-text">Cuida de ti</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+      <li onclick="playAudio('answer_10')">
+        <strong>آپ کو دیکھ کر خوشی ہوئی</strong>
+        <span class="urdu-text">Bom te ver</span>
+        <i class="audio-icon">🔊</i>
+      </li>
+    </ul>
+    <button class="start-button" onclick="window.location.href='intruducao4.html';">
+      اگلا
+    </button>
+  </div>
+</div>
+
+  <!-- Audio Files -->
+  <audio id="answer_1" src="INT3_AUDIOS/answer_1.mp3"></audio>
+  <audio id="answer_2" src="INT3_AUDIOS/answer_2.mp3"></audio>
+  <audio id="answer_3" src="INT3_AUDIOS/answer_3.mp3"></audio>
+  <audio id="answer_4" src="INT3_AUDIOS/answer_4.mp3"></audio>
+  <audio id="answer_5" src="INT3_AUDIOS/answer_5.mp3"></audio>
+  <audio id="answer_6" src="INT3_AUDIOS/answer_6.mp3"></audio>
+  <audio id="answer_7" src="INT3_AUDIOS/answer_7.mp3"></audio>
+  <audio id="answer_8" src="INT3_AUDIOS/answer_8.mp3"></audio>
+  <audio id="answer_9" src="INT3_AUDIOS/answer_9.mp3"></audio>
+  <audio id="answer_10" src="INT3_AUDIOS/answer_10.mp3"></audio>
+
+  <script>
+    let progress = 0;
+    const totalItems = document.querySelectorAll('li').length;
+    const progressBar = document.getElementById('progressBar');
+
+    function playAudio(id) {
+      let audio = document.getElementById(id);
+      if (audio) {
+        // Stop all other audio elements first
+        document.querySelectorAll('audio').forEach(a => {
+          if (a.id !== id) {
+            a.pause();
+            a.currentTime = 0;
+          }
+        });
+        
+        // Play the selected audio
+        audio.play();
+        
+        // Update progress
+        progress += (100 / totalItems);
+        progressBar.style.width = `${Math.min(progress, 100)}%`;
+      }
+    }
+
+    // Add animation to list items on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = document.querySelectorAll('li');
+      items.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.animation = `fadeInUp 0.5s ease forwards ${index * 0.1}s`;
+      });
+    });
+  </script>
+</body>
+</html>

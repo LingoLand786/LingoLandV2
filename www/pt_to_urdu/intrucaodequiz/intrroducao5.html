@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lição 5 - Expressões Culturais e Religiosas</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --primary-color: #002D62;
+      --secondary-color: #4a90e2;
+      --accent-color: #ff6b6b;
+      --bg-color: #ffffff;
+      --card-bg: #f8f9fa;
+      --text-primary: #002D62;
+      --text-secondary: #4a5568;
+      --shadow-color: rgba(0, 45, 98, 0.1);
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg-color);
+      padding: 40px 20px;
+      overflow-x: hidden;
+      position: relative;
+      color: var(--text-primary);
+      line-height: 1.8;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 45, 98, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(74, 144, 226, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .lesson-header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 1s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lesson-header h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .lesson-header p {
+      font-size: 1.2em;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .lesson-content {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 30px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px var(--shadow-color);
+      border: 1px solid rgba(0, 45, 98, 0.08);
+      animation: fadeInUp 1s ease 0.3s both;
+    }
+
+    .lesson-section {
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 1px dashed rgba(0, 45, 98, 0.1);
+    }
+
+    .lesson-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .lesson-section h2 {
+        font-size: 2em;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .lesson-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), transparent);
+        border-radius: 2px;
+    }
+
+    .lesson-section p {
+        margin-bottom: 15px;
+        color: var(--text-secondary);
+    }
+
+    .lesson-section ul {
+        list-style: none;
+        padding-left: 20px;
+    }
+
+    .lesson-section ul li {
+        margin-bottom: 20px;
+        position: relative;
+        color: var(--text-secondary);
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .urdu-text {
+        font-size: 2.5em; /* Much larger font size */
+        display: block;
+        margin: 15px 0;
+        color: var(--primary-color);
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.4;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .translation {
+        font-size: 1.2em;
+        display: block;
+        color: var(--text-secondary);
+        text-align: center;
+        margin: 10px 0;
+        font-style: italic;
+    }
+
+    .lesson-section ul li strong {
+        font-size: 1.3em;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .lesson-section ul li::before {
+        display: none; /* Remove bullet points */
+    }
+
+    .audio-icon {
+        color: var(--secondary-color);
+        margin-left: 10px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .audio-icon:hover {
+        transform: scale(1.2);
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--primary-color);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 45, 98, 0.15);
+    }
+
+    .nav-button:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 45, 98, 0.2);
+    }
+
+    .nav-button i {
+        transition: transform 0.3s ease;
+    }
+
+    .nav-button.prev i {
+        margin-right: 8px;
+    }
+
+    .nav-button.next i {
+        margin-left: 8px;
+    }
+
+    .nav-button.prev:hover i {
+        transform: translateX(-5px);
+    }
+
+    .nav-button.next:hover i {
+        transform: translateX(5px);
+    }
+
+    .menu-principal-container {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .menu-principal-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 18px 40px;
+      border-radius: 35px;
+      font-size: 1.3em;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .menu-principal-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px var(--shadow-color);
+    }
+
+    .menu-principal-button i {
+      font-size: 1.2em;
+      transition: transform 0.4s ease;
+    }
+
+    .menu-principal-button:hover i {
+      transform: scale(1.2);
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .lesson-header h1 {
+        font-size: 2.2em;
+      }
+      .lesson-header p {
+        font-size: 1em;
+      }
+      .lesson-content {
+          padding: 20px;
+      }
+      .lesson-section h2 {
+          font-size: 1.8em;
+      }
+      .nav-button {
+          font-size: 1em;
+          padding: 10px 20px;
+      }
+      .menu-principal-button {
+          font-size: 1em;
+          padding: 15px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lesson-header">
+    <h1>Lição 5: Expressões Culturais e Religiosas</h1>
+    <p>Explore saudações avançadas e expressões religiosas para uma comunicação mais profunda e culturalmente rica.</p>
+  </div>
+
+  <div class="lesson-content">
+    <div class="lesson-section">
+        <h2>Introdução</h2>
+        <p>Esta lição foca em expressões usadas em contextos culturais e religiosos em Urdu, importantes para interações mais profundas:</p>
+    </div>
+
+    <div class="lesson-section">
+        <h2>Expressões Comuns</h2>
+        <ul>
+            <li onclick="playAudio('tudodebom')">
+                <strong>Tudo de bom</strong>
+                <span class="urdu-text">سب اچھا ہو</span>
+                <span class="translation">(Sab acha ho)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('prazer')">
+                <strong>Prazer em conhecê-lo(a)</strong>
+                <span class="urdu-text">آپ سے مل کر خوشi ہوئی</span>
+                <span class="translation">(Aap se mil kar khushi hui)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('bemvindo')">
+                <strong>Bem-vindo(a)</strong>
+                <span class="urdu-text">خوش آمدید</span>
+                <span class="translation">(Khush amadeed)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('boasorte')">
+                <strong>Boa sorte</strong>
+                <span class="urdu-text">اچھی قسمت</span>
+                <span class="translation">(Achi qismat)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('atelogo')">
+                <strong>Até logo</strong>
+                <span class="urdu-text">پھر ملیں گے</span>
+                <span class="translation">(Phir milenge)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('comovai')">
+                <strong>Como vai a vida?</strong>
+                <span class="urdu-text">زندگی کیسی جا رہی ہے؟</span>
+                <span class="translation">(Zindagi kaisi ja rahi hai?)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('tempo')">
+                <strong>Há quanto tempo!</strong>
+                <span class="urdu-text">کافی عرصے بعد!</span>
+                <span class="translation">(Kafi arse baad!)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('oqueha')">
+                <strong>O que há de novo?</strong>
+                <span class="urdu-text">کیا نئے ہیں؟</span>
+                <span class="translation">(Kya naye hain?)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('foiumprazer')">
+                <strong>Foi um prazer falar consigo</strong>
+                <span class="urdu-text">آپ سے بات کر کے خوشی ہوئی</span>
+                <span class="translation">(Aap se baat kar ke khushi hui)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+        </ul>
+    </div>
+
+  </div>
+
+  <div class="navigation-buttons">
+      <a href="intruducao4.html" class="nav-button prev"><i class="fas fa-arrow-left"></i> Anterior</a>
+      <a href="introducao6.html" class="nav-button next">Próxima Lição <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+  <div class="menu-principal-container">
+    <a href="../mainmenuptur.html" class="menu-principal-button">
+      <i class="fas fa-home"></i>
+      Menu Principal
+    </a>
+  </div>
+
+    <!-- Audio Files -->
+    <audio id="tudodebom" src="audio5/answer_1.mp3"></audio>
+    <audio id="prazer" src="audio5/answer_2.mp3"></audio>
+    <audio id="bemvindo" src="audio5/answer_3.mp3"></audio>
+    <audio id="boasorte" src="audio5/answer_4.mp3"></audio>
+    <audio id="atelogo" src="audio5/answer_5.mp3"></audio>
+    <audio id="comovai" src="audio5/answer_6.mp3"></audio>
+    <audio id="tempo" src="audio5/answer_7.mp3"></audio>
+    <audio id="oqueha" src="audio5/answer_8.mp3"></audio>
+    <audio id="foiumprazer" src="audio5/answer_9.mp3"></audio>
+
+  <script>
+    function playAudio(id) {
+      const audio = document.getElementById(id);
+      if (audio) {
+        document.querySelectorAll('audio').forEach(a => {
+          if (a !== audio) {
+            a.pause();
+            a.currentTime = 0;
+          }
+        });
+        audio.play();
+      }
+    }
+  </script>
+
+</body>
+</html>

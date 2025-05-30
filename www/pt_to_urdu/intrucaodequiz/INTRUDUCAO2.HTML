@@ -3,122 +3,403 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprendendo Cumprimentos em Urdu</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Lição 2 - Etiquetas de Conversação</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    /* White Background */
-    body {
       font-family: 'Poppins', sans-serif;
-      background: #ffffff;
-      color: #333;
-      display: flex;
-      justify-content: center;
+    }
+
+    :root {
+      --primary-color: #002D62;
+      --secondary-color: #4a90e2;
+      --accent-color: #ff6b6b;
+      --bg-color: #ffffff;
+      --card-bg: #f8f9fa;
+      --text-primary: #002D62;
+      --text-secondary: #4a5568;
+      --shadow-color: rgba(0, 45, 98, 0.1);
+    }
+
+    body {
       min-height: 100vh;
-      align-items: center;
-      padding: 20px;
-    }
-
-    /* Container Styling */
-    .container {
-      background: #170a5f;
-      width: 90%;
-      max-width: 1000px;
-      padding: 50px 50px 20px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      background: var(--bg-color);
+      padding: 40px 20px;
+      overflow-x: hidden;
       position: relative;
+      color: var(--text-primary);
+      line-height: 1.8;
     }
 
-    /* Elegant Heading */
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      color: #f39c12;
-      letter-spacing: 4px;
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 45, 98, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(74, 144, 226, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    /* Introduction Text */
-    .introduction {
-      font-size: 1.5rem;
-      line-height: 2;
-      margin-top: 20px;
-      color: #ffffff;
+    .lesson-header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInDown 1s ease;
+      position: relative;
+      z-index: 1;
     }
 
-    /* List Styling */
-    ul {
-      list-style: none;
-      margin-top: 30px;
+    .lesson-header h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
-    li {
-      font-size: 1.6rem;
-      color: #333;
-      background: #fff;
-      padding: 10px 20px;
-      border-radius: 10px;
-      margin-bottom: 10px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      cursor: pointer;
+    .lesson-header p {
+      font-size: 1.2em;
+      color: var(--text-secondary);
+      max-width: 800px;
+      margin: 0 auto;
     }
 
-    li:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    .lesson-content {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 30px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px var(--shadow-color);
+      border: 1px solid rgba(0, 45, 98, 0.08);
+      animation: fadeInUp 1s ease 0.3s both;
     }
 
-    /* Call to Action Button */
-    .start-button {
-      background: linear-gradient(45deg, #f39c12, #e67e22);
+    .lesson-section {
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 1px dashed rgba(0, 45, 98, 0.1);
+    }
+
+    .lesson-section:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .lesson-section h2 {
+        font-size: 2em;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .lesson-section h2::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), transparent);
+        border-radius: 2px;
+    }
+
+    .lesson-section p {
+        margin-bottom: 15px;
+        color: var(--text-secondary);
+    }
+
+    .lesson-section ul {
+        list-style: none;
+        padding-left: 20px;
+    }
+
+    .lesson-section ul li {
+        margin-bottom: 20px;
+        position: relative;
+        color: var(--text-secondary);
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .urdu-text {
+        font-size: 2.5em;
+        display: block;
+        margin: 15px 0;
+        color: var(--primary-color);
+        font-weight: 700;
+        text-align: center;
+        line-height: 1.4;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .translation {
+        font-size: 1.2em;
+        display: block;
+        color: var(--text-secondary);
+        text-align: center;
+        margin: 10px 0;
+        font-style: italic;
+    }
+
+    .lesson-section ul li strong {
+        font-size: 1.3em;
+        color: var(--primary-color);
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .lesson-section ul li::before {
+        display: none;
+    }
+
+    .audio-icon {
+        color: var(--secondary-color);
+        margin-left: 10px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .audio-icon:hover {
+        transform: scale(1.2);
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .nav-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--primary-color);
+        color: white;
+        padding: 12px 25px;
+        border-radius: 25px;
+        font-size: 1.1em;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 45, 98, 0.15);
+    }
+
+    .nav-button:hover {
+        background: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 45, 98, 0.2);
+    }
+
+    .nav-button i {
+        transition: transform 0.3s ease;
+    }
+
+    .nav-button.prev i {
+        margin-right: 8px;
+    }
+
+    .nav-button.next i {
+        margin-left: 8px;
+    }
+
+    .nav-button.prev:hover i {
+        transform: translateX(-5px);
+    }
+
+    .nav-button.next:hover i {
+        transform: translateX(5px);
+    }
+
+    .menu-principal-container {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .menu-principal-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
       color: white;
-      padding: 15px 40px;
-      font-size: 1.5rem;
-      border: none;
-      margin-top: 10px;
-      border-radius: 50px;
-      cursor: pointer;
+      padding: 18px 40px;
+      border-radius: 35px;
+      font-size: 1.3em;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       transition: all 0.4s ease;
-      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+      box-shadow: 0 10px 20px var(--shadow-color);
     }
 
-    .start-button:hover {
-      background: linear-gradient(45deg, #e67e22, #f39c12);
-      transform: scale(1.1);
-      box-shadow: 0 10px 30px rgba(255, 215, 0, 0.7);
+    .menu-principal-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px var(--shadow-color);
+    }
+
+    .menu-principal-button i {
+      font-size: 1.2em;
+      transition: transform 0.4s ease;
+    }
+
+    .menu-principal-button:hover i {
+      transform: scale(1.2);
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .lesson-header h1 {
+        font-size: 2.2em;
+      }
+      .lesson-header p {
+        font-size: 1em;
+      }
+      .lesson-content {
+          padding: 20px;
+      }
+      .lesson-section h2 {
+          font-size: 1.8em;
+      }
+      .nav-button {
+          font-size: 1em;
+          padding: 10px 20px;
+      }
+      .menu-principal-button {
+          font-size: 1em;
+          padding: 15px 30px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="lesson-header">
+    <h1>Lição 2: Etiquetas de Conversação</h1>
+    <p>Desenvolva habilidades de comunicação avançadas com respostas e etiquetas básicas em diferentes contextos.</p>
+  </div>
 
-  <div class="container">
-    <h1>Aprender Cumprimentos: Frases do Dia a Dia</h1>
-    <div class="introduction">
-      <p>Bem-vindo! Aprenda cumprimentos de forma simples.</p>
-      <ul>
-        <!-- Updated list items with questions and answers -->
-        <li onclick="playAudio('nome')"><strong>Como você se chama?</strong>: <span>آپ کا نام کیا ہے؟ (Aap Ka Naam Kya Hai?)</span></li>
-        <li onclick="playAudio('resposta')"><strong>Meu nome é.....?</strong>: <span>میرا نام ہے۔ (Mera Naam Hai.)</span></li>
-        <li onclick="playAudio('desculpe')"><strong>Desculpe?</strong>: <span>معاف کیجیے۔ (Maaf Kijiye.)</span></li>
-        <li onclick="playAudio('porfavor')"><strong>Por favor</strong>: <span>براہ کرم۔ (Barah-e-Karam.)</span></li>
-        <li onclick="playAudio('obrigado')"><strong>Obrigado/a</strong>: <span>شکریہ۔ (Shukriya.)</span></li>
-        <li onclick="playAudio('denada')"><strong>De nada</strong>: <span>کوئی بات نہیں۔ (Koi Baat Nahi.)</span></li>
-        <li onclick="playAudio('adeus')"><strong>Adeus</strong>: <span>اللہ حافظ۔ (Allah Hafiz.)</span></li>
-        <li onclick="playAudio('tudobem')"><strong>Tudo bem</strong>: <span>سب کچھ ٹھیک ہے۔ (Sab Kuch Theek Hai.)</span></li>
-        <li onclick="playAudio('bomdia')"><strong>Tenha um bom dia</strong>: <span>اچھا دن گزرے۔ (Acha Din Guzray.)</span></li>
-        <li onclick="playAudio('onde')"><strong>De onde você é?</strong>: <span>آپ کہاں سے ہیں؟ (Aap Kahan Se Hain?)</span></li>
-      </ul>
-      <button class="start-button" onclick="window.location.href='../saudades/les_2_hellopt.html';">Começar Quiz</button>
+  <div class="lesson-content">
+    <div class="lesson-section">
+        <h2>Introdução</h2>
+        <p>Aqui estão algumas frases e respostas comuns para interações em Urdu:</p>
     </div>
+
+    <div class="lesson-section">
+        <h2>Frases e Respostas</h2>
+        <ul>
+            <li onclick="playAudio('nome')">
+                <strong>Como você se chama?</strong>
+                <span class="urdu-text">آپ کا نام کیا ہے؟</span>
+                <span class="translation">(Aap Ka Naam Kya Hai?)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('resposta')">
+                <strong>Meu nome é.....</strong>
+                <span class="urdu-text">میرا نام ہے۔</span>
+                <span class="translation">(Mera Naam Hai.)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('desculpe')">
+                <strong>Desculpe</strong>
+                <span class="urdu-text">معاف کیجیے۔</span>
+                <span class="translation">(Maaf Kijiye.)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('porfavor')">
+                <strong>Por favor</strong>
+                <span class="urdu-text">براہ کرم۔</span>
+                <span class="translation">(Barah-e-Karam.)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('obrigado')">
+                <strong>Obrigado/a</strong>
+                <span class="urdu-text">شکریہ۔</span>
+                <span class="translation">(Shukriya.)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('denada')">
+                <strong>De nada</strong>
+                <span class="urdu-text">کوئی بات نہیں۔</span>
+                <span class="translation">(Koi Baat Nahi.)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('adeus2')">
+                <strong>Adeus</strong>
+                <span class="urdu-text">اللہ حافظ۔</span>
+                <span class="translation">(Allah Hafiz.)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('tudobem')">
+                <strong>Tudo bem</strong>
+                <span class="urdu-text">سب کچھ ٹھیک ہے۔</span>
+                <span class="translation">(Sab Kuch Theek Hai.)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('bomdia2')">
+                <strong>Tenha um bom dia</strong>
+                <span class="urdu-text">اچھا دن گزرے۔</span>
+                <span class="translation">(Acha Din Guzray.)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+            <li onclick="playAudio('onde')">
+                <strong>De onde você é?</strong>
+                <span class="urdu-text">آپ کہاں سے ہیں؟</span>
+                <span class="translation">(Aap Kahan Se Hain?)</span>
+                <i class="fas fa-volume-up audio-icon"></i>
+            </li>
+        </ul>
+    </div>
+
+  </div>
+
+  <div class="navigation-buttons">
+      <a href="intruducao1.html" class="nav-button prev"><i class="fas fa-arrow-left"></i> Anterior</a>
+      <a href="intruducao3.html" class="nav-button next">Próxima Lição <i class="fas fa-arrow-right"></i></a>
+  </div>
+
+  <div class="menu-principal-container">
+    <a href="../mainmenuptur.html" class="menu-principal-button">
+      <i class="fas fa-home"></i>
+      Menu Principal
+    </a>
   </div>
 
   <!-- Audio Files -->
@@ -128,15 +409,21 @@
   <audio id="porfavor" src="audio_files/answer_4.mp3"></audio>
   <audio id="obrigado" src="audio_files/answer_5.mp3"></audio>
   <audio id="denada" src="audio_files/answer_6.mp3"></audio>
-  <audio id="adeus" src="audio_files/answer_7.mp3"></audio>
+  <audio id="adeus2" src="audio_files/answer_7.mp3"></audio>
   <audio id="tudobem" src="audio_files/answer_8.mp3"></audio>
-  <audio id="bomdia" src="audio_files/answer_9.mp3"></audio>
+  <audio id="bomdia2" src="audio_files/answer_9.mp3"></audio>
   <audio id="onde" src="audio_files/answer_10.mp3"></audio>
 
   <script>
     function playAudio(id) {
-      let audio = document.getElementById(id);
+      const audio = document.getElementById(id);
       if (audio) {
+        document.querySelectorAll('audio').forEach(a => {
+          if (a !== audio) {
+            a.pause();
+            a.currentTime = 0;
+          }
+        });
         audio.play();
       }
     }

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Heaven: Learn Drinks</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+      color: #1a1a2e;
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1a1a2e, #243b55);
+      color: white;
+      padding: 30px 0;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    .search-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 10px 20px;
+      border: 2px solid #1a1a2e;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      outline: none;
+    }
+
+    .drink-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      max-width: 1300px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .drink-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .drink-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .drink-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .drink-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .drink-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #1a1a2e;
+    }
+
+    .drink-info button {
+      background: #1a1a2e;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .drink-info button:hover {
+      background: #0f3460;
+    }
+
+    .modal, .overlay {
+      display: none;
+    }
+
+    footer {
+      background: #243b55;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #00a8cc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body onload="startLearning()">
+ <header>
+  <h1>مشروبات سیکھیں</h1>
+  <p>اس سبق میں ہم مشروبات کے نام سیکھیں گے</p>
+</header>
+
+<div class="search-container">
+  <input 
+    type="text" 
+    id="search" 
+    placeholder="نام سے مشروبات تلاش کریں..." 
+    oninput="filterDrinks(this.value)" 
+  />
+</div>
+
+
+  <div id="drink-grid" class="drink-grid"></div>
+
+  <script>
+const drinks = [
+  { name: "Água (Water)", urdu: "پانی", image: "img/water.jpg", audio: "drink_audios/audio1.mp3" },
+  { name: "Sumo (Juice)", urdu: "جوس", image: "img/juice.jpg", audio: "drink_audios/audio2.mp3" },
+  { name: "Leite (Milk)", urdu: "دودھ", image: "img/milk.jpg", audio: "drink_audios/audio3.mp3" },
+  { name: "Chá (Tea)", urdu: "چائے", image: "img/tea.jpg", audio: "drink_audios/audio4.mp3" },
+  { name: "Café (Coffee)", urdu: "کافی", image: "img/coffee.jpg", audio: "drink_audios/audio5.mp3" },
+  { name: "Refrigerante (Soda)", urdu: "سافٹ ڈرنک", image: "img/soda.jpg", audio: "drink_audios/audio6.mp3" },
+  { name: "Vinho (Wine)", urdu: "شراب", image: "img/wine.jpg", audio: "drink_audios/audio7.mp3" },
+  { name: "Cerveja (Beer)", urdu: "بیئر", image: "img/beer.jpg", audio: "drink_audios/audio8.mp3" },
+  { name: "Água de Coco (Coconut Water)", urdu: "ناریل کا پانی", image: "img/Coconut Water.jpg", audio: "drink_audios/audio9.mp3" },
+  { name: "Limonada (Lemonade)", urdu: "لیموں کا رس", image: "img/Lemonade.jpg", audio: "drink_audios/audio10.mp3" },
+  { name: "Aperol Spritz", urdu: "ایپرول سپریٹز", image: "img/AperolSpritz.jpg", audio: "drink_audios/audio11.mp3" },
+  { name: "Mojito", urdu: "موجیٹو", image: "img/Mojito.jpg", audio: "drink_audios/audio12.mp3" },
+  { name: "Caipirinha", urdu: "کائپیرنہ", image: "img/Caipirinha.jpg", audio: "drink_audios/audio13.mp3" },
+  { name: "Martini", urdu: "مارٹینی", image: "img/Martini.jpg", audio: "drink_audios/audio14.mp3" },
+  { name: "Smoothie", urdu: "سموتھی", image: "img/Smoothie.jpg", audio: "drink_audios/audio15.mp3" },
+  { name: "Milkshake", urdu: "ملک شیک", image: "img/Milkshake.jpg", audio: "drink_audios/audio16.mp3" }
+];
+
+
+    function startLearning() {
+      const drinkGrid = document.getElementById("drink-grid");
+      drinkGrid.innerHTML = "";
+      drinks.forEach(drink => {
+        const card = document.createElement("div");
+        card.className = "drink-card";
+        card.innerHTML = `
+          <img src="${drink.image}" alt="${drink.name}" onerror="this.src='placeholder.jpg'">
+          <div class="drink-info">
+            <h3>${drink.name} - ${drink.urdu}</h3>
+            <button onclick="playAudio('${drink.audio}')">🔊 Ouvir Pronúncia</button>
+          </div>
+        `;
+        drinkGrid.appendChild(card);
+      });
+    }
+
+    function playAudio(audioSrc) {
+      const audio = new Audio(audioSrc);
+      audio.play();
+    }
+
+    function filterDrinks(query) {
+      const cards = document.querySelectorAll(".drink-card");
+      cards.forEach(card => {
+        const name = card.querySelector("h3").innerText.toLowerCase();
+        card.style.display = name.includes(query.toLowerCase()) ? "block" : "none";
+      });
+    }
+  </script>
+</body>
+</html>

@@ -4,210 +4,471 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Etiqueta Cultural para Aprendizes de Urdu - Ética e Costumes no Paquistão</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS for design -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- For interactivity -->
+    <title>Lição - Etiqueta Cultural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* styles.css */
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #ffffff;  /* White background */
-    color: #333;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-header {
-    background: #001d4d;  /* Secondary color */
-    color: #fff;
-    padding: 20px 0;
-    text-align: center;
-}
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #001b40;
+            --accent-color: #4CAF50;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+        }
 
-header .logo h1 {
-    font-size: 2.5em;
-    margin: 0;
-}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-    margin: 20px 0;
-}
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
 
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            animation: shine 3s infinite;
+        }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1em;
-}
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
 
-main {
-    padding: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
 
-h2 {
-    color: #001d4d;  /* Secondary color */
-}
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
 
-.language-box {
-    background-color: #e7f3f7;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
+        section {
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
 
-.conversation-box {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
 
-button.audio-button {
-    background-color:#001d4d;
-    border: none;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1.1em;
-    cursor: pointer;
-    border-radius: 5px;
-}
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
 
-button.audio-button:hover {
-    background-color: #7699d1;
-}
+        .culture-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
 
-footer {
-    background: #0056b3;  /* Secondary color */
-    color: #fff;
-    text-align: center;
-    padding: 15px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-}
+        .culture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
 
+        .culture-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .culture-card p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .phrase-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .phrase-table th, .phrase-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .phrase-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .phrase-table td {
+            background: white;
+            transition: var(--transition);
+        }
+
+        .phrase-table tr:hover td {
+            background: var(--light-bg);
+        }
+
+        .audio-btn {
+            background: var(--accent-color);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary-color);
+        }
+
+        .floating-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .floating-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .floating-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .practice-section {
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-top: 50px;
+        }
+
+        .quiz-container {
+            margin-top: 30px;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            padding: 20px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 30px 20px;
+            }
+
+            .floating-nav {
+                display: none;
+            }
+
+            .quiz-option {
+                padding: 15px;
+            }
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .navigation-buttons {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="floating-nav">
+        <a href="#greetings"><i class="fas fa-handshake"></i> Saudações Islâmicas</a>
+        <a href="#customs"><i class="fas fa-globe"></i> Costumes Paquistaneses</a>
+        <a href="#taboos"><i class="fas fa-exclamation-triangle"></i> Respeito Cultural</a>
+        <a href="#practice"><i class="fas fa-tasks"></i> Prática</a>
+    </div>
+
     <header>
-        <div class="logo">
-            <h1>Curso de Urdu - Etiqueta Cultural do Paquistão</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#introducao">Introdução</a></li>
-                <li><a href="#etiqueta">Etiqueta Cultural</a></li>
-                <li><a href="#lingua">Língua e Comunicação</a></li>
-                <li><a href="#dos-donts">O que Fazer e o que Não Fazer</a></li>
-                <li><a href="#conversacao">Exemplo de Conversação</a></li>
-            </ul>
-        </nav>
+        <h1>Etiqueta Cultural do Paquistão</h1>
+        <p>Aprenda sobre os costumes e comportamentos culturais importantes do Paquistão</p>
     </header>
 
-    <main>
-        <section id="introducao">
-            <h2>Introdução</h2>
-            <p>Aprender Urdu não é apenas sobre dominar a língua, mas também entender as práticas culturais que envolvem a comunicação no Paquistão. O país tem um forte senso de identidade baseado em seus valores culturais e religiosos.</p>
-            <p>Esta lição ajudará você a entender as <strong>etiquetas culturais</strong> essenciais e a usar o <strong>Urdu</strong> de maneira respeitosa e eficaz enquanto interage com os locais.</p>
+    <div class="lesson-container">
+        <section id="greetings">
+            <h2>Saudações Islâmicas e Cumprimentos</h2>
+            <div class="culture-card">
+                <h3>Saudações Tradicionais</h3>
+                <p>No Paquistão, a saudação mais comum é "Assalam-o-Alaikum" (que a paz esteja com você). É importante respeitar os costumes locais, como evitar apertos de mão entre homens e mulheres a menos que a outra pessoa estenda a mão primeiro.</p>
+            </div>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Português</th>
+                        <th>Urdu</th>
+                        <th>Áudio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>A paz esteja com você</td>
+                        <td>السلام علیکم</td>
+                        <td><button class="audio-btn" onclick="playAudio('culture/salam')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>E com você esteja a paz</td>
+                        <td>وعلیکم السلام</td>
+                        <td><button class="audio-btn" onclick="playAudio('culture/walaikum')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Como você está?</td>
+                        <td>آپ کیسے ہیں؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('culture/how-are-you')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
-        <section id="etiqueta">
-            <h2>Etiqueta Cultural no Paquistão</h2>
-            <p>No Paquistão, a etiqueta e os costumes são um reflexo do respeito profundo pelas tradições e religiões. Aqui estão algumas práticas que você deve conhecer:</p>
-            <ul>
-                <li><strong>Saudações:</strong> Ao cumprimentar alguém, use um aperto de mão suave entre homens. As mulheres geralmente não apertam a mão de homens desconhecidos, mas um "As-salamu alaykum" é adequado.</li>
-                <li><strong>Respeito pelas idades:</strong> Sempre use títulos formais e trate os mais velhos com grande respeito. A expressão "Saab" ou "Begum" é comum para se dirigir a pessoas mais velhas.</li>
-                <li><strong>Comportamento em público:</strong> Evite exibir carinho publicamente e esteja atento ao comportamento, especialmente em locais religiosos.</li>
-            </ul>
-        </section>
-
-        <section id="lingua">
-            <h2>Língua e Comunicação</h2>
-            <p>O domínio de algumas frases essenciais em Urdu facilitará a sua comunicação. Aqui estão algumas frases úteis com explicações culturais:</p>
-            <div class="language-box">
-                <p><strong>Olá!</strong> – <span>سلام!</span> (Salaam!)</p>
-                <p><strong>Como você está?</strong> – <span>آپ کیسے ہیں؟</span> (Aap kaise hain?)</p>
-                <p><strong>Obrigado!</strong> – <span>شکریہ</span> (Shukriya)</p>
-                <p><strong>Desculpe!</strong> – <span>معاف کیجیے</span> (Maaf kijiye)</p>
-                <p><strong>Onde fica o banheiro?</strong> – <span>باتھروم کہاں ہے؟</span> (Bathroom kahaan hai?)</p>
-                <p><strong>Eu não entendo.</strong> – <span>مجھے سمجھ نہیں آئی</span> (Mujhe samajh nahi aayi)</p>
+        <section id="customs">
+            <h2>Costumes Paquistaneses</h2>
+            <div class="culture-card">
+                <h3>Vestuário</h3>
+                <p>É importante se vestir modestamente no Paquistão. Homens geralmente usam Shalwar Kameez em ocasiões formais, e mulheres devem cobrir os ombros e usar roupas que cubram os joelhos.</p>
+            </div>
+            <div class="culture-card">
+                <h3>Refeições</h3>
+                <p>No Paquistão, é comum comer com a mão direita. As refeições são momentos de socialização, e é considerado educado aceitar a hospitalidade oferecida. O chá (chai) é uma parte importante da cultura social.</p>
+            </div>
+            <div class="culture-card">
+                <h3>Mesquitas</h3>
+                <p>Ao visitar mesquitas, deve-se tirar os sapatos e as mulheres devem cobrir a cabeça. É importante manter silêncio e respeito nesses locais sagrados.</p>
             </div>
         </section>
 
-        <section id="dos-donts">
-            <h2>O que Fazer e o que Não Fazer</h2>
-            <h3>O que Fazer:</h3>
-            <ul>
-                <li>Saudar com "As-salamu alaykum", especialmente ao encontrar muçulmanos.</li>
-                <li>Oferecer um presente pequeno ao visitar uma casa, um gesto comum de hospitalidade.</li>
-                <li>Quando for convidado para um evento formal, use roupas mais formais e evite vestir roupas muito casuais.</li>
-                <li>Fazer o sinal de cabeça (aprovando) enquanto alguém fala, como sinal de respeito e atenção.</li>
-            </ul>
-
-            <h3>O que Não Fazer:</h3>
-            <ul>
-                <li>Evitar discutir temas como política e religião, que podem ser sensíveis.</li>
-                <li>Não toque a cabeça de outras pessoas (especialmente crianças), pois ela é considerada a parte mais sagrada do corpo.</li>
-                <li>Não use linguagem ou gestos excessivamente informais, pois o respeito é fundamental.</li>
-                <li>Evitar usar calçados dentro de casas ou mesquitas.</li>
-            </ul>
+        <section id="taboos">
+            <h2>Respeito Cultural e Comportamentos</h2>
+            <div class="culture-card">
+                <h3>Interações Sociais</h3>
+                <p>O respeito pelos idosos é muito importante na cultura paquistanesa. Evite discussões sobre política ou religião com pessoas que você acabou de conhecer.</p>
+            </div>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Situação</th>
+                        <th>O que Evitar</th>
+                        <th>O que Fazer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Visitas a Casas</td>
+                        <td>Entrar com sapatos</td>
+                        <td>Tirar os sapatos na entrada</td>
+                    </tr>
+                    <tr>
+                        <td>Refeições</td>
+                        <td>Usar a mão esquerda para comer</td>
+                        <td>Usar apenas a mão direita</td>
+                    </tr>
+                    <tr>
+                        <td>Encontros Sociais</td>
+                        <td>Recusar chá ou hospitalidade</td>
+                        <td>Aceitar ao menos uma xícara de chá</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
-        <section id="conversacao">
-            <h2>Exemplo de Conversação</h2>
-            <p>Aqui estão dois exemplos de conversação prática em Urdu, com foco em situações do dia a dia no Paquistão:</p>
-            
-            <div class="conversation-box">
-                <h3>Exemplo 1: Cumprimentos</h3>
-                <div class="conversation">
-                    <p><strong>Você:</strong> سلام! آپ کیسے ہیں؟ (Salaam! Aap kaise hain?)</p>
-                    <p><strong>Resposta:</strong> میں خیریت سے ہوں، شکریہ! (Main khair makdam hoon, shukriya!)</p>
+        <section id="practice" class="practice-section">
+            <h2>Prática</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    Qual é a saudação tradicional em Urdu no Paquistão?
                 </div>
-                <button class="audio-button" onclick="playAudio('audio/greeting.mp3')">Ouvir Cumprimento</button>
-            </div>
-
-            <div class="conversation-box">
-                <h3>Exemplo 2: Pedindo Direções</h3>
-                <div class="conversation">
-                    <p><strong>Você:</strong> معاف کیجیے، مجھے راستہ بتائیں۔ (Maaf kijiye, mujhe raasta batayein.)</p>
-                    <p><strong>Resposta:</strong> یہ سٹریٹ سیدھی ہے، آپ کو پھر دائیں مڑنا ہے۔ (Yeh street seedhi hai, aap ko phir daayein mudna hai.)</p>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">السلام علیکم (Assalam-o-Alaikum)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'wrong')">صبح بخیر (Subah Bakhair)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'wrong')">شکریہ (Shukriya)</div>
                 </div>
-                <button class="audio-button" onclick="playAudio('audio/directions.mp3')">Ouvir Direções</button>
             </div>
-            
-            <!-- Additional Example -->
-            <div class="conversation-box">
-                <h3>Exemplo 3: Pedindo Ajuda</h3>
-                <div class="conversation">
-                    <p><strong>Você:</strong> براہ کرم میری مدد کریں۔ (Barah-e-karam meri madad karein.)</p>
-                    <p><strong>Resposta:</strong> جی ہاں، کس طرح کی مدد چاہیے؟ (Ji haan, kis tarah ki madad chahiye?)</p>
-                </div>
-                <button class="audio-button" onclick="playAudio('audio/help.mp3')">Ouvir Pedindo Ajuda</button>
-            </div>
-
         </section>
+    </div>
 
-       
-    </main>
+    <div class="navigation-buttons">
+        <a href="viagens.html" class="nav-btn">
+            <i class="fas fa-home"></i>
+            Menu Principal
+        </a>
+        <a href="lesson_emergency_phrases.html" class="nav-btn">
+            <span>Próxima Lição</span>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
 
     <script>
-        function playAudio(file) {
-            var audio = new Audio(file);
-            audio.play();
+        // Progress bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Audio playback functionality
+        function playAudio(audioId) {
+            const audio = new Audio(`${audioId}.mp3`);
+            audio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                alert('Desculpe, não foi possível reproduzir o áudio. Por favor, verifique se o arquivo de áudio existe.');
+            });
+        }
+
+        // Quiz functionality
+        function checkAnswer(element, type) {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.style.background = 'white';
+                option.style.color = 'var(--text-color)';
+            });
+
+            if (type === 'correct') {
+                element.style.background = 'var(--accent-color)';
+                element.style.color = 'white';
+            } else {
+                element.style.background = '#ff4444';
+                element.style.color = 'white';
+            }
         }
     </script>
 </body>

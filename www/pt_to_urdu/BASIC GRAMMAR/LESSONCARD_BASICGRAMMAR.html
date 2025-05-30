@@ -3,270 +3,500 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprenda Português - Aulas Avançadas de Língua</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Cartões de lições</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #4a90e2;
+            --accent-color: #ff6b6b;
+            --bg-color: #ffffff;
+            --card-bg: #f8f9fa;
+            --text-primary: #002D62;
+            --text-secondary: #4a5568;
+            --shadow-color: rgba(0, 45, 98, 0.1);
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f1f2f6;
-            color:  #002D62;
-            line-height: 1.6;
-            transition: background-color 0.3s;
-        }
-
-        /* Header Section */
-        header {
-            padding: 50px;
-            background-color:  #002D62;
-            color: white;
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        header h1 {
-            font-size: 4rem;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        /* Dark Mode Toggle */
-        .dark-mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-        }
-
-        .dark-mode-toggle:hover {
-            background-color: #555;
-        }
-
-        .category-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            padding: 50px;
-            justify-items: center;
-        }
-
-        .category-box {
+            min-height: 100vh;
+            background: var(--bg-color);
+            padding: 40px 20px;
+            overflow-x: hidden;
             position: relative;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.4s, box-shadow 0.4s;
-            overflow: hidden;
-            cursor: pointer;
-            text-align: center;
+            color: var(--text-primary);
         }
 
-        .category-box img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .category-box:hover img {
-            transform: scale(1.1);
-        }
-
-        .category-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .category-box h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-top: 20px;
-            color: #333;
-        }
-
-        .category-box p {
-            font-size: 1.2rem;
-            color: #666;
-            margin: 10px 0;
-        }
-
-        .category-box a {
-            padding: 12px 30px;
-            background-color: #008080;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: background-color 0.3s;
-        }
-
-        .category-box a:hover {
-            background-color: #006666;
-        }
-
-        /* Modal */
-        .modal {
-            display: none;
+        body::before {
+            content: '';
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 45, 98, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(74, 144, 226, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
-        .modal-content {
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 600px;
-            width: 80%;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.8rem;
-            font-weight: bold;
-            cursor: pointer;
-            color: #333;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
+        .header {
             text-align: center;
+            margin-bottom: 80px;
+            animation: fadeInDown 1s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header::after {
+            content: '';
+            display: block;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+            margin: 25px auto;
+            border-radius: 2px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            font-size: 1.4em;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            width: 95%;
+            max-width: 1600px;
+            margin: auto;
             padding: 20px;
-            font-size: 1rem;
-            position: fixed;
-            bottom: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-primary);
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 45, 98, 0.1);
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 20px 40px var(--shadow-color);
+            border-color: var(--primary-color);
+        }
+
+        .card h3 {
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .card h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .card span {
+            display: block;
+            font-size: 1.3em;
+            margin-bottom: 35px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .card .icon {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            transition: all 0.5s ease;
+        }
+
+        .card:hover .icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .card button {
+            background: var(--primary-color);
+            border: none;
+            padding: 18px 40px;
+            border-radius: 35px;
+            color: white;
+            font-size: 1.3em;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .card button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 45, 98, 0.2);
+        }
+
+        .card button i {
+            transition: transform 0.4s ease;
+        }
+
+        .card button:hover i {
+            transform: translateX(8px);
+        }
+
+        .progress-bar {
+            margin-top: 30px;
             width: 100%;
+            height: 8px;
+            background: rgba(0, 45, 98, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
         }
 
-        footer p {
-            margin: 10px 0;
+        .progress-bar::before {
+            content: '';
+            display: block;
+            height: 100%;
+            width: 70%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            animation: progressAnimation 3s ease-in-out infinite;
         }
 
-        /* Animation for elements */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 2s forwards;
+        @keyframes progressAnimation {
+            0% { width: 60%; }
+            50% { width: 80%; }
+            100% { width: 60%; }
         }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card:nth-child(1) { animation: fadeIn 0.7s ease 0.1s both; }
+        .card:nth-child(2) { animation: fadeIn 0.7s ease 0.2s both; }
+        .card:nth-child(3) { animation: fadeIn 0.7s ease 0.3s both; }
+        .card:nth-child(4) { animation: fadeIn 0.7s ease 0.4s both; }
+        .card:nth-child(5) { animation: fadeIn 0.7s ease 0.5s both; }
+        .card:nth-child(6) { animation: fadeIn 0.7s ease 0.6s both; }
 
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    /* Menu Principal Button */
+    .menu-principal-container {
+      margin-top: 60px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-principal-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 18px 40px;
+      border-radius: 35px;
+      font-size: 1.3em;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .menu-principal-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px var(--shadow-color);
+    }
+
+    .menu-principal-button i {
+      font-size: 1.2em;
+      transition: transform 0.4s ease;
+    }
+
+    .menu-principal-button:hover i {
+      transform: scale(1.2);
+    }
+
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 30px;
+            }
+            
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .card {
+                padding: 30px;
+                min-height: 400px;
+            }
+
+            .card h3 {
+                font-size: 1.8em;
+            }
+
+            .card span {
+                font-size: 1.2em;
+            }
+
+            .card .icon {
+                font-size: 3em;
+            }
+        }
+
+        /* Search and Filter Features */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid rgba(0, 45, 98, 0.1);
+            border-radius: 30px;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(0, 45, 98, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-color);
+        }
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .filter-button {
+            padding: 10px 20px;
+            border: 2px solid rgba(0, 45, 98, 0.1);
+            border-radius: 25px;
+            background: white;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-button:hover, .filter-button.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
     </style>
 </head>
 <body>
+    <div class="header">
+        <h1>Aprenda Português</h1>
+        <p>Inicie sua jornada educacional hoje, projetada para o sucesso</p>
+    </div>
 
-<header class="fade-in">
-    <p>Inicie sua jornada educacional hoje, projetada para o sucesso</p>
-</header>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Pesquisar lições...">
+        <i class="fas fa-search search-icon"></i>
+    </div>
 
-<!-- Dark Mode Toggle -->
-<div class="dark-mode-toggle" onclick="toggleDarkMode()">Modo Escuro</div>
+    <div class="filter-container">
+        <button class="filter-button active" data-filter="todas">Todas</button>
+        <button class="filter-button" data-filter="basico">Básico</button>
+        <button class="filter-button" data-filter="intermediario">Intermediário</button>
+        <button class="filter-button" data-filter="avancado">Avançado</button>
+    </div>
 
-<!-- Lesson Cards -->
-<div class="category-container fade-in">
-    <div class="category-box">
-        <img src="IMG/P.png" alt="Pronouns">
-        <div class="category-content">
+    <div class="card-container">
+        <div class="card" data-difficulty="basico">
+            <i class="fas fa-user icon"></i>
             <h3>Pronomes</h3>
-            <p>Lembre-se de como usar palavras como 'eu', 'você', 'ele', etc.</p>
-            <a href="LESSONpronouns.HTML">Iniciar Aula</a>
+            <span>Lembre-se de como usar palavras como 'eu', 'você', 'ele', etc.</span>
+            <a href="LESSONpronouns.HTML">
+                <button>Iniciar Aula <i class="fas fa-arrow-right"></i></button>
+            </a>
+            <div class="progress-bar"></div>
         </div>
-    </div>
-    
-    <div class="category-box">
-        <img src="IMG/G.png" alt="Grammar">
-        <div class="category-content">
+        
+        <div class="card" data-difficulty="basico">
+            <i class="fas fa-book icon"></i>
             <h3>Gramática</h3>
-            <p>Entenda a gramática do português e a construção de frases.</p>
-            <a href="lesson1.html">Iniciar Aula</a>
+            <span>Entenda a gramática do português e a construção de frases.</span>
+            <a href="lesson1.html">
+                <button>Iniciar Aula <i class="fas fa-arrow-right"></i></button>
+            </a>
+            <div class="progress-bar"></div>
         </div>
-    </div>
-    <div class="category-box">
-        <img src="IMG/T.avif" alt="Vocabulary">
-        <div class="category-content">
+
+        <div class="card" data-difficulty="intermediario">
+            <i class="fas fa-language icon"></i>
             <h3>Vocabulário</h3>
-            <p>Aumente seu vocabulário com palavras e frases essenciais.</p>
-            <a href="lesson2.html">Iniciar Aula</a>
+            <span>Aumente seu vocabulário com palavras e frases essenciais.</span>
+            <a href="lesson2.html">
+                <button>Iniciar Aula <i class="fas fa-arrow-right"></i></button>
+            </a>
+            <div class="progress-bar"></div>
         </div>
-    </div>
-    <div class="category-box">
-        <img src="IMG/F.jpeg" alt="Pronunciation">
-        <div class="category-content">
+
+        <div class="card" data-difficulty="intermediario">
+            <i class="fas fa-volume-up icon"></i>
             <h3>Pronúncia</h3>
-            <p>Aprenda a pronunciar as palavras portuguesas com o sotaque nativo.</p>
-            <a href="lesson3.html">Iniciar Aula</a>
+            <span>Aprenda a pronunciar as palavras portuguesas com o sotaque nativo.</span>
+            <a href="lesson3.html">
+                <button>Iniciar Aula <i class="fas fa-arrow-right"></i></button>
+            </a>
+            <div class="progress-bar"></div>
         </div>
-    </div>
-    
-    <div class="category-box">
-        <img src="IMG/images.jpeg" alt="Adjectives">
-        <div class="category-content">
+        
+        <div class="card" data-difficulty="avancado">
+            <i class="fas fa-adjust icon"></i>
             <h3>Adjetivos</h3>
-            <p>Aprenda os adjetivos básicos e como usá-los em frases.</p>
-            <a href="lesson4.html">Iniciar Aula</a>
+            <span>Aprenda os adjetivos básicos e como usá-los em frases.</span>
+            <a href="lesson4.html">
+                <button>Iniciar Aula <i class="fas fa-arrow-right"></i></button>
+            </a>
+            <div class="progress-bar"></div>
         </div>
-    </div>
-    
-    <div class="category-box">
-        <img src="IMG/TEST.png" alt="Final Test">
-        <div class="category-content">
+        
+        <div class="card" data-difficulty="avancado">
+            <i class="fas fa-graduation-cap icon"></i>
             <h3>Prova Final</h3>
-            <p>Teste seu conhecimento e fortaleça suas habilidades.</p>
-            <a href="lesson5.html">Iniciar Teste</a>
+            <span>Teste seu conhecimento e fortaleça suas habilidades.</span>
+            <a href="lesson5.html">
+                <button>Iniciar Teste <i class="fas fa-arrow-right"></i></button>
+            </a>
+            <div class="progress-bar"></div>
         </div>
     </div>
-    
-</div>
 
-<!-- Modal Window (for Lesson Details) -->
-<div class="modal" id="lessonModal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>Detalhes da Aula</h2>
-        <p>Os detalhes da aula serão exibidos aqui, incluindo exercícios interativos, quizzes e mais!</p>
+    <div class="menu-principal-container">
+    <a href="../mainmenuptur.html" class="menu-principal-button">
+      <i class="fas fa-home"></i>
+      Menu Principal
+    </a>
     </div>
-</div>
 
-<script>
-    // Toggle Dark Mode
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
-    }
+    <script>
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const cards = document.querySelectorAll('.card');
+        
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('span').textContent.toLowerCase();
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
 
-    // Modal Open & Close Functions
-    function openModal() {
-        document.getElementById('lessonModal').style.display = "flex";
-    }
-
-    function closeModal() {
-        document.getElementById('lessonModal').style.display = "none";
-    }
-</script>
-
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-button');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Get the filter value from data-filter attribute
+                const filterValue = button.getAttribute('data-filter');
+                
+                // Filter the cards
+                cards.forEach(card => {
+                    if (filterValue === 'todas') {
+                        card.style.display = 'flex';
+                    } else {
+                        const cardDifficulty = card.getAttribute('data-difficulty');
+                        card.style.display = cardDifficulty === filterValue ? 'flex' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+

@@ -1,148 +1,1207 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>اردو سے پرتگالی: 123 سیکھیں</title>
+  <title>Aprenda 123 em Urdu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    body {
-      font-family: "Noto Nastaliq Urdu", Arial, sans-serif;
-      background: linear-gradient(to bottom, #f8f9fa, #dfe4ea);
-      margin: 0;
-      padding: 0;
-      text-align: center;
+    :root {
+      --primary-color: #002D62;
+      --secondary-color: #0056b3;
+      --accent-color: #e74c3c;
+      --background-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-primary: #002D62;
+      --text-secondary: #4a5568;
+      --light-bg: #f1f5f9;
+      --text-color: #002D62;
+      --success-color: #2ecc71;
+      --warning-color: #f1c40f;
+      --danger-color: #e74c3c;
+      --border-color: rgba(0, 45, 98, 0.1);
     }
 
-    .container {
-      max-width: 800px;
-      margin: 30px auto;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--background-color);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
       padding: 20px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    .header {
+      text-align: center;
+      padding: 25px 0;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 15px rgba(0, 45, 98, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="50" font-size="20" fill="rgba(255,255,255,0.1)" text-anchor="middle">123</text></svg>');
+      background-size: 100px;
+      opacity: 0.1;
+    }
+
+    .menu-principal-btn {
+      position: absolute;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .menu-principal-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .menu-principal-btn i {
+      font-size: 1.2rem;
     }
 
     h1 {
-      font-size: 30px;
-      color: #2c3e50;
-      margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      z-index: 1;
     }
 
     .instructions {
-      font-size: 18px;
-      color: #636e72;
-      margin-bottom: 20px;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .progress-container {
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 12px;
+      margin: 20px auto;
+      max-width: 800px;
+      box-shadow: 0 2px 10px var(--border-color);
+      border: 1px solid var(--border-color);
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--light-bg);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress {
+      height: 100%;
+      background: var(--primary-color);
+      width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .progress-text {
+      text-align: center;
+      margin-top: 15px;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+    }
+
+    .numbers-container {
+      max-height: 65vh;
+      overflow-y: auto;
+      padding: 15px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary-color) var(--light-bg);
+    }
+
+    .numbers-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .numbers-container::-webkit-scrollbar-track {
+      background: var(--light-bg);
+      border-radius: 10px;
+    }
+
+    .numbers-container::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 10px;
+    }
+
+    .numbers-container::-webkit-scrollbar-thumb:hover {
+      background: var(--secondary-color);
     }
 
     .numbers {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
     .number-card {
-      background:  #002D62;
-      color: #ffffff;
-      padding: 20px;
-      border-radius: 10px;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 15px;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+      box-shadow: 0 2px 8px var(--border-color);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .number-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .number-card:hover {
       transform: translateY(-5px);
-      background: #bbdbf3;
+      box-shadow: 0 5px 15px rgba(0, 45, 98, 0.15);
+      border-color: var(--primary-color);
+    }
+
+    .number-card:hover::before {
+      opacity: 1;
+    }
+
+    .number-card.learned {
+      border-color: var(--success-color);
+      background: #f8fff9;
     }
 
     .number-card h2 {
-      font-size: 40px;
+      font-size: 3rem;
+      font-family: 'Montserrat', sans-serif;
       margin: 0;
+      color: var(--primary-color);
     }
 
     .number-card p {
-      font-size: 18px;
-      margin: 5px 0 0;
+      font-size: 1.8rem;
+      margin: 10px 0;
+      color: var(--text-secondary);
+      font-weight: 600;
     }
 
-    .audio-instruction {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #6c5ce7;
+    .number-card small {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      opacity: 0.8;
     }
 
-    .replay-btn {
-      margin-top: 20px;
-      background-color:  #002D62;
-      color: white;
-      padding: 10px 20px;
+    .controls {
+      position: sticky;
+      bottom: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+      z-index: 99;
+      background: var(--card-bg);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px var(--border-color);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn {
+      padding: 12px 25px;
       border: none;
-      border-radius: 5px;
+      border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: var(--primary-color);
+      color: white;
     }
 
-    .replay-btn:hover {
-      background-color: #bbdbf3;
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 45, 98, 0.2);
+      background: var(--secondary-color);
     }
 
-    
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 45, 98, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+      animation: zoomIn 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0, 45, 98, 0.2);
+      border: 1px solid var(--border-color);
+      margin: 20px;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+      background: var(--light-bg);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-color);
+      z-index: 1001;
+    }
+
+    .close-modal:hover {
+      transform: rotate(90deg);
+      color: var(--danger-color);
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-number {
+      font-size: 6rem;
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .modal-number::after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 4px;
+      background: var(--accent-color);
+      border-radius: 2px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .modal-pronunciation {
+      font-size: 1.8rem;
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .number-writing {
+      margin-top: 25px;
+      padding: 20px;
+      background: var(--light-bg);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .number-writing h3 {
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .number-writing h3::before {
+      content: '✍️';
+      font-size: 1.8rem;
+    }
+
+    .number-writing p {
+      margin: 10px 0;
+      line-height: 1.8;
+      color: var(--text-color);
+      font-size: 1.2rem;
+    }
+
+    .modal-examples {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .example-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px var(--border-color);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border-color);
+    }
+
+    .example-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .example-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 45, 98, 0.15);
+      border-color: var(--primary-color);
+    }
+
+    .example-card:hover::before {
+      opacity: 1;
+    }
+
+    .example-card .urdu-text {
+      font-size: 2.2rem;
+      color: var(--primary-color);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .example-card p {
+      margin: 10px 0;
+      font-size: 1.3rem;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+
+    .audio-controls {
+      margin-top: 25px;
+      padding: 15px;
+      background: var(--light-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 2px 8px var(--border-color);
+      border: 1px solid var(--border-color);
+    }
+
+    .audio-controls audio {
+      flex: 1;
+      height: 50px;
+      border-radius: 8px;
+    }
+
+    .audio-controls button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .audio-controls button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 45, 98, 0.2);
+      background: var(--secondary-color);
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .numbers {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .number-card h2 {
+        font-size: 2.5rem;
+      }
+
+      .modal-content {
+        padding: 20px;
+      }
+
+      .modal-number {
+        font-size: 5rem;
+      }
+    }
+    .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers everything horizontally */
+  justify-content: center;
+  background-color: #003366;
+  color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  direction: rtl;
+  text-align: center;
+}
+
+.header .icon {
+  font-size: 3rem; /* Bigger icon */
+  margin-bottom: 0.5rem;
+}
+
+.header h2 {
+  font-size: 3rem; /* Bigger title */
+  margin: 0.5rem 0;
+}
+
+.header p {
+  font-size: 1.50rem; /* Bigger subtitle */
+  margin: 0;
+}
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>اردو سے پرتگالی: 123 سیکھیں</h1>
-    <p class="instructions">ہر نمبر پر کلک کریں تاکہ آپ پرتگالی میں نمبر سن سکیں۔</p>
+<div class="header">
+  <div class="icon" style="font-size: 4rem;"></div>
+  <h2>اعداد سیکھیں🎓</h2>
+  <p>ہر نمبر پر کلک کریں تاکہ اس کی ادائیگی اور مثالیں اردو میں سیکھیں۔</p>
+</div>
 
-    <div class="numbers">
-      <div class="number-card" onclick="playAudio('um')">
-        <h2>1</h2>
-        <p>Um</p>
-        <small>ایک</small>
-      </div>
-      <div class="number-card" onclick="playAudio('dois')">
-        <h2>2</h2>
-        <p>Dois</p>
-        <small>دو</small>
-      </div>
-      <div class="number-card" onclick="playAudio('tres')">
-        <h2>3</h2>
-        <p>Três</p>
-        <small>تین</small>
-      </div>
+
+
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
     </div>
-
-    <p class="audio-instruction">آخری آڈیو دوبارہ سننے کے لئے نیچے دبائیں:</p>
-    <button class="replay-btn" onclick="replayLastAudio()">آخری نمبر دوبارہ سنیں</button>
+    <div class="progress-text">Progresso: <span id="progress-text">0%</span></div>
   </div>
 
+ <div class="numbers-container">
+  <div class="numbers">
+    <div class="number-card" onclick="showNumberDetails('ek')">
+      <h2>1</h2>
+      <p>ایک</p>
+      <small>ایک</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('do')">
+      <h2>2</h2>
+      <p>دو</p>
+      <small>دو</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('teen')">
+      <h2>3</h2>
+      <p>تین</p>
+      <small>تین</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('chaar')">
+      <h2>4</h2>
+      <p>چار</p>
+      <small>چار</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('paanch')">
+      <h2>5</h2>
+      <p>پانچ</p>
+      <small>پانچ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('cheh')">
+      <h2>6</h2>
+      <p>چھ</p>
+      <small>چھ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('saat')">
+      <h2>7</h2>
+      <p>سات</p>
+      <small>سات</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('aath')">
+      <h2>8</h2>
+      <p>آٹھ</p>
+      <small>آٹھ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('nao')">
+      <h2>9</h2>
+      <p>نو</p>
+      <small>نو</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('das')">
+      <h2>10</h2>
+      <p>دس</p>
+      <small>دس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('gyarah')">
+      <h2>11</h2>
+      <p>گیارہ</p>
+      <small>گیارہ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('barah')">
+      <h2>12</h2>
+      <p>بارہ</p>
+      <small>بارہ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('terah')">
+      <h2>13</h2>
+      <p>تیرہ</p>
+      <small>تیرہ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('chaudah')">
+      <h2>14</h2>
+      <p>چودہ</p>
+      <small>چودہ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('pandrah')">
+      <h2>15</h2>
+      <p>پندرہ</p>
+      <small>پندرہ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('solah')">
+      <h2>16</h2>
+      <p>سولہ</p>
+      <small>سولہ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('satrah')">
+      <h2>17</h2>
+      <p>سترہ</p>
+      <small>سترہ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('atharah')">
+      <h2>18</h2>
+      <p>اٹھارہ</p>
+      <small>اٹھارہ</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('unnees')">
+      <h2>19</h2>
+      <p>انیس</p>
+      <small>انیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('bees')">
+      <h2>20</h2>
+      <p>بیس</p>
+      <small>بیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('ikkees')">
+      <h2>21</h2>
+      <p>اکیس</p>
+      <small>اکیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('baees')">
+      <h2>22</h2>
+      <p>بائیس</p>
+      <small>بائیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('taees')">
+      <h2>23</h2>
+      <p>تئیس</p>
+      <small>تئیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('chobees')">
+      <h2>24</h2>
+      <p>چوبیس</p>
+      <small>چوبیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('pachees')">
+      <h2>25</h2>
+      <p>پچیس</p>
+      <small>پچیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('chhabees')">
+      <h2>26</h2>
+      <p>چھبیس</p>
+      <small>چھبیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('sattaees')">
+      <h2>27</h2>
+      <p>ستائیس</p>
+      <small>ستائیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('atthaeis')">
+      <h2>28</h2>
+      <p>اٹھائیس</p>
+      <small>اٹھائیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('untees')">
+      <h2>29</h2>
+      <p>انتیس</p>
+      <small>انتیس</small>
+    </div>
+    <div class="number-card" onclick="showNumberDetails('tees')">
+      <h2>30</h2>
+      <p>تیس</p>
+      <small>Trinta</small>
+    </div>
+  </div>
+</div>
 
-  <audio id="um" src="data:audio/mp3;base64,//YourBase64AudioHereForUm"></audio>
-  <audio id="dois" src="data:audio/mp3;base64,//YourBase64AudioHereForDois"></audio>
-  <audio id="tres" src="data:audio/mp3;base64,//YourBase64AudioHereForTres"></audio>
+<div class="controls">
+  <button class="btn btn-primary" onclick="playAllAudio()">
+    <i class="fas fa-play"></i> تمام آڈیوز چلائیں
+  </button>
+  <a href="intrucaodequiz/introducao.html" class="btn btn-secondary">
+    <i class="fas fa-arrow-right"></i> اگلا سبق
+  </a>
+</div>
+
+
+  <div class="modal" id="number-modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div class="modal-number" id="modal-number"></div>
+      <div class="modal-pronunciation" id="modal-pronunciation"></div>
+      <div class="number-writing">
+        <h3>کیسے لکھیں</h3>
+        <p id="modal-writing"></p>
+      </div>
+      <div class="modal-examples" id="modal-examples"></div>
+      <div class="audio-controls">
+        <audio id="number-audio" controls></audio>
+        <button onclick="playAudio()">🔊 Ouvir</button>
+      </div>
+    </div>
+  </div>
 
   <script>
-    let lastAudioId = null;
+    let learnedNumbers = new Set();
+    let isMuted = false;
 
-    function playAudio(id) {
-      const audio = document.getElementById(id);
+    const numberData = {
+  ek: {
+    number: '1',
+    portuguese: 'Um',
+    pronunciation: 'Um',
+    writing: 'پرتگالی میں نمبر ایک اس طرح لکھا جاتا ہے: "um".',
+    examples: [
+      { urdu: 'ایک کتاب', portuguese: 'um livro' },
+      { urdu: 'ایک گھر', portuguese: 'uma casa' }
+    ],
+    audio: 'audio/ek.mp3'
+  },
+  do: {
+    number: '2',
+    portuguese: 'Dois',
+    pronunciation: 'Do',
+    writing: 'پرتگالی میں نمبر دو اس طرح لکھا جاتا ہے: "dois".',
+    examples: [
+      { urdu: 'دو کتابیں', portuguese: 'dois livros' },
+      { urdu: 'دو گھر', portuguese: 'duas casas' }
+    ],
+    audio: 'audio/do.mp3'
+  },
+  teen: {
+    number: '3',
+    portuguese: 'Três',
+    pronunciation: 'Teen',
+    writing: 'پرتگالی میں نمبر تین اس طرح لکھا جاتا ہے: "três".',
+    examples: [
+      { urdu: 'تین کتابیں', portuguese: 'três livros' },
+      { urdu: 'تین گھر', portuguese: 'três casas' }
+    ],
+    audio: 'audio/teen.mp3'
+  },
+  chaar: {
+    number: '4',
+    portuguese: 'Quatro',
+    pronunciation: 'Chaar',
+    writing: 'پرتگالی میں نمبر چار اس طرح لکھا جاتا ہے: "quatro".',
+    examples: [
+      { urdu: 'چار کتابیں', portuguese: 'quatro livros' },
+      { urdu: 'چار گھر', portuguese: 'quatro casas' }
+    ],
+    audio: 'audio/chaar.mp3'
+  },
+  paanch: {
+    number: '5',
+    portuguese: 'Cinco',
+    pronunciation: 'Paanch',
+    writing: 'پرتگالی میں نمبر پانچ اس طرح لکھا جاتا ہے: "cinco".',
+    examples: [
+      { urdu: 'پانچ کتابیں', portuguese: 'cinco livros' },
+      { urdu: 'پانچ گھر', portuguese: 'cinco casas' }
+    ],
+    audio: 'audio/paanch.mp3'
+  },
+  cheh: {
+    number: '6',
+    portuguese: 'Seis',
+    pronunciation: 'Cheh',
+    writing: 'پرتگالی میں نمبر چھ اس طرح لکھا جاتا ہے: "seis".',
+    examples: [
+      { urdu: 'چھ کتابیں', portuguese: 'seis livros' },
+      { urdu: 'چھ گھر', portuguese: 'seis casas' }
+    ],
+    audio: 'audio/cheh.mp3'
+  },
+  saat: {
+    number: '7',
+    portuguese: 'Sete',
+    pronunciation: 'Saat',
+    writing: 'پرتگالی میں نمبر سات اس طرح لکھا جاتا ہے: "sete".',
+    examples: [
+      { urdu: 'سات کتابیں', portuguese: 'sete livros' },
+      { urdu: 'سات گھر', portuguese: 'sete casas' }
+    ],
+    audio: 'audio/saat.mp3'
+  },
+  aath: {
+    number: '8',
+    portuguese: 'Oito',
+    pronunciation: 'Aath',
+    writing: 'پرتگالی میں نمبر آٹھ اس طرح لکھا جاتا ہے: "oito".',
+    examples: [
+      { urdu: 'آٹھ کتابیں', portuguese: 'oito livros' },
+      { urdu: 'آٹھ گھر', portuguese: 'oito casas' }
+    ],
+    audio: 'audio/aath.mp3'
+  },
+  nao: {
+    number: '9',
+    portuguese: 'Nove',
+    pronunciation: 'Nao',
+    writing: 'پرتگالی میں نمبر نو اس طرح لکھا جاتا ہے: "nove".',
+    examples: [
+      { urdu: 'نو کتابیں', portuguese: 'nove livros' },
+      { urdu: 'نو گھر', portuguese: 'nove casas' }
+    ],
+    audio: 'audio/nao.mp3'
+  },
+  das: {
+    number: '10',
+    portuguese: 'Dez',
+    pronunciation: 'Das',
+    writing: 'پرتگالی میں نمبر دس اس طرح لکھا جاتا ہے: "dez".',
+    examples: [
+      { urdu: 'دس کتابیں', portuguese: 'dez livros' },
+      { urdu: 'دس گھر', portuguese: 'dez casas' }
+    ],
+    audio: 'audio/das.mp3'
+  },
+  gyarah: {
+    number: '11',
+    portuguese: 'Onze',
+    pronunciation: 'Gyarah',
+    writing: 'پرتگالی میں نمبر گیارہ اس طرح لکھا جاتا ہے: "onze".',
+    examples: [
+      { urdu: 'گیارہ کتابیں', portuguese: 'onze livros' },
+      { urdu: 'گیارہ گھر', portuguese: 'onze casas' }
+    ],
+    audio: 'audio/gyarah.mp3'
+  },
+  barah: {
+    number: '12',
+    portuguese: 'Doze',
+    pronunciation: 'Barah',
+    writing: 'پرتگالی میں نمبر بارہ اس طرح لکھا جاتا ہے: "doze".',
+    examples: [
+      { urdu: 'بارہ کتابیں', portuguese: 'doze livros' },
+      { urdu: 'بارہ گھر', portuguese: 'doze casas' }
+    ],
+    audio: 'audio/barah.mp3'
+  },
+  terah: {
+    number: '13',
+    portuguese: 'Treze',
+    pronunciation: 'Terah',
+    writing: 'پرتگالی میں نمبر تیرہ اس طرح لکھا جاتا ہے: "treze".',
+    examples: [
+      { urdu: 'تیرہ کتابیں', portuguese: 'treze livros' },
+      { urdu: 'تیرہ گھر', portuguese: 'treze casas' }
+    ],
+    audio: 'audio/terah.mp3'
+  },
+  chaudah: {
+    number: '14',
+    portuguese: 'Quatorze',
+    pronunciation: 'Chaudah',
+    writing: 'پرتگالی میں نمبر چودہ اس طرح لکھا جاتا ہے: "quatorze".',
+    examples: [
+      { urdu: 'چودہ کتابیں', portuguese: 'quatorze livros' },
+      { urdu: 'چودہ گھر', portuguese: 'quatorze casas' }
+    ],
+    audio: 'audio/chaudah.mp3'
+  },
+  pandrah: {
+    number: '15',
+    portuguese: 'Quinze',
+    pronunciation: 'Pandrah',
+    writing: 'پرتگالی میں نمبر پندرہ اس طرح لکھا جاتا ہے: "quinze".',
+    examples: [
+      { urdu: 'پندرہ کتابیں', portuguese: 'quinze livros' },
+      { urdu: 'پندرہ گھر', portuguese: 'quinze casas' }
+    ],
+    audio: 'audio/pandrah.mp3'
+  },
+  solah: {
+    number: '16',
+    portuguese: 'Dezesseis',
+    pronunciation: 'Solah',
+    writing: 'پرتگالی میں نمبر سولہ اس طرح لکھا جاتا ہے: "dezesseis".',
+    examples: [
+      { urdu: 'سولہ کتابیں', portuguese: 'dezesseis livros' },
+      { urdu: 'سولہ گھر', portuguese: 'dezesseis casas' }
+    ],
+    audio: 'audio/solah.mp3'
+  },
+  satrah: {
+    number: '17',
+    portuguese: 'Dezessete',
+    pronunciation: 'Satrah',
+    writing: 'پرتگالی میں نمبر سترہ اس طرح لکھا جاتا ہے: "dezessete".',
+    examples: [
+      { urdu: 'سترہ کتابیں', portuguese: 'dezessete livros' },
+      { urdu: 'سترہ گھر', portuguese: 'dezessete casas' }
+    ],
+    audio: 'audio/satrah.mp3'
+  },
+  atharah: {
+    number: '18',
+    portuguese: 'Dezoito',
+    pronunciation: 'Atharah',
+    writing: 'پرتگالی میں نمبر اٹھارہ اس طرح لکھا جاتا ہے: "dezoito".',
+    examples: [
+      { urdu: 'اٹھارہ کتابیں', portuguese: 'dezoito livros' },
+      { urdu: 'اٹھارہ گھر', portuguese: 'dezoito casas' }
+    ],
+    audio: 'audio/atharah.mp3'
+  },
+  unnees: {
+    number: '19',
+    portuguese: 'Dezenove',
+    pronunciation: 'Unnees',
+    writing: 'پرتگالی میں نمبر انیس اس طرح لکھا جاتا ہے: "dezenove".',
+    examples: [
+      { urdu: 'انیس کتابیں', portuguese: 'dezenove livros' },
+      { urdu: 'انیس گھر', portuguese: 'dezenove casas' }
+    ],
+    audio: 'audio/unnees.mp3'
+  },
+  bees: {
+    number: '20',
+    portuguese: 'Vinte',
+    pronunciation: 'Bees',
+    writing: 'پرتگالی میں نمبر بیس اس طرح لکھا جاتا ہے: "vinte".',
+    examples: [
+      { urdu: 'بیس کتابیں', portuguese: 'vinte livros' },
+      { urdu: 'بیس گھر', portuguese: 'vinte casas' }
+    ],
+    audio: 'audio/bees.mp3'
+  },
+  ikkees: {
+    number: '21',
+    portuguese: 'Vinte e Um',
+    pronunciation: 'Ikkees',
+    writing: 'پرتگالی میں نمبر اکیس اس طرح لکھا جاتا ہے: "vinte e um".',
+    examples: [
+      { urdu: 'اکیس کتابیں', portuguese: 'vinte e um livros' },
+      { urdu: 'اکیس گھر', portuguese: 'vinte e uma casas' }
+    ],
+    audio: 'audio/ikkees.mp3'
+  },
+  baees: {
+    number: '22',
+    portuguese: 'Vinte e Dois',
+    pronunciation: 'Baees',
+    writing: 'پرتگالی میں نمبر بائیس اس طرح لکھا جاتا ہے: "vinte e dois".',
+    examples: [
+      { urdu: 'بائیس کتابیں', portuguese: 'vinte e dois livros' },
+      { urdu: 'بائیس گھر', portuguese: 'vinte e duas casas' }
+    ],
+    audio: 'audio/baees.mp3'
+  },
+  taees: {
+    number: '23',
+    portuguese: 'Vinte e Três',
+    pronunciation: 'Taees',
+    writing: 'پرتگالی میں نمبر تئیس اس طرح لکھا جاتا ہے: "vinte e três".',
+    examples: [
+      { urdu: 'تئیس کتابیں', portuguese: 'vinte e três livros' },
+      { urdu: 'تئیس گھر', portuguese: 'vinte e três casas' }
+    ],
+    audio: 'audio/taees.mp3'
+  },
+  chobees: {
+    number: '24',
+    portuguese: 'Vinte e Quatro',
+    pronunciation: 'Chobees',
+    writing: 'پرتگالی میں نمبر چون اس طرح لکھا جاتا ہے: "vinte e quatro".',
+    examples: [
+      { urdu: 'چوبیس کتابیں', portuguese: 'vinte e quatro livros' },
+      { urdu: 'چوبیس گھر', portuguese: 'vinte e quatro casas' }
+    ],
+    audio: 'audio/chobees.mp3'
+  },
+  pachees: {
+    number: '25',
+    portuguese: 'Vinte e Cinco',
+    pronunciation: 'Pachees',
+    writing: 'پرتگالی میں نمبر پچیس اس طرح لکھا جاتا ہے: "vinte e cinco".',
+    examples: [
+      { urdu: 'پچیس کتابیں', portuguese: 'vinte e cinco livros' },
+      { urdu: 'پچیس گھر', portuguese: 'vinte e cinco casas' }
+    ],
+    audio: 'audio/pachees.mp3'
+  },
+  chhabees: {
+    number: '26',
+    portuguese: 'Vinte e Seis',
+    pronunciation: 'Chhabees',
+    writing: 'پرتگالی میں نمبر چھبیس اس طرح لکھا جاتا ہے: "vinte e seis".',
+    examples: [
+      { urdu: 'چھبیس کتابیں', portuguese: 'vinte e seis livros' },
+      { urdu: 'چھبیس گھر', portuguese: 'vinte e seis casas' }
+    ],
+    audio: 'audio/chhabees.mp3'
+  },
+  sattaees: {
+    number: '27',
+    portuguese: 'Vinte e Sete',
+    pronunciation: 'Sattaees',
+    writing: 'پرتگالی میں نمبر ستائیس اس طرح لکھا جاتا ہے: "vinte e sete".',
+    examples: [
+      { urdu: 'ستائیس کتابیں', portuguese: 'vinte e sete livros' },
+      { urdu: 'ستائیس گھر', portuguese: 'vinte e sete casas' }
+    ],
+    audio: 'audio/sattaees.mp3'
+  },
+  atthaeis: {
+    number: '28',
+    portuguese: 'Vinte e Oito',
+    pronunciation: 'Atthaeis',
+    writing: 'پرتگالی میں نمبر اٹھائیس اس طرح لکھا جاتا ہے: "vinte e oito".',
+    examples: [
+      { urdu: 'اٹھائیس کتابیں', portuguese: 'vinte e oito livros' },
+      { urdu: 'اٹھائیس گھر', portuguese: 'vinte e oito casas' }
+    ],
+    audio: 'audio/atthaeis.mp3'
+  },
+  untees: {
+    number: '29',
+    portuguese: 'Vinte e Nove',
+    pronunciation: 'Untees',
+    writing: 'پرتگالی میں نمبر انتیس اس طرح لکھا جاتا ہے: "vinte e nove".',
+    examples: [
+      { urdu: 'انتیس کتابیں', portuguese: 'vinte e nove livros' },
+      {urdu: 'انتیس گھر', portuguese: 'vinte e nove casas' }
+],
+audio: 'audio/untees.mp3'
+},
+
+tees: {
+number: '30',
+portuguese: 'Trinta',
+pronunciation: 'Tees',
+writing: 'پرتگالی میں نمبر تیس اس طرح لکھا جاتا ہے: "trinta".',
+examples: [
+{ urdu: 'تیس کتابیں', portuguese: 'trinta livros' },
+{ urdu: 'تیس گھر', portuguese: 'trinta casas' }
+],
+audio: 'audio/tees.mp3'
+}
+};
+    function showNumberDetails(number) {
+      const modal = document.getElementById('number-modal');
+      const modalNumber = document.getElementById('modal-number');
+      const modalPronunciation = document.getElementById('modal-pronunciation');
+      const modalWriting = document.getElementById('modal-writing');
+      const modalExamples = document.getElementById('modal-examples');
+      const numberAudio = document.getElementById('number-audio');
+
+      const data = numberData[number];
+      if (!data) return;
+
+      modalNumber.textContent = data.number;
+modalPronunciation.textContent = `تلفظ: ${data.pronunciation}`;
+      modalWriting.textContent = data.writing;
+      numberAudio.src = data.audio;
+
+      // Clear previous examples
+      modalExamples.innerHTML = '';
+
+      // Add new examples
+      data.examples.forEach(example => {
+        const exampleCard = document.createElement('div');
+        exampleCard.className = 'example-card';
+        exampleCard.innerHTML = `
+          <div class="urdu-text">${example.urdu}</div>
+          <p>${example.portuguese}</p>
+        `;
+        modalExamples.appendChild(exampleCard);
+      });
+
+      modal.style.display = 'flex';
+      learnedNumbers.add(number);
+      updateProgress();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('number-modal');
+      modal.style.display = 'none';
+      
+      // Stop audio if playing
+      const audio = document.getElementById('number-audio');
       if (audio) {
-        audio.play();
-        lastAudioId = id;
+        audio.pause();
+        audio.currentTime = 0;
       }
     }
 
-    function replayLastAudio() {
-      if (lastAudioId) {
-        const audio = document.getElementById(lastAudioId);
-        if (audio) {
+    function playAudio() {
+      const audio = document.getElementById('number-audio');
+      audio.play();
+    }
+
+    function updateProgress() {
+      const progress = (learnedNumbers.size / 30) * 100;
+      document.getElementById('progress').style.width = `${progress}%`;
+      document.getElementById('progress-text').textContent = `${Math.round(progress)}%`;
+    }
+
+    function playAllAudio() {
+      if (isMuted) return;
+      const numbers = ['ek', 'do', 'teen', 'chaar', 'paanch', 'cheh', 'saat', 'aath', 'nao', 'das', 
+                      'gyarah', 'barah', 'terah', 'chaudah', 'pandrah', 'solah', 'satrah', 'atharah', 
+                      'unnees', 'bees', 'ikkees', 'baees', 'taees', 'chobees', 'pachees', 'chhabees', 
+                      'sattaees', 'atthaeis', 'untees', 'tees'];
+      let index = 0;
+      
+      function playNext() {
+        if (index < numbers.length) {
+          const audio = new Audio(`audio/${numbers[index]}.mp3`);
           audio.play();
+          learnedNumbers.add(numbers[index]);
+          document.querySelector(`[onclick="showNumberDetails('${numbers[index]}')"]`).classList.add('learned');
+          updateProgress();
+          index++;
+          audio.onended = playNext;
         }
-      } else {
-        alert("پہلے کوئی نمبر سنیں!");
+      }
+      
+      playNext();
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      const icon = document.querySelector('.audio-player i');
+      icon.className = isMuted ? 'fas fa-volume-mute' : 'fas fa-volume-up';
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+      const modal = document.getElementById('number-modal');
+      if (event.target === modal) {
+        closeModal();
       }
     }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
   </script>
 </body>
 </html>
+

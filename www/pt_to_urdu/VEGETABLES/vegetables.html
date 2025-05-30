@@ -6,11 +6,27 @@
   <title>Learn Vegetables</title>
   <style>
     /* Reset and Global Styles */
+
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
+
+      :root {
+            --primary-color: #002D62;
+            --secondary-color: #001b40;
+      }
+
+      .btn {
+            /* Removed background and styling */
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+        }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -156,6 +172,7 @@
       font-size: 2rem;
       color: #1a1a2e;
     }
+      
 
     .modal button {
       background: #007ea7;
@@ -221,6 +238,123 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* Professional Button Styles */
+    .btn {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 30px 0;
+    }
+
+    .menu-principal-button {
+        padding: 12px 25px;
+        background: transparent;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 500;
+        border: 2px solid var(--primary-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 180px;
+    }
+
+    .menu-principal-button:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .menu-principal-button:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Update vegetable card button styles */
+    .vegetable-info button {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .vegetable-info button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    }
+
+    .vegetable-info button:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Update modal button styles */
+    .modal button {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        cursor: pointer;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .modal button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    }
+
+    .modal button:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Update modal close button */
+    .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border: none;
+        width: 32px;
+        height: 32px;
+        font-size: 1.2rem;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-close:hover {
+        transform: rotate(90deg);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    }
   </style>
 </head>
 <body onload="startLearning()">
@@ -246,6 +380,11 @@
     <h3 id="modal-name"></h3>
     <button onclick="playAudio()">🔊 Listen to Pronunciation</button>
   </div>
+
+    <div class="btn">
+      <a href="../VEGETABLES/vegetables.html" class="menu-principal-button">Próxima Lição</a>
+      <a href="../mainmenuptur.html" class="menu-principal-button">Menu Principal</a>
+    </div>
 
   <div id="overlay" class="overlay" onclick="closeModal()"></div>
 

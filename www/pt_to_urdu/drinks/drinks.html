@@ -125,6 +125,41 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* Added variables and button styles from vegetables.html */
+    :root {
+          --primary-color: #002D62;
+          --secondary-color: #001b40;
+    }
+
+    .btn {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          margin: 30px 0;
+      }
+
+    .menu-principal-button {
+      padding: 12px 25px;
+      background: transparent;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border: 2px solid var(--primary-color);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+  }
+
+  .menu-principal-button:hover {
+      background: var(--primary-color);
+      color: white;
+  }
   </style>
 </head>
 <body onload="startLearning()">
@@ -190,5 +225,11 @@ const drinks = [
       });
     }
   </script>
+
+  <div class="btn">
+    <a href="../ESTACOESECLIMA/seasons.html" class="menu-principal-button">Próxima Lição</a>
+    <a href="../mainmenuptur.html" class="menu-principal-button">Menu Principal</a>
+  </div>
+
 </body>
 </html>

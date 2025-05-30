@@ -6,107 +6,275 @@
     <title>Lição 4 - Introdução aos Adjetivos Básicos</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
+         * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to left, #002D62, #ffffff);
-            color: #333;
+            box-sizing: border-box;
         }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-color, #ffffff);
+            color: var(--text-primary, #002D62);
+            line-height: 1.6;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #4a90e2;
+            --accent-color: #ff6b6b;
+            --bg-color: #ffffff;
+            --card-bg: #f8f9fa;
+            --text-primary: #002D62;
+            --text-secondary: #4a5568;
+            --shadow-color: rgba(0, 45, 98, 0.1);
+        }
+
         header {
-            background-color: #002D62;
-            color: white;
             text-align: center;
-            padding: 25px 0;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 60px;
         }
-        header h1 {
-            font-size: 2.5rem;
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 700;
         }
+
         .lesson-container {
+            max-width: 1200px;
+            margin: 40px auto;
             padding: 40px;
-            margin: 0 auto;
-            max-width: 1000px;
-            background-color: #fff;
-            color: #333;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
+        .lesson-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-color);
+        }
+
         h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #002D62;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
         }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
         p {
             font-size: 1.2rem;
-            line-height: 1.6;
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+            line-height: 1.8;
         }
+
+        .lesson-content-block {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .text-area {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .media-area {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .media-area img, .media-area video, .media-area audio {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
         table {
             width: 100%;
-            margin: 20px 0;
             border-collapse: collapse;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            margin: 20px 0;
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            border: 1px solid rgba(0, 45, 98, 0.1);
         }
-        table th, table td {
-            padding: 15px 20px;
-            background-color: #ffffff;
-            color: #333;
-        }
-        table th {
-            background-color: #002D62;
-            color: #fff;
-            font-weight: bold;
-        }
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .quiz-container {
-            background-color: #e8f5e9;
-            padding: 30px;
-            margin-top: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .quiz-question {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .quiz-option {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
+
+        th, td {
             padding: 15px;
-            margin: 10px 0;
-            cursor: pointer;
-            border-radius: 6px;
-            font-size: 1.2rem;
-            transition: background-color 0.3s ease;
+            text-align: left;
+            border-bottom: 1px solid #eee;
         }
-        .quiz-option:hover {
-            background-color: #45a049;
-        }
-        .quiz-feedback {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #002D62;
+
+        th {
+            background: var(--primary-color);
             color: white;
-            padding: 15px 30px;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            background: var(--primary-color);
+            color: #fff;
             text-decoration: none;
-            border-radius: 6px;
+            font-size: 1.3em;
+            border-radius: 35px;
+            margin: 30px auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 20px var(--shadow-color);
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            max-width: 300px;
+        }
+
+        .btn i {
+             transition: transform 0.4s ease;
+        }
+
+        .btn:hover i {
+            transform: translateX(8px);
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 45, 98, 0.2);
+        }
+
+        .quiz-container {
+            margin-top: 40px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 25px var(--shadow-color);
+            border: 1px solid rgba(0, 45, 98, 0.1);
+        }
+
+        .quiz-question {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .quiz-option {
+            padding: 15px 25px;
+            background: white;
+            color: var(--text-primary);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            width: 100%;
+            text-align: left;
+            box-shadow: 0 3px 10px var(--shadow-color);
+        }
+
+        .quiz-option:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            transform: translateX(5px);
+        }
+
+         .quiz-option[data-correct='true']:hover {
+             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .quiz-feedback {
+            font-size: 1.4rem;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .quiz-feedback.show {
+            opacity: 1;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 20px;
             font-size: 1.2rem;
             margin-top: 40px;
-            text-align: center;
         }
-        .btn:hover {
-            background-color: #001b40;
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .lesson-container {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .btn {
+                font-size: 1.2rem;
+                padding: 15px 30px;
+            }
+
+            table {
+                width: 100%;
+                font-size: 0.9rem;
+            }
+
+            table th, table td {
+                padding: 12px;
+            }
+
+            .quiz-question {
+                font-size: 1.4rem;
+            }
+
+            .quiz-option {
+                font-size: 1.1rem;
+                padding: 12px 20px;
+            }
         }
     </style>
 </head>
@@ -173,7 +341,7 @@
         <div class="quiz-feedback" id="quizFeedback"></div>
     </div>
 
-    <a href="lesson5.html" class="btn">Próxima Lição</a>
+    <a href="lesson4.html" class="btn">Próxima Lição</a>
 </div>
 
 <script>

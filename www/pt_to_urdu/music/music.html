@@ -4,165 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Música & Canções</title>
+    <title>Entretenimento Paquistanês - Música, Dramas e Cinema</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #002D62;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
-        }
-
-        header {
-            background: linear-gradient(90deg, #001d4d, #0fb300);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-            border-bottom: 4px solid #0056b3;
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin-right: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.5em;
-            font-weight: bold;
-            padding: 10px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #d1e3f3;
-            border-bottom: 2px solid #d1e3f3;
-        }
-
-        main {
-            padding: 30px 10%;
-        }
-
-        .category-box,
-        .phrases-box,
-        .quiz-section,
-        .about-section {
-            margin-bottom: 40px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            background: #ffffff;
-            padding: 20px;
-            transition: 0.3s;
-        }
-
-        .category-box:hover,
-        .phrases-box:hover,
-        .quiz-section:hover {
-            transform: scale(1.05);
-        }
-
-        .category-content h3 {
-            font-size: 2em;
-            color: #001d4d;
-            margin-bottom: 10px;
-        }
-
-        .category-content p {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .category-content a {
-            text-decoration: none;
-            background-color: #0056b3;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .category-content a:hover {
-            background-color: #003f7d;
-        }
-
-        .category-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .category-box img {
-            width: 100%;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-
-        .category-box:hover img {
-            transform: scale(1.05);
-        }
-
-        .category-box:hover {
-            transform: scale(1.05);
-        }
-
-        footer {
-            background: #001d4d;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            main {
-                padding: 20px;
-            }
-
-            nav ul li {
-                margin-right: 15px;
-            }
-
-            .category-box,
-            .phrases-box,
-            .quiz-section,
-            .about-section {
-                padding: 15px;
-            }
-
-            .category-box img {
-                width: 120px;
-            }
-
-            .category-container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
         * {
             margin: 0;
             padding: 0;
@@ -171,298 +25,1556 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f1f2f6, #c9cfd7);
-            color: #002D62;
+            background: var(--light-bg);
+            color: var(--text-color);
             line-height: 1.6;
-            transition: background-color 0.3s;
         }
 
-        /* Header Section */
+        /* Header Styles */
         header {
-            padding: 30px 30px;
-            background: #002D62;
-            color: white;
-            text-align: center;
-            font-size: 3.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
+            background-color: #002D62;
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header h1 {
-            font-size: 4.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
         }
 
-        header p {
-            font-size: 1.4rem;
-            letter-spacing: 0.8px;
-            color: #f0f0f0;
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 1rem;
+        }
+
+        .search-button {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-button:hover {
+            background: #c0392b;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
 
         .category-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-            padding: 60px 50px;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .category-box {
-            position: relative;
-            background-color: #fff;
+            background: var(--white);
             border-radius: 15px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.4s, box-shadow 0.4s;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f2f8 100%);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .category-box img {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.4s, opacity 0.3s;
+            transition: transform 0.3s;
         }
 
         .category-box:hover img {
-            transform: scale(1.1);
-            opacity: 0.8;
-        }
-
-        .category-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
         }
 
         .category-content {
-            padding: 20px;
+            padding: 1.5rem;
         }
 
-        .category-box h3 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-top: 20px;
-            color: #333;
-            letter-spacing: 1px;
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
 
-        .category-box p {
-            font-size: 1.1rem;
+        .category-content p {
+            margin-bottom: 0.5rem;
             color: #666;
-            margin: 10px 0;
         }
 
-        .category-box a {
-            padding: 14px 35px;
-            background-color: #008080;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: background-color 0.3s, transform 0.3s;
-            margin-top: 20px;
-            display: inline-block;
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
         }
 
-        .category-box a:hover {
-            background-color: #006666;
-            transform: translateY(-5px);
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        .info-item i {
+            color: var(--secondary-color);
         }
 
-        footer p {
-            margin: 10px 0;
-        }
-
-        /* Animations for elements */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
         .styled-button {
-    padding: 14px 35px;
-    background-color: #008080;
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    transition: background-color 0.3s, transform 0.3s;
-    margin-top: 20px;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-}
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
 
-.styled-button:hover {
-    background-color: #006666;
-    transform: translateY(-5px);
-}
+        .styled-button:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
 
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            /* Added menu button styles */
+            .btn {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                margin: 30px 0;
+            }
+
+            .menu-principal-button {
+                padding: 12px 25px;
+                background: transparent;
+                color: var(--primary-color);
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: 500;
+                border: 2px solid var(--primary-color);
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 180px;
+            }
+
+            .menu-principal-button:hover {
+                background: var(--primary-color);
+                color: white;
+            }
+        }
+
+        /* Animations */
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Button Animations */
-        .category-box a {
-            transition: transform 0.2s ease, background-color 0.3s ease;
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
 
-        .category-box a:hover {
+        /* Category Filter Styles */
+        .category-filter {
+            background: var(--white);
+            padding: 2rem;
+            margin: 2rem auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 1200px;
+        }
+
+        .filter-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .filter-description {
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
             transform: translateY(-5px);
-            background-color: #006666;
+            border-color: var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Box shadow effect on hover */
-        .category-box:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .category-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
         }
 
-        /* Image hover effect */
-        .category-box img {
-            transition: transform 0.4s ease, opacity 0.3s ease;
+        .category-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Active Navigation Link */
+        .nav-links a.active {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Video Player Styles */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Music Player Styles */
+        .music-player {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .music-controls button {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .music-controls button:hover {
+            background: #219a52;
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Gêneros Musicais em Paquistão</h1>
-        <nav>
-            <ul>
-                <li><a href="#GênerosMusicais">Gêneros Musicais</a></li>
-                <li><a href="mundodomusic.html">A música no mundo</a></li> <!-- Link to Clima page -->
-
-            </ul>
-        </nav>
+        <div class="header-content">
+            <h1>Entretenimento Paquistanês</h1>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquisar...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
     </header>
 
+    <nav>
+        <div class="nav-links">
+            <a href="#musica">Música</a>
+            <a href="#dramas">Dramas</a>
+            <a href="#OST">OST</a>
+            <a href="#artistas">Artistas</a>
+        </div>
+    </nav>
+
     <main>
-        <!-- Lesson Cards -->
- <div class="category-container fade-in">
-     <!-- Pop -->
- 
- 
-      
- 
-     <div class="category-box">
-        <img src="GENERESIMG/QAWALI.jpg" alt="Qawwali">
-        <div class="category-content">
-            <h3>Qawwali  – قوالی</h3>
-            <p>Uma forma de música devocional sufi, frequentemente apresentada por um grupo com vocais intensos e letras espirituais. Nusrat Fateh Ali Khan é uma figura lendária neste gênero.</p>
-            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Tumhein Dillagi Bhool Jaani Padegi _ Ustad Nusrat Fateh Ali Khan _ Qawwali Status.mp4')">Ouvir Música</button>
-            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        <!-- Música Section -->
+        <section id="musica" class="category-section active">
+            <div class="section-header">
+                <h2>Música Paquistanesa</h2>
+                <p>Explore a rica tradição musical do Paquistão, desde clássicos até hits contemporâneos.</p>
+            </div>
+            <div class="category-container">
+                <!-- Música Clássica -->
+                <div class="category-box fade-in">
+                    <img src="img/concert-crowd-with-stage-lights_1276740-24849.avif" alt="Música Clássica">
+                    <div class="category-content">
+                        <h3>Qawwali - قوالی</h3>
+                        <p>Música sufi tradicional, famosa por Nusrat Fateh Ali Khan.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Sufi</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Nusrat Fateh Ali Khan</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=xs7tN0A7RC8', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
 
-        </div>
-    </div> 
+                <!-- Ghazal -->
+                <div class="category-box fade-in">
+                    <img src="img/ghazal.jpg" alt="Ghazal">
+                    <div class="category-content">
+                        <h3>Ghazal - غزل</h3>
+                        <p>Poesia musical tradicional, popularizada por Mehdi Hassan.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Ghazal</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Mehdi Hassan</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=WglSfZJOPds', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
 
-    <div class="category-box">
-        <img src="GENERESIMG/SAD.jpg" alt="Ghazals">
-        <div class="category-content">
-            <h3>Ghazals  – غزلیں</h3>
-            <p>Canções líricas e expressivas que frequentemente abordam temas de amor, tristeza e saudade. São profundamente enraizadas na poesia urdu e são executadas com um toque clássico.</p>
-            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Rafta Rafta Woh Meri Hasti Ka Saman _ Whatsapp status _ Lyrics Songs _ Ub Writes.mp3')">Ouvir Música</button>
-            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+                <!-- Pop -->
+                <div class="category-box fade-in">
+                    <img src="img/pop.jpg" alt="Pop">
+                    <div class="category-content">
+                        <h3>Pop - پاپ</h3>
+                        <p>Música pop contemporânea com influências modernas.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Pop</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Atif Aslam</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=brg5LgDN114', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
 
-        </div>
-    </div> 
+                <!-- Rock -->
+                <div class="category-box fade-in">
+                    <img src="img/DRUM.webp" alt="Rock">
+                    <div class="category-content">
+                        <h3>Rock - راک</h3>
+                        <p>Música rock paquistanesa com influências ocidentais.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Rock</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Banda: Strings</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=YXY1Gichwws', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
 
-    <div class="category-box">
-        <img src="GENERESIMG/POP.jpeg" alt="Pop Paquistanês ">
-        <div class="category-content">
-            <h3>Pop Paquistanês  – پاکستانی پاپ</h3>
-            <p>Um gênero mais moderno que mistura música tradicional com estilos ocidentais de pop. Este gênero tornou-se popular no final dos anos 1980.</p>
-            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Pasoori _ Ali Sethi x Shae Gill _ Status _ Lyrics _ shahabaZ Music Hub.mp4')">Ouvir Música</button>
-            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+                <!-- Folk -->
+                <div class="category-box fade-in">
+                    <img src="img/folk.jpg" alt="Folk">
+                    <div class="category-content">
+                        <h3>Folk - لوک</h3>
+                        <p>Música folclórica tradicional de diferentes regiões.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Folk</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Abida Parveen</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=7D4vNcK6D38', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
 
-        </div>
-    </div> 
+                <!-- Sufi Rock -->
+                <div class="category-box fade-in">
+                    <img src="img/Junoonthree.jpg" alt="Sufi Rock">
+                    <div class="category-content">
+                        <h3>Sufi Rock - صوفی راک</h3>
+                        <p>Fusão de música sufi com rock moderno.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Sufi Rock</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Banda: Junoon</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=484P_yX1fyI', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Classical Instrumental -->
+                <div class="category-box fade-in">
+                    <img src="img/N.jpg" alt="Instrumental">
+                    <div class="category-content">
+                        <h3>Instrumental - سازینہ</h3>
+                        <p>Música clássica instrumental tradicional.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Instrumental</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Ustad Nusrat Fateh Ali Khan</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=pDnlgHylz_g', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hip Hop -->
+                <div class="category-box fade-in">
+                    <img src="img/hiphop.jpg" alt="Hip Hop">
+                    <div class="category-content">
+                        <h3>Hip Hop - ہپ ہاپ</h3>
+                        <p>Música hip hop paquistanesa contemporânea.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Hip Hop</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Young Stunners</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=jIQ0Dx-4peE', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fusion -->
+                <div class="category-box fade-in">
+                    <img src="img/s.jpg" alt="Fusion">
+                    <div class="category-content">
+                        <h3>Fusion - فیوژن</h3>
+                        <p>Fusão de música tradicional com elementos modernos.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Fusion</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Ali Zafar</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=tfchHFd3CvU', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Classical Vocal -->
+                <div class="category-box fade-in">
+                    <img src="img/r.jpg" alt="Vocal">
+                    <div class="category-content">
+                        <h3>Vocal Clássico - کلاسیکی آواز</h3>
+                        <p>Música vocal clássica tradicional.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Gênero: Vocal Clássico</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Artista: Farida Khanum</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=hBvdIsBmQ6g', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dramas Section -->
+        <section id="dramas" class="category-section">
+            <div class="section-header">
+                <h2>Dramas Paquistaneses</h2>
+                <p>Os melhores dramas e séries de TV do Paquistão.</p>
+            </div>
+            <div class="category-container">
+                <!-- Drama 1 -->
+
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/PZ.jpg" alt="Parizaad">
+                    <div class="category-content">
+                        <h3>Parizaad - پری زاد</h3>
+                        <p>Um drama profundo e emocionante sobre identidade e luta.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2021</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Ahmed Ali Akbar, Ushna Shah, Yumna Zaidi</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=QGO00uDMZrA', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                        
+                    </div>
+                </div>
+               
+
+                <!-- Drama 2 -->
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/KH.jpeg" alt="Khuda Aur Mohabbat Season 3">
+                    <div class="category-content">
+                        <h3>Khuda Aur Mohabbat - خدا اور محبت (Season 3)</h3>
+                        <p>Drama romântico e espiritual muito popular.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2021</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Feroze Khan, Iqra Aziz</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=KlI3ESKmJiU', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                        
+                    </div>
+                </div>
+                
+
+                <!-- Drama 3 -->
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/M.jpg" alt="Mere Paas Tum Ho">
+                    <div class="category-content">
+                        <h3>Mere Paas Tum Ho - میرے پاس تم ہو</h3>
+                        <p>Drama familiar muito assistido.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2019</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Humayun Saeed, Ayeza Khan</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=L7VJno8Cj3o', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- Drama 4 -->
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/A.jpg" alt="Alif">
+                    <div class="category-content">
+                        <h3>Alif - الف</h3>
+                        <p>Drama espiritual e artístico.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2019</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Hamza Ali Abbasi, Sajal Aly</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=sGtlUeCl8gc', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- Drama 5 -->
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/E.jpg" alt="Ehd-e-Wafa">
+                    <div class="category-content">
+                        <h3>Ehd-e-Wafa - عہد وفا</h3>
+                        <p>Drama sobre amizade e patriotismo.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2019</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Ahad Raza Mir, Osman Khalid Butt</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=HflaKwOIa3s', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                        
+                    </div>
+                </div>
+
+             <!-- Drama 6 -->
+             <div class="category-box fade-in">
+                <img src="DRAMASIMG/Untitled-design-3-2-758x403.jpg" alt="Gentleman">
+                <div class="category-content">
+                    <h3>Gentleman - جینٹل مین</h3>
+                    <p>Um drama paquistanês recente com uma trama envolvente e cheia de mistério.</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Ano: 2024</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-star"></i>
+                            <span>Elenco: Humayun Saeed, Yumna Zaidi</span>
+                        </div>
+                    </div>
+                    <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=OWnqgFeoNAA', '_blank')">
+                        <i class="fas fa-play"></i>
+                        Assistir Trailer
+                    </button>
+                </div>
+            </div>
+            
 
 
-    <div class="category-box">
-        <img src="GENERESIMG/LHR.jpeg" alt="Pop Paquistanês ">
-        <div class="category-content">
-            <h3>Música Folclórica  – لوک موسیقی            </h3>
-            <p> Inclui estilos regionais como Punjabi, Pashto, Sindhi e Balochi. Está profundamente ligada às tradições culturais das diferentes províncias do Paquistão, com instrumentos como o dhol, flauta e harmónio.</p>
-            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/OST.mp4')">Ouvir Música</button>
-            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+                <!-- Drama 7 -->
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/Y.jpg" alt="Yeh Dil Mera">
+                    <div class="category-content">
+                        <h3>Yeh Dil Mera - یہ دل میرا</h3>
+                        <p>Drama de suspense e mistério.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2019</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Ahad Raza Mir, Sajal Aly</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=9WrjjapxcMs', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                        
+                    </div>
+                </div>
 
-        </div>
-    </div> 
+                <!-- Drama 8 -->
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/Suno-Chanda-2-765x420-1.webp" alt="Suno Chanda">
+                    <div class="category-content">
+                        <h3>Suno Chanda - سنو چندا</h3>
+                        <p>Uma comédia romântica cheia de momentos engraçados e emocionantes.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2018</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Iqra Aziz, Farhan Saeed</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=Kj39EV995xs', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                        
+                    </div>
+                </div>
+                
 
-    <div class="category-box">
-        <img src="GENERESIMG/CLASSIC.jpg" alt="Música Clássica">
-        <div class="category-content">
-            <h3>Música Clássica – کلاسیکی موسیقی</h3>
-            <p>Música clássica tradicional, influenciada pela música clássica indiana, que utiliza instrumentos como sitar, tabla e harmónio. É altamente respeitada, com músicos famosos como Ustad Nusrat Fateh Ali Khan e Ustad Vilayat Khan.</p>
-            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/OOO.mp4')">Ouvir Música</button>
-            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
-        </div>
+                <!-- Drama 9 -->
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/Chupke_Chupke_(TV_series).jpg" alt="Chupke Chupke">
+                    <div class="category-content">
+                        <h3>Chupke Chupke - چپکے چپکے</h3>
+                        <p>Uma comédia romântica cheia de momentos engraçados e personagens adoráveis.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2021</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Ayeza Khan, Osman Khalid Butt, Arslan Naseer</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=OqGibvM81B8', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                        
+                    </div>
+                </div>
+                
+
+                <!-- Drama 10 -->
+                <div class="category-box fade-in">
+                    <img src="DRAMASIMG/MV5BODAxYTU3ODctMDYzZi00NDljLWExNzQtZDcyZmYwNTdiYjllXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" alt="Duniyapur">
+                    <div class="category-content">
+                        <h3>Duniyapur - دنیا پور</h3>
+                        <p>Uma intensa saga de rivalidade, perda e redenção entre duas poderosas famílias em uma cidade marcada por tragédias.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2024–2025</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Elenco: Ramsha Khan, Khushhal Khan, Nauman Ijaz, Sami Khan</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=TpGNT9ysZX8', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Assistir Trailer
+                        </button>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- OST Section -->
+        <section id="OST" class="category-section">
+            <div class="section-header">
+                <h2>OSTs e Trilhas Sonoras</h2>
+                <p>As melhores trilhas sonoras e músicas de dramas paquistaneses.</p>
+            </div>
+            <div class="category-container">
+                <!-- OST 1 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/RADD.jpg" alt="Radd OST">
+                    <div class="category-content">
+                        <h3>Radd OST - رَد</h3>
+                        <p>Trilha sonora da série de drama mais emocionante do ano.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Asim Azhar</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2024</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=3MfxZVbS4TU', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+                
+
+                <!-- OST 2 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/y.jpg" alt="Yaar Toh Yaar Hota Hai OST">
+                    <div class="category-content">
+                        <h3>Yaar Toh Yaar Hota Hai OST - یار تو یار ہوتا ہے</h3>
+                        <p>Trilha sonora do drama romântico que celebra a amizade e o amor.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Não especificado</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2024</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=MKdunHsBZzE', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- OST 3 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/Do-bol.jpg" alt="Do Bol OST">
+                    <div class="category-content">
+                        <h3>Do Bol OST - دو بول</h3>
+                        <p>Trilha sonora do drama romântico que fala sobre o amor e as relações familiares complicadas.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Nabeel Shaukat</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2019</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=BAWJ_6KdkV0', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- OST 4 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/ishq.jpg" alt="Ishq Hai OST">
+                    <div class="category-content">
+                        <h3>Ishq Hai OST - عشق ہے</h3>
+                        <p>Trilha sonora do drama romântico estrelado por Minal Khan e Danish Taimoor, cantada por Rahat Fateh Ali Khan.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Rahat Fateh Ali Khan</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2021</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=qjQiPyDweG8', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- OST 5 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/mujhe.jpg" alt="Mujhe Pyaar Hua Tha OST">
+                    <div class="category-content">
+                        <h3>Mujhe Pyaar Hua Tha OST - مجھے پیار ہوا تھا</h3>
+                        <p>Trilha sonora do drama romântico "Mujhe Pyaar Hua Tha," cantada por Kaifi Khalil, transmitindo emoção e amor intensos.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Kaifi Khalil</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2022</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=rEO6bLfwruo', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- OST 6 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/Screenshot 2025-04-20 132247.png" alt="Merey Paas Tum Ho OST">
+                    <div class="category-content">
+                        <h3>Merey Paas Tum Ho OST - میرے پاس تم ہو</h3>
+                        <p>Música tema do drama mais controverso.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Rahat Fateh Ali Khan</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2019</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=ZneBOdp5-Ig', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- OST 7 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/Kaisi-Teri-Khudgharzi_Greenistan_fandompic.webp" alt="Kaisi Teri Khudgharzi OST">
+                    <div class="category-content">
+                        <h3>Kaisi Teri Khudgharzi OST - کیسی تیری خودغرضی</h3>
+                        <p>Trilha sonora do drama de romance e suspense "Kaisi Teri Khudgharzi," cantada por Rahat Fateh Ali Khan e com a atuação de Danish Taimoor.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Rahat Fateh Ali Khan</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2022</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=cKdEFH-xG5s', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- OST 8 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/maxresdefault.jpg" alt="Tera Mera Pyar Hai Amar OST">
+                    <div class="category-content">
+                        <h3>Tera Mera Pyar Hai Amar OST - تيرا ميرا پيار ہے امر</h3>
+                        <p>Música tema do drama romântico 'Ishq Murshid'.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Ahmed Jahanzeb</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2021</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=HFHl_tXSyaE', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+                
+
+                <!-- OST 9 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/images.jpeg" alt="Qurban OST">
+                    <div class="category-content">
+                        <h3>Qurban OST - قربان</h3>
+                        <p>A música tema é sobre onde o amor enfrenta desafios e obstáculos.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Masroor Ali Khan</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2017</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=oRs_pUNRZHQ', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+                
+
+                <!-- OST 10 -->
+                <div class="category-box fade-in">
+                    <img src="OSTIMG/maxresdefault (1).jpg" alt="Deewangi OST">
+                    <div class="category-content">
+                        <h3>Deewangi OST - دیوانگی</h3>
+                        <p>A música tema do drama romântico e cheio de emoção sobre amor e sacrifício.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor: Sahir Ali Bagga</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>Ano: 2020</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=pO-s94nNLpM', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Artistas Section -->
+        <section id="artistas" class="category-section">
+            <div class="section-header">
+                <h2>Artistas Famosos</h2>
+                <p>Conheça os talentosos artistas do Paquistão.</p>
+            </div>
+            <div class="category-container">
+                <!-- Ator 1 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/Fawad_Khan_s_USA_tour_outlined_1549261745425_16a4a158b88_large.avif" alt="Fawad Khan">
+                    <div class="category-content">
+                        <h3>Fawad Khan - فواد خان</h3>
+                        <p>Ator e cantor paquistanês de destaque.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Ator</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantor</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Fawad_Khan" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Atriz 1 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/Mahira-Khan-talks-at-Faiz-International-festival-1-1024x629.jpg.webp" alt="Mahira Khan">
+                    <div class="category-content">
+                        <h3>Mahira Khan - ماہرہ خان</h3>
+                        <p>Uma das atrizes mais populares do Paquistão.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Atriz</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Modelo</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Mahira_Khan" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Ator 2 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/Humayun-1-scaled-1.jpg" alt="Humayun Saeed">
+                    <div class="category-content">
+                        <h3>Humayun Saeed - ہمایوں سعید</h3>
+                        <p>Ator e produtor renomado.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Ator</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-camera"></i>
+                                <span>Produtor</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Humayun_Saeed" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Atriz 2 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/5aeae57d965c5.jpg" alt="Mehwish Hayat">
+                    <div class="category-content">
+                        <h3>Mehwish Hayat - مہوش حیات</h3>
+                        <p>Atriz e cantora talentosa.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Atriz</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Cantora</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Mehwish_Hayat" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Ator 3 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/images.jpeg" alt="Hamza Ali Abbasi">
+                    <div class="category-content">
+                        <h3>Hamza Ali Abbasi - حمزہ علی عباسی</h3>
+                        <p>Ator e ativista social.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Ator</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-bullhorn"></i>
+                                <span>Ativista</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Hamza_Ali_Abbasi" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Atriz 3 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/images (1).jpeg" alt="Sajal Aly">
+                    <div class="category-content">
+                        <h3>Sajal Aly - سجل علی</h3>
+                        <p>Atriz jovem e talentosa.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Atriz</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Modelo</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Sajal_Aly" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Ator 4 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/Ahad-Raza-Mir.webp" alt="Ahad Raza Mir">
+                    <div class="category-content">
+                        <h3>Ahad Raza Mir - احد رضا میر</h3>
+                        <p>Ator jovem e promissor.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Ator</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-theater-masks"></i>
+                                <span>Teatro</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Ahad_Raza_Mir" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Atriz 4 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/images (2).jpeg" alt="Maya Ali">
+                    <div class="category-content">
+                        <h3>Maya Ali - مایا علی</h3>
+                        <p>Atriz e modelo popular.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Atriz</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Modelo</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Maya_Ali" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Ator 5 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/images (3).jpeg" alt="Feroze Khan">
+                    <div class="category-content">
+                        <h3>Feroze Khan - فیروز خان</h3>
+                        <p>Ator e diretor talentoso.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Ator</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-video"></i>
+                                <span>Diretor</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Feroze_Khan" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Atriz 5 -->
+                <div class="category-box fade-in">
+                    <img src="ACTRIZ/images (4).jpeg" alt="Iqra Aziz">
+                    <div class="category-content">
+                        <h3>Iqra Aziz - عقرہ عزیز</h3>
+                        <p>Atriz jovem e talentosa.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-film"></i>
+                                <span>Atriz</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Modelo</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://en.wikipedia.org/wiki/Iqra_Aziz" target="_blank">
+                            <i class="fas fa-user"></i>
+                            Ver Perfil
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        let audioElement = null;
+        let videoElement = null;
+
+        function playAudio(audioFile) {
+            if (audioElement) {
+                audioElement.pause();
+                audioElement.currentTime = 0;
+            }
+            audioElement = new Audio(audioFile);
+            audioElement.play().catch(error => {
+                console.error('Error playing audio:', error);
+            });
+        }
+
+        function playVideo(videoId) {
+            // Implement video player functionality
+            console.log('Playing video:', videoId);
+        }
+
+        function showProfile(artistId) {
+            // Implement profile view functionality
+            console.log('Showing profile:', artistId);
+        }
+
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const contentBoxes = document.querySelectorAll('.category-box');
+            
+            contentBoxes.forEach(box => {
+                const title = box.querySelector('h3').textContent.toLowerCase();
+                const description = box.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Category Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link and corresponding section
+                this.classList.add('active');
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+
+                // Save the active section to local storage
+                localStorage.setItem('lastActiveSection', targetId);
+            });
+        });
+
+        // Restore the last active section when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const lastActiveSection = localStorage.getItem('lastActiveSection');
+            if (lastActiveSection) {
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to the last active section and its link
+                const activeLink = document.querySelector(`.nav-links a[href="#${lastActiveSection}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    document.getElementById(lastActiveSection).classList.add('active');
+                } else {
+                    // If the saved section doesn't exist, default to first section
+                    document.querySelector('.nav-links a').click();
+                }
+            } else {
+                // If no saved section, default to first section
+                document.querySelector('.nav-links a').click();
+            }
+        });
+    </script>
+
+    <div class="btn">
+        <a href="../mainmenuptur.html" class="menu-principal-button">Menu Principal</a>
     </div>
-    
-    <div class="category-box">
-        <img src="GENERESIMG/rock.jpg" alt="Rock/Alternativa">
-        <div class="category-content">
-            <h3>Rock/Alternativa – راک/متبادل موسیقی</h3>
-            <p>O Paquistão tem uma cena crescente de rock e música alternativa, com bandas como Junoon e Noori fazendo seu nome. O gênero mistura influências do rock ocidental com sons locais.</p>
-            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/ROCK.mp4')">Ouvir Música</button>
-            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
-        </div>
-    </div>
-    
-
-    
-
-     
- 
- 
- 
- 
-     
- </div>
- 
- 
-     
-     </div>
- </div>
- <script>
- var audioElement = null;
- 
- function playAudio(audioFile) {
-     if (audioElement) {
-         audioElement.pause(); // Pause any existing audio before starting a new one
-         audioElement.currentTime = 0; // Reset the audio to the start
-     }
-     audioElement = new Audio(audioFile);
-     audioElement.play();
- }
- 
- function stopAudio() {
-     if (audioElement) {
-         audioElement.pause(); // Pause the audio
-         audioElement.currentTime = 0; // Reset the audio to the start
-     }
- }
-    
- </script>
- 
- 
- </body>
- </html>
+</body>
+</html>

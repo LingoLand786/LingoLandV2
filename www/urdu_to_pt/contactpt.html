@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lingoland - Contacte-nos">
+    <title>Contacte-nos - Lingoland</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f6f9fc, #e9f2f9);
+            color: #2d3436;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #004a99, #002D62);
+            padding: 30px;
+            width: 100%;
+            color: white;
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            animation: shine 3s infinite;
+        }
+
+        .contact-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            width: 95%;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: all 0.4s ease;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #004a99, #002D62);
+        }
+
+        .contact-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #2d3436;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        p {
+            color: #636e72;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            text-align: left;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2d3436;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #004a99;
+            font-size: 1.2rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 18px 18px 18px 50px;
+            border-radius: 15px;
+            border: 2px solid #e1e8ed;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: #fff;
+            color: #2d3436;
+        }
+
+        textarea {
+            padding-left: 18px;
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #004a99;
+            box-shadow: 0 0 15px rgba(0, 74, 153, 0.1);
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(135deg, #004a99, #002D62);
+            color: white;
+            border: none;
+            padding: 20px 0;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 74, 153, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 74, 153, 0.4);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        button:hover::after {
+            transform: translateX(100%);
+        }
+
+        .message-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .message-box.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                padding: 30px;
+                margin: 20px auto;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            input, textarea {
+                padding: 15px 15px 15px 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <i class="fas fa-envelope-open-text"></i> لینگو لینڈ ٹیم سے رابطہ کریں
+</header>
+
+<main>
+    <div class="contact-container">
+        <h1>ہم آپ کی بات سننا پسند کریں گے! <i class="fas fa-comments"></i></h1>
+        <p>کیا آپ کے پاس سوالات ہیں، تاثرات دینا چاہتے ہیں، یا صرف رابطہ کرنا چاہتے ہیں؟ ہم مدد کے لیے یہاں موجود ہیں!</p>
+
+        <form id="contact-form">
+            <div class="form-group">
+                <label for="name"><i class="fas fa-user"></i> آپ کا نام</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user-circle"></i>
+                    <input type="text" id="name" name="from_name" placeholder="اپنا نام درج کریں" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email"><i class="fas fa-envelope"></i> آپ کا ای میل</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" name="from_email" placeholder="اپنا ای میل درج کریں" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="message"><i class="fas fa-pen"></i> آپ کا پیغام</label>
+                <div class="input-wrapper">
+                    <textarea id="message" name="message" placeholder="اپنا پیغام یہاں لکھیں..." required></textarea>
+                </div>
+            </div>
+
+            <button type="submit">
+                <i class="fas fa-paper-plane"></i> پیغام بھیجیں
+            </button>
+        </form>
+        <div id="response-message" class="message-box"></div>
+    </div>
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    (function(){
+        emailjs.init("obUx4ADwk2qJTyRh1");
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+        const responseMessage = document.getElementById("response-message");
+        const submitButton = document.querySelector("button");
+
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> A Enviar...';
+        submitButton.disabled = true;
+
+        const params = {
+            from_name: name,
+            from_email: email,
+            message: message
+        };
+
+        emailjs.send("service_c6ynbmy", "template_717ryz5", params)
+        .then(function() {
+            responseMessage.textContent = "✅ Mensagem enviada com sucesso!";
+            responseMessage.style.color = "#2ecc71";
+            responseMessage.style.backgroundColor = "rgba(46, 204, 113, 0.1)";
+            responseMessage.classList.add("show");
+            document.getElementById("contact-form").reset();
+        })
+        .catch(function() {
+            responseMessage.textContent = "❌ Erro ao enviar a mensagem. Por favor, tente novamente.";
+            responseMessage.style.color = "#e74c3c";
+            responseMessage.style.backgroundColor = "rgba(231, 76, 60, 0.1)";
+            responseMessage.classList.add("show");
+        })
+        .finally(() => {
+            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Mensagem';
+            submitButton.disabled = false;
+            
+            setTimeout(() => {
+                responseMessage.classList.remove("show");
+            }, 5000);
+        });
+    });
+</script>
+</body>
+</html>

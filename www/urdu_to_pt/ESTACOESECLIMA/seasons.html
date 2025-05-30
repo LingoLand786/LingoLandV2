@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Estações e Clima</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #ffffff;
+            --accent-color: #008080;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        nav {
+            margin-top: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .category-box {
+            background: var(--secondary-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .category-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .styled-button {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .styled-button:hover {
+            background-color: #006666;
+            transform: translateY(-2px);
+        }
+
+        .audio-progress {
+            flex-grow: 1;
+            height: 4px;
+            background-color: var(--light-gray);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: absolute;
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+            width: 0%;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Loading animation */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+           <h1>موسم اور موسموں کے نام</h1>
+<nav>
+    <ul>
+        <li><a href="#estações"><i class="fas fa-leaf"></i> موسم</a></li>
+        <li><a href="clima.html"><i class="fas fa-cloud-sun"></i> آب و ہوا</a></li>
+    </ul>
+</nav>
+
+        </div>
+    </header>
+
+   <main>
+    <div class="category-container">
+        <div class="category-box fade-in">
+            <img src="img/primavera.jpg" alt="بہار">
+            <div class="category-content">
+                <h3>بہار</h3>
+                <p dir="rtl" lang="ur">بہار مارچ میں شروع ہوتی ہے اور مئی تک جاری رہتی ہے۔ یہ پھولوں اور خوشگوار موسم کا وقت ہوتا ہے۔</p>
+                <div class="audio-controls">
+                    <button class="styled-button" onclick="playAudio('estacoes/audio1.mp3')">
+                        <i class="fas fa-play"></i> پرتگالی میں سنیں 
+                    </button>
+                    <div class="audio-progress"><div class="progress-bar"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-box fade-in">
+            <img src="img/summar.jpg" alt="گرمی">
+            <div class="category-content">
+                <h3>گرمی</h3>
+                <p dir="rtl" lang="ur">گرمی کا موسم جون سے اگست تک ہوتا ہے، اس دوران درجہ حرارت بہت زیادہ ہوتا ہے اور زیادہ تر دن دھوپ والے ہوتے ہیں۔</p>
+                <div class="audio-controls">
+                    <button class="styled-button" onclick="playAudio('estacoes/audio2.mp3')">
+                        <i class="fas fa-play"></i> پرتگالی میں سنیں 
+                    </button>
+                    <div class="audio-progress"><div class="progress-bar"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-box fade-in">
+            <img src="img/outono.jpg" alt="خزاں">
+            <div class="category-content">
+                <h3>خزاں</h3>
+                <p dir="rtl" lang="ur">خزاں ستمبر میں شروع ہوتی ہے اور نومبر تک جاری رہتی ہے۔ درختوں کے پتے جھڑتے ہیں اور موسم ٹھنڈا ہونے لگتا ہے۔</p>
+                <div class="audio-controls">
+                    <button class="styled-button" onclick="playAudio('estacoes/audio3.mp3')">
+                        <i class="fas fa-play"></i> پرتگالی میں سنیں 
+                    </button>
+                    <div class="audio-progress"><div class="progress-bar"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-box fade-in">
+            <img src="IMG/inverno.jpg" alt="سردی">
+            <div class="category-content">
+                <h3>سردی</h3>
+                <p dir="rtl" lang="ur">سردی دسمبر سے فروری تک ہوتی ہے، اس دوران درجہ حرارت کم ہوتا ہے اور بعض علاقوں میں برفباری بھی ہو سکتی ہے۔</p>
+                <div class="audio-controls">
+                    <button class="styled-button" onclick="playAudio('estacoes/audio4.mp3')">
+                        <i class="fas fa-play"></i> پرتگالی میں سنیں 
+                    </button>
+                    <div class="audio-progress"><div class="progress-bar"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+   
+
+    <script>
+        // Audio player functionality
+        let currentAudio = null;
+        let progressBars = document.querySelectorAll('.progress-bar');
+
+        function playAudio(filePath) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            currentAudio = new Audio(filePath);
+            currentAudio.play();
+
+            // Update progress bar
+            currentAudio.addEventListener('timeupdate', function() {
+                const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+                progressBars.forEach(bar => {
+                    bar.style.width = progress + '%';
+                });
+            });
+
+            // Reset progress bar when audio ends
+            currentAudio.addEventListener('ended', function() {
+                progressBars.forEach(bar => {
+                    bar.style.width = '0%';
+                });
+            });
+        }
+
+        // Add fade-in animation to elements as they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.category-box').forEach(box => {
+            observer.observe(box);
+        });
+    </script>
+</body>
+</html>

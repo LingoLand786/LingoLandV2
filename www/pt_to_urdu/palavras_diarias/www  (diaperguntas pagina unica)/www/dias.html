@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-auth.js"></script>
+    <title>Dias de Aprendizagem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+
+                color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #001c50;
+            backdrop-filter: blur(15px);
+            padding: 20px 40px;
+            font-size: 40px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-radius: 0 0 20px 20px;
+            height: 60px;
+        }
+        
+        .points-container {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: normal;
+            margin-right: 25px;
+            gap: 10px;
+        }
+
+        .score-value {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .day-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        .day-box {
+            background: white !important;
+            color: black;
+            padding: 40px;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.4s ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .day-box.locked {
+            background: rgba(255, 255, 255, 0.7) !important;
+            cursor: not-allowed;
+        }
+
+        .day-box.locked a {
+            pointer-events: none;
+            color: #666;
+        }
+
+        .tempo-restante {
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 11px;
+            color: #666;
+            font-weight: normal;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .day-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 74, 173, 0.1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .day-box:hover::before {
+            transform: scaleX(1);
+        }
+
+        .day-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .day-box a {
+            color: #004aad;
+            text-decoration: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .day-score {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            
+            background: #004aad;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            z-index: 3;
+        }
+
+        .proximo-dia {
+            font-size: 18px;
+            color: #ffffff;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        #proximoDiaContador {
+            font-family: monospace;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* Estilo para arredondar as bordas do tooltip */
+        ::selection {
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Desafios
+        <div class="proximo-dia">
+            <span>Disponível em:</span>
+            <span id="proximoDiaContador"></span>
+        </div>
+        <div class="points-container">
+            <span>Classificação: </span>
+            <span class="score-value" id="scoreDisplay">0</span>
+        </div>
+    </header>
+   
+    <div class="day-container">
+        <div class="day-box">
+            <div class="day-score" id="score-1">0</div>
+            <a href="dia.html?dia=1">Dia 1</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-2">0</div>
+            <a href="dia.html?dia=2">Dia 2</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-3">0</div>
+            <a href="dia.html?dia=3">Dia 3</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-4">0</div>
+            <a href="dia.html?dia=4">Dia 4</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-5">0</div>
+            <a href="dia.html?dia=5">Dia 5</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-6">0</div>
+            <a href="dia.html?dia=6">Dia 6</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-7">0</div>
+            <a href="dia.html?dia=7">Dia 7</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-8">0</div>
+            <a href="dia.html?dia=8">Dia 8</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-9">0</div>
+            <a href="dia.html?dia=9">Dia 9</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-10">0</div>
+            <a href="dia.html?dia=10">Dia 10</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-11">0</div>
+            <a href="dia.html?dia=11">Dia 11</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-12">0</div>
+            <a href="dia.html?dia=12">Dia 12</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-13">0</div>
+            <a href="dia.html?dia=13">Dia 13</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-14">0</div>
+            <a href="dia.html?dia=14">Dia 14</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-15">0</div>
+            <a href="dia.html?dia=15">Dia 15</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-16">0</div>
+            <a href="dia.html?dia=16">Dia 16</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-17">0</div>
+            <a href="dia.html?dia=17">Dia 17</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-18">0</div>
+            <a href="dia.html?dia=18">Dia 18</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-19">0</div>
+            <a href="dia.html?dia=19">Dia 19</a>
+        </div>
+        <div class="day-box">
+            <div class="day-score" id="score-20">0</div>
+            <a href="dia.html?dia=20">Dia 20</a>
+        </div>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/dias-controle.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+            authDomain: "appsitesync.firebaseapp.com",
+            projectId: "appsitesync",
+            storageBucket: "appsitesync.firebasestorage.app",
+            messagingSenderId: "357510439971",
+            appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+            measurementId: "G-T0SX0NH50K"
+        };
+    </script>
+    <script>
+        // Função para atualizar o score
+        function atualizarScore() {
+            const params = new URLSearchParams(window.location.search);
+            const novoScore = params.get('score');
+            const diaFinalizado = params.get('diaFinalizado');
+            
+            if (novoScore && diaFinalizado) {
+                const scoreKey = `score_dia_${diaFinalizado}`;
+                // Sempre atualiza com o novo score se ele for válido (entre 0 e 100)
+                const scoreAtual = Math.min(Math.max(parseInt(novoScore) || 0, 0), 100);
+                localStorage.setItem(scoreKey, scoreAtual);
+            }
+            
+            // Atualiza os scores mostrados em cada dia
+            let scoreTotal = 0;
+            for (let i = 1; i <= 20; i++) {
+                const scoreKey = `score_dia_${i}`;
+                const scoreDia = Math.min(parseInt(localStorage.getItem(scoreKey) || '0'), 100);
+                localStorage.setItem(scoreKey, scoreDia); // Garante que o score está limitado a 100
+                try {
+                    const scoreElement = document.getElementById(`score-${i}`);
+                    if (scoreElement) {
+                        scoreElement.textContent = scoreDia;
+                    }
+                } catch (e) {}
+                scoreTotal += scoreDia;
+            }
+            
+            // Atualiza o score total
+            document.getElementById('scoreDisplay').textContent = scoreTotal;
+        }
+
+        // Inicializar quando a página carregar
+        document.addEventListener('DOMContentLoaded', atualizarScore);
+    </script>
+</body>
+</html> 

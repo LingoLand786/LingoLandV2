@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -15,15 +16,31 @@
         .form-container { flex: 1; padding: 2rem; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); display: flex; flex-direction: column; justify-content: center; }
         h2 { font-size: 2rem; font-weight: 600; color: #333; margin-bottom: 1.5rem; text-align: center; }
         label { font-weight: 400; margin-bottom: 0.5rem; color: #555; }
-        input { width: 100%; padding: 0.8rem; margin-bottom: 1.5rem; border: none; border-radius: 10px; background: rgba(173, 187, 207, 0.5); color: #333; }
+        .input-group { position: relative; margin-bottom: 1.5rem; }
+        input { width: 100%; padding: 0.8rem; border: none; border-radius: 10px; background: rgba(173, 187, 207, 0.5); color: #333; }
+        .password-toggle { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #666; }
         button { padding: 0.8rem; border: none; border-radius: 10px; background: #002D62; color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.3s ease; }
         button:hover { background: #001a42; }
+        button:disabled { background: #cccccc; cursor: not-allowed; }
         p { margin-top: 1rem; text-align: center; color: #333; }
         a { color: #29094b; text-decoration: none; font-weight: 600; }
         a:hover { text-decoration: underline; }
         .visual { flex: 1; background-color: #002D62; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 1rem; }
         .visual h1 { font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem; }
         .visual p { font-size: 1.1rem; font-weight: 300; max-width: 80%; line-height: 1.5; color: white; }
+        .verification-container { display: none; }
+        .verification-code { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
+        .verification-code input { width: 50px; height: 50px; text-align: center; font-size: 1.5rem; }
+        .success-message { color: #28a745; text-align: center; margin-top: 1rem; display: none; }
+        .error-message { color: #dc3545; text-align: center; margin-top: 1rem; display: none; }
+        .loading { display: none; text-align: center; margin-top: 1rem; }
+        .loading::after { content: ''; display: inline-block; width: 20px; height: 20px; border: 3px solid #f3f3f3; border-top: 3px solid #002D62; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .password-requirements { font-size: 0.8rem; color: #666; margin-top: 0.5rem; }
+        .password-requirements ul { list-style: none; padding-left: 1rem; }
+        .password-requirements li { margin-bottom: 0.2rem; }
+        .password-requirements li.valid { color: #28a745; }
+        .password-requirements li.invalid { color: #dc3545; }
     </style>
 </head>
 <body>
@@ -36,11 +53,35 @@
                 <input type="email" id="email" placeholder="Digite seu email" required>
 
                 <label for="password" id="password-label">Senha:</label>
-                <input type="password" id="password" placeholder="Digite sua senha" required>
+                <div class="input-group">
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                    <span class="password-toggle" onclick="togglePassword('password')">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+                <div class="password-requirements">
+                    <ul>
+                        <li id="length">Pelo menos 8 caracteres</li>
+                        <li id="uppercase">Pelo menos uma letra maiúscula</li>
+                        <li id="lowercase">Pelo menos uma letra minúscula</li>
+                        <li id="number">Pelo menos um número</li>
+                        <li id="special">Pelo menos um caractere especial</li>
+                    </ul>
+                </div>
 
-                <button type="submit" id="signup-btn">Cadastre-se</button>
+                <label for="confirmPassword" id="confirm-password-label">Confirmar Senha:</label>
+                <div class="input-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirme sua senha" required>
+                    <span class="password-toggle" onclick="togglePassword('confirmPassword')">
+                        <i class="fas fa-eye"></i>
+                    </span>
+                </div>
+
+                <button type="submit" id="signup-btn" disabled>Cadastre-se</button>
             </form>
             <p id="already-account">Já tem uma conta? <a href="login.html" id="login-link">Entrar</a></p>
+            <div id="successMessage" class="success-message"></div>
+            <div id="errorMessage" class="error-message"></div>
         </div>
 
         <!-- Right Visual Section -->
@@ -52,51 +93,153 @@
 
     <script>
         // Firebase configuration
- // Firebase configuration (Already present in your code)
-const firebaseConfig = {
-    apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
-    authDomain: "appsitesync.firebaseapp.com",
-    projectId: "appsitesync",
-    storageBucket: "appsitesync.appspot.com",
-    messagingSenderId: "357510439971",
-    appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
-    measurementId: "G-T0SX0NH50K"
-};
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+            authDomain: "appsitesync.firebaseapp.com",
+            projectId: "appsitesync",
+            storageBucket: "appsitesync.appspot.com",
+            messagingSenderId: "357510439971",
+            appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+            measurementId: "G-T0SX0NH50K"
+        };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const auth = firebase.auth();
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
 
-document.getElementById('signupForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+        // Password validation functions
+        function validatePassword(password) {
+            const requirements = {
+                length: password.length >= 8,
+                uppercase: /[A-Z]/.test(password),
+                lowercase: /[a-z]/.test(password),
+                number: /[0-9]/.test(password),
+                special: /[!@#$%^&*(),.?":{}|<>]/.test(password)
+            };
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-
-            // Save user data in Firestore without spoken & learning language
-            return db.collection('users').doc(user.uid).set({
-                uid: user.uid,
-                email: user.email,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
-                createdBy: user.uid // Store who created the account
+            // Update UI
+            Object.keys(requirements).forEach(req => {
+                const element = document.getElementById(req);
+                if (requirements[req]) {
+                    element.classList.add('valid');
+                    element.classList.remove('invalid');
+                } else {
+                    element.classList.add('invalid');
+                    element.classList.remove('valid');
+                }
             });
-        })
-        .then(() => {
-            alert('Sign Up Successful! Now choose your languages.');
-            window.location.href = `getstarted.html?uid=${auth.currentUser.uid}`; // Redirect to Get Started
-        })
-        .catch((error) => {
-            alert(`Error: ${error.message}`);
+
+            return Object.values(requirements).every(Boolean);
+        }
+
+        // Toggle password visibility
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        // Check if passwords match
+        function checkPasswordsMatch() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const signupBtn = document.getElementById('signup-btn');
+            
+            if (password && confirmPassword) {
+                if (password === confirmPassword && validatePassword(password)) {
+                    signupBtn.disabled = false;
+                } else {
+                    signupBtn.disabled = true;
+                }
+            }
+        }
+
+        // Add event listeners for password validation
+        document.getElementById('password').addEventListener('input', function() {
+            validatePassword(this.value);
+            checkPasswordsMatch();
         });
-});
 
+        document.getElementById('confirmPassword').addEventListener('input', checkPasswordsMatch);
 
+        function showLoading() {
+            document.getElementById('signup-btn').disabled = true;
+        }
+
+        function hideLoading() {
+            document.getElementById('signup-btn').disabled = false;
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 3000);
+        }
+
+        // Handle signup form submission
+        document.getElementById('signupForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+            showLoading();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                showError('As senhas não coincidem!');
+                hideLoading();
+                return;
+            }
+
+            try {
+                // Create user account
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+
+                // Save user data in Firestore
+                await db.collection('users').doc(user.uid).set({
+                    uid: user.uid,
+                    email: user.email,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp(),
+                    createdBy: user.uid,
+                    isVerified: false
+                });
+
+                showSuccess('Cadastro realizado com sucesso!');
+                setTimeout(() => {
+                    window.location.href = `getstarted.html?uid=${user.uid}`;
+                }, 1500);
+            } catch (error) {
+                showError(`Erro: ${error.message}`);
+            } finally {
+                hideLoading();
+            }
+        });
 
         // Translations
         const translations = {
@@ -106,6 +249,8 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
                 emailPlaceholder: "Digite seu email",
                 passwordLabel: "Senha:",
                 passwordPlaceholder: "Digite sua senha",
+                confirmPasswordLabel: "Confirmar Senha:",
+                confirmPasswordPlaceholder: "Confirme sua senha",
                 signupButton: "Cadastre-se",
                 alreadyAccount: "Já tem uma conta?",
                 loginLink: "Entrar",
@@ -118,6 +263,8 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
                 emailPlaceholder: "اپنا ای میل درج کریں",
                 passwordLabel: "پاس ورڈ:",
                 passwordPlaceholder: "اپنا پاس ورڈ درج کریں",
+                confirmPasswordLabel: "پاس ورڈ کی تصدیق کریں:",
+                confirmPasswordPlaceholder: "اپنا پاس ورڈ دوبارہ درج کریں",
                 signupButton: "سائن اپ کریں",
                 alreadyAccount: "پہلے سے ہی اکاؤنٹ ہے؟",
                 loginLink: "لاگ ان کریں",
@@ -139,6 +286,8 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
             document.getElementById("email").placeholder = translations[lang].emailPlaceholder;
             document.getElementById("password-label").textContent = translations[lang].passwordLabel;
             document.getElementById("password").placeholder = translations[lang].passwordPlaceholder;
+            document.getElementById("confirm-password-label").textContent = translations[lang].confirmPasswordLabel;
+            document.getElementById("confirmPassword").placeholder = translations[lang].confirmPasswordPlaceholder;
             document.getElementById("signup-btn").textContent = translations[lang].signupButton;
             document.getElementById("welcome-text").textContent = translations[lang].welcomeText;
             document.getElementById("description").textContent = translations[lang].description;

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Heaven: Learn Fruits</title>
+  <style>
+    /* Reset and Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #ffffff, #f0f8ff);
+      color: #1a1a2e;
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* Header Section */
+    header {
+      background: linear-gradient(135deg, #1a1a2e, #243b55);
+      color: white;
+      padding: 30px 0;
+      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    header button {
+      margin-top: 20px;
+      background: #007ea7;
+      color: white;
+      font-size: 1.3rem;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0px 8px 15px rgba(0, 126, 167, 0.5);
+      transition: all 0.3s ease-in-out;
+    }
+
+    header button:hover {
+      background: #005f87;
+      transform: translateY(-3px);
+    }
+
+    /* Search Bar */
+    .search-container {
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 10px 20px;
+      border: 2px solid #1a1a2e;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      outline: none;
+    }
+
+    /* Main Section - Fruit Grid */
+    .fruit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      max-width: 1300px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    /* Fruit Cards */
+    .fruit-card {
+      background: white;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .fruit-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .fruit-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .fruit-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .fruit-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #1a1a2e;
+    }
+
+    .fruit-info button {
+      background: #1a1a2e;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .fruit-info button:hover {
+      background: #0f3460;
+    }
+
+    /* Popup Modal */
+    .modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  padding: 20px;
+  z-index: 10;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+    .modal img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .modal h3 {
+      margin-top: 20px;
+      font-size: 2rem;
+      color: #1a1a2e;
+    }
+
+    .modal button {
+      background: #007ea7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .modal img {
+  width: 100%;
+  border-radius: 10px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+
+    /* Modal Close Button */
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #1a1a2e;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 1.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .modal[style*="display: block"] {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 5;
+      display: none;
+    }
+
+    /* Footer Section */
+    footer {
+      background: #243b55;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #00a8cc;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body onload="startLearning()">
+ <header>
+  <h1>پھل سیکھیں</h1>
+  <p>اس سبق میں ہم پھلوں کے نام سیکھیں گے</p>
+</header>
+
+<div class="search-container">
+  <input
+    type="text"
+    id="search"
+    placeholder="پھلوں کے نام سے تلاش کریں..."
+    oninput="filterFruits(this.value)"
+  />
+</div>
+
+<div id="fruit-grid" class="fruit-grid"></div>
+
+<div id="modal" class="modal">
+  <button class="modal-close" onclick="closeModal()">×</button>
+  <img id="modal-image" src="" alt="پھل کی تصویر">
+  <h3 id="modal-name"></h3>
+  <button onclick="playAudio()">🔊 تلفظ سنیں</button>
+</div>
+
+
+  <div id="overlay" class="overlay" onclick="closeModal()"></div>
+
+  <script>
+    const fruits = [
+    { name: "Maçã", urdu: "سیب", image: "fruimg/a.jpg", audio: "audios/audio1.mp3" },
+  { name: "Banana", urdu: "کیلا", image: "fruimg/b.jpg", audio: "audios/audio2.mp3" },
+  { name: "Uva", urdu: "انگور", image: "fruimg/uva.jpg", audio: "audios/audio3.mp3" },
+  { name: "Laranja", urdu: "کینو", image: "fruimg/laranja.jpg", audio: "audios/audio4.mp3" },
+  { name: "Abacaxi", urdu: "انناس", image: "fruimg/abaxi.jpg", audio: "audios/audio5.mp3" },
+  { name: "Manga", urdu: "آم", image: "fruimg/mangO.jpg", audio: "audios/audio6.mp3" },
+  { name: "Pera", urdu: "ناشپاتی", image: "fruimg/pera.jpg", audio: "audios/audio7.mp3" },
+  { name: "Melancia", urdu: "تربوز", image: "fruimg/malencia.jpg", audio: "audios/audio8.mp3" },
+  { name: "Cereja", urdu: "چیری", image: "fruimg/cereja.jpg", audio: "audios/audio9.mp3" },
+  { name: "Morango", urdu: "اسٹرابیری", image: "fruimg/morango.jpg", audio: "audios/audio10.mp3" },
+  { name: "Pêssego", urdu: "آڑو", image: "fruimg/pessego.jpg", audio: "audios/audio11.mp3" },
+  { name: "Limão", urdu: "لیموں", image: "fruimg/lemon.jpg", audio: "audios/audio12.mp3" },
+  { name: "Romã", urdu: "انار", image: "fruimg/roma.jpg", audio: "audios/audio13.mp3" },
+
+  // Exotic and Regional Fruits
+  { name: "Açaí", urdu: "اکائی", image: "Exoticfru/Açaí.jpg", audio: "audios/audio14.mp3" },
+  { name: "Graviola (Soursop)", urdu: "گریویولا", image: "Exoticfru/Graviola.jpg", audio: "audios/audio15.mp3" },
+  { name: "Tamarindo", urdu: "املی", image: "Exoticfru/Tamarindo.jpg", audio: "audios/audio16.mp3" },
+  { name: "Jabuticaba", urdu: "جابوٹی کبا", image: "Exoticfru/Jabuticaba.jpg", audio: "audios/audio17.mp3" },
+  { name: "Pitaya (Dragon Fruit)", urdu: "پتھایا", image: "Exoticfru/Pitaya.jpg", audio: "audios/audio18.mp3" },
+  { name: "Mangostão (Mangosteen)", urdu: "منگوسٹین", image: "Exoticfru/Mangostão.jpg", audio: "audios/audio19.mp3" },
+  { name: "Camu Camu", urdu: "کمو کمو", image: "Exoticfru/Camu Camu.jpg", audio: "audios/audio20.mp3" },
+  { name: "Rambutan", urdu: "رامبوٹان", image: "Exoticfru/Rambutan.jpg", audio: "audios/audio21.mp3" },
+  { name: "Durian", urdu: "ڈورین", image: "Exoticfru/Durian.jpg", audio: "audios/audio22.mp3" },
+  { name: "Lichia (Lychee)", urdu: "لیچی", image: "Exoticfru/Lichia.jpg", audio: "audios/audio23.mp3" },
+  { name: "Sapoti (Sapodilla)", urdu: "چیکو", image: "Exoticfru/Sapoti.jpg", audio: "audios/audio24.mp3" },
+  { name: "Carambola (Starfruit)", urdu: "ستارہ پھل", image: "Exoticfru/Carambola.jpg", audio: "audios/audio25.mp3" },
+  { name: "Physalis (Goldenberry)", urdu: "پھیزالیس", image: "Exoticfru/Physalis.jpg", audio: "audios/audio26.mp3" },
+
+  // Berries
+  { name: "Amora (Blackberry)", urdu: "بلیک بیری", image: "Berriesfru/Amora.jpg", audio: "audios/audio27.mp3" },
+  { name: "Mirtilo (Blueberry)", urdu: "بلیو بیری", image: "Berriesfru/Mirtilo.jpg", audio: "audios/audio28.mp3" },
+  { name: "Framboesa (Raspberry)", urdu: "رس بھری", image: "Berriesfru/Framboesa.jpg", audio: "audios/audio29.mp3" },
+  { name: "Cranberry", urdu: "کرین بیری", image: "Berriesfru/Cranberry.jpg", audio: "audios/audio30.mp3" },
+  { name: "Morango Silvestre (Wild Strawberry)", urdu: "جنگلی اسٹرابیری", image: "Berriesfru/Morango Silvestre.jpg", audio: "audios/audio31.mp3" },
+
+  // Citrus Fruits
+  { name: "Tangerina (Mandarin)", urdu: "چھوٹا مالٹا", image: "Citrusfru/Tangerina.jpg", audio: "audios/audio32.mp3" },
+  { name: "Toranja (Grapefruit)", urdu: "چکوترا", image: "Citrusfru/Toranja.jpg", audio: "audios/audio33.mp3" },
+  { name: "Pomelo", urdu: "پومیلو", image: "Citrusfru/Pomelo.jpg", audio: "audios/audio34.mp3" },
+
+  // Melons
+  { name: "Melão (Cantaloupe)", urdu: "خربوزہ", image: "Melonsfru/Melão.jpg", audio: "audios/audio35.mp3" },
+  { name: "Melancia Amarela (Yellow Watermelon)", urdu: "پیلے تربوز", image: "Melonsfru/Melão.jpg", audio: "audios/audio36.mp3" },
+  { name: "Kiwano (Horned Melon)", urdu: "کانٹے دار خربوزہ", image: "Melonsfru/Melão.jpg", audio: "audios/audio37.mp3" },
+
+  // Tropical Fruits
+  { name: " (Passionfruit)", urdu: "پھل دار پودا", image: "Tropicalfru/Maracujá.jpg", audio: "audios/audio38.mp3" },
+  { name: "Coco (Coconut)", urdu: "ناریل", image: "Tropicalfru/Coco.jpg", audio: "audios/audio39.mp3" },
+  { name: "Mamão (Papaya)", urdu: "پپیتا", image: "Tropicalfru/Mamão.jpg", audio: "audios/audio40.mp3" },
+  { name: "Jaca (Jackfruit)", urdu: "کٹہل", image: "Tropicalfru/Jaca.jpg", audio: "audios/audio41.mp3" },
+  { name: "Guava (Goiaba)", urdu: "امرود", image: "Tropicalfru/Guava.jpg", audio: "audios/audio42.mp3" },
+  { name: "Longan", urdu: "لمبی", image: "Tropicalfru/Longan.jpg", audio: "audios/audio43.mp3" },
+  { name: "Salak (Snake Fruit)", urdu: "سانپ پھل", image: "Tropicalfru/Salak.jpg", audio: "audios/audio44.mp3" },
+  
+  // Stone Fruits
+  { name: "Caju (Cashew Fruit)", urdu: "کاجو", image: "Stonefru/Caju.jpg", audio: "audios/audio45.mp3" },
+  { name: "Nêspera (Loquat)", urdu: "لوکاٹ", image: "Stonefru/Nêspera.jpg", audio: "audios/audio46.mp3" },
+  { name: "Damson (Plum)", urdu: "آلو بخارا", image: "Stonefru/Damson.jpg", audio: "audios/audio47.mp3" },
+  { name: "Apricot", urdu: "خوبانی", image: "Stonefru/Apricot.jpg", audio: "audios/audio48.mp3" },
+
+  // Rare Fruits
+  { name: "Cherymoia (Custard Apple)", urdu: "چیریمویہ", image: "Rarefru/Cherymoia.jpg", audio: "audios/audio49.mp3" },
+  { name: "Bael (Wood Apple)", urdu: "بیل", image: "Rarefru/Bael.jpg", audio: "audios/audio50.mp3" },
+  { name: "Santol", urdu: "سینٹول", image: "Rarefru/Santol.jpg", audio: "audios/audio51.mp3" },
+  { name: "Medlar", urdu: "میڈلر", image: "Rarefru/Medlar.jpg", audio: "audios/audio53.mp3" }
+];   
+
+    const fruitGrid = document.getElementById("fruit-grid");
+    const modal = document.getElementById("modal");
+    const overlay = document.getElementById("overlay");
+
+    function startLearning() {
+      fruitGrid.innerHTML = ""; // Prevent duplicates
+      fruits.forEach((fruit) => {
+        const card = document.createElement("div");
+        card.className = "fruit-card";
+        card.innerHTML = `
+          <img src="${fruit.image}" alt="${fruit.name}" onerror="this.src='placeholder.jpg'">
+          <div class="fruit-info">
+            <h3>${fruit.name} - ${fruit.urdu}</h3>
+            <button onclick="playAudio('${fruit.audio}')">🔊 Listen Audio</button>
+          </div>
+        `;
+        fruitGrid.appendChild(card);
+      });
+    }
+
+    function playAudio(audio) {
+      if (audio) {
+        const audioPlayer = new Audio(audio);
+        audioPlayer.play();
+      } else {
+        alert("Audio not available!");
+      }
+    }
+
+
+
+function closeModal() {
+  modal.style.display = "none";
+  overlay.style.display = "none";
+  document.body.style.overflow = "auto"; // Restore scrolling
+}
+
+
+
+    function filterFruits(query) {
+      const cards = document.querySelectorAll(".fruit-card");
+      cards.forEach((card) => {
+        const name = card.querySelector("h3").innerText.toLowerCase();
+        card.style.display = name.includes(query.toLowerCase()) ? "block" : "none";
+      });
+    }
+
+    // Automatically call startLearning when the page loads
+    window.onload = startLearning;
+  </script>
+</body>

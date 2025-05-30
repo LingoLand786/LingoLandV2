@@ -21,6 +21,41 @@
       min-height: 100vh;
     }
 
+    /* Added variables and button styles */
+    :root {
+          --primary-color: #002D62;
+          --secondary-color: #001b40;
+    }
+
+    .btn {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          margin: 30px 0;
+      }
+
+    .menu-principal-button {
+      padding: 12px 25px;
+      background: transparent;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border: 2px solid var(--primary-color);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+  }
+
+  .menu-principal-button:hover {
+      background: var(--primary-color);
+      color: white;
+  }
+
     /* Header Section */
     header {
       background: linear-gradient(135deg, #1a1a2e, #243b55);
@@ -234,51 +269,50 @@
 
   <script>
     const animals = [
-      { name: "Cão", urdu: "کتا", image: "animalimg/cao.jpg", audio: "audio/dog.mp3" },
-      { name: "Gato", urdu: "بلی", image: "animalimg/gato.jpg", audio: "audio/cat.mp3" },
-      { name: "Elefante", urdu: "ہاتھی", image: "animalimg/elefante.jpg", audio: "audio/elephant.mp3" },
-      { name: "Leão", urdu: "شیر", image: "animalimg/leao.jpg", audio: "audio/lion.mp3" },
-      { name: "Tigre", urdu: "چیتا", image: "animalimg/tigre.jpg", audio: "audio/tiger.mp3" },
-      { name: "Coelho", urdu: "خرگوش", image: "animalimg/coelho.jpg", audio: "audio/rabbit.mp3" },
-      { name: "Cavalo", urdu: "گھوڑا", image: "animalimg/cavalo.jpg", audio: "audio/horse.mp3" },
-      { name: "Vaca", urdu: "گائے", image: "animalimg/vaca.jpg", audio: "audio/cow.mp3" },
-      { name: "Ovelha", urdu: "بھیڑ", image: "animalimg/ovelha.jpg", audio: "audio/sheep.mp3" },
-      { name: "Bode", urdu: "بکرا", image: "animalimg/bode.jpg", audio: "audio/goat.mp3" },
-      { name: "Porco", urdu: "سور", image: "animalimg/porco.jpg", audio: "audio/pig.mp3" },
-      { name: "Pato", urdu: "بطخ", image: "animalimg/pato.jpg", audio: "audio/duck.mp3" },
-      { name: "Galo", urdu: "مرغا", image: "animalimg/galo.jpg", audio: "audio/rooster.mp3" },
-      { name: "Galinha", urdu: "مرغی", image: "animalimg/galinha.jpg", audio: "audio/hen.mp3" },
-      { name: "Urso", urdu: "ریچھ", image: "animalimg/urso.jpg", audio: "audio/bear.mp3" },
-      { name: "Macaco", urdu: "بندر", image: "animalimg/macaco.jpg", audio: "audio/monkey.mp3" },
-      { name: "Rato", urdu: "چوہا", image: "animalimg/rato.jpg", audio: "audio/mouse.mp3" },
-      { name: "Rap osa", urdu: "لومڑی", image: "animalimg/fox.jpg", audio: "audio/fox.mp3" },
-      { name: "Lobo", urdu: "بھیڑیا", image: "animalimg/wolf.jpg", audio: "audio/wolf.mp3" },
-      { name: "Cobra", urdu: "سانپ", image: "animalimg/snake.jpg", audio: "audio/snake.mp3" },
-      { name: "Jacaré", urdu: "مگرمچھ", image: "animalimg/alligator.jpg", audio: "audio/alligator.mp3" },
-      { name: "Pombo", urdu: "کبوتر", image: "animalimg/pigeon.jpg", audio: "audio/pigeon.mp3" },
-      { name: "Corvo", urdu: "کوا", image: "animalimg/crow.jpg", audio: "audio/crow.mp3" },
-      { name: "Papagaio", urdu: "طوطا", image: "animalimg/parrot.jpg", audio: "audio/parrot.mp3" },
-      { name: "Águia", urdu: "عقاب", image: "animalimg/eagle.jpg", audio: "audio/eagle.mp3" },
-      { name: "Coruja", urdu: "الو", image: "animalimg/owl.jpg", audio: "audio/owl.mp3" },
-      { name: "Golfinho", urdu: "ڈولفن", image: "animalimg/dolphin.jpg", audio: "audio/dolphin.mp3" },
-      { name: "Tubarão", urdu: "شارک", image: "animalimg/shark.jpg", audio: "audio/shark.mp3" },
-      { name: "Baleia", urdu: "وہیل", image: "animalimg/whale.jpg", audio: "audio/whale.mp3" },
-      { name: "Tartaruga", urdu: "کچھوا", image: "animalimg/turtle.jpg", audio: "audio/turtle.mp3" },
-      { name: "Polvo", urdu: "آکٹوپس", image: "animalimg/octopus.jpg", audio: "audio/octopus.mp3" },
-      { name: "Cervo", urdu: "ہرن", image: "animalimg/deer.jpg", audio: "audio/deer.mp3" },
-      { name: "Camelo", urdu: "اونٹ", image: "animalimg/camel.jpg", audio: "audio/camel.mp3" },
-      { name: "Zebra", urdu: "زیبرا", image: "animalimg/zebra.jpg", audio: "audio/zebra.mp3" },
-      { name: "Panda", urdu: "پانڈا", image: "animalimg/panda.jpg", audio: "audio/panda.mp3" },
-      { name: "Caracol", urdu: "گھونگا", image: "animalimg/snail.jpg", audio: "audio/snail.mp3" },
-      { name: "Formiga", urdu: "چیونٹی", image: "animalimg/ant.jpg", audio: "audio/ant.mp3" },
-      { name: "Borboleta", urdu: "تتلی", image: "animalimg/butterfly.jpg", audio: "audio/butterfly.mp3" },
-      { name: "Aranha", urdu: "مکڑی", image: "animalimg/spider.jpg", audio: "audio/spider.mp3" },
-      { name: "Louva-a-deus", urdu: "ٹڈا", image: "animalimg/mantis.jpg", audio: "audio/mantis.mp3" },
-      { name: "Escorpião", urdu: "بچھو", image: "animalimg/scorpion.jpg", audio: "audio/scorpion.mp3" },
-      { name: "Peixe-palhaço", urdu: "مچھلی", image: "animalimg/clownfish.jpg", audio: "audio/clownfish.mp3" },
-      { name: "Estrela-do-mar", urdu: "سمندری ستارہ", image: "animalimg/starfish.jpg", audio: "audio/starfish.mp3" },
-      { name: "Pinguim", urdu: "پینگوئن", image: "animalimg/pinguim.jpg", audio: "audio/pinguim.mp3" },
-      { name: "Marmot", urdu: "مارموٹ", image: "animalimg/marmot.jpg", audio: "audio/marmot.mp3" }
+      { name: "Cão", urdu: "کتا", image: "animalimg/anaburra.jpg", audio: "audio/1.mp3" },
+      { name: "Gato", urdu: "بلی", image: "animalimg/gato.jpg", audio: "audio/2.mp3" },
+      { name: "Elefante", urdu: "ہاتھی", image: "animalimg/elefante.jpeg", audio: "audio/3.mp3" },
+      { name: "Leão", urdu: "شیر", image: "animalimg/leao.png", audio: "audio/4.mp3" },
+      { name: "Tigre", urdu: "چیتا", image: "animalimg/tigre.jpg", audio: "audio/5.mp3" },
+      { name: "Coelho", urdu: "خرگوش", image: "animalimg/coelho.jpg", audio: "audio/6.mp3" },
+      { name: "Cavalo", urdu: "گھوڑا", image: "animalimg/cavalo.jpg", audio: "audio/7.mp3" },
+      { name: "Vaca", urdu: "گائے", image: "animalimg/vaca.jpg", audio: "audio/8.mp3" },
+      { name: "Ovelha", urdu: "بھیڑ", image: "animalimg/ovelha.jpg", audio: "audio/9.mp3" },
+      { name: "Bode", urdu: "بکرا", image: "animalimg/bode.jpg", audio: "audio/10.mp3" },
+      { name: "Porco", urdu: "سور", image: "animalimg/porco.jpg", audio: "audio/11.mp3" },
+      { name: "Pato", urdu: "بطخ", image: "animalimg/pato.jpg", audio: "audio/12.mp3" },
+      { name: "Galo", urdu: "مرغا", image: "animalimg/galo.jpg", audio: "audio/13.mp3" },
+      { name: "Galinha", urdu: "مرغی", image: "animalimg/galinha.jpg", audio: "audio/14.mp3" },
+      { name: "Urso", urdu: "ریچھ", image: "animalimg/urso.jpg", audio: "audio/15.mp3" },
+      { name: "Macaco", urdu: "بندر", image: "animalimg/macaco.png", audio: "audio/16.mp3" },
+      { name: "Rato", urdu: "چوہا", image: "animalimg/rato.jpg", audio: "audio/17.mp3" },
+      { name: "Rap osa", urdu: "لومڑی", image: "animalimg/raposa.jpg", audio: "audio/18.mp3" },
+      { name: "Lobo", urdu: "بھیڑیا", image: "animalimg/lobo.jpg", audio: "audio/19.mp3" },
+      { name: "Cobra", urdu: "سانپ", image: "animalimg/cobra.png", audio: "audio/20.mp3" },
+      { name: "Jacaré", urdu: "مگرمچھ", image: "animalimg/jacare.jpg", audio: "audio/21.mp3" },
+      { name: "Pombo", urdu: "کبوتر", image: "animalimg/pombo.jpg", audio: "audio/22.mp3" },
+      { name: "Corvo", urdu: "کوا", image: "animalimg/corvo.jpg", audio: "audio/23.mp3" },
+      { name: "Papagaio", urdu: "طوطا", image: "animalimg/papagaio.jpg", audio: "audio/24.mp3" },
+      { name: "Águia", urdu: "عقاب", image: "animalimg/aguia.jpg", audio: "audio/25.mp3" },
+      { name: "Coruja", urdu: "الو", image: "animalimg/coruja.jpg", audio: "audio/26.mp3" },
+      { name: "Golfinho", urdu: "ڈولفن", image: "animalimg/golfinho.png", audio: "audio/27.mp3" },
+      { name: "Tubarão", urdu: "شارک", image: "animalimg/Tubarão.jpg", audio: "audio/28.mp3" },
+      { name: "Baleia", urdu: "وہیل", image: "animalimg/baleia.jpg", audio: "audio/29.mp3" },
+      { name: "Tartaruga", urdu: "کچھوا", image: "animalimg/Tartaruga.png", audio: "audio/30.mp3" },
+      { name: "Polvo", urdu: "آکٹوپس", image: "animalimg/polvo.jpg", audio: "audio/31.mp3" },
+      { name: "Cervo", urdu: "ہرن", image: "animalimg/cervo.jpg", audio: "audio/32.mp3" },
+      { name: "Camelo", urdu: "اونٹ", image: "animalimg/camelo.jpg", audio: "audio/33.mp3" },
+      { name: "Zebra", urdu: "زیبرا", image: "animalimg/zebra.png", audio: "audio/34.mp3" },
+      { name: "Panda", urdu: "پانڈا", image: "animalimg/panda.jpg", audio: "audio/35.mp3" },
+      { name: "Caracol", urdu: "گھونگا", image: "animalimg/caracol.png", audio: "audio/36.mp3" },
+      { name: "Formiga", urdu: "چیونٹی", image: "animalimg/formiga.png", audio: "audio/37.mp3" },
+      { name: "Borboleta", urdu: "تتلی", image: "animalimg/borboleta.png", audio: "audio/38.mp3" },
+      { name: "Aranha", urdu: "مکڑی", image: "animalimg/aranha.png", audio: "audio/39.mp3" },
+      { name: "Escorpião", urdu: "بچھو", image: "animalimg/Escorpião.png", audio: "audio/41.mp3" },
+      { name: "Peixe-palhaço", urdu: "مچھلی", image: "animalimg/Peixe palhaço.jpg", audio: "audio/42.mp3" },
+      { name: "Estrela-do-mar", urdu: "سمندری ستارہ", image: "animalimg/Estrela do mar.jpg", audio: "audio/43.mp3" },
+      { name: "Pinguim", urdu: "پینگوئن", image: "animalimg/pinguin.png", audio: "audio/44.mp3" },
+      { name: "Marmot", urdu: "مارموٹ", image: "animalimg/marmot.jpg", audio: "audio/45.mp3" }
     ];
 
 
@@ -333,5 +367,10 @@
 
     window.onload = loadanimais;
   </script>
+
+  <div class="btn">
+    <a href="../mainmenuptur.html" class="menu-principal-button">Menu Principal</a>
+  </div>
+
 </body>
 </html>

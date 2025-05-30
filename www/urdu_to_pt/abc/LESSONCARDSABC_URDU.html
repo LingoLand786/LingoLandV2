@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرتگالی حروف تہجی سیکھیں</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #43a047;
+            --text-color: #212121;
+            --light-bg: #f5f7fa;
+            --card-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e8eaf6 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease;
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+
+        .progress-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #66bb6a);
+            transition: width 0.5s ease-in-out;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .abc-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            perspective: 1000px;
+        }
+
+        .abc-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .abc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .abc-card:hover {
+            transform: translateY(-10px) scale(1.02) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .abc-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .abc-card.learned {
+            background: linear-gradient(135deg, var(--accent-color), #66bb6a);
+            color: white;
+        }
+
+        .abc-card h3 {
+            font-size: 4rem;
+            margin: 0;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .abc-card p {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            overflow-y: auto;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin: auto;
+            max-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .letter-details {
+            padding: 2rem;
+            text-align: center;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .letter-display {
+            background: var(--light-bg);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            border: 2px dashed var(--primary-color);
+            position: relative;
+        }
+
+        .letter-display h3 {
+            font-size: 8rem;
+            margin: 0;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .pronunciation {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin: 1rem 0;
+        }
+
+        .letter-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .control-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .examples-section {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .example-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .example-list li {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .urdu-text {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-family: 'Noto Nastaliq Urdu', serif;
+            text-align: right;
+            direction: rtl;
+            flex: 1;
+        }
+
+        .meaning-text {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-left: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                max-height: calc(100vh - 2rem);
+            }
+
+            .letter-display h3 {
+                font-size: 6rem;
+            }
+
+            .urdu-text {
+                font-size: 2rem;
+            }
+
+            .control-btn {
+                width: 100%;
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .drawing-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffffff 0%, var(--light-bg) 100%);
+            z-index: 3000;
+            display: none;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .drawing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .drawing-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .back-btn:hover {
+            background: var(--light-bg);
+            transform: translateX(-2px);
+        }
+
+        .close-drawing {
+            background: none;
+            border: none;
+            color: #f44336;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+
+        .close-drawing:hover {
+            background: #ffebee;
+            transform: rotate(90deg);
+        }
+
+        .letter-preview {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px dashed var(--primary-color);
+            margin: 2rem 0;
+        }
+
+        .letter-preview h2 {
+            font-size: 8rem;
+            margin: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .letter-preview p {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .letter-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .info-card h4 {
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card p {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .drawing-container.active {
+            display: block;
+            animation: slideInRight 0.3s ease;
+        }
+
+        .drawing-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .drawing-title {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .drawing-title i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            margin: 1rem 0;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        #drawingCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+
+        .drawing-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .drawing-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .drawing-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .drawing-btn i {
+            font-size: 1.2rem;
+        }
+
+        .drawing-btn.clear {
+            background: #f44336;
+        }
+
+        .drawing-btn.clear:hover {
+            background: #d32f2f;
+        }
+
+        .drawing-feedback {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .drawing-feedback.success {
+            background: #e8f5e9;
+            color: var(--accent-color);
+        }
+
+        .drawing-feedback.error {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .drawing-tools {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tool-btn {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .tool-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .tool-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .practice-guide {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .practice-guide h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .practice-guide ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .practice-guide li {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .practice-stats {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            margin: 2rem 0;
+        }
+
+        .stat-badge {
+            background: var(--light-bg);
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .stat-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .learning-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 0 1rem;
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .option-card:hover::before {
+            opacity: 0.02;
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 1rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--light-bg), #ffffff);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover .option-icon {
+            transform: scale(1.1) rotate(-5deg);
+            color: var(--accent-color);
+        }
+
+        .option-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .option-description {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.85;
+            position: relative;
+            z-index: 2;
+        }
+
+        .option-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .learning-options {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .option-card {
+                padding: 2rem;
+            }
+
+            .option-icon {
+                font-size: 2.5rem;
+            }
+
+            .option-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .video-container.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .video-wrapper {
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .video-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .video-control-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .video-control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .video-player {
+            width: 100%;
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-player video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+
+        .drawing-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .drawing-btn.undo {
+            background: var(--secondary-color);
+        }
+
+        .drawing-btn.undo:hover {
+            background: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .stroke-order {
+                flex-direction: column;
+            }
+
+            .writing-tips {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>پرتگالی حروف تہجی سیکھیں</h1>
+            <p>پرتگالی حروف تہجی کو انٹرایکٹو طریقے سے سیکھیں</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="learned-count">0</div>
+                    <div>سیکھے گئے حروف</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="total-letters">26</div>
+                    <div>کل حروف</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="practice-count">0</div>
+                    <div>مکمل مشقیں</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="learning-options">
+            <div class="option-card" onclick="showVideo()">
+                <i class="fas fa-play-circle option-icon"></i>
+                <h3 class="option-title">ویڈیو کے ذریعے سیکھیں</h3>
+                <p class="option-description">
+                    پرتگالی حروف تہجی کو انٹرایکٹو ویڈیوز کے ذریعے سیکھیں۔ مقامی تلفظ اور عملی مثالوں کے ساتھ۔ 
+                    ہمارے پیشہ ورانہ ٹیوٹوریلز کے ساتھ ہر حرف کو قدم بہ قدم سیکھیں۔
+                </p>
+            </div>
+            <div class="option-card" onclick="showCards()">
+                <i class="fas fa-layer-group option-icon"></i>
+                <h3 class="option-title">مطالعہ کارڈز</h3>
+                <p class="option-description">
+                    انٹرایکٹو کارڈز کے ذریعے ہر حرف کو الگ سے سیکھیں۔ لکھنے کی مشق کریں، 
+                    تلفظ سنیں اور سیاق و سباق کے ساتھ مثالوں سے سیکھیں۔
+                </p>
+            </div>
+        </div>
+
+        <div class="abc-cards" id="abc-cards">
+            <div class="abc-card" onclick="showLetterDetails('a')">
+                <h3>A</h3>
+                <p>آ</p>
+                <div class="example-word">Amor (محبت)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('b')">
+                <h3>B</h3>
+                <p>بے</p>
+                <div class="example-word">Bom (اچھا)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('c')">
+                <h3>C</h3>
+                <p>سے</p>
+                <div class="example-word">Casa (گھر)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('d')">
+                <h3>D</h3>
+                <p>دے</p>
+                <div class="example-word">Dia (دن)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('e')">
+                <h3>E</h3>
+                <p>ای</p>
+                <div class="example-word">Estrela (ستارہ)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('f')">
+                <h3>F</h3>
+                <p>ایف</p>
+                <div class="example-word">Fogo (آگ)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('g')">
+                <h3>G</h3>
+                <p>جے</p>
+                <div class="example-word">Gato (بلی)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('h')">
+                <h3>H</h3>
+                <p>آگا</p>
+                <div class="example-word">Homem (آدمی)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('i')">
+                <h3>I</h3>
+                <p>ای</p>
+                <div class="example-word">Igreja (گرجا)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('j')">
+                <h3>J</h3>
+                <p>جوتا</p>
+                <div class="example-word">Janela (کھڑکی)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('k')">
+                <h3>K</h3>
+                <p>کا</p>
+                <div class="example-word">Kiwi (کیوی)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('l')">
+                <h3>L</h3>
+                <p>ایل</p>
+                <div class="example-word">Lua (چاند)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('m')">
+                <h3>M</h3>
+                <p>ایم</p>
+                <div class="example-word">Mãe (ماں)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('n')">
+                <h3>N</h3>
+                <p>این</p>
+                <div class="example-word">Noite (رات)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('o')">
+                <h3>O</h3>
+                <p>او</p>
+                <div class="example-word">Olho (آنکھ)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('p')">
+                <h3>P</h3>
+                <p>پے</p>
+                <div class="example-word">Pai (والد)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('q')">
+                <h3>Q</h3>
+                <p>کو</p>
+                <div class="example-word">Quatro (چار)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('r')">
+                <h3>R</h3>
+                <p>ایہ</p>
+                <div class="example-word">Rua (گلی)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('s')">
+                <h3>S</h3>
+                <p>ایس</p>
+                <div class="example-word">Sol (سورج)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('t')">
+                <h3>T</h3>
+                <p>ٹے</p>
+                <div class="example-word">Tempo (وقت)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('u')">
+                <h3>U</h3>
+                <p>او</p>
+                <div class="example-word">Uva (انگور)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('v')">
+                <h3>V</h3>
+                <p>وے</p>
+                <div class="example-word">Vida (زندگی)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('w')">
+                <h3>W</h3>
+                <p>ڈبلیو</p>
+                <div class="example-word">Website (ویب سائٹ)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('x')">
+                <h3>X</h3>
+                <p>شس</p>
+                <div class="example-word">Xadrez (شطرنج)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('y')">
+                <h3>Y</h3>
+                <p>وائی</p>
+                <div class="example-word">Yoga (یوگا)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('z')">
+                <h3>Z</h3>
+                <p>زے</p>
+                <div class="example-word">Zebra (زیبرا)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="letter-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>حرف کی تفصیلات</h2>
+                <button class="close-modal" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="letter-details">
+                <div class="letter-display">
+                    <h3 id="modal-letter"></h3>
+                    <div class="letter-controls">
+                        <button class="control-btn" onclick="playAudio(currentLetter)">
+                            <i class="fas fa-volume-up"></i>
+                            تلفظ سنیں
+                        </button>
+                        <button class="control-btn" onclick="togglePractice()">
+                            <i class="fas fa-pen"></i>
+                            مشق کریں
+                        </button>
+                    </div>
+                </div>
+                <div class="letter-examples">
+                    <h3>مثالیں</h3>
+                    <ul class="example-list" id="modal-examples"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let learnedLetters = new Set();
+        let practiceCount = 0;
+        let currentLetter = '';
+
+        function updateProgress() {
+            const progress = (learnedLetters.size / 26) * 100; // Changed to 26 for English alphabet
+            document.getElementById('progress').style.width = `${progress}%`;
+            document.getElementById('learned-count').textContent = learnedLetters.size;
+        }
+
+        function showLetterDetails(letter) {
+            currentLetter = letter;
+            const data = letterData[letter];
+            if (!data) return;
+
+            const modal = document.getElementById('letter-modal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            modalContent.innerHTML = `
+                <div class="modal-header">
+                    <h2>${data.pronunciation}</h2>
+                    <button class="close-modal" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="letter-details">
+                    <div class="letter-display">
+                        <h3>${data.letter}</h3>
+                        <div class="pronunciation">${data.pronunciation}</div>
+                    </div>
+                    
+                    <div class="letter-controls">
+                        <button class="control-btn" onclick="playAudio('${letter}')">
+                            <i class="fas fa-volume-up"></i>
+                            تلفظ سنیں
+                        </button>
+                        <button class="control-btn" onclick="togglePractice()">
+                            <i class="fas fa-pen"></i>
+                            مشق کریں
+                        </button>
+                    </div>
+
+                    <div class="examples-section">
+                        <h4>مثالیں</h4>
+                        <ul class="example-list">
+                            ${data.examples.map(ex => {
+                                const [word, meaning] = ex.split(' (');
+                                return `
+                                    <li>
+                                        <span class="urdu-text">${word}</span>
+                                        <span class="meaning-text">(${meaning}</span>
+                                    </li>
+                                `;
+                            }).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            modal.style.display = 'flex';
+            learnedLetters.add(letter);
+            updateProgress();
+        }
+
+        function playAudio(letter) {
+            const data = letterData[letter];
+            if (!data) return;
+
+            // First speak the English pronunciation
+            const englishSpeech = new SpeechSynthesisUtterance();
+            englishSpeech.text = data.pronunciation;
+            englishSpeech.lang = 'en-US';
+            englishSpeech.rate = 0.8;
+            englishSpeech.pitch = 1;
+
+            // Then speak the Urdu pronunciation
+            const urduSpeech = new SpeechSynthesisUtterance();
+            urduSpeech.text = getUrduPronunciation(letter);
+            urduSpeech.lang = 'ur-PK';
+            urduSpeech.rate = 0.8;
+            urduSpeech.pitch = 1;
+
+            // Queue the speeches
+            window.speechSynthesis.speak(englishSpeech);
+            setTimeout(() => {
+                window.speechSynthesis.speak(urduSpeech);
+            }, 1000);
+        }
+
+        function getUrduPronunciation(letter) {
+            const urduPronunciations = {
+                'a': 'اے',
+                'b': 'بی',
+                'c': 'سی',
+                'd': 'ڈی',
+                'e': 'ای',
+                'f': 'ایف',
+                'g': 'جی',
+                'h': 'ایچ',
+                'i': 'آئی',
+                'j': 'جے',
+                'k': 'کے',
+                'l': 'ایل',
+                'm': 'ایم',
+                'n': 'این',
+                'o': 'او',
+                'p': 'پی',
+                'q': 'کیو',
+                'r': 'آر',
+                's': 'ایس',
+                't': 'ٹی',
+                'u': 'یو',
+                'v': 'وی',
+                'w': 'ڈبلیو',
+                'x': 'ایکس',
+                'y': 'وائی',
+                'z': 'زیڈ'
+            };
+            return urduPronunciations[letter.toLowerCase()] || '';
+        }
+
+        function closeModal() {
+            document.getElementById('letter-modal').style.display = 'none';
+        }
+
+        // Initialize the letter cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardsContainer = document.getElementById('abc-cards');
+            Object.entries(letterData).forEach(([key, data]) => {
+                const card = document.createElement('div');
+                card.className = 'abc-card';
+                card.onclick = () => showLetterDetails(key);
+                card.innerHTML = `
+                    <h3>${data.letter}</h3>
+                    <p>${data.pronunciation}</p>
+                `;
+                cardsContainer.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html> 

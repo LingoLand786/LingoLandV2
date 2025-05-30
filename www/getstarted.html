@@ -5,206 +5,771 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Language Preferences</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Noto+Naskh+Urdu&display=swap" rel="stylesheet">
-<!-- Firebase SDK (Must be before your script) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script> 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script> 
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         body {
             margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to bottom, #f4f4f4, #ffffff);
+            font-family: 'Poppins', 'Inter', 'Lato', sans-serif;
+            background: #fff; /* Pure white background */
+            min-height: 100vh;
+            color: #222;
+            position: relative;
+            overflow-x: hidden;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            color: #333;
         }
-
         .container {
-            background: #ffffff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 40px;
+            background: rgba(255,255,255,0.92);
+            box-shadow: 0 8px 32px 0 rgba(0, 45, 98, 0.13);
+            border-radius: 24px;
+            padding: 48px 40px 40px 40px;
             text-align: center;
             width: 100%;
-            max-width: 400px;
+            max-width: 480px;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(12px) saturate(120%);
+            border: 1.5px solid rgba(0, 45, 98, 0.08);
+            overflow: hidden;
+            animation: fadeIn 1.2s cubic-bezier(.77,0,.18,1) 0.1s both;
+            margin: 40px auto 0 auto;
         }
-
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #003E8A, #00b4ff 80%);
+            border-radius: 0 0 12px 12px;
+        }
         h1 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 32px;
             color: #002D62;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 16px rgba(0,60,255,0.08);
         }
-
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #003E8A, #00b4ff 80%);
+            border-radius: 2px;
+        }
+        .form-group {
+            margin-bottom: 28px;
+            text-align: left;
+        }
         label {
-            font-size: 1rem;
-            margin: 10px 0;
-            display: block;
+            font-size: 1.15rem;
+            margin: 12px 0 8px 0;
+            color: #002D62;
+            font-weight: 700;
+            letter-spacing: 0.5px;
         }
-
         select {
             width: 100%;
-            padding: 12px 16px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-            color: #333;
-            cursor: pointer;
+            padding: 14px 18px;
+            font-size: 1.05rem;
+            border: 2px solid #e0e8f7;
+            border-radius: 12px;
+            background: rgba(245, 250, 255, 0.85);
+            color: #222;
+            box-shadow: 0 2px 8px rgba(0, 45, 98, 0.06);
+            transition: all 0.3s cubic-bezier(.77,0,.18,1);
         }
-
         select:focus {
             outline: none;
-            border-color: #002D62;
-            box-shadow: 0px 0px 5px rgba(0, 45, 98, 0.3);
+            border-color: #00b4ff;
+            box-shadow: 0 0 0 3px rgba(0,180,255,0.13);
         }
-
         button {
-            background: #002D62;
-            color: white;
+            background: linear-gradient(90deg, #003E8A 0%, #00b4ff 100%);
+            color: #fff;
             border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            font-weight: bold;
-            border-radius: 5px;
+            padding: 16px 0;
+            font-size: 1.18rem;
+            font-weight: 700;
+            border-radius: 999px;
             cursor: pointer;
-            transition: all 0.3s ease;
             width: 100%;
+            box-shadow: 0 4px 24px 0 rgba(0, 60, 255, 0.13);
+            transition: all 0.22s cubic-bezier(.77,0,.18,1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
         }
-
         button:hover {
-            background: #003E8A;
-            transform: translateY(-2px);
+            transform: translateY(-2px) scale(1.025);
+            box-shadow: 0 8px 32px 0 rgba(0, 60, 255, 0.18);
+            filter: brightness(1.08);
         }
-
         button:active {
-            background: #002D62;
-            transform: translateY(0);
+            transform: scale(0.98);
         }
-
-        /* Urdu font styling */
         .urdu {
-            font-family: 'Noto Naskh Urdu', sans-serif;
+            font-family: 'Noto Naskh Urdu', 'Poppins', sans-serif;
             direction: rtl;
             text-align: right;
+        }
+        .language-info {
+            margin-top: 28px;
+            padding: 20px 18px;
+            background: rgba(245, 250, 255, 0.85);
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 45, 98, 0.07);
+            display: none;
+            font-size: 1.08rem;
+            text-align: left;
+        }
+        .language-info.show {
+            display: block;
+            animation: slideUp 0.7s cubic-bezier(.77,0,.18,1);
+        }
+        .info-icon {
+            color: #00b4ff;
+            margin-right: 10px;
+            font-size: 1.3rem;
+            vertical-align: middle;
+        }
+        .help-tooltip .tooltip-text {
+            width: 220px;
+            background: #003E8A;
+            color: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.98rem;
+        }
+        .help-tooltip .tooltip-text::after {
+            border-top-color: #003E8A;
+        }
+        .progress-container {
+            margin: 24px 0 18px 0;
+            padding: 18px 0 8px 0;
+            background: rgba(245, 250, 255, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 45, 98, 0.06);
+            display: none;
+        }
+        .progress-bar {
+            height: 8px;
+            background: #e9f3ff;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #003E8A, #00b4ff 80%);
+            width: 0%;
+            transition: width 0.5s cubic-bezier(.77,0,.18,1);
+        }
+        .progress-text {
+            margin-top: 10px;
+            font-size: 1.01rem;
+            color: #003E8A;
+            font-weight: 500;
+        }
+        .welcome-message {
+            margin-bottom: 24px;
+            padding: 18px 0;
+            background: rgba(0, 180, 255, 0.07);
+            border-radius: 12px;
+            font-size: 1.13rem;
+            color: #003E8A;
+            font-weight: 600;
+            display: none;
+            box-shadow: 0 2px 8px rgba(0, 45, 98, 0.04);
+        }
+        .welcome-message.show {
+            display: block;
+            animation: fadeIn 0.7s cubic-bezier(.77,0,.18,1);
+        }
+        .language-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 28px;
+            padding: 18px 0;
+            background: rgba(255,255,255,0.7);
+            border-radius: 16px;
+            box-shadow: 0 2px 16px rgba(0, 45, 98, 0.07);
+            gap: 18px;
+        }
+        .stat-item {
+            text-align: center;
+            background: rgba(245, 250, 255, 0.85);
+            border-radius: 12px;
+            padding: 12px 18px;
+            box-shadow: 0 1px 6px rgba(0, 45, 98, 0.04);
+            transition: transform 0.18s cubic-bezier(.77,0,.18,1), box-shadow 0.18s cubic-bezier(.77,0,.18,1);
+        }
+        .stat-item:hover {
+            transform: scale(1.045);
+            box-shadow: 0 4px 24px 0 rgba(0, 60, 255, 0.13);
+        }
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #003E8A;
+            letter-spacing: 1.2px;
+        }
+        .stat-label {
+            font-size: 1.08rem;
+            color: #0077c8;
+            font-weight: 700;
+            margin-top: 2px;
+            letter-spacing: 0.5px;
+        }
+        .loading {
+            display: none;
+            margin-top: 24px;
+        }
+        .loading-spinner {
+            width: 44px;
+            height: 44px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #00b4ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error-message {
+            color: #dc3545;
+            margin-top: 14px;
+            display: none;
+            font-size: 1.08rem;
+            font-weight: 600;
+            background: rgba(255,0,0,0.07);
+            border-radius: 8px;
+            padding: 10px 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 24px 8px 18px 8px;
+                max-width: 98vw;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .stat-value {
+                font-size: 1.3rem;
+            }
+        }
+        /* Center all text inside the container */
+        .container, .form-group, .language-info, .language-stats, .welcome-message {
+            text-align: center !important;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 id="title">Language Preferences</h1>
+        
+        <div class="welcome-message" id="welcomeMessage">
+            <i class="fas fa-hand-wave"></i> Welcome to your language learning journey!
+        </div>
+
         <form id="languageForm">
-            <label for="speakLanguage" id="speakLabel">I Speak:</label>
-            <select id="speakLanguage" name="speakLanguage">
-                <option value="ur">Urdu</option>
-                <option value="pt">Portuguese</option>
-            </select>
+            <div class="form-group">
+                <label for="speakLanguage" id="speakLabel">
+                    I Speak:
+                    <span class="help-tooltip">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="tooltip-text">Select your native or fluent language</span>
+                    </span>
+                </label>
+                <select id="speakLanguage" name="speakLanguage">
+                    <option value="ur" data-flag="🇵🇰">Urdu</option>
+                    <option value="pt" data-flag="🇧🇷">Portuguese</option>
+                </select>
+            </div>
 
-            <label for="learnLanguage" id="learnLabel">I Want to Learn:</label>
-            <select id="learnLanguage" name="learnLanguage">
-                <option value="ur">Urdu</option>
-                <option value="pt">Portuguese</option>
-            </select>
+            <div class="form-group">
+                <label for="learnLanguage" id="learnLabel">
+                    I Want to Learn:
+                    <span class="help-tooltip">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="tooltip-text">Select the language you want to learn</span>
+                    </span>
+                </label>
+                <select id="learnLanguage" name="learnLanguage">
+                    <option value="ur" data-flag="🇵🇰">Urdu</option>
+                    <option value="pt" data-flag="🇧🇷">Portuguese</option>
+                </select>
+            </div>
 
-            <button type="submit" id="submitButton">Continue</button>
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">Setting up your learning environment...</div>
+            </div>
+
+            <button type="submit" id="submitButton">
+                <i class="fas fa-arrow-right"></i> Continue
+            </button>
         </form>
+
+        <div class="language-info" id="languageInfo">
+            <i class="fas fa-info-circle info-icon"></i>
+            <span id="languageInfoText"></span>
+        </div>
+
+        <div class="language-stats">
+            <div class="stat-item">
+                <div class="stat-value" id="totalUsers">0</div>
+                <div class="stat-label">Active Learners</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="successRate">0%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </div>
+
+        <div class="loading">
+            <div class="loading-spinner"></div>
+        </div>
+        <div class="error-message" id="errorMessage"></div>
     </div>
 
     <script>
-
-  // Firebase Configuration
-  const firebaseConfig = {
-        apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
-        authDomain: "appsitesync.firebaseapp.com",
-        projectId: "appsitesync",
-        storageBucket: "appsitesync.appspot.com",
-        messagingSenderId: "357510439971",
-        appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
-        measurementId: "G-T0SX0NH50K"
-    };
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+            authDomain: "appsitesync.firebaseapp.com",
+            projectId: "appsitesync",
+            storageBucket: "appsitesync.appspot.com",
+            messagingSenderId: "357510439971",
+            appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+            measurementId: "G-T0SX0NH50K"
+        };
         
-    firebase.initializeApp(firebaseConfig);
+        firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // 🔹 Check if user is authenticated
+        // Check authentication
         auth.onAuthStateChanged(user => {
             if (!user) {
-                alert("Please log in first!");
-                window.location.href = "login.html";  // Redirect to login page
+                showError("Please log in first!");
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 2000);
             }
         });
 
-        // 🔹 Handle form submission
-        document.getElementById("languageForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default form submission
+        // Enhanced language information
+        const languageDetails = {
+            ur: {
+                name: "Urdu",
+                flag: "🇵🇰",
+                info: "Urdu is the official language of Pakistan and is widely spoken in South Asia.",
+                nativeSpeakers: "Over 70 million native speakers",
+                regions: "Pakistan, India, and other South Asian countries",
+                urduInfo: {
+                    name: "اردو",
+                    info: "اردو پاکستان کی سرکاری زبان ہے اور جنوبی ایشیا میں بڑے پیمانے پر بولی جاتی ہے۔",
+                    nativeSpeakers: "70 ملین سے زیادہ مقامی بولنے والے",
+                    regions: "پاکستان، بھارت، اور دیگر جنوبی ایشیائی ممالک"
+                },
+                portugueseInfo: {
+                    name: "Urdu",
+                    info: "O urdu é a língua oficial do Paquistão e é amplamente falado no sul da Ásia.",
+                    nativeSpeakers: "Mais de 70 milhões de falantes nativos",
+                    regions: "Paquistão, Índia e outros países do sul da Ásia"
+                }
+            },
+            pt: {
+                name: "Portuguese",
+                flag: "🇵🇹",
+                info: "European Portuguese is the official language of Portugal and is distinct from Brazilian Portuguese.",
+                nativeSpeakers: "Over 10 million native speakers in Portugal",
+                regions: "Portugal, Madeira, Azores, and other Portuguese-speaking regions in Europe",
+                urduInfo: {
+                    name: "پرتگالی",
+                    info: "یورپی پرتگالی پرتگال کی سرکاری زبان ہے اور برازیلی پرتگالی سے مختلف ہے۔",
+                    nativeSpeakers: "پرتگال میں 10 ملین سے زیادہ مقامی بولنے والے",
+                    regions: "پرتگال، میڈیرا، آزورز، اور یورپ کے دیگر پرتگالی بولنے والے علاقے"
+                },
+                portugueseInfo: {
+                    name: "Português",
+                    info: "O português europeu é a língua oficial de Portugal e é distinto do português brasileiro.",
+                    nativeSpeakers: "Mais de 10 milhões de falantes nativos em Portugal",
+                    regions: "Portugal, Madeira, Açores e outras regiões de língua portuguesa na Europa"
+                }
+            }
+        };
 
+        // Enhanced language detection
+        async function detectAndApplyLanguage() {
             const user = auth.currentUser;
+            let selectedLang = "pt"; // Default to Portuguese
+
             if (user) {
-                const uid = user.uid;
-                const spokenLanguage = document.getElementById("speakLanguage").value;
-                const learningLanguage = document.getElementById("learnLanguage").value;
-
-                db.collection("users").doc(uid).set({
-                    spokenLanguage: spokenLanguage,
-                    learningLanguage: learningLanguage
-                }, { merge: true })
-                .then(() => {
-                    alert("Language preferences saved!");
-                                       // 🛠 Redirect based on language selection
-                                       if (spokenLanguage.toLowerCase() === "pt" && learningLanguage.toLowerCase() === "ur") {
-    console.log("Redirecting to: /www/pt_to_urdu/mainmenuptur.html");
-    window.location.href = "/www/pt_to_urdu/mainmenuptur.html";  
-} else if (spokenLanguage.toLowerCase() === "ur" && learningLanguage.toLowerCase() === "pt") {
-    console.log("Redirecting to: /www/urdu_to_pt/mainmenuurpt.html");
-    window.location.href = "/www/urdu_to_pt/mainmenuurpt.html";  
-} else {
-    console.log("Redirecting to: /www/dashboard.html");
-    window.location.href = "/www/dashboard.html";  
-}
-
-                })
-
-                .catch((error) => {
-                    alert("Error saving preferences: " + error.message);
-                });
-            } else {
-                alert("Authentication error. Please log in.");
+                try {
+                    // Try to get user's language preference from Firestore
+                    const userDoc = await db.collection("users").doc(user.uid).get();
+                    if (userDoc.exists()) {
+                        const userData = userDoc.data();
+                        if (userData.languagePreference) {
+                            selectedLang = userData.languagePreference;
+                        }
+                    }
+                } catch (error) {
+                    console.error("Error fetching user preferences:", error);
+                }
             }
-        });
 
-        // 🌍 Translations for Urdu & Portuguese
+            // Fallback to browser language if no user preference
+            if (!selectedLang) {
+                const browserLang = navigator.language.slice(0, 2);
+                if (browserLang === "ur") {
+                    selectedLang = "ur";
+                }
+            }
+
+            // Apply language settings
+            if (selectedLang === "ur") {
+                document.body.classList.add("urdu");
+                // Set initial language selection to Urdu
+                document.getElementById("speakLanguage").value = "ur";
+                document.getElementById("learnLanguage").value = "pt";
+            } else {
+                document.body.classList.remove("urdu");
+                // Set initial language selection to Portuguese
+                document.getElementById("speakLanguage").value = "pt";
+                document.getElementById("learnLanguage").value = "ur";
+            }
+
+            applyTranslations(selectedLang);
+            showLanguageInfo(selectedLang, selectedLang === "ur" ? "pt" : "ur");
+        }
+
+        // Enhanced language selection
+        document.getElementById("speakLanguage").addEventListener("change", function() {
+            const speakLang = this.value;
+            const learnSelect = document.getElementById("learnLanguage");
+            // Only allow the opposite language
+            learnSelect.innerHTML = "";
+            const oppositeLang = speakLang === "ur" ? "pt" : "ur";
+            const option = document.createElement("option");
+            option.value = oppositeLang;
+            option.textContent = languageDetails[oppositeLang].name;
+            option.setAttribute('data-flag', languageDetails[oppositeLang].flag);
+            learnSelect.appendChild(option);
+            learnSelect.value = oppositeLang;
+            // Update UI language based on selection
+            if (speakLang === "ur") {
+                document.body.classList.add("urdu");
+                applyTranslations("ur");
+                updateWelcomeMessage("ur");
+                updateStatLabels();
+                updateProgressText();
+                updateTooltips();
+            } else {
+                document.body.classList.remove("urdu");
+                applyTranslations("pt");
+                updateWelcomeMessage("pt");
+                updateStatLabels();
+                updateProgressText();
+                updateTooltips();
+            }
+            // Show detailed language info for the language being learned
+            showLanguageInfo(speakLang, oppositeLang);
+        });
+        // On page load, also enforce the logic
+        window.onload = async function() {
+            await detectAndApplyLanguage();
+            const speakLang = document.getElementById("speakLanguage").value;
+            const learnSelect = document.getElementById("learnLanguage");
+            const oppositeLang = speakLang === "ur" ? "pt" : "ur";
+            learnSelect.innerHTML = "";
+            const option = document.createElement("option");
+            option.value = oppositeLang;
+            option.textContent = languageDetails[oppositeLang].name;
+            option.setAttribute('data-flag', languageDetails[oppositeLang].flag);
+            learnSelect.appendChild(option);
+            learnSelect.value = oppositeLang;
+            showLanguageInfo(speakLang, oppositeLang);
+            updateWelcomeMessage(speakLang);
+            updateStatLabels();
+            updateProgressText();
+            updateTooltips();
+            fetchStatistics();
+            setupRealtimeStats();
+        };
+
+        // Enhanced welcome message update
+        function updateWelcomeMessage(lang) {
+            const welcomeMessage = document.getElementById("welcomeMessage");
+            welcomeMessage.innerHTML = `<i class="fas fa-hand-wave"></i> ${translations[lang].welcome}`;
+            welcomeMessage.classList.add("show");
+        }
+
+        // Enhanced language information display
+        function showLanguageInfo(speakLang, learnLang) {
+            const languageInfo = document.getElementById("languageInfo");
+            const languageInfoText = document.getElementById("languageInfoText");
+            let info;
+            if (speakLang === "ur") {
+                // Show urduInfo for the language being learned
+                info = languageDetails[learnLang].urduInfo;
+            } else {
+                // Show portugueseInfo for the language being learned
+                info = languageDetails[learnLang].portugueseInfo;
+            }
+            languageInfoText.innerHTML = `
+                <strong>${info.name}</strong><br>
+                ${info.info}<br>
+                <small>${info.nativeSpeakers} • ${info.regions}</small>
+            `;
+            languageInfo.classList.add("show");
+        }
+
+        // Enhanced translations
         const translations = {
             ur: {
                 title: 'زبان کی ترجیحات',
                 speakLabel: 'میں بولتا ہوں:',
                 learnLabel: 'میں سیکھنا چاہتا ہوں:',
-                submitButton: 'جاری رکھیں'
+                submitButton: 'جاری رکھیں',
+                error: 'براہ کرم پہلے لاگ ان کریں!',
+                welcome: 'آپ کی زبان سیکھنے کی سفر میں خوش آمدید!',
+                activeLearners: 'فعال سیکھنے والے',
+                successRate: 'کامیابی کی شرح',
+                progressText: 'آپ کی سیکھنے کی ماحول کو ترتیب دی جا رہی ہے...',
+                tooltipSpeak: 'اپنی مادری یا روانی سے بولنے والی زبان منتخب کریں',
+                tooltipLearn: 'جس زبان کو سیکھنا چاہتے ہیں اسے منتخب کریں',
+                languageInfo: 'زبان کی معلومات',
+                loading: 'لوڈ ہو رہا ہے...',
+                errorSaving: 'ترجیحات محفوظ کرنے میں خرابی:',
+                authError: 'تصدیق کی خرابی۔ براہ کرم لاگ ان کریں۔'
             },
             pt: {
                 title: 'Preferências de Idioma',
                 speakLabel: 'Eu Falo:',
                 learnLabel: 'Eu Quero Aprender:',
-                submitButton: 'Continuar'
-            },
-            en: {
-                title: 'Language Preferences',
-                speakLabel: 'I speak:',
-                learnLabel: 'I want to learn:',
-                submitButton: 'Save & Continue'
+                submitButton: 'Continuar',
+                error: 'Por favor, faça login primeiro!',
+                welcome: 'Bem-vindo à sua jornada de aprendizado de idiomas!',
+                activeLearners: 'Aprendizes Ativos',
+                successRate: 'Taxa de Sucesso',
+                progressText: 'Configurando seu ambiente de aprendizado...',
+                tooltipSpeak: 'Selecione seu idioma nativo ou fluente',
+                tooltipLearn: 'Selecione o idioma que deseja aprender',
+                languageInfo: 'Informações do Idioma',
+                loading: 'Carregando...',
+                errorSaving: 'Erro ao salvar preferências:',
+                authError: 'Erro de autenticação. Por favor, faça login.'
             }
         };
 
-        // 📝 Function to update the language
-        function updateLanguage() {
-            const selectedLang = document.getElementById("languageSelect").value;
-            document.getElementById("title").textContent = translations[selectedLang].title;
-            document.getElementById("speakLabel").textContent = translations[selectedLang].speakLabel;
-            document.getElementById("learnLabel").textContent = translations[selectedLang].learnLabel;
-            document.getElementById("submitButton").textContent = translations[selectedLang].submitButton;
+        // Update statistics labels
+        function updateStatLabels() {
+            const currentLang = document.body.classList.contains("urdu") ? "ur" : "pt";
+            const statLabels = document.querySelectorAll('.stat-label');
+            if (statLabels.length > 0) statLabels[0].textContent = translations[currentLang].activeLearners;
+            if (statLabels.length > 1) statLabels[1].textContent = translations[currentLang].successRate;
+        }
+
+        // Update progress bar
+        function updateProgress(percent) {
+            const progressFill = document.getElementById("progressFill");
+            progressFill.style.width = `${percent}%`;
+        }
+
+        // Update progress text translation
+        function updateProgressText() {
+            const currentLang = document.body.classList.contains("urdu") ? "ur" : "pt";
+            document.querySelector('.progress-text').textContent = translations[currentLang].progressText;
+        }
+
+        // Update tooltip translations
+        function updateTooltips() {
+            const currentLang = document.body.classList.contains("urdu") ? "ur" : "pt";
+            const tooltips = document.querySelectorAll('.tooltip-text');
+            tooltips[0].textContent = translations[currentLang].tooltipSpeak;
+            tooltips[1].textContent = translations[currentLang].tooltipLearn;
+        }
+
+        // Enhanced statistics handling
+        async function updateStatistics(spokenLanguage, learningLanguage) {
+            try {
+                const statsRef = db.collection("statistics").doc("general");
+                const statsDoc = await statsRef.get();
+                
+                let currentStats = {
+                    totalUsers: 0,
+                    successRate: 0,
+                    activeLearners: 0,
+                    languageStats: {
+                        ur: { total: 0, active: 0 },
+                        pt: { total: 0, active: 0 }
+                    }
+                };
+
+                if (statsDoc.exists()) {
+                    currentStats = statsDoc.data();
+                }
+
+                // Update total users
+                currentStats.totalUsers = (currentStats.totalUsers || 0) + 1;
+
+                // Update language-specific stats
+                currentStats.languageStats[spokenLanguage].total++;
+                currentStats.languageStats[spokenLanguage].active++;
+
+                // Calculate active learners (users who have completed at least one lesson)
+                currentStats.activeLearners = Object.values(currentStats.languageStats)
+                    .reduce((sum, lang) => sum + lang.active, 0);
+
+                // Calculate success rate (example: 80% of active learners)
+                currentStats.successRate = Math.round((currentStats.activeLearners / currentStats.totalUsers) * 100);
+
+                // Save updated statistics
+                await statsRef.set(currentStats);
+
+                // Update UI
+                document.getElementById("totalUsers").textContent = currentStats.activeLearners;
+                document.getElementById("successRate").textContent = `${currentStats.successRate}%`;
+
+                // Log statistics update
+                console.log("Statistics updated:", currentStats);
+
+            } catch (error) {
+                console.error("Error updating statistics:", error);
+            }
+        }
+
+        // Enhanced form submission
+        document.getElementById("languageForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            showLoading(true);
+            hideError();
+
+            const progressContainer = document.getElementById("progressContainer");
+            progressContainer.style.display = "block";
+            updateProgress(30);
+            updateProgressText();
+
+            const user = auth.currentUser;
+            if (user) {
+                try {
+                    const uid = user.uid;
+                    const spokenLanguage = document.getElementById("speakLanguage").value;
+                    const learningLanguage = document.getElementById("learnLanguage").value;
+
+                    updateProgress(60);
+
+                    // Save user preferences
+                    await db.collection("users").doc(uid).set({
+                        spokenLanguage: spokenLanguage,
+                        learningLanguage: learningLanguage,
+                        languagePreference: spokenLanguage,
+                        lastUpdated: firebase.firestore.FieldValue.serverTimestamp(),
+                        joinDate: firebase.firestore.FieldValue.serverTimestamp(),
+                        isActive: true
+                    }, { merge: true });
+
+                    // Update statistics
+                    await updateStatistics(spokenLanguage, learningLanguage);
+
+                    updateProgress(90);
+
+                    // Redirect after a short delay
+                    setTimeout(() => {
+                        if (spokenLanguage === "pt" && learningLanguage === "ur") {
+window.location.href = "pt_to_urdu/mainmenuptur.html";                        } else if (spokenLanguage === "ur" && learningLanguage === "pt") {
+                            window.location.href = "urdu_to_pt/mainmenuurpt.html";
+                        } else {
+                            window.location.href = "/www/dashboard.html";
+                        }
+                    }, 1000);
+
+                } catch (error) {
+                    const currentLang = document.body.classList.contains("urdu") ? "ur" : "pt";
+                    showError(translations[currentLang].errorSaving + " " + error.message);
+                    showLoading(false);
+                }
+            } else {
+                const currentLang = document.body.classList.contains("urdu") ? "ur" : "pt";
+                showError(translations[currentLang].authError);
+                showLoading(false);
+            }
+        });
+
+        // Enhanced statistics fetching
+        async function fetchStatistics() {
+            try {
+                const statsRef = db.collection("statistics").doc("general");
+                const statsDoc = await statsRef.get();
+                
+                if (statsDoc.exists()) {
+                    const stats = statsDoc.data();
+                    document.getElementById("totalUsers").textContent = stats.activeLearners || 0;
+                    document.getElementById("successRate").textContent = `${stats.successRate || 0}%`;
+                }
+            } catch (error) {
+                console.error("Error fetching statistics:", error);
+            }
+        }
+
+        // Real-time statistics updates
+        function setupRealtimeStats() {
+            const statsRef = db.collection("statistics").doc("general");
+            statsRef.onSnapshot((doc) => {
+                if (doc.exists()) {
+                    const stats = doc.data();
+                    document.getElementById("totalUsers").textContent = stats.activeLearners || 0;
+                    document.getElementById("successRate").textContent = `${stats.successRate || 0}%`;
+                }
+            });
+        }
+
+        function applyTranslations(lang) {
+            document.getElementById("title").textContent = translations[lang].title;
+            document.getElementById("speakLabel").textContent = translations[lang].speakLabel;
+            document.getElementById("learnLabel").textContent = translations[lang].learnLabel;
+            document.getElementById("submitButton").textContent = translations[lang].submitButton;
+        }
+
+        function showLoading(show) {
+            document.querySelector(".loading").style.display = show ? "block" : "none";
+        }
+
+        function showError(message) {
+            const errorElement = document.getElementById("errorMessage");
+            errorElement.textContent = message;
+            errorElement.style.display = "block";
+        }
+
+        function hideError() {
+            document.getElementById("errorMessage").style.display = "none";
         }
     </script>
 </body>

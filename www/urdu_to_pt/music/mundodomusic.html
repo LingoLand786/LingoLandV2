@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Música & Canções</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #001d4d, #0fb300);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 4px solid #0056b3;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.5em;
+            font-weight: bold;
+            padding: 10px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d1e3f3;
+            border-bottom: 2px solid #d1e3f3;
+        }
+
+        main {
+            padding: 30px 10%;
+        }
+
+        .category-box,
+        .phrases-box,
+        .quiz-section,
+        .about-section {
+            margin-bottom: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .category-box:hover,
+        .phrases-box:hover,
+        .quiz-section:hover {
+            transform: scale(1.05);
+        }
+
+        .category-content h3 {
+            font-size: 2em;
+            color: #001d4d;
+            margin-bottom: 10px;
+        }
+
+        .category-content p {
+            font-size: 1.1em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .category-content a {
+            text-decoration: none;
+            background-color: #0056b3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .category-content a:hover {
+            background-color: #003f7d;
+        }
+
+        .category-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .category-box img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-box:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #001d4d;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            main {
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin-right: 15px;
+            }
+
+            .category-box,
+            .phrases-box,
+            .quiz-section,
+            .about-section {
+                padding: 15px;
+            }
+
+            .category-box img {
+                width: 120px;
+            }
+
+            .category-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f1f2f6, #c9cfd7);
+            color: #002D62;
+            line-height: 1.6;
+            transition: background-color 0.3s;
+        }
+
+        /* Header Section */
+        header {
+            padding: 30px 30px;
+            background: #002D62;
+            color: white;
+            text-align: center;
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        header h1 {
+            font-size: 4.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        header p {
+            font-size: 1.4rem;
+            letter-spacing: 0.8px;
+            color: #f0f0f0;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            padding: 60px 50px;
+            justify-items: center;
+        }
+
+        .category-box {
+            position: relative;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s, box-shadow 0.4s;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff 0%, #e8f2f8 100%);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s, opacity 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        .category-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-content {
+            padding: 20px;
+        }
+
+        .category-box h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-top: 20px;
+            color: #333;
+            letter-spacing: 1px;
+        }
+
+        .category-box p {
+            font-size: 1.1rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .category-box a {
+            padding: 14px 35px;
+            background-color: #008080;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .category-box a:hover {
+            background-color: #006666;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        /* Animations for elements */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 2s forwards;
+        }
+        .styled-button {
+    padding: 14px 35px;
+    background-color: #008080;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.styled-button:hover {
+    background-color: #006666;
+    transform: translateY(-5px);
+}
+
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Button Animations */
+        .category-box a {
+            transition: transform 0.2s ease, background-color 0.3s ease;
+        }
+
+        .category-box a:hover {
+            transform: translateY(-5px);
+            background-color: #006666;
+        }
+
+        /* Box shadow effect on hover */
+        .category-box:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Image hover effect */
+        .category-box img {
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Artistas e Bandas </h1>
+        <nav>
+            <ul>
+                <li><a href="music.html">Gêneros Musicais</a></li>
+                <li><a href="#mundodomusic">A música no mundo</a></li> <!-- Link to Clima page -->
+
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Lesson Cards -->
+ <div class="category-container fade-in">
+     <!-- Pop -->
+ 
+ 
+      
+ 
+     <div class="category-box">
+        <img src="BANDASIMG/NFAK.jpeg" alt="Nusrat Fateh Ali Khan">
+        <div class="category-content">
+            <h3>Nusrat Fateh Ali Khan</h3>
+            <p>Considerado o "Rei do Qawwali", Nusrat Fateh Ali Khan foi um dos músicos mais influentes de todos os tempos, revolucionando a música tradicional Sufi.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Tumhein Dillagi Bhool Jaani Padegi _ Ustad Nusrat Fateh Ali Khan _ Qawwali Status.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/ATIF.jpg" alt="Atif Aslam">
+        <div class="category-content">
+            <h3>Atif Aslam</h3>
+            <p>Atif Aslam é um dos cantores mais reconhecidos do Paquistão, famoso pela sua voz potente e baladas emocionantes.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Tera Hone Laga Hoon.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/ABIDA.jpg" alt="Abida Parveen">
+        <div class="category-content">
+            <h3>Abida Parveen</h3>
+            <p>Abida Parveen é uma das cantoras mais famosas de música Sufi, conhecida pela sua voz profunda e pelas suas interpretações emocionais da poesia Sufi.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Tere Ishq Mein.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/RFAK.jpg" alt="Rahat Fateh Ali Khan">
+        <div class="category-content">
+            <h3>Rahat Fateh Ali Khan</h3>
+            <p>Rahat Fateh Ali Khan é um dos maiores mestres de qawwali, sobrinho do famoso Ustad Nusrat Fateh Ali Khan. Ele revolucionou o qawwali moderno com a sua voz única.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Teri Meri.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/ALI.jpeg" alt="Ali Zafar">
+        <div class="category-content">
+            <h3>Ali Zafar</h3>
+            <p>Ali Zafar é um cantor e compositor multifacetado, conhecido tanto pelo seu trabalho em música pop quanto pelo seu sucesso em Bollywood.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Channo.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/COKE.jpeg" alt="Coke Studio">
+        <div class="category-content">
+            <h3>Coke Studio</h3>
+            <p>Coke Studio é uma série de televisão que reúne uma grande diversidade de músicos do Paquistão, apresentando desde música tradicional até influências contemporâneas.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Tera Ban Jaunga.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/DTRINGS.jpeg" alt="Strings">
+        <div class="category-content">
+            <h3>Strings</h3>
+            <p>Strings é uma das bandas mais populares do Paquistão, conhecida pelo seu estilo único que mistura pop e rock com música folclórica.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Duur.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/JUNOON.jpeg" alt="Junoon">
+        <div class="category-content">
+            <h3>Junoon</h3>
+            <p>Junoon é uma das bandas de rock mais famosas do Paquistão, conhecida por misturar a poesia Sufi com música rock, criando um som único e poderoso.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Sayonee.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/Fuzon.webp" alt="Fuzon">
+        <div class="category-content">
+            <h3>Fuzon</h3>
+            <p>Fuzon é uma banda que mistura música clássica e tradicional com rock, jazz e música contemporânea.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Meri Neend.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+    <div class="category-box">
+        <img src="BANDASIMG/HM.jpeg" alt="Vital Signs">
+        <div class="category-content">
+            <h3>Vital Signs</h3>
+            <p>Vital Signs foi uma das bandas pioneiras do pop paquistanês, famosa pelos seus grandes sucessos durante os anos 80 e 90.</p>
+            <button class="styled-button" onclick="playAudio('MUNDOAUDIO/Dil Dil Pakistan.mp4')">Ouvir Música</button>
+            <button class="styled-button" onclick="stopAudio()">Parar Música</button>
+        </div>
+    </div>
+    
+
+    
+ 
+ 
+ 
+     
+ </div>
+ 
+ 
+     
+     </div>
+ </div>
+ <script>
+ var audioElement = null;
+ 
+ function playAudio(audioFile) {
+     if (audioElement) {
+         audioElement.pause(); // Pause any existing audio before starting a new one
+         audioElement.currentTime = 0; // Reset the audio to the start
+     }
+     audioElement = new Audio(audioFile);
+     audioElement.play();
+ }
+ 
+ function stopAudio() {
+     if (audioElement) {
+         audioElement.pause(); // Pause the audio
+         audioElement.currentTime = 0; // Reset the audio to the start
+     }
+ }
+    
+ </script>
+ 
+ 
+ </body>
+ </html>

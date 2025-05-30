@@ -3,131 +3,1112 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learn Família</title>
+  <title>Learn Família - Professional Urdu Learning Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary-color: #002D62;
+      --secondary-color: #002D62;
+      --accent-color: #FF6B6B;
+      --text-color: #2C3E50;
+      --light-bg: #FFFFFF;
+      --card-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --gradient-1: linear-gradient(135deg, #002D62, #0047AB);
+      --gradient-2: linear-gradient(135deg, #0047AB, #FF6B6B);
+      --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to bottom, #ffffff, #f0f8ff);
-      color: #1a1a2e;
-      text-align: center;
-      overflow-x: hidden;
+      background: var(--light-bg);
+      color: var(--text-color);
       min-height: 100vh;
+      overflow-x: hidden;
     }
+
+    .navbar {
+      display: none;
+    }
+
     header {
-      background: linear-gradient(135deg, #1a1a2e, #243b55);
+      padding: 40px 0 60px;
+    }
+
+    .header-content {
+      position: relative;
+      overflow: hidden;
+      padding: 4rem 2rem;
+      background: var(--light-bg);
+      border-radius: 0 0 30px 30px;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+    }
+
+    .header-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--gradient-1);
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .search-container {
+      max-width: 800px;
+      margin: 3rem auto;
+      position: relative;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1.2rem 2rem;
+      border: 2px solid rgba(0,45,98,0.1);
+      border-radius: 60px;
+      font-size: 1.1rem;
+      transition: var(--transition-smooth);
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 10px 25px rgba(0,45,98,0.1);
+      transform: translateY(-2px);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary-color);
+      font-size: 1.2rem;
+      pointer-events: none;
+      transition: var(--transition-smooth);
+    }
+
+    .filter-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .filter-btn {
+      background: var(--light-bg);
+      border: 1px solid rgba(0,45,98,0.1);
+      border-radius: 15px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      min-height: 160px;
+      will-change: transform, box-shadow;
+    }
+
+    .filter-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--gradient-1);
+      opacity: 0;
+      transition: var(--transition-smooth);
+      z-index: 1;
+    }
+
+    .filter-btn > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,45,98,0.1);
+    }
+
+    .filter-btn.active::before {
+      opacity: 1;
+    }
+
+    .filter-btn.active {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,45,98,0.15);
+    }
+
+    .filter-btn i {
+      font-size: 2rem;
+      color: var(--primary-color);
+      transition: var(--transition-smooth);
+    }
+
+    .filter-btn.active i,
+    .filter-btn.active .category-label,
+    .filter-btn.active .category-description {
       color: white;
-      padding: 30px 0;
-      box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
     }
-    header h1 { font-size: 3.5rem; font-weight: bold; }
-    header p { font-size: 1.5rem; margin-top: 10px; }
-    .search-container { margin: 20px auto; max-width: 600px; }
-    .search-container input {
-      width: 100%; padding: 10px 20px;
-      border: 2px solid #1a1a2e;
-      border-radius: 20px;
-      font-size: 1.2rem; outline: none;
+
+    .category-label {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary-color);
+      transition: var(--transition-smooth);
     }
+
+    .category-description {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.8;
+      text-align: center;
+      transition: var(--transition-smooth);
+    }
+
     .family-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px; max-width: 1300px;
-      margin: 40px auto; padding: 0 20px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 3rem auto;
+      padding: 2rem;
+      perspective: 1000px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
     }
+
+    .family-grid.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
     .family-card {
-      background: white; border-radius: 15px;
-      overflow: hidden; box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      background: var(--light-bg);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transform-style: preserve-3d;
+      position: relative;
+      will-change: transform;
     }
+
+    .family-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-1);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .family-card:hover::before {
+      transform: scaleX(1);
+    }
+
     .family-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,45,98,0.15);
     }
+
     .family-card img {
-      width: 100%; height: 200px; object-fit: cover;
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      will-change: transform;
     }
-    .family-info { padding: 20px; text-align: center; }
-    .family-info h3 { font-size: 1.8rem; margin-bottom: 10px; color: #1a1a2e; }
-    .family-info button {
-      background: #1a1a2e; color: white;
-      padding: 10px 20px; border: none;
-      border-radius: 5px; cursor: pointer;
-      transition: background 0.3s ease;
+
+    .family-card:hover img {
+      transform: scale(1.02);
     }
-    .family-info button:hover { background: #0f3460; }
+
+    .family-info {
+      padding: 2rem;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .family-info h3 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .urdu-text {
+      font-size: 2.2rem;
+      color: var(--secondary-color);
+      margin: 1rem 0;
+      font-weight: 500;
+      opacity: 0.9;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      will-change: transform, opacity;
+    }
+
+    .family-card:hover .urdu-text {
+      transform: scale(1.02);
+      opacity: 1;
+    }
+
+    .audio-btn {
+      width: 100%;
+      background: var(--gradient-1);
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      will-change: transform, background;
+    }
+
+    .audio-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--gradient-2);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .audio-btn:hover::before {
+      opacity: 1;
+    }
+
+    .audio-btn > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .audio-btn i {
+      font-size: 1.2rem;
+      transition: var(--transition-smooth);
+    }
+
+    .audio-btn:hover i {
+      transform: scale(1.2);
+    }
+
+    .progress-container {
+      margin-top: 1rem;
+      background: rgba(0,45,98,0.1);
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--gradient-1);
+      width: 0%;
+      transition: width 0.2s linear;
+      position: relative;
+    }
+
+    .progress-bar::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0,45,98,0.3);
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .family-card {
+      animation: cardAppear 0.5s ease-out forwards;
+    }
+
+    .loading-animation {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+
+    .loading-animation i {
+      font-size: 2rem;
+      color: var(--primary-color);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: var(--card-shadow);
+      margin: 2rem auto;
+      max-width: 800px;
+      display: none;
+    }
+
+    .no-results i {
+      font-size: 4rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+    }
+
+    .no-results h3 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .no-results p {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .suggestion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 0 1rem;
+    }
+
+    .suggestion-card {
+      background: rgba(0,45,98,0.05);
+      padding: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .suggestion-card:hover {
+      background: var(--primary-color);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .retry-btn {
+      background: var(--gradient-1);
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .retry-btn:hover {
+      background: var(--gradient-2);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 100px 1rem 40px;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .filter-container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+
+      .filter-btn {
+        min-height: 140px;
+        padding: 1rem;
+      }
+
+      .family-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+    }
+
+    .main-title-container {
+      text-align: center;
+      padding: 3rem 1rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+
+    .main-title {
+      font-size: 4.5rem;
+      font-family: 'Playfair Display', serif;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      position: relative;
+      margin-bottom: 1rem;
+      animation: titleFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes titleFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .main-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient-1);
+      transform: scaleX(0.8);
+      opacity: 0.5;
+    }
+
+    .family-info {
+      padding: 2rem;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .relation-tag {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--gradient-1);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      opacity: 0.9;
+      transform: translateY(-50%);
+    }
+
+    .description-text {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      margin: 1rem 0;
+      line-height: 1.6;
+      opacity: 0.8;
+    }
+
+    .family-card:hover .description-text {
+      opacity: 1;
+    }
+
+    .category-count {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: var(--primary-color);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    /* Added menu button styles */
+    .btn {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 30px 0;
+    }
+
+    .menu-principal-button {
+      padding: 12px 25px;
+      background: transparent;
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      border: 2px solid var(--primary-color);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 180px;
+  }
+
+  .menu-principal-button:hover {
+      background: var(--primary-color);
+      color: white;
+  }
   </style>
 </head>
 <body>
   <header>
-    <h1>Aprender Família</h1>
-    <p>Nesta lição, vamos aprender os nomes dos membros da família.</p>
+    <div class="main-title-container">
+      <h1 class="main-title">Aprender Família</h1>
+      <p class="subtitle">Explore a rica diversidade dos termos familiares em urdu</p>
+    </div>
+    
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Pesquisar membros da família...">
+      <i class="fas fa-search search-icon"></i>
+    </div>
+
+    <div class="filter-container">
+      <button class="filter-btn active" data-category="todos">
+        <i class="fas fa-users"></i>
+        <span class="category-label">Todos</span>
+        <span class="category-description">Todos os Membros</span>
+      </button>
+      <button class="filter-btn" data-category="pais">
+        <i class="fas fa-heart"></i>
+        <span class="category-label">Pais</span>
+        <span class="category-description">Pai, Mãe</span>
+      </button>
+      <button class="filter-btn" data-category="irmaos">
+        <i class="fas fa-child"></i>
+        <span class="category-label">Irmãos</span>
+        <span class="category-description">Irmão, Irmã</span>
+      </button>
+      <button class="filter-btn" data-category="casamento">
+        <i class="fas fa-ring"></i>
+        <span class="category-label">Casamento</span>
+        <span class="category-description">Esposo, Esposa</span>
+      </button>
+      <button class="filter-btn" data-category="avos">
+        <i class="fas fa-user-friends"></i>
+        <span class="category-label">Avós</span>
+        <span class="category-description">Avô, Avó</span>
+      </button>
+      <button class="filter-btn" data-category="tios">
+        <i class="fas fa-user-plus"></i>
+        <span class="category-label">Tios</span>
+        <span class="category-description">Tio, Tia</span>
+      </button>
+    </div>
   </header>
-  <div class="search-container">
-    <input type="text" id="search" placeholder="Pesquisa membros da família..." oninput="filterFamily(this.value)" />
+
+  <div class="loading-animation">
+    <i class="fas fa-spinner"></i>
   </div>
+
   <div id="family-grid" class="family-grid"></div>
+
+  <div class="no-results">
+    <i class="fas fa-search"></i>
+    <h3>Nenhum Resultado Encontrado</h3>
+    <p class="category-message"></p>
+    
+    <div class="suggestion-grid">
+      <!-- Suggestions will be dynamically added here -->
+    </div>
+
+    <button class="retry-btn" onclick="resetFilters()">
+      <i class="fas fa-redo"></i>
+      Mostrar Todos
+    </button>
+  </div>
+
   <script>
-  const familyMembers = [
-  { name: "Mãe", urdu: "والدہ", image: "familyimg/mother.png", audio: "audio/mother.mp3" },
-  { name: "Pai", urdu: "والد", image: "familyimg/father.jpg", audio: "audio/father.mp3" },
-  { name: "Irmão", urdu: "بھائی", image: "familyimg/brother.png", audio: "audio/brother.mp3" },
-  { name: "Irmã", urdu: "بہن", image: "familyimg/sister.png", audio: "audio/sister.mp3" },
-  { name: "Avô (paterno)", urdu: "دادا", image: "familyimg/grandfather.png", audio: "audio/grandfather.mp3" },
-  { name: "Avó (paterna)", urdu: "دادی", image: "familyimg/grandmother.png", audio: "audio/grandmother.mp3" },
-  { name: "Tio (paterno)", urdu: "چچا", image: "familyimg/uncle.png", audio: "audio/uncle.mp3" },
-  { name: "Tia (paterna)", urdu: "پھوپھی", image: "familyimg/aunty.png", audio: "audio/aunt.mp3" },
-  
-  { name: "Primo", urdu: "کزن", image: "familyimg/cousin.png", audio: "audio/cousin.mp3" },
-  { name: "Filho", urdu: "بیٹا", image: "familyimg/son.png", audio: "audio/son.mp3" },
-  { name: "Filha", urdu: "بیٹی", image: "familyimg/daughter.png", audio: "audio/daughter.mp3" },
-  { name: "Sobrinho", urdu: "بھتیجا / بھانجا", image: "familyimg/nephew.png", audio: "audio/nephew.mp3" },
-  { name: "Sobrinha", urdu: "بھتیجی / بھانجی", image: "familyimg/niece.png", audio: "audio/niece.mp3" },
-  { name: "Enteado", urdu: "سوتیلا بیٹا", image: "familyimg/stepson.png", audio: "audio/stepson.mp3" },
-  { name: "Enteada", urdu: "سوتیلی بیٹی", image: "familyimg/stepdaughter.png", audio: "audio/stepdaughter.mp3" },
-  { name: "Padrasto", urdu: "سوتیلا باپ", image: "familyimg/stepfather.png", audio: "audio/stepfather.mp3" },
-  { name: "Madrasta", urdu: "سوتیلی ماں", image: "familyimg/stepmother.png", audio: "audio/stepmother.mp3" },
-  { name: "Marido", urdu: "شوہر", image: "familyimg/husband.png", audio: "audio/husband.mp3" },
-  { name: "Esposa", urdu: "بیوی", image: "familyimg/wife.png", audio: "audio/wife.mp3" },
-  { name: "Cunhado", urdu: "بہنوئی / دیور / جیٹھ", image: "familyimg/brother_in_law.png", audio: "audio/brother_in_law.mp3" },
-  { name: "Cunhada", urdu: "نند / بھابی / سالی", image: "familyimg/sister_in_law.png", audio: "audio/sister_in_law.mp3" },
-  { name: "Sogro", urdu: "سسر", image: "familyimg/father_in_law.png", audio: "audio/father_in_law.mp3" },
-  { name: "Sogra", urdu: "ساس", image: "familyimg/mother_in_law.png", audio: "audio/mother_in_law.mp3" }
- 
-];
+    const familyMembers = [
+      // Parents/Pais
+      { 
+        name: "Pai", 
+        urdu: "والد", 
+        image: "familyimg/father.jpg", 
+        audio: "audio/father.mp3", 
+        category: "pais",
+        description: "O chefe da família, responsável por orientar e proteger. Em urdu, é tratado com muito respeito.",
+        relation: "Família Nuclear"
+      },
+      { 
+        name: "Mãe", 
+        urdu: "والدہ", 
+        image: "familyimg/mother.png", 
+        audio: "audio/mother.mp3", 
+        category: "pais",
+        description: "O coração da família, símbolo de amor e cuidado. Na cultura urdu, tem posição muito respeitada.",
+        relation: "Família Nuclear"
+      },
+      { 
+        name: "Padrasto", 
+        urdu: "سوتیلا باپ", 
+        image: "familyimg/stepfather.png", 
+        audio: "audio/stepfather.mp3", 
+        category: "pais",
+        description: "Pai por casamento, assume responsabilidades paternais. Tratado com respeito como pai.",
+        relation: "Família Reconstituída"
+      },
+      { 
+        name: "Madrasta", 
+        urdu: "سوتیلی ماں", 
+        image: "familyimg/stepmother.png", 
+        audio: "audio/stepmother.mp3", 
+        category: "pais",
+        description: "Mãe por casamento, assume papel maternal. Importante figura na família reconstituída.",
+        relation: "Família Reconstituída"
+      },
+
+      // Siblings/Irmãos
+      { 
+        name: "Irmão", 
+        urdu: "بھائی", 
+        image: "familyimg/brother.png", 
+        audio: "audio/brother.mp3", 
+        category: "irmaos",
+        description: "Irmão, um laço familiar importante. Na cultura urdu, irmãos têm uma relação muito próxima.",
+        relation: "Irmão Consanguíneo"
+      },
+      { 
+        name: "Irmã", 
+        urdu: "بہن", 
+        image: "familyimg/sister.png", 
+        audio: "audio/sister.mp3", 
+        category: "irmaos",
+        description: "Irmã, uma relação especial na família. Muito respeitada e querida na cultura urdu.",
+        relation: "Irmã Consanguínea"
+      },
+      { 
+        name: "Irmão Mais Velho", 
+        urdu: "بڑا بھائی", 
+        image: "familyimg/oldbro.png", 
+        audio: "audio/elder_brother.mp3", 
+        category: "irmaos",
+        description: "Irmão mais velho, figura de respeito e orientação. Tem papel importante na família.",
+        relation: "Irmão Consanguíneo"
+      },
+      { 
+        name: "Irmã Mais Velha", 
+        urdu: "بڑی بہن", 
+        image: "familyimg/oldsis.webp", 
+        audio: "audio/elder_sister.mp3", 
+        category: "irmaos",
+        description: "Irmã mais velha, figura de cuidado e proteção. Muito respeitada na cultura.",
+        relation: "Irmã Consanguínea"
+      },
+      { 
+        name: "Irmão Mais Novo", 
+        urdu: "چھوٹا بھائی", 
+        image: "familyimg/new.jpg", 
+        audio: "audio/younger_brother.mp3", 
+        category: "irmaos",
+        description: "Irmão mais novo, recebe orientação dos mais velhos. Laço familiar importante.",
+        relation: "Irmão Consanguíneo"
+      },
+      { 
+        name: "Irmã Mais Nova", 
+        urdu: "چھوٹی بہن", 
+        image: "familyimg/i.avif", 
+        audio: "audio/younger_sister.mp3", 
+        category: "irmaos",
+        description: "Irmã mais nova, protegida pela família. Relação especial com irmãos mais velhos.",
+        relation: "Irmã Consanguínea"
+      },
+      { 
+        name: "Meio-Irmão", 
+        urdu: "سوتیلا بھائی", 
+        image: "familyimg/half.avif", 
+        audio: "audio/stepbrother.mp3", 
+        category: "irmaos",
+        description: "Irmão por um dos pais. Laço familiar importante na família reconstituída.",
+        relation: "Meio-Irmão"
+      },
+      { 
+        name: "Meia-Irmã", 
+        urdu: "سوتیلی بہن", 
+        image: "familyimg/images.jpeg", 
+        audio: "audio/stepsister.mp3", 
+        category: "irmaos",
+        description: "Irmã por um dos pais. Parte importante da família reconstituída.",
+        relation: "Meia-Irmã"
+      },
+
+      // Marriage/Casamento
+      { 
+        name: "Marido", 
+        urdu: "شوہر", 
+        image: "familyimg/husband.png", 
+        audio: "audio/husband.mp3", 
+        category: "casamento",
+        description: "Esposo, parceiro no casamento. Responsável pelo sustento da família.",
+        relation: "Cônjuge"
+      },
+      { 
+        name: "Esposa", 
+        urdu: "بیوی", 
+        image: "familyimg/wife.png", 
+        audio: "audio/wife.mp3", 
+        category: "casamento",
+        description: "Esposa, parceira no casamento. Papel fundamental na gestão familiar.",
+        relation: "Cônjuge"
+      },
+      { 
+        name: "Cunhado (irmão do marido)", 
+        urdu: "دیور", 
+        image: "imgsi/irmaomarido (2).png", 
+        audio: "audio/brother_in_law1.mp3", 
+        category: "casamento",
+        description: "Irmão do marido. Relação importante na família estendida.",
+        relation: "Parente por Afinidade"
+      },
+      { 
+        name: "Cunhado (irmão da esposa)", 
+        urdu: "سالہ", 
+        image: "imgsi/irmaowife.png", 
+        audio: "audio/brother_in_law2.mp3", 
+        category: "casamento",
+        description: "Irmão da esposa. Mantém laços próximos com a família.",
+        relation: "Parente por Afinidade"
+      },
+
+      // Avós/Grandparents
+      { 
+        name: "Avô Paterno", 
+        urdu: "دادا", 
+        image: "imgsi/avopaterno.png", 
+        audio: "audio/paternal_grandfather.mp3", 
+        category: "avos",
+        description: "Pai do pai. Figura de grande respeito e sabedoria na família.",
+        relation: "Avô Paterno"
+      },
+      { 
+        name: "Avó Paterna", 
+        urdu: "دادی", 
+        image: "imgsi/avopaterna.png", 
+        audio: "audio/paternal_grandmother.mp3", 
+        category: "avos",
+        description: "Mãe do pai. Fonte de tradições e valores familiares.",
+        relation: "Avó Paterna"
+      },
+      { 
+        name: "Avô Materno", 
+        urdu: "نانا", 
+        image: "imgsi/avomaterno.png", 
+        audio: "audio/maternal_grandfather.mp3", 
+        category: "avos",
+        description: "Pai da mãe. Tem papel especial no cuidado dos netos.",
+        relation: "Avô Materno"
+      },
+      { 
+        name: "Avó Materna", 
+        urdu: "نانی", 
+        image: "imgsi/Avomaterna.png", 
+        audio: "audio/maternal_grandmother.mp3", 
+        category: "avos",
+        description: "Mãe da mãe. Conhecida por seu amor e cuidado especial.",
+        relation: "Avó Materna"
+      },
+      // Uncles and Aunts/Tios e Tias
+      { 
+        name: "Tio Paterno", 
+        urdu: "چچا", 
+        image: "imgsi/tiopaternal.png", 
+        audio: "audio/paternal_uncle.mp3", 
+        category: "tios",
+        description: "Irmão do pai. Tem papel importante na orientação e apoio familiar.",
+        relation: "Tio Paterno"
+      },
+      { 
+        name: "Tia Paterna", 
+        urdu: "پھوپھی", 
+        image: "imgsi/tiapaterna (2).png", 
+        audio: "audio/paternal_aunt.mp3", 
+        category: "tios",
+        description: "Irmã do pai. Figura afetuosa e importante na família estendida.",
+        relation: "Tia Paterna"
+      },
+      { 
+        name: "Tio Materno", 
+        urdu: "ماموں", 
+        image: "imgsi/tiomaterno.png", 
+        audio: "audio/maternal_uncle.mp3", 
+        category: "tios",
+        description: "Irmão da mãe. Tem relação especial com os sobrinhos.",
+        relation: "Tio Materno"
+      },
+      { 
+        name: "Tia Materna", 
+        urdu: "خالہ", 
+        image: "imgsi/tiamaterna.png", 
+        audio: "audio/maternal_aunt.mp3", 
+        category: "tios",
+        description: "Irmã da mãe. Considerada como segunda mãe na cultura urdu.",
+        relation: "Tia Materna"
+      }
+    ];
 
     const familyGRID = document.getElementById("family-grid");
-    function loadFamily() {
-      familyGRID.innerHTML = "";
-      familyMembers.forEach((member) => {
-        const card = document.createElement("div");
-        card.className = "family-card";
-        card.innerHTML = `
-          <img src="${member.image}" alt="${member.name}" onerror="this.src='placeholder.jpg'">
-          <div class="family-info">
-            <h3>${member.name} - ${member.urdu}</h3>
-            <button onclick="playAudio('${member.audio}')">🔊 Listen Audio</button>
-          </div>
-        `;
-        familyGRID.appendChild(card);
+    const loadingAnimation = document.querySelector(".loading-animation");
+    const noResults = document.querySelector(".no-results");
+    const searchInput = document.querySelector(".search-input");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+
+    let currentFilter = "todos";
+    let currentSearch = "";
+
+    const categoryMessages = {
+      'todos': 'Não encontramos nenhum membro da família correspondente à sua pesquisa.',
+      'pais': 'Não encontramos membros da família na categoria Pais.',
+      'irmaos': 'Não encontramos irmãos correspondentes à sua pesquisa.',
+      'casamento': 'Não encontramos relações matrimoniais correspondentes.',
+      'avos': 'Não encontramos avós correspondentes à sua pesquisa.',
+      'tios': 'Não encontramos tios ou tias correspondentes.'
+    };
+
+    const categorySuggestions = {
+      'todos': ['Pai', 'Mãe', 'Irmão', 'Irmã'],
+      'pais': ['Pai', 'Mãe', 'Filho', 'Filha'],
+      'irmaos': ['Irmão', 'Irmã'],
+      'casamento': ['Marido', 'Esposa', 'Cunhado', 'Cunhada'],
+      'avos': ['Avô', 'Avó'],
+      'tios': ['Tio', 'Tia', 'Sobrinho', 'Sobrinha']
+    };
+
+    function updateNoResultsMessage(category) {
+      const noResults = document.querySelector('.no-results');
+      const categoryMessage = noResults.querySelector('.category-message');
+      const suggestionGrid = noResults.querySelector('.suggestion-grid');
+      
+      categoryMessage.textContent = categoryMessages[category] || categoryMessages['todos'];
+      
+      // Update suggestions
+      suggestionGrid.innerHTML = '';
+      const suggestions = categorySuggestions[category] || categorySuggestions['todos'];
+      
+      suggestions.forEach(suggestion => {
+        const card = document.createElement('div');
+        card.className = 'suggestion-card';
+        card.textContent = suggestion;
+        card.onclick = () => {
+          searchInput.value = suggestion;
+          currentSearch = suggestion;
+          loadFamily();
+        };
+        suggestionGrid.appendChild(card);
       });
     }
+
+    function resetFilters() {
+      currentFilter = 'todos';
+      currentSearch = '';
+      searchInput.value = '';
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      filterButtons[0].classList.add('active');
+      loadFamily();
+    }
+
+    function createFamilyCard(member) {
+      const card = document.createElement("div");
+      card.className = "family-card";
+      card.innerHTML = `
+        <img src="${member.image}" alt="${member.name}" onerror="this.src='placeholder.jpg'">
+        <div class="family-info">
+          <span class="relation-tag">${member.relation}</span>
+          <h3>${member.name}</h3>
+          <div class="urdu-text">${member.urdu}</div>
+          <p class="description-text">${member.description}</p>
+          <button class="audio-btn" onclick="playAudio('${member.audio}')">
+            <i class="fas fa-volume-up"></i>
+            Ouvir Pronúncia
+          </button>
+          <div class="progress-container">
+            <div class="progress-bar" id="progress-${member.name}"></div>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    function loadFamily() {
+      const familyGRID = document.getElementById("family-grid");
+      const loadingAnimation = document.querySelector(".loading-animation");
+      const noResults = document.querySelector(".no-results");
+      
+      // Add hidden class to grid
+      familyGRID.classList.add('hidden');
+      
+      // Show loading animation
+      loadingAnimation.style.display = "block";
+      
+      // Clear existing content
+      familyGRID.innerHTML = "";
+      
+      setTimeout(() => {
+        const filteredMembers = familyMembers.filter(member => {
+          const matchesSearch = member.name.toLowerCase().includes(currentSearch.toLowerCase()) ||
+                              member.urdu.includes(currentSearch) ||
+                              member.description.toLowerCase().includes(currentSearch.toLowerCase());
+          const matchesFilter = currentFilter === "todos" || member.category === currentFilter;
+          return matchesSearch && matchesFilter;
+        });
+
+        if (filteredMembers.length === 0) {
+          noResults.style.display = "block";
+          updateNoResultsMessage(currentFilter);
+          familyGRID.style.display = "none";
+        } else {
+          noResults.style.display = "none";
+          familyGRID.style.display = "grid";
+          filteredMembers.forEach((member) => {
+            const card = createFamilyCard(member);
+            familyGRID.appendChild(card);
+          });
+          
+          // Remove hidden class after content is loaded
+          setTimeout(() => {
+            familyGRID.classList.remove('hidden');
+          }, 50);
+        }
+        
+        // Hide loading animation
+        loadingAnimation.style.display = "none";
+      }, 300); // Reduced timeout for smoother transition
+    }
+
     function playAudio(audio) {
       if (audio) {
         const audioPlayer = new Audio(audio);
-        audioPlayer.play();
+        const progressBar = document.getElementById(`progress-${audio.split('/')[1].split('.')[0]}`);
+        
+        audioPlayer.addEventListener('timeupdate', () => {
+          const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+          progressBar.style.width = `${progress}%`;
+        });
+
+        audioPlayer.addEventListener('ended', () => {
+          progressBar.style.width = '0%';
+        });
+
+        audioPlayer.play().catch(error => {
+          console.error("Error playing audio:", error);
+          alert("Erro ao reproduzir o áudio. Por favor, tente novamente.");
+        });
       } else {
-        alert("Audio not available!");
+        alert("Áudio não disponível!");
       }
     }
-    function filterFamily(query) {
-      const cards = document.querySelectorAll(".family-card");
-      cards.forEach((card) => {
-        const name = card.querySelector("h3").innerText.toLowerCase();
-        card.style.display = name.includes(query.toLowerCase()) ? "block" : "none";
+
+    searchInput.addEventListener('input', (e) => {
+      currentSearch = e.target.value;
+      loadFamily();
+    });
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        currentFilter = button.dataset.category;
+        loadFamily();
+      });
+    });
+
+    // Update filter buttons to show count
+    function updateFilterButtons() {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(button => {
+        const category = button.dataset.category;
+        const count = category === 'todos' 
+          ? familyMembers.length 
+          : familyMembers.filter(m => m.category === category).length;
+        
+        const countSpan = document.createElement('span');
+        countSpan.className = 'category-count';
+        countSpan.textContent = count;
+        button.appendChild(countSpan);
       });
     }
+
+    // Call this after DOM is loaded
+    document.addEventListener('DOMContentLoaded', updateFilterButtons);
+
     window.onload = loadFamily;
   </script>
+
+  <div class="btn">
+    <a href="../mainmenuptur.html" class="menu-principal-button">Menu Principal</a>
+  </div>
+
 </body>
 </html>

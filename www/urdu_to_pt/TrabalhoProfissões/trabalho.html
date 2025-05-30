@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profissões em Urdu - Aprenda Urdu Profissionalmente</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="50" y="50" font-size="10" fill="rgba(255,255,255,0.1)">Urdu</text></svg>');
+            opacity: 0.1;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInDown 1s ease;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            animation: fadeInUp 1s ease;
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+
+        .category-box {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            position: relative;
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .category-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .category-box:hover img {
+            transform: scale(1.1);
+        }
+
+        .category-content {
+            padding: 25px;
+        }
+
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-content p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .styled-button {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: fit-content;
+        }
+
+        .styled-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .styled-button i {
+            font-size: 1.2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            .category-container {
+                grid-template-columns: 1fr;
+            }
+
+            .category-box {
+                margin: 0 15px;
+            }
+        }
+
+        /* Audio Player Styles */
+        .audio-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            display: none;
+            z-index: 1000;
+        }
+
+        .audio-player.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading::after {
+            content: '';
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--secondary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading"></div>
+    
+   <header>
+    <h1>پیشہ</h1>
+    <p>پرتگالی زبان میں پیشوں کے نام سیکھیں، تلفظ اور مثالوں کے ساتھ</p>
+</header>
+
+<main>
+    <div class="category-container">
+        <!-- Doctor -->
+        <div class="category-box">
+            <img src="profissoesimg/doctor.jpg" alt="Médico">
+            <div class="category-content">
+                <h3><i class="fas fa-user-md"></i> Médico – میڈیکو (Daaktar)</h3>
+                <p>وہ پیشہ ور جو بیماریوں کی تشخیص اور علاج کرتا ہے۔ اسپتال، کلینک یا ذاتی طور پر کام کر سکتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio1.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Teacher -->
+        <div class="category-box">
+            <img src="profissoesimg/teacher.jpg" alt="Professor">
+            <div class="category-content">
+                <h3><i class="fas fa-chalkboard-teacher"></i> Professor – پروفیسر (Ustaad)</h3>
+                <p>وہ شخص جو طلباء کو تعلیم دیتا ہے اور مختلف مضامین میں رہنمائی فراہم کرتا ہے۔ علم کا ماخذ اور تحریک کا ذریعہ ہوتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio2.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Engineer -->
+        <div class="category-box">
+            <img src="profissoesimg/engineer.jpg" alt="Engenheiro">
+            <div class="category-content">
+                <h3><i class="fas fa-wrench"></i> Engenheiro – انجینئر (Engineer)</h3>
+                <p>وہ ماہر جو تکنیکی مسائل کے حل پر کام کرتا ہے، چاہے وہ انفراسٹرکچر کی تعمیر ہو یا ٹیکنالوجی کے نظام کی تخلیق۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio3.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Lawyer -->
+        <div class="category-box">
+            <img src="profissoesimg/lawyer.jpg" alt="Advogado">
+            <div class="category-content">
+                <h3><i class="fas fa-gavel"></i> Advogado – وکیل (Wakeel)</h3>
+                <p>وہ پیشہ ور جو قانونی حقوق کی حفاظت کرتا ہے، عدالت میں موکلین کی نمائندگی کرتا ہے یا قانونی مشورہ دیتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio4.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Nurse -->
+        <div class="category-box">
+            <img src="profissoesimg/nurse.jpg" alt="Enfermeiro/a">
+            <div class="category-content">
+                <h3><i class="fas fa-heartbeat"></i> Enfermeiro/a – نرس (Nurse)</h3>
+                <p>صحت کا پیشہ ور جو مریضوں کی دیکھ بھال کرتا ہے، ڈاکٹروں کی مدد کرتا ہے اور علاج کے دوران جذباتی و جسمانی حمایت فراہم کرتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio5.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Host -->
+        <div class="category-box">
+            <img src="profissoesimg/host.jpg" alt="Anfitrião/a">
+            <div class="category-content">
+                <h3><i class="fas fa-users"></i> Anfitrião/a – میزبان (Meezban)</h3>
+                <p>وہ شخص جو مہمانوں کا استقبال کرتا ہے اور پروگرامز یا تقریبات کو منظم کرتا ہے تاکہ سب کو خوشگوار تجربہ حاصل ہو۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio6.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Police Officer -->
+        <div class="category-box">
+            <img src="profissoesimg/police.jpg" alt="Policial">
+            <div class="category-content">
+                <h3><i class="fas fa-shield-alt"></i> Policial – پولیس آفیسر (Police Officer)</h3>
+                <p>وہ پیشہ ور جو عوام کی حفاظت کرتا ہے، قانون نافذ کرتا ہے اور جرائم کی روک تھام یا تحقیقات کرتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio7.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Accountant -->
+        <div class="category-box">
+            <img src="profissoesimg/accountant.jpg" alt="Contador">
+            <div class="category-content">
+                <h3><i class="fas fa-calculator"></i> Contador – محاسب (Muhasib)</h3>
+                <p>وہ شخص جو مالیات کا حساب کتاب کرتا ہے، مالی رپورٹیں بناتا ہے اور بجٹ کا انتظام کرتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio8.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Driver -->
+        <div class="category-box">
+            <img src="profissoesimg/driver.jpg" alt="Motorista">
+            <div class="category-content">
+                <h3><i class="fas fa-car"></i> Motorista – ڈرائیور (Driver)</h3>
+                <p>وہ پیشہ ور جو گاڑیاں چلاتا ہے تاکہ مسافروں یا سامان کو محفوظ طریقے سے منتقل کرے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio9.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Housewife -->
+        <div class="category-box">
+            <img src="profissoesimg/housewife.jpg" alt="Dona de Casa">
+            <div class="category-content">
+                <h3><i class="fas fa-home"></i> Dona de Casa – خاتونِ خانہ (Khatoon-e-Khaana)</h3>
+                <p>گھر کی دیکھ بھال کرنے والی خاتون جو گھر کی تنظیم اور خاندان کی دیکھ بھال کرتی ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio10.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Journalist -->
+        <div class="category-box">
+            <img src="profissoesimg/journalist.jpg" alt="Jornalista">
+            <div class="category-content">
+                <h3><i class="fas fa-newspaper"></i> Jornalista – صحافی (Sahaafi)</h3>
+                <p>وہ شخص جو خبریں جمع کرتا ہے، تحقیق کرتا ہے اور عوام تک معلومات پہنچاتا ہے، چاہے تحریر، آڈیو یا ویڈیو کی صورت میں ہو۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio11.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Artist -->
+        <div class="category-box">
+            <img src="profissoesimg/artist.jpg" alt="Artista">
+            <div class="category-content">
+                <h3><i class="fas fa-paint-brush"></i> Artista – فنکار (Fankar)</h3>
+                <p>وہ پیشہ ور جو مختلف فنون جیسے پینٹنگ، مجسمہ سازی یا پرفارمنس کے ذریعے تخلیقی اظہار کرتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio12.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Scientist -->
+        <div class="category-box">
+            <img src="profissoesimg/scientist.jpg" alt="Cientista">
+            <div class="category-content">
+                <h3><i class="fas fa-flask"></i> Cientista – سائنسدان (Scientist)</h3>
+                <p>وہ پیشہ ور جو سائنسی تحقیق اور دریافت میں مصروف ہوتا ہے تاکہ انسانی علم اور ٹیکنالوجی کو آگے بڑھایا جا سکے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio13.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Fashion Designer -->
+        <div class="category-box">
+            <img src="profissoesimg/fashion_designer.jpg" alt="Designer de Moda">
+            <div class="category-content">
+                <h3><i class="fas fa-tshirt"></i> Designer de Moda – فیشن ڈیزائنر (Fashion Designer)</h3>
+                <p>وہ شخص جو کپڑوں اور لوازمات کی تخلیق کرتا ہے اور فیشن کی دنیا میں رجحانات قائم کرتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio14.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Musician -->
+        <div class="category-box">
+            <img src="profissoesimg/musician.jpg" alt="Músico">
+            <div class="category-content">
+                <h3><i class="fas fa-music"></i> Músico – موسیقار (Musiqaar)</h3>
+                <p>وہ فنکار جو موسیقی تخلیق کرتا ہے اور پیش کرتا ہے، چاہے گلوکار، سازندہ یا کمپوزر ہو۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio15.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Technician -->
+        <div class="category-box">
+            <img src="profissoesimg/technician.jpg" alt="Técnico/a">
+            <div class="category-content">
+                <h3><i class="fas fa-cogs"></i> Técnico/a – ٹیکنیشن (Technician)</h3>
+                <p>وہ پیشہ ور جو تکنیکی آلات اور نظام کی مرمت، تشخیص اور دیکھ بھال کرتا ہے۔</p>
+                <button class="styled-button" onclick="playAudio('AUDIOFILES/audio16.mp3')">
+                    <i class="fas fa-volume-up"></i> تلفظ سنیں
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+    <div class="audio-player" id="audioPlayer">
+        <audio id="audioElement" controls></audio>
+    </div>
+
+    <script>
+        // Remove loading screen when page loads
+        window.addEventListener('load', () => {
+            document.querySelector('.loading').style.display = 'none';
+        });
+
+        // Enhanced audio player functionality
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioElement = document.getElementById('audioElement');
+        let currentAudio = null;
+
+        function playAudio(audioFile) {
+            if (currentAudio) {
+                currentAudio.pause();
+            }
+            
+            audioElement.src = audioFile;
+            audioPlayer.classList.add('active');
+            currentAudio = audioElement;
+            audioElement.play();
+        }
+
+        // Animate category boxes on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.category-box').forEach(box => {
+            observer.observe(box);
+        });
+
+        // Smooth scroll to top button
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            if (scrollTop > 300) {
+                document.querySelector('.scroll-top').style.display = 'block';
+            } else {
+                document.querySelector('.scroll-top').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

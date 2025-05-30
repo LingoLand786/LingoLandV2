@@ -4,165 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Música & Canções</title>
+    <title>Flores - Aprenda sobre Flores em Português e Urdu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #002D62;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
-        }
-
-        header {
-            background: linear-gradient(90deg, #001d4d, #0fb300);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-            border-bottom: 4px solid #0056b3;
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin-right: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.5em;
-            font-weight: bold;
-            padding: 10px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #d1e3f3;
-            border-bottom: 2px solid #d1e3f3;
-        }
-
-        main {
-            padding: 30px 10%;
-        }
-
-        .category-box,
-        .phrases-box,
-        .quiz-section,
-        .about-section {
-            margin-bottom: 40px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            background: #ffffff;
-            padding: 20px;
-            transition: 0.3s;
-        }
-
-        .category-box:hover,
-        .phrases-box:hover,
-        .quiz-section:hover {
-            transform: scale(1.05);
-        }
-
-        .category-content h3 {
-            font-size: 2em;
-            color: #001d4d;
-            margin-bottom: 10px;
-        }
-
-        .category-content p {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .category-content a {
-            text-decoration: none;
-            background-color: #0056b3;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .category-content a:hover {
-            background-color: #003f7d;
-        }
-
-        .category-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .category-box img {
-            width: 100%;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-
-        .category-box:hover img {
-            transform: scale(1.05);
-        }
-
-        .category-box:hover {
-            transform: scale(1.05);
-        }
-
-        footer {
-            background: #001d4d;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            main {
-                padding: 20px;
-            }
-
-            nav ul li {
-                margin-right: 15px;
-            }
-
-            .category-box,
-            .phrases-box,
-            .quiz-section,
-            .about-section {
-                padding: 15px;
-            }
-
-            .category-box img {
-                width: 120px;
-            }
-
-            .category-container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
         * {
             margin: 0;
             padding: 0;
@@ -171,449 +25,1065 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f1f2f6, #c9cfd7);
-            color: #002D62;
+            background: var(--light-bg);
+            color: var(--text-color);
             line-height: 1.6;
-            transition: background-color 0.3s;
         }
 
-        /* Header Section */
+        /* Header Styles */
         header {
-            padding: 30px 30px;
-            background: #002D62;
-            color: white;
-            text-align: center;
-            font-size: 3.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            z-index: 1;
+            background-color: #002D62;
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header h1 {
-            font-size: 4.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
         }
 
-        header p {
-            font-size: 1.4rem;
-            letter-spacing: 0.8px;
-            color: #f0f0f0;
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 1rem;
+        }
+
+        .search-button {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-button:hover {
+            background: #c0392b;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
         }
 
         .category-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-            padding: 60px 50px;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .category-box {
-            position: relative;
-            background-color: #fff;
+            background: var(--white);
             border-radius: 15px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.4s, box-shadow 0.4s;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f2f8 100%);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
         .category-box img {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.4s, opacity 0.3s;
+            transition: transform 0.3s;
         }
 
         .category-box:hover img {
-            transform: scale(1.1);
-            opacity: 0.8;
-        }
-
-        .category-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
         }
 
         .category-content {
-            padding: 20px;
+            padding: 1.5rem;
         }
 
-        .category-box h3 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-top: 20px;
-            color: #333;
-            letter-spacing: 1px;
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
 
-        .category-box p {
-            font-size: 1.1rem;
+        .category-content p {
+            margin-bottom: 0.5rem;
             color: #666;
-            margin: 10px 0;
         }
 
-        .category-box a {
-            padding: 14px 35px;
-            background-color: #008080;
-            color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: background-color 0.3s, transform 0.3s;
-            margin-top: 20px;
-            display: inline-block;
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
         }
 
-        .category-box a:hover {
-            background-color: #006666;
-            transform: translateY(-5px);
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        .info-item i {
+            color: var(--secondary-color);
         }
 
-        footer p {
-            margin: 10px 0;
-        }
-
-        /* Animations for elements */
-        .fade-in {
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
         .styled-button {
-    padding: 14px 35px;
-    background-color: #008080;
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    transition: background-color 0.3s, transform 0.3s;
-    margin-top: 20px;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-}
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
 
-.styled-button:hover {
-    background-color: #006666;
-    transform: translateY(-5px);
-}
+        .styled-button:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
 
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
 
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+
+            /* Added menu button styles */
+            .btn {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                margin: 30px 0;
+            }
+
+            .menu-principal-button {
+                padding: 12px 25px;
+                background: transparent;
+                color: var(--primary-color);
+                text-decoration: none;
+                font-size: 1.1rem;
+                font-weight: 500;
+                border: 2px solid var(--primary-color);
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 180px;
+            }
+
+            .menu-principal-button:hover {
+                background: var(--primary-color);
+                color: white;
+            }
+        }
+
+        /* Animations */
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Button Animations */
-        .category-box a {
-            transition: transform 0.2s ease, background-color 0.3s ease;
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
         }
 
-        .category-box a:hover {
+        /* Category Filter Styles */
+        .category-filter {
+            background: var(--white);
+            padding: 2rem;
+            margin: 2rem auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 1200px;
+        }
+
+        .filter-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .filter-description {
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
             transform: translateY(-5px);
-            background-color: #006666;
+            border-color: var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* Box shadow effect on hover */
-        .category-box:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .category-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
         }
 
-        /* Image hover effect */
-        .category-box img {
-            transition: transform 0.4s ease, opacity 0.3s ease;
+        .category-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Active Navigation Link */
+        .nav-links a.active {
+            background: var(--secondary-color);
+            color: var(--white);
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Flores</h1>
-  
+        <div class="header-content">
+            <h1>Flores</h1>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Pesquisar flores...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
     </header>
 
+    <nav>
+        <div class="nav-links">
+            <a href="#todas">Todas as Flores</a>
+            <a href="#populares">Mais Populares</a>
+            <a href="#nativas">Nativas do Paquistão</a>
+            <a href="#cultura">Cultura</a>
+        </div>
+    </nav>
+
     <main>
-        <!-- Lesson Cards -->
- <div class="category-container fade-in">
-     <!-- Pop -->
- 
- 
-      
- 
-        <!-- Rose -->
-        <div class="category-box">
-            <img src="img/rose.jpg" alt="Rose">
-            <div class="category-content">
-                <h3>Rosa - گلاب</h3>
-                <p>A rosa é uma flor muito simbólica, associada ao amor e à paixão.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Amor, paixão e beleza.</p>
-                <p>📖 <strong>Cultura:</strong> No Paquistão, as rosas são usadas em cerimônias religiosas, perfumes e decorações.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio1.mp3')">Ouvir Pronúncio</button>
+        <!-- Todas as Flores Section -->
+        <section id="todas" class="category-section active">
+            <div class="section-header">
+                <h2>Todas as Flores</h2>
+                <p>Explore nossa coleção completa de flores, cada uma com seu próprio significado e beleza única.</p>
             </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/tulip.jpg" alt="Tulip">
-            <div class="category-content">
-                <h3>Tulipa - گل لالہ</h3>
-                <p>A tulipa é uma flor vibrante, conhecida por suas cores vivas.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Amor perfeito e renovação.</p>
-                <p>📖 <strong>Cultura:</strong> Tulipas são cultivadas e apreciadas por sua beleza única.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio2.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/sunflower.jpg" alt="Sunflower">
-            <div class="category-content">
-                <h3>Girassol - سورج مکھی</h3>
-                <p>O girassol simboliza felicidade e vitalidade.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Felicidade, lealdade e energia.</p>
-                <p>📖 <strong>Cultura:</strong> Muito usado para produção de óleo e decorações.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio3.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/JASMINE.jpg" alt="Jasmine">
-            <div class="category-content">
-                <h3>Jasminum - چنبیلی</h3>
-                <p>Flor nacional do Paquistão, conhecida por seu aroma incrível.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Pureza, amor e simplicidade.</p>
-                <p>📖 <strong>Cultura:</strong> Usada amplamente em perfumes e cerimônias.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio4.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/MARIGOLD.jpg" alt="Marigold">
-            <div class="category-content">
-                <h3>Tagetes - گیندا</h3>
-                <p>Flor vibrante e amplamente utilizada em festivais.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Alegria, positividade e boa sorte.</p>
-                <p>📖 <strong>Cultura:</strong> Muito usada em casamentos e eventos religiosos.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio5.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/orchid.jpg" alt="Orchid">
-            <div class="category-content">
-                <h3>Orquídea - آرکڈ</h3>
-                <p>Uma das flores mais elegantes e exóticas.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Luxo, amor e força.</p>
-                <p>📖 <strong>Cultura:</strong> Cultivada por sua beleza rara.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio6.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
+            <div class="category-container">
+                <!-- Rose -->
+                <div class="category-box fade-in">
+                    <img src="img/rose.jpg" alt="Rose">
+                    <div class="category-content">
+                        <h3>Rosa - گلاب</h3>
+                        <p>A rosa é uma flor muito simbólica, associada ao amor e à paixão.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Amor e paixão</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio1.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
 
-        <div class="category-box">
-            <img src="img/hibiscus.jpg" alt="Hibiscus">
-            <div class="category-content">
-                <h3>Hibiscus - گلابی</h3>
-                <p>O hibisco é conhecido por suas flores vibrantes e benefícios medicinais.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Delicadeza, saúde e prosperidade.</p>
-                <p>📖 <strong>Cultura:</strong> Usado em chás, remédios e decorações florais.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio7.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/dahlia.jpg" alt="Dahlia">
-            <div class="category-content">
-                <h3>Dália - ڈاہلیا</h3>
-                <p>Flor de pétalas delicadas e cores vibrantes.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Criatividade, força e elegância.</p>
-                <p>📖 <strong>Cultura:</strong> Popular em jardins ornamentais.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio8.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/lavender.jpg" alt="Lavender">
-            <div class="category-content">
-                <h3>Lavandula - لیونڈر</h3>
-                <p>Conhecida pelo seu aroma calmante.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Tranquilidade e espiritualidade.</p>
-                <p>📖 <strong>Cultura:</strong> Usada em óleos essenciais e medicinas naturais.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio9.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/chrysanthemum.jpg" alt="Chrysanthemum">
-            <div class="category-content">
-                <h3>Crisântemo - گل داودی</h3>
-                <p>Uma flor vibrante e cheia de simbolismo.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Vida, alegria e amizade.</p>
-                <p>📖 <strong>Cultura:</strong> Muito utilizada em jardins e festivais.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio10.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/gerbera.jpg" alt="Gerbera">
-            <div class="category-content">
-                <h3>Gerbera - جربرا</h3>
-                <p>Uma flor vibrante, símbolo de alegria.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Felicidade e beleza.</p>
-                <p>📖 <strong>Cultura:</strong> Usada em buquês e decorações florais.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio11.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
+                <!-- Tulip -->
+                <div class="category-box fade-in">
+                    <img src="img/tulip.jpg" alt="Tulip">
+                    <div class="category-content">
+                        <h3>Tulipa - گل لالہ</h3>
+                        <p>A tulipa é uma flor vibrante, conhecida por suas cores vivas.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Amor perfeito e renovação</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio2.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
 
-        <div class="category-box">
-            <img src="img/lily.jpg" alt="Lily">
-            <div class="category-content">
-                <h3>Lírio - کنول کا پھول</h3>
-                <p>Uma flor graciosa, símbolo de pureza e renovação.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Pureza, devoção e renascimento.</p>
-                <p>📖 <strong>Cultura:</strong> Popular em casamentos e cerimônias religiosas.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio12.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
+                <!-- Sunflower -->
+                <div class="category-box fade-in">
+                    <img src="img/sunflower.jpg" alt="Sunflower">
+                    <div class="category-content">
+                        <h3>Girassol - سورج مکھی</h3>
+                        <p>O girassol simboliza felicidade e vitalidade.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Felicidade, lealdade e energia</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio3.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
 
+                <!-- Jasmine -->
+                <div class="category-box fade-in">
+                    <img src="img/JASMINE.jpg" alt="Jasmine">
+                    <div class="category-content">
+                        <h3>Jasminum - چنبیلی</h3>
+                        <p>Flor nacional do Paquistão, conhecida por seu aroma incrível.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Pureza, amor e simplicidade</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio4.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
 
+                <!-- Marigold -->
+                <div class="category-box fade-in">
+                    <img src="img/MARIGOLD.jpg" alt="Marigold">
+                    <div class="category-content">
+                        <h3>Tagetes - گیندا</h3>
+                        <p>Flor vibrante e amplamente utilizada em festivais.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Alegria, positividade e boa sorte</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio5.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
 
-        <div class="category-box">
-            <img src="img/peony.jpg" alt="Peony">
-            <div class="category-content">
-                <h3>Peônia - گل صدبرگ</h3>
-                <p>Conhecida por suas pétalas volumosas e aroma doce.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Felicidade, prosperidade e honra.</p>
-                <p>📖 <strong>Cultura:</strong> Muito usada em cerimônias e festivais de primavera.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio13.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/bluebell.jpg" alt="Bluebell">
-            <div class="category-content">
-                <h3>Bluebell - نیلا گھنٹی</h3>
-                <p>Uma flor delicada, associada a mistério e gratidão.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Humildade e gratidão.</p>
-                <p>📖 <strong>Cultura:</strong> Aparecem frequentemente em contos populares e lendas.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio14.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/hibiscus.jpg" alt="Hibiscus">
-            <div class="category-content">
-                <h3>Hibisco - گل خطمی</h3>
-                <p>Flor vibrante, conhecida por suas cores intensas.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Beleza, feminilidade e delicadeza.</p>
-                <p>📖 <strong>Cultura:</strong> Usado em chás e cosméticos.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio15.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/magnolia.jpg" alt="Magnolia">
-            <div class="category-content">
-                <h3>Magnólia - میگنولیا</h3>
-                <p>Uma flor elegante e perfumada.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Pureza, dignidade e força.</p>
-                <p>📖 <strong>Cultura:</strong> Representa nobreza e amor à natureza.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio16.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
-        
-        <div class="category-box">
-            <img src="img/lotus.jpg" alt="Lotus">
-            <div class="category-content">
-                <h3>Lótus - کنول</h3>
-                <p>Flor sagrada, símbolo de pureza e renascimento.</p>
-                <p>🌍 <strong>Encontrada no Paquistão?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Pureza, iluminação e renascimento.</p>
-                <p>📖 <strong>Cultura:</strong> Amplamente representada na arte e espiritualidade.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio17.mp3')">Ouvir Pronúncio</button>
-            </div>
-        </div>
+                <!-- Orchid -->
+                <div class="category-box fade-in">
+                    <img src="img/orchid.jpg" alt="Orchid">
+                    <div class="category-content">
+                        <h3>Orquídea - آرکڈ</h3>
+                        <p>Uma das flores mais elegantes e exóticas.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Luxo, amor e força</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio6.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
 
-        <div class="category-box">
-            <img src="img/violet.jpg" alt="Violet">
-            <div class="category-content">
-                <h3>Violeta - بنفشه</h3>
-                <p>Flor delicada, símbolo de humildade e modéstia.</p>
-                <p>🌍 <strong>Encontrada em várias regiões do mundo?</strong> Sim ✅</p>
-                <p>💬 <strong>Significado:</strong> Humildade, modéstia e amor.</p>
-                <p>📖 <strong>Cultura:</strong> Frequentemente associada à arte e à espiritualidade na cultura ocidental.</p>
-                <button class="styled-button" onclick="playAudio('FLOWERS/audio18.mp3')">Ouvir Pronúncio</button>
+                <!-- Hibiscus -->
+                <div class="category-box fade-in">
+                    <img src="img/hibiscus.jpg" alt="Hibiscus">
+                    <div class="category-content">
+                        <h3>Hibiscus - گلابی</h3>
+                        <p>O hibisco é conhecido por suas flores vibrantes e benefícios medicinais.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Delicadeza, saúde e prosperidade</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio7.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dahlia -->
+                <div class="category-box fade-in">
+                    <img src="img/dahlia.jpg" alt="Dahlia">
+                    <div class="category-content">
+                        <h3>Dália - ڈاہلیا</h3>
+                        <p>Flor de pétalas delicadas e cores vibrantes.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Criatividade, força e elegância</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio8.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lavender -->
+                <div class="category-box fade-in">
+                    <img src="img/lavender.jpg" alt="Lavender">
+                    <div class="category-content">
+                        <h3>Lavandula - لیونڈر</h3>
+                        <p>Conhecida pelo seu aroma calmante.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Tranquilidade e espiritualidade</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio9.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chrysanthemum -->
+                <div class="category-box fade-in">
+                    <img src="img/chrysanthemum.jpg" alt="Chrysanthemum">
+                    <div class="category-content">
+                        <h3>Crisântemo - گل داودی</h3>
+                        <p>Uma flor vibrante e cheia de simbolismo.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Vida, alegria e amizade</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio10.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Gerbera -->
+                <div class="category-box fade-in">
+                    <img src="img/gerbera.jpg" alt="Gerbera">
+                    <div class="category-content">
+                        <h3>Gerbera - جربرا</h3>
+                        <p>Uma flor vibrante, símbolo de alegria.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Felicidade e beleza</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio11.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lily -->
+                <div class="category-box fade-in">
+                    <img src="img/lily.jpg" alt="Lily">
+                    <div class="category-content">
+                        <h3>Lírio - کنول کا پھول</h3>
+                        <p>Uma flor graciosa, símbolo de pureza e renovação.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Pureza, devoção e renascimento</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio12.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Peony -->
+                <div class="category-box fade-in">
+                    <img src="img/peony.jpg" alt="Peony">
+                    <div class="category-content">
+                        <h3>Peônia - گل صدبرگ</h3>
+                        <p>Conhecida por suas pétalas volumosas e aroma doce.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Felicidade, prosperidade e honra</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio13.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Bluebell -->
+                <div class="category-box fade-in">
+                    <img src="img/bluebell.jpg" alt="Bluebell">
+                    <div class="category-content">
+                        <h3>Bluebell - نیلا گھنٹی</h3>
+                        <p>Uma flor delicada, associada a mistério e gratidão.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Humildade e gratidão</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio14.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hibiscus -->
+                <div class="category-box fade-in">
+                    <img src="img/hibiscus.jpg" alt="Hibiscus">
+                    <div class="category-content">
+                        <h3>Hibisco - گل خطمی</h3>
+                        <p>Flor vibrante, conhecida por suas cores intensas.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Beleza, feminilidade e delicadeza</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio15.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Magnolia -->
+                <div class="category-box fade-in">
+                    <img src="img/magnolia.jpg" alt="Magnolia">
+                    <div class="category-content">
+                        <h3>Magnólia - میگنولیا</h3>
+                        <p>Uma flor elegante e perfumada.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Pureza, dignidade e força</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio16.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lotus -->
+                <div class="category-box fade-in">
+                    <img src="img/lotus.jpg" alt="Lotus">
+                    <div class="category-content">
+                        <h3>Lótus - کنول</h3>
+                        <p>Flor sagrada, símbolo de pureza e renascimento.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Pureza, iluminação e renascimento</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio17.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Violet -->
+                <div class="category-box fade-in">
+                    <img src="img/violet.jpg" alt="Violet">
+                    <div class="category-content">
+                        <h3>Violeta - بنفشه</h3>
+                        <p>Flor delicada, símbolo de humildade e modéstia.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada em várias regiões do mundo</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Humildade, modéstia e amor</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio18.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        
-        
+        </section>
 
-    
+        <!-- Mais Populares Section -->
+        <section id="populares" class="category-section">
+            <div class="section-header">
+                <h2>Mais Populares</h2>
+                <p>As flores mais amadas e procuradas em nossa coleção.</p>
+            </div>
+            <div class="category-container">
+                <!-- Rose -->
+                <div class="category-box fade-in">
+                    <img src="img/rose.jpg" alt="Rose">
+                    <div class="category-content">
+                        <h3>Rosa - گلاب</h3>
+                        <p>A rosa é uma flor muito simbólica, associada ao amor e à paixão.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Amor e paixão</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio1.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
 
-     
- 
- 
- 
- 
-     
- </div>
- 
- 
-     
-     </div>
- </div>
- <script>
- var audioElement = null;
- 
- function playAudio(audioFile) {
-     if (audioElement) {
-         audioElement.pause(); // Pause any existing audio before starting a new one
-         audioElement.currentTime = 0; // Reset the audio to the start
-     }
-     audioElement = new Audio(audioFile);
-     audioElement.play();
- }
- 
- function stopAudio() {
-     if (audioElement) {
-         audioElement.pause(); // Pause the audio
-         audioElement.currentTime = 0; // Reset the audio to the start
-     }
- }
-    
- </script>
- 
- 
- </body>
- </html>
+                <!-- Jasmine -->
+                <div class="category-box fade-in">
+                    <img src="img/JASMINE.jpg" alt="Jasmine">
+                    <div class="category-content">
+                        <h3>Jasminum - چنبیلی</h3>
+                        <p>Flor nacional do Paquistão, conhecida por seu aroma incrível.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Pureza, amor e simplicidade</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio4.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lotus -->
+                <div class="category-box fade-in">
+                    <img src="img/lotus.jpg" alt="Lotus">
+                    <div class="category-content">
+                        <h3>Lótus - کنول</h3>
+                        <p>Flor sagrada, símbolo de pureza e renascimento.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Encontrada no Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Pureza, iluminação e renascimento</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio17.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nativas do Paquistão Section -->
+        <section id="nativas" class="category-section">
+            <div class="section-header">
+                <h2>Nativas do Paquistão</h2>
+                <p>Descubra as flores que são nativas e endêmicas do Paquistão.</p>
+            </div>
+            <div class="category-container">
+                <!-- Jasmine -->
+                <div class="category-box fade-in">
+                    <img src="img/JASMINE.jpg" alt="Jasmine">
+                    <div class="category-content">
+                        <h3>Jasminum - چنبیلی</h3>
+                        <p>Flor nacional do Paquistão, conhecida por seu aroma incrível.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Flor Nacional</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Pureza, amor e simplicidade</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio4.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Marigold -->
+                <div class="category-box fade-in">
+                    <img src="img/MARIGOLD.jpg" alt="Marigold">
+                    <div class="category-content">
+                        <h3>Tagetes - گیندا</h3>
+                        <p>Flor vibrante e amplamente utilizada em festivais.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-globe-asia"></i>
+                                <span>Nativa do Paquistão</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Alegria, positividade e boa sorte</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="playAudio('FLOWERS/audio5.mp3')">
+                            <i class="fas fa-volume-up"></i>
+                            Ouvir Pronúncia
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cultura Section -->
+        <section id="cultura" class="category-section">
+            <div class="section-header">
+                <h2>Cultura e Tradições</h2>
+                <p>Explore o significado cultural e tradicional das flores no Paquistão.</p>
+            </div>
+            <div class="category-filter">
+                <div class="category-grid">
+                    <div class="category-card">
+                        <i class="fas fa-mosque"></i>
+                        <h3>Religião</h3>
+                        <p>O papel das flores nas cerimônias religiosas</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-rings-wedding"></i>
+                        <h3>Casamentos</h3>
+                        <p>Flores tradicionais em celebrações de casamento</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-spa"></i>
+                        <h3>Medicina</h3>
+                        <p>Uso medicinal das flores na cultura paquistanesa</p>
+                    </div>
+                    <div class="category-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Arte</h3>
+                        <p>Representação das flores na arte e literatura</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="btn">
+        <a href="../lastscreen.html" class="menu-principal-button">Próxima Lição</a>
+        <a href="../mainmenuptur.html" class="menu-principal-button">Menu Principal</a>
+    </div>
+
+    <script>
+        let audioElement = null;
+
+        function playAudio(audioFile) {
+            if (audioElement) {
+                audioElement.pause();
+                audioElement.currentTime = 0;
+            }
+            audioElement = new Audio(audioFile);
+            audioElement.play().catch(error => {
+                console.error('Error playing audio:', error);
+            });
+        }
+
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const flowerBoxes = document.querySelectorAll('.category-box');
+            
+            flowerBoxes.forEach(box => {
+                const title = box.querySelector('h3').textContent.toLowerCase();
+                const description = box.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Category Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link and corresponding section
+                this.classList.add('active');
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Initialize first section as active
+        document.querySelector('.nav-links a').click();
+    </script>
+</body>
+</html>

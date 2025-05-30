@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>مین مینو</title>
+  <title>لنگو لینڈ - زبان سیکھیں</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -13,275 +15,937 @@
       font-family: 'Noto Nastaliq Urdu', serif;
     }
 
+    :root {
+      --primary-color: #001F3F;
+      --secondary-color: #003366;
+      --accent-color: #ff4b5c;
+      --text-light: #ffffff;
+      --text-dark: #333333;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --card-bg: #ffffff;
+    }
+
     body {
       display: flex;
-      height: 100vh;
-      overflow: hidden;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #F8F9FA;
     }
 
+    /* Sidebar Styles */
     .sidebar {
-      width: 30%;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 300px;
       height: 100vh;
-      background: linear-gradient(135deg, #0056b3, #001d4d);
-      color: #ffffff;
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding: 2.5rem 1.5rem;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 2rem;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 3rem;
+    }
+
+    .sidebar-brand i {
+      font-size: 2.2rem;
+    }
+
+    .sidebar-menu {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      padding: 20px 10px;
-      overflow-y: auto;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+      gap: 1.2rem;
     }
 
-    .sidebar h2 {
-      margin-bottom: 40px;
-      font-size: 32px;
-      color: #ffffff;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      width: 100%;
-    }
-
-    .sidebar ul li {
+    .sidebar-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      transition: background-color 0.3s;
       display: flex;
       align-items: center;
-      margin: 15px 0;
-      padding: 15px;
-      border-radius: 8px;
-      transition: 0.3s;
-      cursor: pointer;
-      background: rgba(255, 255, 255, 0.1);
+      gap: 1rem;
+      font-size: 1.2rem;
     }
 
-    .sidebar ul li:hover {
-      background: rgba(255, 255, 255, 0.3);
+    .sidebar-menu a i {
+      font-size: 1.4rem;
     }
 
-    .sidebar ul li img {
-      width: 30px;
-      height: 30px;
-    }
-
-    .sidebar ul li span {
-      font-size: 20px;
-      margin-right: 10px;
-      flex: 1;
+    .sidebar-menu a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(-5px);
     }
 
     .main-content {
-      flex-grow: 1;
-      padding: 20px;
-      background: #f0f4f8;
-      overflow-y: auto;
+      margin-right: 300px;
+      padding: 2rem;
+    }
+
+    .header {
+      background: #001F3F;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .progress-section {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
     }
 
     .progress-card {
-      background: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background: var(--card-bg);
+      border-radius: 16px;
       overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .progress-card a {
+      text-decoration: none;
+      color: var(--text-dark);
+      display: block;
+      padding: 1.5rem;
+    }
+
+    .progress-card-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .progress-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      gap: 1rem;
     }
 
     .progress-card img {
       width: 80px;
       height: 80px;
-      margin-top: 20px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
+
+    .progress-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .progress-card:hover img {
+      transform: scale(1.05);
     }
 
     .progress-card h3 {
-      font-size: 18px;
-      margin: 15px 0;
-      color: #333333;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin: 0;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    /* Lesson Status Indicator */
+    .lesson-status {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      color: white;
     }
 
-    .header {
-      background: linear-gradient(90deg, #001d4d, #0056b3);
-      color: #ffffff;
-      padding: 15px;
+    .status-completed {
+      background-color: #4CAF50;
+    }
+
+    .status-in-progress {
+      background-color: #FFC107;
+    }
+
+    .status-not-started {
+      background-color: #9E9E9E;
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #E0E0E0;
+      border-radius: 3px;
+      margin-top: 1rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--secondary-color);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    /* Mobile menu button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 280px;
+        transform: translateX(100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-right: 0;
+      }
+
+      .sidebar-brand {
+        font-size: 1.8rem;
+      }
+
+      .sidebar-menu a {
+        font-size: 1.1rem;
+        padding: 0.9rem 1rem;
+      }
+
+      .header {
+        font-size: 1.2rem;
+        padding: 1rem;
+      }
+
+      .progress-section {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      margin: auto;
       text-align: center;
-      font-size: 24px;
-      font-weight: bold;
-      border-bottom: 5px solid #0056b3;
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .modal-content.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .modal h3 {
+      color: var(--text-dark);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .modal-actions button {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .confirm-btn {
+      background: #dc3545;
+      color: white;
+    }
+
+    .confirm-btn:hover {
+      background: #c82333;
+      transform: translateY(-2px);
+    }
+
+    .cancel-btn {
+      background: #6c757d;
+      color: white;
+    }
+
+    .cancel-btn:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    /* Sad Face Animation */
+    .sad-face {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      animation: sadFace 1s ease infinite;
+    }
+
+    @keyframes sadFace {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
     }
   </style>
 </head>
 <body>
+  <button class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
   <div class="sidebar">
-    <h2>لنگو لینڈ</h2>
-    <ul>
-      <li>
-        <img src="img/sidebar/lista.gif" alt="Quests">
-        <span>اقسام</span>
-      </li>
-      <li>
-        <a href="verbos/verbos.html">
-          <img src="img/sidebar/dictionary.gif" alt="افعال">
-          <span>افعال</span>
-        </a>
-      </li>
-      <li>
-        <a href="translate.html">
-          <img src="img/sidebar/translator.gif" alt="ترجمہ">
-          <span>ترجمہ</span>
-        </a>
-      </li>
-      <li>
-        <img src="img/sidebar/profile.gif" alt="Quests">
-        <span>کوئسٹ</span>
-      </li>
-      <li>
-        <img src="img/sidebar/add-user.gif" alt="رابطہ">
-        <span>رابطہ</span>
-      </li>
-    </ul>
+    <a href="#" class="sidebar-brand">
+      <i class="fas fa-globe"></i>
+      <span>لنگو لینڈ</span>
+    </a>
+    <div class="sidebar-menu">
+      <a href="#"><i class="fas fa-home"></i> ہوم</a>
+      <a href="palavras_diarias/dias.html"><i class="fas fa-book"></i> چیلنجز</a>
+      <a href="contactpt.html"><i class="fas fa-envelope"></i> رابطہ</a>
+      <a href="/www/index.html"><i class="fas fa-sign-out-alt"></i> باہر نکلیں</a>
+    </div>
   </div>
 
   <div class="main-content">
-    <div class="header">اپنی زبان سیکھنے کے سفر کا آغاز کریں</div>
+    <div class="header">
+      اپنی زبان سیکھنے کے سفر کا آغاز کریں
+    </div>
 
     <div class="progress-section">
       <div class="progress-card">
-        <a href="LESSONCARDSABC.html">
-          <img src="images/abc.webp" alt="Learn ABCs">
-          <h3>حروف تہجی سیکھیں</h3>
+        <a href="intro_urdu.html">
+          <div class="progress-card-content">
+            <img src="images/art-show.gif" alt="تعارف">
+            <h3>کورس کا تعارف</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
         </a>
       </div>
+
+      <div class="progress-card">
+        <a href="abc/LESSONCARDSABC.html">
+          <div class="progress-card-content">
+            <img src="images/blackboard.gif" alt="حروف تہجی سیکھیں">
+            <h3>حروف تہجی سیکھیں</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
       <div class="progress-card">
         <a href="LESSONCARD123.html">
-          <img src="images/123.jpg" alt="١٢٣ سیکھیں">
-          <h3>١٢٣ سیکھیں</h3>
+          <div class="progress-card-content">
+            <img src="images/countdown.gif" alt="123 سیکھیں">
+            <h3>123 سیکھیں</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
         </a>
       </div>
+
       <div class="progress-card">
-        <a href="LESSONCRADSURPT.html">
-          <img src="images/gree.jpg" alt="Learn Greetings">
-          <h3>سلام کرنا سیکھیں</h3>
+        <a href="intrucaodequiz/introducao.html">
+          <div class="progress-card-content">
+            <img src="images/message.gif" alt="سلام">
+            <h3>سلام</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
         </a>
       </div>
+
       <div class="progress-card">
         <a href="BASIC GRAMMAR/LESSONCARD_BASICGRAMMAR.html">
-          <img src="images/gra.avif" alt="بنیادی گرامر">
-          <h3>بنیادی گرامر</h3>
+          <div class="progress-card-content">
+            <img src="images/dictionary.gif" alt="بنیادی گرامر">
+            <h3>بنیادی گرامر</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
         </a>
       </div>
 
       <div class="progress-card">
         <a href="colors&lang.html">
-          <img src="images/c.jpeg" alt="Learn Colors">
-          <h3>رنگ سیکھیں</h3>
+          <div class="progress-card-content">
+            <img src="images/palette.gif" alt="رنگ سیکھیں">
+            <h3>رنگ سیکھیں</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
         </a>
       </div>
-      
+
+      <div class="progress-card">
+        <a href="daysandmonth/lessoncard_days&month.html">
+          <div class="progress-card-content">
+            <img src="images/calendar.gif" alt="دن اور مہینے سیکھیں">
+            <h3>دن، ہفتے اور مہینے سیکھیں</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
       <div class="progress-card">
         <a href="country&lang.html">
-          <img src="img/CATEGORIAS/lang.jpeg" alt="Country Language">
-          <h3>ملک اور زبان</h3>
+          <div class="progress-card-content">
+            <img src="images/global (1).gif" alt="ملک اور زبان">
+            <h3>ملک اور زبان</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
         </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Objects and Numbers">
-        <h3>اشیاء اور اعداد</h3>
+        <a href="viagens/viagens.html">
+          <div class="progress-card-content">
+            <img src="images/visit-world.gif" alt="سفر">
+            <h3>سفر</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Grammar">
-        <h3>گرامر</h3>
+        <a href="FRUITS/FRUITS.HTML">
+          <div class="progress-card-content">
+            <img src="images/fruit.gif" alt="پھل">
+            <h3>پھل</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Travel">
-        <h3>سفر</h3>
+        <a href="VEGETABLES/vegetables.html">
+          <div class="progress-card-content">
+            <img src="images/vegetables.gif" alt="سبزیاں">
+            <h3>سبزیاں</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Seasons and Weather">
-        <h3>موسم اور موسم</h3>
+        <a href="drinks/drinks.html">
+          <div class="progress-card-content">
+            <img src="images/coffee.gif" alt="مشروبات">
+            <h3>مشروبات</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Animals">
-        <h3>جانور</h3>
+        <a href="ESTACOESECLIMA/seasons.html">
+          <div class="progress-card-content">
+            <img src="images/climate.gif" alt="موسم اور موسم">
+            <h3>موسم اور موسم</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Fruits">
-        <h3>پھل</h3>
+        <a href="animais/animais.html">
+          <div class="progress-card-content">
+            <img src="images/koi-fish.gif" alt="جانور">
+            <h3>جانور</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Vocabulary">
-        <h3>الفاظ</h3>
+        <a href="family/family.html">
+          <div class="progress-card-content">
+            <img src="images/family.gif" alt="خاندان">
+            <h3>خاندان</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Foods">
-        <h3>کھانے</h3>
+        <a href="music/music.html">
+          <div class="progress-card-content">
+            <img src="images/music.gif" alt="موسیقی اور گانے">
+            <h3>پاکستان کی موسیقی</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Drinks">
-        <h3>مشروبات</h3>
+        <a href="TrabalhoProfissões/trabalho.html">
+          <div class="progress-card-content">
+            <img src="images/candidate.gif" alt="کام اور پیشے">
+            <h3>کام اور پیشے</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
+
       <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Family">
-        <h3>خاندان</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="School">
-        <h3>اسکول</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Around the House">
-        <h3>گھر کے ارد گرد</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Hotel">
-        <h3>ہوٹل</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Restaurant">
-        <h3>ریستوران</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Introduction">
-        <h3>تعارف</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Shopping">
-        <h3>خریداری</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Airport">
-        <h3>ایئرپورٹ</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Fun">
-        <h3>تفریح</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Sports">
-        <h3>کھیل</h3>
-      </div>
-      <div class="progress-card">
-        <img src="img/progress-icon3.png" alt="Public Transport">
-        <h3>عوامی نقل و حمل</h3>
+        <a href="Flowers/flowers.html">
+          <div class="progress-card-content">
+            <img src="images/spring.gif" alt="پھول">
+            <h3>پھول</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
       </div>
     </div>
   </div>
+
+  <!-- Modal Confirmation -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <div class="sad-face">😢</div>
+      <h3>کیا آپ واقعی باہر نکلنا چاہتے ہیں؟</h3>
+      <div class="modal-actions">
+        <button id="confirmLogout" class="confirm-btn">
+          <i class="fas fa-check"></i> تصدیق کریں
+        </button>
+        <button id="cancelLogout" class="cancel-btn">
+          <i class="fas fa-times"></i> منسوخ کریں
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Firebase SDK before the closing body tag -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+      authDomain: "appsitesync.firebaseapp.com",
+      projectId: "appsitesync",
+      storageBucket: "appsitesync.firebasestorage.app",
+      messagingSenderId: "357510439971",
+      appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+      measurementId: "G-T0SX0NH50K"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    // Lesson tracking functionality with Firebase
+    const lessonProgress = {
+      // Initialize progress data
+      data: {},
+
+      // Update lesson progress
+      updateProgress: async function(lessonId, increment = 25) {
+        if (!auth.currentUser) {
+          console.log('User not logged in');
+          return;
+        }
+
+        try {
+          // First get the latest data from Firebase
+          const doc = await db.collection('userProgress')
+            .doc(auth.currentUser.uid)
+            .get();
+
+          // Get current progress from Firebase or local data
+          let currentProgress = 0;
+          if (doc.exists && doc.data()[lessonId]) {
+            currentProgress = doc.data()[lessonId];
+          } else if (this.data[lessonId]) {
+            currentProgress = this.data[lessonId];
+          }
+
+          // Calculate new progress (max 100)
+          const newProgress = Math.min(currentProgress + increment, 100);
+          
+          // Update local data
+          this.data[lessonId] = newProgress;
+          
+          // Update in Firebase - now we update the specific lesson
+          await db.collection('userProgress')
+            .doc(auth.currentUser.uid)
+            .set({
+              [lessonId]: newProgress
+            }, { merge: true });
+          
+          // Update UI
+          this.updateUI(lessonId);
+          
+          return newProgress;
+        } catch (error) {
+          console.error('Error updating progress:', error);
+        }
+      },
+
+      // Get lesson progress
+      getProgress: function(lessonId) {
+        return this.data[lessonId] || 0;
+      },
+
+      // Load user progress from Firebase
+      loadProgress: async function() {
+        if (!auth.currentUser) {
+          console.log('User not logged in');
+          return;
+        }
+
+        try {
+          const doc = await db.collection('userProgress')
+            .doc(auth.currentUser.uid)
+            .get();
+            
+          if (doc.exists) {
+            this.data = doc.data() || {};
+            this.updateAllUI();
+          }
+        } catch (error) {
+          console.error('Error loading progress:', error);
+        }
+      },
+
+      // Update UI elements
+      updateUI: function(lessonId) {
+        const card = document.querySelector(`[data-lesson-id="${lessonId}"]`);
+        if (!card) return;
+
+        const progress = this.getProgress(lessonId);
+        const progressBar = card.querySelector('.progress-bar');
+        const statusIndicator = card.querySelector('.lesson-status');
+
+        // Update progress bar width
+        progressBar.style.width = `${progress}%`;
+
+        // Update status indicator
+        if (progress === 100) {
+          statusIndicator.className = 'lesson-status status-completed';
+          statusIndicator.innerHTML = '<i class="fas fa-check"></i>';
+        } else if (progress > 0) {
+          statusIndicator.className = 'lesson-status status-in-progress';
+          statusIndicator.innerHTML = '<i class="fas fa-clock"></i>';
+        } else {
+          statusIndicator.className = 'lesson-status status-not-started';
+          statusIndicator.innerHTML = '<i class="fas fa-lock"></i>';
+        }
+      },
+
+      // Update all UI elements
+      updateAllUI: function() {
+        const cards = document.querySelectorAll('.progress-card');
+        cards.forEach(card => {
+          const lessonId = card.getAttribute('data-lesson-id');
+          if (lessonId) {
+            this.updateUI(lessonId);
+          }
+        });
+      }
+    };
+
+    // Check authentication state and load progress
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        lessonProgress.loadProgress();
+      } else {
+        // Redirect to login page if not authenticated
+        window.location.href = '/www/index.html';
+      }
+    });
+
+    // Initialize lesson progress UI
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.progress-card');
+      cards.forEach(card => {
+        const lessonId = card.querySelector('a').getAttribute('href');
+        card.setAttribute('data-lesson-id', lessonId);
+      });
+
+      // Load progress if user is authenticated
+      if (auth.currentUser) {
+        lessonProgress.loadProgress();
+      }
+    });
+
+    // Track lesson visits
+    document.querySelectorAll('.progress-card a').forEach(link => {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault(); // Prevent navigation until progress is updated
+        
+        if (!auth.currentUser) {
+          alert('براہ کرم سبق تک رسائی کے لیے لاگ ان کریں');
+          return;
+        }
+
+        const lessonId = e.currentTarget.getAttribute('href');
+        await lessonProgress.updateProgress(lessonId, 25); // Increment by 25% each visit
+        
+        // Navigate to the lesson after progress is updated
+        window.location.href = lessonId;
+      });
+    });
+
+    // Update the logout functionality
+    document.querySelector('.sidebar-menu a[href="/www/index.html"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      confirmLogout();
+    });
+
+    function confirmLogout() {
+      const modal = document.getElementById('logoutModal');
+      const modalContent = document.querySelector('.modal-content');
+      
+      modal.classList.add('show');
+      setTimeout(() => {
+        modalContent.classList.add('show');
+      }, 10);
+    }
+
+    document.getElementById('cancelLogout').addEventListener('click', function() {
+      const modal = document.getElementById('logoutModal');
+      const modalContent = document.querySelector('.modal-content');
+      
+      modalContent.classList.remove('show');
+      setTimeout(() => {
+        modal.classList.remove('show');
+      }, 300);
+    });
+
+    document.getElementById('confirmLogout').addEventListener('click', async function() {
+      try {
+        await auth.signOut(); // Sign out from Firebase
+        setTimeout(() => {
+          window.location.href = "/www/index.html";
+        }, 300);
+      } catch (error) {
+        console.error('Error signing out:', error);
+      }
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('logoutModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        document.getElementById('cancelLogout').click();
+      }
+    });
+
+    // Enhanced animations with GSAP
+    gsap.to(".sidebar h2", { 
+      opacity: 1, 
+      y: 0, 
+      duration: 1, 
+      ease: "power3.out" 
+    });
+
+    gsap.to(".sidebar ul li", { 
+      opacity: 1, 
+      x: 0, 
+      duration: 1, 2
+      stagger: 0.2, 
+      ease: "power3.out" 
+    });
+
+    gsap.to(".main-content", { 
+      opacity: 1, 
+      duration: 1, 
+      delay: 0.5, 
+      ease: "power3.out" 
+    });
+
+    gsap.to(".header", { 
+      opacity: 1, 
+      duration: 1, 
+      delay: 0.7, 
+      ease: "power3.out" 
+    });
+
+    gsap.to(".progress-card", { 
+      opacity: 1, 
+      y: 0, 
+      duration: 1, 
+      stagger: 0.1, 
+      delay: 0.9, 
+      ease: "power3.out" 
+    });
+
+    // Update mobile menu toggle script
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768 && 
+          !e.target.closest('.sidebar') && 
+          !e.target.closest('.menu-toggle') && 
+          sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    // Simple animation for cards appearing
+    document.querySelectorAll('.progress-card').forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
+  </script>
 </body>
 </html>

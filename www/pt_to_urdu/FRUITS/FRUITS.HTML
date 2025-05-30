@@ -12,6 +12,12 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --primary-color: #007ea7;
+      --text-color: #1a1a2e;
+      --shadow-color: rgba(0, 126, 167, 0.4);
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(to bottom, #ffffff, #f0f8ff);
@@ -55,6 +61,48 @@
     header button:hover {
       background: #005f87;
       transform: translateY(-3px);
+    }
+
+      /* Menu Principal Button */
+    .menu-principal-container {
+      margin-top: 60px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-principal-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(135deg, var(--primary-color), var(--text-color));
+      color: white;
+      padding: 18px 40px;
+      border-radius: 35px;
+      font-size: 1.3em;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .menu-principal-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px var(--shadow-color);
+    }
+
+    .menu-principal-button i {
+      font-size: 1.2em;
+      transition: transform 0.4s ease;
+    }
+
+    .menu-principal-button:hover i {
+      transform: scale(1.2);
     }
 
     /* Search Bar */
@@ -228,6 +276,7 @@
   <header>
     <h1>Aprender frutas</h1>
     <p>Neste lisão vamos a aprender as nomes de frutas</p>
+   
   </header>
 
   <div class="search-container">
@@ -247,6 +296,11 @@
     <h3 id="modal-name"></h3>
     <button onclick="playAudio()">🔊 Listen to Pronunciation</button>
   </div>
+
+   <div class="menu-principal-container">
+      <a href="../VEGETABLES/vegetables.html" class="menu-principal-button">Próxima Lição</a>
+      <a href="../mainmenuptur.html" class="menu-principal-button">Menu Principal</a>
+    </div>
 
   <div id="overlay" class="overlay" onclick="closeModal()"></div>
 

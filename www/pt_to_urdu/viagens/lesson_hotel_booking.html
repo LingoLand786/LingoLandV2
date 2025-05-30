@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-pt">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Aprenda frases em Urdu para usar em um hotel, com traduções, pronúncias e um design interativo e moderno.">
-    <meta name="author" content="Your Name">
-    <title>Frases no Hotel - Aprendendo Urdu</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lição - Reserva de Hotel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
     <style>
         * {
             margin: 0;
@@ -14,322 +15,416 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #001b40;
+            --accent-color: #4CAF50;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #e8f4fc, #c6d6e3);
-            color: #333;
+            background: #ffffff;
+            color: var(--text-color);
             line-height: 1.6;
         }
 
         header {
-            padding: 60px 20px;
-            background:#001d4d;
-            color: #fff;
             text-align: center;
-            font-size: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px;
-            background: #001d4d;
-        }
-
-        nav button {
-            padding: 10px 20px;
-            font-size: 1rem;
-            color: #000000;
-            background: #ffffff;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        nav button:hover {
-            background: #99b4df;
-        }
-
-        main {
             padding: 40px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .cartao {
-            display: none;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            animation: fadeIn 0.6s ease-in-out;
-        }
-
-        .cartao h2 {
-            font-size: 2rem;
-            color: #00509E;
-            margin-bottom: 15px;
-        }
-
-        .cartao ul {
-            list-style: none;
-        }
-
-        .cartao ul li {
-            margin-bottom: 20px;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .cartao ul li:last-child {
-            border-bottom: none;
-        }
-
-        .cartao p {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .cartao button {
-            padding: 10px 20px;
-            font-size: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: #fff;
-            background: #00509E;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .cartao button:hover {
-            background: #003f7f;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #00509E;
-            color: #fff;
-            font-size: 1rem;
             position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
         }
-        .btn {
-            padding: 12px 25px;
-            background-color: #002D62;
-            color: #fff;
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        section {
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .phrase-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .phrase-table th, .phrase-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .phrase-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .phrase-table td {
+            background: white;
+            transition: var(--transition);
+        }
+
+        .phrase-table tr:hover td {
+            background: var(--light-bg);
+        }
+
+        .audio-btn {
+            background: var(--accent-color);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary-color);
+        }
+
+        .floating-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .floating-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
             text-decoration: none;
-            font-size: 1.5rem;
+            padding: 15px;
+            margin: 5px 0;
             border-radius: 8px;
-            margin-top: 40px;
-            text-align: center;
+            transition: var(--transition);
         }
 
-        .btn:hover {
-            background-color: #001b40;
+        .floating-nav a:hover {
+            background: var(--primary-color);
+            color: white;
         }
 
-        footer a {
-            color: #f0f0f0;
+        .practice-section {
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-top: 50px;
+        }
+
+        .quiz-container {
+            margin-top: 30px;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            padding: 20px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
             text-decoration: none;
-            font-weight: bold;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        footer a:hover {
-            text-decoration: underline;
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @media (max-width: 768px) {
+            .navigation-buttons {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .floating-nav {
+                display: none;
+            }
         }
     </style>
-    <script>
-        // Function to toggle between cards
-        function mostrarCartao(id) {
-            const cartoes = document.querySelectorAll('.cartao');
-            cartoes.forEach(cartao => cartao.style.display = 'none');
-            document.getElementById(id).style.display = 'block';
-        }
-
-        // Function to play audio
-        function reproduzirAudio(audioId) {
-            const audio = document.getElementById(audioId);
-            audio.play();
-        }
-    </script>
 </head>
 <body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
     <header>
-        <h1>Frases no Hotel</h1>
-        <p>Aprenda frases úteis em Urdu para facilitar sua estadia em hotéis.</p>
+        <h1>Reserva de Hotel</h1>
+        <p>Aprenda frases essenciais em Urdu para reservar e se hospedar em hotéis no Paquistão</p>
     </header>
 
-    <nav>
-        <button onclick="mostrarCartao('cartao1')">Fazendo uma Reserva</button>
-        <button onclick="mostrarCartao('cartao2')">Check-In</button>
-        <button onclick="mostrarCartao('cartao3')">Durante a Estadia</button>
-        <button onclick="mostrarCartao('cartao4')">Check-Out</button>
+    <nav class="floating-nav">
+        <a href="#reservation"><i class="fas fa-calendar-check"></i> Reserva</a>
+        <a href="#checkin"><i class="fas fa-door-open"></i> Check-in</a>
+        <a href="#services"><i class="fas fa-concierge-bell"></i> Serviços</a>
+        <a href="#practice"><i class="fas fa-tasks"></i> Prática</a>
     </nav>
 
-    <main>
-        <div id="cartao1" class="cartao" style="display: block;">
-            <h2>Fazendo uma Reserva</h2>
-            <ul>
-                <li>
-                    <p><strong>Português:</strong> Eu gostaria de reservar um quarto, por favor.</p>
-                    <p><strong>Urdu:</strong> میں ایک کمرہ بک کرنا چاہوں گا، براہ کرم۔</p>
-                    <button onclick="reproduzirAudio('audio1')">Ouvir Pronúncia</button>
-                    <audio id="audio1" src="audios/audio1.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Você tem quartos disponíveis para [data]?</p>
-                    <p><strong>Urdu:</strong> کیا آپ کے پاس [تاریخ] کے لیے کمرے دستیاب ہیں؟</p>
-                    <button onclick="reproduzirAudio('audio2')">Ouvir Pronúncia</button>
-                    <audio id="audio2" src="audios/audio2.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Qual é o preço por noite?</p>
-                    <p><strong>Urdu:</strong> رات کے لیے قیمت کیا ہے؟</p>
-                    <button onclick="reproduzirAudio('audio3')">Ouvir Pronúncia</button>
-                    <audio id="audio3" src="audios/audio3.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Vocês aceitam pagamento com cartão de crédito?</p>
-                    <p><strong>Urdu:</strong> کیا آپ کریڈٹ کارڈ کے ذریعے ادائیگی قبول کرتے ہیں؟</p>
-                    <button onclick="reproduzirAudio('audio13')">Ouvir Pronúncia</button>
-                    <audio id="audio13" src="audios/audio4.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> O café da manhã está incluído?</p>
-                    <p><strong>Urdu:</strong> کیا ناشتہ شامل ہے؟</p>
-                    <button onclick="reproduzirAudio('audio17')">Ouvir Pronúncia</button>
-                    <audio id="audio17" src="audios/audio5.mp3"></audio>
-                </li>
-            </ul>
-        </div>
+    <div class="lesson-container">
+        <section id="reservation">
+            <h2>Reserva</h2>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Português</th>
+                        <th>Urdu</th>
+                        <th>Áudio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gostaria de fazer uma reserva</td>
+                        <td>میں ریزرویشن کرنا چاہتا/چاہتی ہوں</td>
+                        <td><button class="audio-btn" onclick="playAudio('reservation')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Quanto custa por noite?</td>
+                        <td>ایک رات کا کرایہ کتنا ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('price')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Preciso de um quarto para duas pessoas</td>
+                        <td>مجھے دو افراد کے لیے کمرہ چاہیے</td>
+                        <td><button class="audio-btn" onclick="playAudio('room')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-        <div id="cartao2" class="cartao">
-            <h2>Check-In</h2>
-            <ul>
-                <li>
-                    <p><strong>Português:</strong> Eu tenho uma reserva no nome de [seu nome].</p>
-                    <p><strong>Urdu:</strong> میرے نام [آپ کا نام] پر ایک بکنگ ہے۔</p>
-                    <button onclick="reproduzirAudio('audio4')">Ouvir Pronúncia</button>
-                    <audio id="audio4" src="audios/audio6.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Posso fazer o check-in agora?</p>
-                    <p><strong>Urdu:</strong> کیا میں ابھی چیک ان کر سکتا ہوں؟</p>
-                    <button onclick="reproduzirAudio('audio5')">Ouvir Pronúncia</button>
-                    <audio id="audio5" src="audios/audio7.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Posso ter um quarto com vista para o mar?</p>
-                    <p><strong>Urdu:</strong> کیا مجھے سمندر کے نظارے کے ساتھ ایک کمرہ مل سکتا ہے؟</p>
-                    <button onclick="reproduzirAudio('audio14')">Ouvir Pronúncia</button>
-                    <audio id="audio14" src="audios/audio8.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Quais são os horários do check-in e check-out?</p>
-                    <p><strong>Urdu:</strong> چیک ان اور چیک آؤٹ کے اوقات کیا ہیں؟</p>
-                    <button onclick="reproduzirAudio('audio18')">Ouvir Pronúncia</button>
-                    <audio id="audio18" src="audios/audio9.mp3"></audio>
-                </li>
-            </ul>
-        </div>
+        <section id="checkin">
+            <h2>Check-in</h2>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Português</th>
+                        <th>Urdu</th>
+                        <th>Áudio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tenho uma reserva em nome de...</td>
+                        <td>میرا ریزرویشن ... کے نام پر ہے</td>
+                        <td><button class="audio-btn" onclick="playAudio('checkin')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Qual é o número do meu quarto?</td>
+                        <td>میرے کمرے کا نمبر کیا ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('roomnumber')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>O café da manhã está incluído?</td>
+                        <td>ناشتہ شامل ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('breakfast')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-         <!-- Cartão 3: Durante a Estadia -->
-         <div id="cartao3" class="cartao" style="display: none;">
-            <h2>Durante a Estadia</h2>
-            <ul>
-                <li>
-                    <p><strong>Português:</strong> Pode me enviar toalhas extras, por favor?</p>
-                    <p><strong>Urdu:</strong> کیا آپ مجھے اضافی تولیے بھیج سکتے ہیں؟</p>
-                    <button onclick="reproduzirAudio('audio7')">Ouvir Pronúncia</button>
-                    <audio id="audio7" src="audios/audio10.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Meu quarto precisa ser limpo.</p>
-                    <p><strong>Urdu:</strong> میرا کمرہ صاف کرنے کی ضرورت ہے۔</p>
-                    <button onclick="reproduzirAudio('audio8')">Ouvir Pronúncia</button>
-                    <audio id="audio8" src="audios/audio11.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> O Wi-Fi não está funcionando.</p>
-                    <p><strong>Urdu:</strong> وائی فائی کام نہیں کر رہا ہے۔</p>
-                    <button onclick="reproduzirAudio('audio9')">Ouvir Pronúncia</button>
-                    <audio id="audio9" src="audios/audio12.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Pode me trazer um menu do serviço de quarto?</p>
-                    <p><strong>Urdu:</strong> کیا آپ مجھے روم سروس کا مینو لا سکتے ہیں؟</p>
-                    <button onclick="reproduzirAudio('audio15')">Ouvir Pronúncia</button>
-                    <audio id="audio15" src="audios/audio13.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Há um problema com o ar condicionado no meu quarto.</p>
-                    <p><strong>Urdu:</strong> میرے کمرے میں ایئر کنڈیشنر کے ساتھ مسئلہ ہے۔</p>
-                    <button onclick="reproduzirAudio('audio19')">Ouvir Pronúncia</button>
-                    <audio id="audio19" src="audios/audio14.mp3"></audio>
-                </li>
-            </ul>
-        </div>
+        <section id="services">
+            <h2>Serviços</h2>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Português</th>
+                        <th>Urdu</th>
+                        <th>Áudio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Preciso de toalhas limpas</td>
+                        <td>مجھے صاف تولیے چاہیے</td>
+                        <td><button class="audio-btn" onclick="playAudio('towels')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>O Wi-Fi é gratuito?</td>
+                        <td>وائی فائی مفت ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('wifi')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Qual é o horário do check-out?</td>
+                        <td>چیک آؤٹ کا وقت کیا ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('checkout')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-        <!-- Cartão 4: Check-Out -->
-        <div id="cartao4" class="cartao" style="display: none;">
-            <h2>Check-Out</h2>
-            <ul>
-                <li>
-                    <p><strong>Português:</strong> Eu gostaria de fazer o check-out, por favor.</p>
-                    <p><strong>Urdu:</strong> میں چیک آؤٹ کرنا چاہوں گا، براہ کرم۔</p>
-                    <button onclick="reproduzirAudio('audio10')">Ouvir Pronúncia</button>
-                    <audio id="audio10" src="audios/audio15.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Pode chamar um táxi para mim?</p>
-                    <p><strong>Urdu:</strong> کیا آپ میرے لیے ایک ٹیکسی بلا سکتے ہیں؟</p>
-                    <button onclick="reproduzirAudio('audio11')">Ouvir Pronúncia</button>
-                    <audio id="audio11" src="audios/audio16.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Posso deixar minha bagagem aqui por algumas horas?</p>
-                    <p><strong>Urdu:</strong> کیا میں اپنا سامان یہاں چند گھنٹوں کے لیے چھوڑ سکتا ہوں؟</p>
-                    <button onclick="reproduzirAudio('audio12')">Ouvir Pronúncia</button>
-                    <audio id="audio12" src="audios/audio17.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> Poderia me enviar a fatura por e-mail?</p>
-                    <p><strong>Urdu:</strong> کیا آپ مجھے ای میل کے ذریعے انوائس بھیج سکتے ہیں؟</p>
-                    <button onclick="reproduzirAudio('audio16')">Ouvir Pronúncia</button>
-                    <audio id="audio16" src="audios/audio18.mp3"></audio>
-                </li>
-                <li>
-                    <p><strong>Português:</strong> O hotel oferece transporte para o aeroporto?</p>
-                    <p><strong>Urdu:</strong> کیا ہوٹل ہوائی اڈے کے لیے ٹرانسپورٹ فراہم کرتا ہے؟</p>
-                    <button onclick="reproduzirAudio('audio20')">Ouvir Pronúncia</button>
-                    <audio id="audio20" src="audios/audio19.mp3"></audio>
-                </li>
-            </ul>
-        </div>
-    </main>
+        <section id="practice" class="practice-section">
+            <h2>Prática</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    Como se diz "Gostaria de fazer uma reserva" em Urdu?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">میں ریزرویشن کرنا چاہتا/چاہتی ہوں</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'wrong')">مجھے صاف تولیے چاہیے</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'wrong')">میرا ریزرویشن ... کے نام پر ہے</div>
+                </div>
+            </div>
+        </section>
+    </div>
 
-    <a href="lesson_cultural_etiquette.html" class="btn">Próxima Lição: Etiquette Cultural</a>
-</div>
+    <div class="navigation-buttons">
+        <a href="viagens.html" class="nav-btn">
+            <i class="fas fa-home"></i>
+            Menu Principal
+        </a>
+        <a href="lesson_cultural_etiquette.html" class="nav-btn">
+            <span>Próxima Lição</span>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
 
-  
+    <script>
+        // Progress bar functionality
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+
+        // Audio playback functionality
+        function playAudio(audioId) {
+            const audio = new Audio(`hotel/${audioId}.mp3`);
+            audio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                alert('Desculpe, não foi possível reproduzir o áudio. Por favor, verifique se o arquivo de áudio existe.');
+            });
+        }
+
+        // Quiz functionality
+        function checkAnswer(element, type) {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.style.background = 'white';
+                option.style.color = 'var(--text-color)';
+            });
+
+            if (type === 'correct') {
+                element.style.background = 'var(--accent-color)';
+                element.style.color = 'white';
+            } else {
+                element.style.background = '#ff4444';
+                element.style.color = 'white';
+            }
+        }
+    </script>
 </body>
 </html>

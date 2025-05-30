@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Flores - Aprenda sobre Flores em Português e Urdu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #002D62;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #002D62;
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 1rem;
+        }
+
+        .search-button {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-button:hover {
+            background: #c0392b;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-box {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .category-content p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item i {
+            color: var(--secondary-color);
+        }
+
+        .styled-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .styled-button:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Category Filter Styles */
+        .category-filter {
+            background: var(--white);
+            padding: 2rem;
+            margin: 2rem auto;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 1200px;
+        }
+
+        .filter-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .filter-description {
+            color: #666;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .category-section {
+            display: none;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Active Navigation Link */
+        .nav-links a.active {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+        <h1>پھول</h1>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="پھول تلاش کریں...">
+            <button class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<nav>
+    <div class="nav-links">
+        <a href="#sabphool">تمام پھول</a>
+        <a href="#maqbool">سب سے زیادہ مقبول</a>
+        <a href="#pakistan">پرتگال کے پھول</a>
+        <a href="#saqafat">ثقافت</a>
+    </div>
+</nav>
+
+<main>
+    <!-- تمام پھول سیکشن -->
+    <section id="sabphool" class="category-section active">
+        <div class="section-header">
+            <h2>تمام پھول</h2>
+            <p>ہماری مکمل پھولوں کی کلیکشن دریافت کریں، ہر پھول کا اپنا مطلب اور خوبصورتی ہے۔</p>
+        </div>
+        <div class="category-container">
+
+            <!-- Rose -->
+            <div class="category-box fade-in">
+                <img src="img/rose.jpg" alt="Gulab">
+                <div class="category-content">
+                    <h3>Rosa - روزا</h3>
+                    <p>گلاب ایک علامتی پھول ہے، جو محبت اور جذبے کی نمائندگی کرتا ہے۔</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-globe-asia"></i>
+                            <span>پاکستان میں پایا جاتا ہے</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-heart"></i>
+                            <span>محبت اور جذبہ</span>
+                        </div>
+                    </div>
+                    <button class="styled-button" onclick="playAudio('FLOWERS/audio1.mp3')">
+                        <i class="fas fa-volume-up"></i>
+                        سنیں تلفظ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tulip -->
+            <div class="category-box fade-in">
+                <img src="img/tulip.jpg" alt="Lala">
+                <div class="category-content">
+                    <h3>tulipa - ٹولِپ</h3>
+                    <p>ٹولِپ ایک چمکدار پھول ہے، جو اپنی روشن رنگتوں کے لیے جانا جاتا ہے۔</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-globe-asia"></i>
+                            <span>پاکستان میں پایا جاتا ہے</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-heart"></i>
+                            <span>کامل محبت اور تجدید</span>
+                        </div>
+                    </div>
+                    <button class="styled-button" onclick="playAudio('FLOWERS/audio2.mp3')">
+                        <i class="fas fa-volume-up"></i>
+                        سنیں تلفظ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sunflower -->
+            <div class="category-box fade-in">
+                <img src="img/sunflower.jpg" alt="Surajmukhi">
+                <div class="category-content">
+                    <h3>Surajmukhi - سورج مکھی</h3>
+                    <p>سورج مکھی خوشی اور توانائی کی علامت ہے۔</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-globe-asia"></i>
+                            <span>پاکستان میں پایا جاتا ہے</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-heart"></i>
+                            <span>خوشی، وفاداری اور توانائی</span>
+                        </div>
+                    </div>
+                    <button class="styled-button" onclick="playAudio('FLOWERS/audio3.mp3')">
+                        <i class="fas fa-volume-up"></i>
+                        سنیں تلفظ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Jasmine -->
+            <div class="category-box fade-in">
+                <img src="img/JASMINE.jpg" alt="Chameli">
+                <div class="category-content">
+                    <h3>Chameli - چنبیلی</h3>
+                    <p>پاکستان کا قومی پھول، جو اپنی خوشبو کے لیے مشہور ہے۔</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-globe-asia"></i>
+                            <span>پاکستان میں پایا جاتا ہے</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-heart"></i>
+                            <span>صفائی، محبت اور سادگی</span>
+                        </div>
+                    </div>
+                    <button class="styled-button" onclick="playAudio('FLOWERS/audio4.mp3')">
+                        <i class="fas fa-volume-up"></i>
+                        سنیں تلفظ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Marigold -->
+            <div class="category-box fade-in">
+                <img src="img/MARIGOLD.jpg" alt="Genda">
+                <div class="category-content">
+                    <h3>Genda - گیندا</h3>
+                    <p>چمکدار پھول جو تہواروں میں بڑے پیمانے پر استعمال ہوتا ہے۔</p>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <i class="fas fa-globe-asia"></i>
+                            <span>پاکستان میں پایا جاتا ہے</span>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-heart"></i>
+                            <span>خوشی، مثبتیت اور خوش قسمتی</span>
+                        </div>
+                    </div>
+                    <button class="styled-button" onclick="playAudio('FLOWERS/audio5.mp3')">
+                        <i class="fas fa-volume-up"></i>
+                        سنیں تلفظ
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Orchid -->
+<div class="category-box fade-in">
+    <img src="img/orchid.jpg" alt="Orchid">
+    <div class="category-content">
+        <h3>Orquídea - آرکڈ</h3>
+        <p>ایک سب سے زیادہ خوبصورت اور نایاب پھول۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>عیش و عشرت، محبت اور طاقت</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio6.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Hibiscus -->
+<div class="category-box fade-in">
+    <img src="img/hibiscus.jpg" alt="Hibiscus">
+    <div class="category-content">
+        <h3>Hibiscus - گلابی</h3>
+        <p>گلابی اپنے رنگین پھولوں اور طبی فوائد کے لئے معروف ہے۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>نرمی، صحت اور خوشحالی</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio7.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Dahlia -->
+<div class="category-box fade-in">
+    <img src="img/dahlia.jpg" alt="Dahlia">
+    <div class="category-content">
+        <h3>Dália - ڈاہلیا</h3>
+        <p>نرمی سے بھرپور پنکھڑیوں اور چمکدار رنگوں والا پھول۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>تخلیقی صلاحیت، طاقت اور شان</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio8.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Lavender -->
+<div class="category-box fade-in">
+    <img src="img/lavender.jpg" alt="Lavender">
+    <div class="category-content">
+        <h3>Lavandula - لیونڈر</h3>
+        <p>اپنی خوشبو کے باعث پرسکون کرنے والا پودا۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>سکون اور روحانیت</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio9.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Chrysanthemum -->
+<div class="category-box fade-in">
+    <img src="img/chrysanthemum.jpg" alt="Chrysanthemum">
+    <div class="category-content">
+        <h3>Crisântemo - گل داودی</h3>
+        <p>ایک چمکدار اور معنی خیز پھول۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>زندگی، خوشی اور دوستی</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio10.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Gerbera -->
+<div class="category-box fade-in">
+    <img src="img/gerbera.jpg" alt="Gerbera">
+    <div class="category-content">
+        <h3>Gerbera - جربرا</h3>
+        <p>ایک چمکدار پھول، خوشی کی علامت۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>خوشی اور خوبصورتی</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio11.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Lily -->
+<div class="category-box fade-in">
+    <img src="img/lily.jpg" alt="Lily">
+    <div class="category-content">
+        <h3>Lírio - کنول کا پھول</h3>
+        <p>ایک خوبصورت پھول، پاکیزگی اور تجدید کی علامت۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>پاکیزگی، عقیدت اور نئی شروعات</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio12.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Peony -->
+<div class="category-box fade-in">
+    <img src="img/peony.jpg" alt="Peony">
+    <div class="category-content">
+        <h3>Peônia - گل صدبرگ</h3>
+        <p>اپنی بھرپور پنکھڑیوں اور میٹھی خوشبو کے لئے مشہور۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>خوشی، خوشحالی اور عزت</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio13.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Bluebell -->
+<div class="category-box fade-in">
+    <img src="img/bluebell.jpg" alt="Bluebell">
+    <div class="category-content">
+        <h3>Bluebell - نیلا گھنٹی</h3>
+        <p>ایک نازک پھول، جو اسرار اور شکرگزاری کی علامت ہے۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>انکساری اور شکرگزاری</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio14.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+
+
+           <!-- Hibiscus -->
+<div class="category-box fade-in">
+    <img src="img/hibiscus.jpg" alt="Hibiscus">
+    <div class="category-content">
+        <h3>گلاب خطمی - Hibisco</h3>
+        <p>چمکدار پھول، اپنی گہرے رنگوں کی وجہ سے مشہور۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>خوبصورتی، نسوانیت اور نزاکت</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio15.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Magnolia -->
+<div class="category-box fade-in">
+    <img src="img/magnolia.jpg" alt="Magnolia">
+    <div class="category-content">
+        <h3>میگنولیا - Magnolia</h3>
+        <p>ایک نفیس اور خوشبودار پھول۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>صفائی، وقار اور طاقت</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio16.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Lotus -->
+<div class="category-box fade-in">
+    <img src="img/lotus.jpg" alt="Lotus">
+    <div class="category-content">
+        <h3>کنول - Lotus</h3>
+        <p>پاکیزگی اور تجدید کی علامت، مقدس پھول۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>پاکستان میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>پاکیزگی، روشنی اور تجدید</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio17.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+<!-- Violet -->
+<div class="category-box fade-in">
+    <img src="img/violet.jpg" alt="Violet">
+    <div class="category-content">
+        <h3>بنفشہ - Violet</h3>
+        <p>نزاکت کا حامل پھول، عاجزی اور شائستگی کی علامت۔</p>
+        <div class="info-grid">
+            <div class="info-item">
+                <i class="fas fa-globe-asia"></i>
+                <span>دنیا کے مختلف علاقوں میں پایا جاتا ہے</span>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-heart"></i>
+                <span>عاجزی، شائستگی اور محبت</span>
+            </div>
+        </div>
+        <button class="styled-button" onclick="playAudio('FLOWERS/audio18.mp3')">
+            <i class="fas fa-volume-up"></i>
+            تلفظ سنیں
+        </button>
+    </div>
+</div>
+
+</div>
+</section>
+
+<!-- Mais Populares Portugal Section -->
+<section id="maqbool" class="category-section">
+    <div class="section-header">
+        <h2>پرتگال میں سب سے زیادہ مقبول پھول</h2>
+        <p>وہ پھول جو پرتگالی عوام میں سب سے زیادہ پسند کیے جاتے ہیں۔</p>
+    </div>
+    <div class="category-container">
+
+        <!-- Camellia -->
+        <div class="category-box fade-in">
+            <img src="img/camellia.jpg" alt="Camellia">
+            <div class="category-content">
+                <h3>کیمیلیا - Camellia</h3>
+                <p>خاص طور پر شمالی پرتگال میں مقبول، یہ پھول خوبصورتی اور شرافت کی علامت ہے۔</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-globe-europe"></i>
+                        <span>پرتگال میں پایا جاتا ہے</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-heart"></i>
+                        <span>خوبصورتی، وقار اور پیار</span>
+                    </div>
+                </div>
+                <button class="styled-button" onclick="playAudio('FLOWERS/audio-camellia.mp3')">
+                    <i class="fas fa-volume-up"></i>
+                    تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Hydrangea -->
+        <div class="category-box fade-in">
+            <img src="img/images.jpeg" alt="Hydrangea">
+            <div class="category-content">
+                <h3>ہائڈرینجیا - Hydrangea</h3>
+                <p>یہ رنگین پھول آزورز جزائر اور شمالی پرتگال کی نمائندگی کرتا ہے۔</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-globe-europe"></i>
+                        <span>پرتگال میں مقبول</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-heart"></i>
+                        <span>امتزاج، فضل اور عاجزی</span>
+                    </div>
+                </div>
+                <button class="styled-button" onclick="playAudio('FLOWERS/audio-hydrangea.mp3')">
+                    <i class="fas fa-volume-up"></i>
+                    تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+        <!-- Oleander -->
+        <div class="category-box fade-in">
+            <img src="img/transferir.webp" alt="Oleander">
+            <div class="category-content">
+                <h3>اولیئنڈر - Oleander</h3>
+                <p>یہ زہریلا مگر دلکش پھول پرتگال کے گرم علاقوں میں عام ہے۔</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-globe-europe"></i>
+                        <span>پرتگال کے جنوبی علاقوں میں</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-heart"></i>
+                        <span>خطرہ، خوبصورتی اور برداشت</span>
+                    </div>
+                </div>
+                <button class="styled-button" onclick="playAudio('FLOWERS/audio-oleander.mp3')">
+                    <i class="fas fa-volume-up"></i>
+                    تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+ 
+
+
+        <!-- Rockrose -->
+        <div class="category-box fade-in">
+            <img src="img/ccc.jpg" alt="Rockrose">
+            <div class="category-content">
+                <h3>راک روز - Cistus</h3>
+                <p>پرتگال کے پہاڑی علاقوں میں اگنے والا ایک جھاڑی نما پھول، خاص طور پر جنوب میں۔</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-globe-europe"></i>
+                        <span>پرتگال کا دیسی پھول</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-heart"></i>
+                        <span>قدرتی حسن اور مضبوطی</span>
+                    </div>
+                </div>
+                <button class="styled-button" onclick="playAudio('FLOWERS/audio-rockrose.mp3')">
+                    <i class="fas fa-volume-up"></i>
+                    تلفظ سنیں
+                </button>
+            </div>
+        </div>
+
+  
+
+<!-- Portugal Culture Section -->
+<section id="saqafat" class="category-section">
+    <div class="section-header">
+        <h2>پرتگالی ثقافت اور پھول</h2>
+        <p>پرتگال میں پھولوں کا ثقافتی، مذہبی اور فنکارانہ استعمال دریافت کریں۔</p>
+    </div>
+    <div class="category-filter">
+        <div class="category-grid">
+            <div class="category-card">
+                <i class="fas fa-church"></i>
+                <h3>مذہب</h3>
+                <p>گرجا گھروں اور مذہبی تہواروں میں پھولوں کی سجاوٹ عام ہے، خاص طور پر "فاطمہ" کے تہواروں میں۔</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-heart"></i>
+                <h3>تہوار</h3>
+                <p>"فلورز ڈی پریمویرا" (بہار کے پھولوں) کے تہوار میں گلیوں کو پھولوں سے سجایا جاتا ہے۔</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-people-carry"></i>
+                <h3>رسم و رواج</h3>
+                <p>پرتگالی جنازوں میں سفید پھول عزت اور خاموشی کی علامت کے طور پر پیش کیے جاتے ہیں۔</p>
+            </div>
+            <div class="category-card">
+                <i class="fas fa-brush"></i>
+                <h3>فن و ادب</h3>
+                <p>پھول پرتگالی شاعری، ٹائلز (Azulejos) اور مصوری میں جذبات اور فطرت کی علامت ہیں۔</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+
+  
+
+    <script>
+        let audioElement = null;
+
+        function playAudio(audioFile) {
+            if (audioElement) {
+                audioElement.pause();
+                audioElement.currentTime = 0;
+            }
+            audioElement = new Audio(audioFile);
+            audioElement.play().catch(error => {
+                console.error('Error playing audio:', error);
+            });
+        }
+
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const flowerBoxes = document.querySelectorAll('.category-box');
+            
+            flowerBoxes.forEach(box => {
+                const title = box.querySelector('h3').textContent.toLowerCase();
+                const description = box.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Category Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link and corresponding section
+                this.classList.add('active');
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Initialize first section as active
+        document.querySelector('.nav-links a').click();
+    </script>
+</body>
+</html>

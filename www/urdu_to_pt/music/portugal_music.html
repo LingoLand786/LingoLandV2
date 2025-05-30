@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>پرتگالی موسیقی - روایتی اور جدید</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #006400;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #006400;
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 1rem;
+            direction: rtl;
+        }
+
+        .search-button {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-button:hover {
+            background: #c0392b;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-box {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .category-content p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item i {
+            color: var(--secondary-color);
+        }
+
+        .styled-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .styled-button:hover {
+            background: #004d00;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Active Navigation Link */
+        .nav-links a.active {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>پرتگالی موسیقی</h1>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="تلاش کریں...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-links">
+            <a href="#fado">فاڈو</a>
+            <a href="#pop">پاپ</a>
+            <a href="#rock">راک</a>
+            <a href="#folk">لوک</a>
+            <a href="portugal_artists.html">فنکار</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Fado Section -->
+        <section id="fado" class="category-section active">
+            <div class="section-header">
+                <h2>روایتی فاڈو</h2>
+                <p>فاڈو، یونیسکو کی عالمی ثقافتی ورثہ، پرتگال کی سب سے مشہور موسیقی ہے۔</p>
+            </div>
+            <div class="category-container">
+                <!-- Fado 1 -->
+                <div class="category-box fade-in">
+                    <img src="img/amalia.jpg" alt="Amália Rodrigues">
+                    <div class="category-content">
+                        <h3>امالیا روڈریگز</h3>
+                        <p>فاڈو کی ملکہ، تمام زمانوں کی سب سے بڑی فاڈو گلوکارہ۔</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>فاڈو</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1920-1999</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example1', '_blank')">
+                            <i class="fas fa-play"></i>
+                            موسیقی سنیں
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fado 2 -->
+                <div class="category-box fade-in">
+                    <img src="img/mariza.jpg" alt="Mariza">
+                    <div class="category-content">
+                        <h3>Mariza</h3>
+                        <p>Uma das mais importantes fadistas contemporâneas.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Fado Moderno</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example2', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fado 3 -->
+                <div class="category-box fade-in">
+                    <img src="img/carminho.jpg" alt="Carminho">
+                    <div class="category-content">
+                        <h3>Carminho</h3>
+                        <p>Jovem fadista que mantém viva a tradição do Fado.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Fado</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example3', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fado 4 -->
+                <div class="category-box fade-in">
+                    <img src="img/ana-moura.jpg" alt="Ana Moura">
+                    <div class="category-content">
+                        <h3>Ana Moura</h3>
+                        <p>Fadista que mistura tradição com elementos modernos.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Fado Contemporâneo</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example4', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fado 5 -->
+                <div class="category-box fade-in">
+                    <img src="img/camane.jpg" alt="Camané">
+                    <div class="category-content">
+                        <h3>Camané</h3>
+                        <p>Um dos mais importantes fadistas da nova geração.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Fado</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example5', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pop Section -->
+        <section id="pop" class="category-section">
+            <div class="section-header">
+                <h2>پرتگالی پاپ موسیقی</h2>
+                <p>پرتگال کی معاصر پاپ موسیقی کے بہترین گیت۔</p>
+            </div>
+            <div class="category-container">
+                <!-- Pop 1 -->
+                <div class="category-box fade-in">
+                    <img src="img/salvador.jpg" alt="Salvador Sobral">
+                    <div class="category-content">
+                        <h3>Salvador Sobral</h3>
+                        <p>Vencedor do Festival Eurovisão da Canção 2017.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Pop/Jazz</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example6', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pop 2 -->
+                <div class="category-box fade-in">
+                    <img src="img/aurora.jpg" alt="Aurora">
+                    <div class="category-content">
+                        <h3>Aurora</h3>
+                        <p>Uma das vozes mais promissoras do pop português.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Pop</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example7', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pop 3 -->
+                <div class="category-box fade-in">
+                    <img src="img/david-carreira.jpg" alt="David Carreira">
+                    <div class="category-content">
+                        <h3>David Carreira</h3>
+                        <p>Artista pop com grande sucesso entre os jovens.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Pop</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example8', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pop 4 -->
+                <div class="category-box fade-in">
+                    <img src="img/ana-malhoa.jpg" alt="Ana Malhoa">
+                    <div class="category-content">
+                        <h3>Ana Malhoa</h3>
+                        <p>Artista pop com longa carreira no cenário musical.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Pop</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example9', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Pop 5 -->
+                <div class="category-box fade-in">
+                    <img src="img/tiago-bettencourt.jpg" alt="Tiago Bettencourt">
+                    <div class="category-content">
+                        <h3>Tiago Bettencourt</h3>
+                        <p>Cantor e compositor de pop alternativo.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Pop Alternativo</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example10', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rock Section -->
+        <section id="rock" class="category-section">
+            <div class="section-header">
+                <h2>پرتگالی راک</h2>
+                <p>پرتگال کی بہترین راک بینڈز اور فنکار۔</p>
+            </div>
+            <div class="category-container">
+                <!-- Rock 1 -->
+                <div class="category-box fade-in">
+                    <img src="img/xutos.jpg" alt="Xutos & Pontapés">
+                    <div class="category-content">
+                        <h3>Xutos & Pontapés</h3>
+                        <p>A banda de rock mais popular de Portugal.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Rock</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1978-Presente</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example11', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rock 2 -->
+                <div class="category-box fade-in">
+                    <img src="img/raptor.jpg" alt="Raptor">
+                    <div class="category-content">
+                        <h3>Raptor</h3>
+                        <p>Banda de rock alternativo com grande sucesso.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Rock Alternativo</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example12', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rock 3 -->
+                <div class="category-box fade-in">
+                    <img src="img/da-weasel.jpg" alt="Da Weasel">
+                    <div class="category-content">
+                        <h3>Da Weasel</h3>
+                        <p>Banda pioneira do rock alternativo em Portugal.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Rock Alternativo</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1993-2010</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example13', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rock 4 -->
+                <div class="category-box fade-in">
+                    <img src="img/plutonio.jpg" alt="Plutónio">
+                    <div class="category-content">
+                        <h3>Plutónio</h3>
+                        <p>Artista de rock alternativo e hip-hop.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Rock/Hip-Hop</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example14', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Rock 5 -->
+                <div class="category-box fade-in">
+                    <img src="img/linha-vermelha.jpg" alt="Linha Vermelha">
+                    <div class="category-content">
+                        <h3>Linha Vermelha</h3>
+                        <p>Banda de rock com influências do fado.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Rock/Fado</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example15', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Folk Section -->
+        <section id="folk" class="category-section">
+            <div class="section-header">
+                <h2>پرتگالی لوک موسیقی</h2>
+                <p>پرتگال کی روایتی اور معاصر لوک موسیقی۔</p>
+            </div>
+            <div class="category-container">
+                <!-- Folk 1 -->
+                <div class="category-box fade-in">
+                    <img src="img/rancho-folclorico.jpg" alt="Rancho Folclórico">
+                    <div class="category-content">
+                        <h3>Rancho Folclórico</h3>
+                        <p>Música tradicional portuguesa.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Folk Tradicional</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Tradicional</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example16', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Folk 2 -->
+                <div class="category-box fade-in">
+                    <img src="img/gaiteiros.jpg" alt="Gaiteiros de Lisboa">
+                    <div class="category-content">
+                        <h3>Gaiteiros de Lisboa</h3>
+                        <p>Banda que mistura música tradicional com elementos modernos.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Folk Moderno</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example17', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Folk 3 -->
+                <div class="category-box fade-in">
+                    <img src="img/deolinda.jpg" alt="Deolinda">
+                    <div class="category-content">
+                        <h3>Deolinda</h3>
+                        <p>Banda que renova a música tradicional portuguesa.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Folk Contemporâneo</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example18', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Folk 4 -->
+                <div class="category-box fade-in">
+                    <img src="img/terrakota.jpg" alt="Terrakota">
+                    <div class="category-content">
+                        <h3>Terrakota</h3>
+                        <p>Banda que mistura música tradicional com world music.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Folk/World</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example19', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Folk 5 -->
+                <div class="category-box fade-in">
+                    <img src="img/amor-electro.jpg" alt="Amor Electro">
+                    <div class="category-content">
+                        <h3>Amor Electro</h3>
+                        <p>Banda que mistura folk com música eletrônica.</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>Folk/Eletrônico</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>Atual</span>
+                            </div>
+                        </div>
+                        <button class="styled-button" onclick="window.open('https://www.youtube.com/watch?v=example20', '_blank')">
+                            <i class="fas fa-play"></i>
+                            Ouvir Música
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const contentBoxes = document.querySelectorAll('.category-box');
+            
+            contentBoxes.forEach(box => {
+                const title = box.querySelector('h3').textContent.toLowerCase();
+                const description = box.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Category Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link and corresponding section
+                this.classList.add('active');
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).classList.add('active');
+
+                // Save the active section to local storage
+                localStorage.setItem('lastActiveSection', targetId);
+            });
+        });
+
+        // Restore the last active section when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const lastActiveSection = localStorage.getItem('lastActiveSection');
+            if (lastActiveSection) {
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to the last active section and its link
+                const activeLink = document.querySelector(`.nav-links a[href="#${lastActiveSection}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    document.getElementById(lastActiveSection).classList.add('active');
+                } else {
+                    // If the saved section doesn't exist, default to first section
+                    document.querySelector('.nav-links a').click();
+                }
+            } else {
+                // If no saved section, default to first section
+                document.querySelector('.nav-links a').click();
+            }
+        });
+    </script>
+</body>
+</html> 

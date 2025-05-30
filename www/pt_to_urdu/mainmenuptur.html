@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LingoLand - Aprenda Idiomas</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <style>
@@ -14,328 +14,942 @@
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
+
+    :root {
+      --primary-color: #001F3F;
+      --secondary-color: #003366;
+      --accent-color: #ff4b5c;
+      --text-light: #ffffff;
+      --text-dark: #333333;
+      --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+      --card-bg: #ffffff;
+    }
+
     body {
       display: flex;
-      height: 100vh;
-      background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+      flex-direction: column;
+      min-height: 100vh;
+      background: #F8F9FA;
     }
+
+    /* Sidebar Styles */
     .sidebar {
-      width: 350px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 300px;
       height: 100vh;
-      background: rgba(0, 29, 77, 0.85);
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding: 2.5rem 1.5rem;
+      transition: var(--transition);
+      z-index: 1000;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 2rem;
+      font-weight: 600;
       color: white;
+      text-decoration: none;
+      margin-bottom: 3rem;
+    }
+
+    .sidebar-brand i {
+      font-size: 2.2rem;
+    }
+
+    .sidebar-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .sidebar-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 1rem 1.2rem;
+      border-radius: 12px;
+      transition: background-color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .sidebar-menu a i {
+      font-size: 1.4rem;
+    }
+
+    .sidebar-menu a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(5px);
+    }
+
+    .main-content {
+      margin-left: 300px;
+      padding: 2rem;
+    }
+
+    .header {
+      background: #001F3F;
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 600;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+    }
+
+    .progress-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .progress-card a {
+      text-decoration: none;
+      color: var(--text-dark);
+      display: block;
+      padding: 1.5rem;
+    }
+
+    .progress-card-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 25px 0;
-      box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      position: relative;
-    }
-    .sidebar h2 {
-      font-size: 28px;
-      font-weight: 700;
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    .sidebar ul {
-      list-style: none;
-      width: 100%;
-      padding: 0;
-    }
-    .sidebar ul li {
-      display: flex;
-      align-items: center;
-      padding: 14px 25px;
-      border-radius: 8px;
-      margin: 12px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      opacity: 0;
-      transform: translateX(-30px);
-    }
-    .sidebar ul li:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateX(5px);
-    }
-    .sidebar ul li img {
-      width: 35px;
-      height: 35px;
-      margin-right: 15px;
-    }
-    .main-content {
-      flex-grow: 1;
-      padding: 40px;
-      overflow-y: auto;
-      opacity: 0;
-    }
-    .header {
-      background: linear-gradient(90deg, #001d4d, #0056b3);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 26px;
-      font-weight: bold;
-      border-radius: 8px;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      opacity: 0;
-    }
-    .progress-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-    }
-    .progress-card a {
-      text-decoration: none; /* Removes underline */
-      color: black; /* Text color */
-    }
-    .progress-card {
-      background: white;
-      border-radius: 15px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      text-align: center;
-      padding: 25px;
-      cursor: pointer;
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-      opacity: 0;
-      transform: translateY(30px);
+      gap: 1rem;
     }
 
+    .progress-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: var(--transition);
+    }
 
     .progress-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
     }
-    .progress-card img {
-      width: 90px;
-      height: 90px;
-      margin-bottom: 15px;
-      transition: transform 0.3s;
-    }
+
     .progress-card:hover img {
-      transform: scale(1.15);
+      transform: scale(1.05);
     }
-    .logout {
+
+    .progress-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin: 0;
+    }
+
+    /* Lesson Status Indicator */
+    .lesson-status {
       position: absolute;
-      bottom: 20px;
-      background: #ff4b5c;
-      padding: 14px 25px;
+      top: 1rem;
+      right: 1rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
       color: white;
-      border-radius: 8px;
-      text-align: center;
+    }
+
+    .status-completed {
+      background-color: #4CAF50;
+    }
+
+    .status-in-progress {
+      background-color: #FFC107;
+    }
+
+    .status-not-started {
+      background-color: #9E9E9E;
+    }
+
+    /* Progress Bar */
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: #E0E0E0;
+      border-radius: 3px;
+      margin-top: 1rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: var(--secondary-color);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    /* Mobile menu button */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
       cursor: pointer;
-      transition: background 0.3s;
+      padding: 0.5rem;
     }
-    .logout:hover {
-      background: #d43545;
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 280px;
+        transform: translateX(-100%);
+      }
+
+      .sidebar.active {
+        transform: translateX(0);
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+
+      .sidebar-brand {
+        font-size: 1.8rem;
+      }
+
+      .sidebar-menu a {
+        font-size: 1.1rem;
+        padding: 0.9rem 1rem;
+      }
+
+      .header {
+        font-size: 1.2rem;
+        padding: 1rem;
+      }
+
+      .progress-section {
+        grid-template-columns: 1fr;
+      }
     }
- 
-      /* Mobile responsiveness */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 250px; /* Narrow down sidebar width */
-  }
 
-  .main-content {
-    padding: 20px; /* Reduce main content padding */
-  }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-  .header {
-    font-size: 22px; /* Adjust header font size */
-  }
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
 
-  /* Remove underlines and blue color from links in the sidebar */
-.sidebar ul li a {
-  text-decoration: none !important; /* Removes underline */
-  color: white !important; /* Ensures text is white */
-  font-weight: normal !important; /* Normal font weight */
-}
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      margin: auto;
+      text-align: center;
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
 
-/* Hover effect for the links inside the sidebar */
-.sidebar ul li a:hover {
-  background: rgba(255, 255, 255, 0.2) !important; /* Subtle background change on hover */
-  transform: translateX(5px) !important;
-}
+    .modal-content.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
-  .progress-card {
-    padding: 20px; /* Reduce card padding */
-  }
-}
+    .modal h3 {
+      color: var(--text-dark);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .modal-actions button {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .confirm-btn {
+      background: #dc3545;
+      color: white;
+    }
+
+    .confirm-btn:hover {
+      background: #c82333;
+      transform: translateY(-2px);
+    }
+
+    .cancel-btn {
+      background: #6c757d;
+      color: white;
+    }
+
+    .cancel-btn:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    /* Sad Face Animation */
+    .sad-face {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: inline-block;
+      animation: sadFace 1s ease infinite;
+    }
+
+    @keyframes sadFace {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(-10deg); }
+      75% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
+    }
   </style>
 </head>
 <body>
+  <!-- Replace the navbar with sidebar -->
+  <button class="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
   <div class="sidebar">
-    <h2>LingoLand</h2>
-    <ul>
-      <li><img src="sidebar/lista.gif" alt="Categorias"><span>Categorias</span></li>
-
-     <li><a href="palavras_diarias/palavrasdiarias.html" style="text-decoration: none; color: white;">
-    <img src="sidebar/translator.gif" alt="Tradução"><span>Palavras Diárias</span>
-  </a>
-</li>
-
-<li><a href="contactpt.html" style="text-decoration: none; color: white;">
-  <img src="sidebar/add-user.gif" alt="Contato"><span>Contato</span>
-</a>
-</li>
-
-    </ul>
-    <div class="logout" onclick="confirmLogout()">Sair</div>
-
-
-    
-  </div>
-</div>
-
-  <div class="main-content">
-    <div class="header">Comece sua jornada de aprendizado de idiomas</div>
-    <div class="progress-section">
-      <div class="progress-section">
-        <div class="progress-card">
-          <a href="LESSONCARDSABC.html">
-            <img src="images/abc.webp" alt="Aprender o alfabeto">
-            <h3>Aprender o Alfabeto</h3>
-          </a>
-        </div>
-        <div class="progress-card">
-          <a href="LESSONCARD123.html">
-            <img src="images/123.jpg" alt="Aprender 123">
-            <h3>Aprender 123</h3>
-          </a>
-        </div>
-
-        <div class="progress-card">
-          <a href="intrucaodequiz/introducao.html">
-            <img src="images/introducao.png" alt="Introdução">
-            <h3>Introdução</h3>
-          </a>
-        </div>
-
-        <div class="progress-card">
-          <a href="LESSONCRADSURPTUR.html">
-            <img src="images/gree.jpg" alt="Saudações">
-            <h3>Saudações</h3>
-          </a>
-        </div>
-        <div class="progress-card">
-          <a href="BASIC GRAMMAR/LESSONCARD_BASICGRAMMAR.html">
-            <img src="images/gra.avif" alt="Gramática básica">
-            <h3>Gramática Básica</h3>
-          </a>
-        </div>
-  
-        <div class="progress-card">
-          <a href="colors&lang.html">
-            <img src="images/c.jpeg" alt="Aprender Cores">
-            <h3>Aprender Cores</h3>
-          </a>
-        </div>
-  
-        <div class="progress-card">
-          <a href="daysandmonth/lessoncard_days&month.html">
-            <img src="images/days.jpg" alt="Aprender dias e mes">
-            <h3>Aprender dias,semanas,mes</h3>
-          </a>
-        </div>
-  
-        <div class="progress-card">
-          <a href="country&lang.html">
-            <img src="images/mapa.png" alt="País e Língua">
-            <h3>País e Língua</h3>
-          </a>
-        </div>
-        <div class="progress-card">
-          <a href="viagens/viagens.html">
-            <img src="images/VIAGENS.png" alt="travel">
-            <h3> Viagens </h3>
-          </a>
-        </div>
-       
-        <div class="progress-card">
-          <a href="FRUITS/FRUITS.HTML">
-            <img src="images/fruits.png" alt="fruits">
-            <h3> Frutos </h3>
-          </a>
-        </div>
-  
-        <div class="progress-card">
-          <a href="VEGETABLES/vegetables.html">
-            <img src="images/legumes.png" alt="vegetables">
-            <h3> Legumes</h3>
-          </a>
-        </div>
-  
-        <div class="progress-card">
-          <a href="drinks/drinks.html">
-            <img src="images/drinks.png" alt="Bebidas">
-            <h3>Bebidas</h3>
-          </a>
-        </div>
-  
-        <div class="progress-card">
-          <a href="ESTACOESECLIMA/seasons.html">
-            <img src="images/clima.png" alt="Estações e Clima">
-            <h3>Estações e Clima</h3>
-          </a>
-        </div>
-  
-        <div class="progress-card">
-          <a href="animais/animais.html">
-            <img src="images/animais.png" alt="Animais">
-            <h3> Animais </h3>
-          </a>
-        </div>
-        
-  
-        <div class="progress-card">
-          <a href="family/">
-            <img src="images/family.png" alt="Animais">
-            <h3> Família </h3>
-          </a>
-        </div>
-        
-        <div class="progress-card">
-          <a href="music/music.html">
-            <img src="images/music.png" alt="Música & Canções">
-            <h3>Música & Canções</h3>
-          </a>
-        </div>
-        
-  
-  
-        <div class="progress-card">
-          <a href="TrabalhoProfissões/trabalho.html">
-            <img src="images/profissoes.png" alt="Música & Canções">
-            <h3>Trabalho & Profissões</h3>
-          </a>
-        </div>
-        
-  
-  
-        <div class="progress-card">
-          <a href="Flowers/flowers.html">
-            <img src="images/flor.png" alt="Flowers">
-            <h3>Flores</h3>
-          </a>
-        </div>
-      </div>
-  
+    <a href="#" class="sidebar-brand">
+      <i class="fas fa-globe"></i>
+      <span>LingoLand</span>
+    </a>
+    <div class="sidebar-menu">
+      <a href="#"><i class="fas fa-home"></i> Início</a>
+      <a href="palavras_diarias/www  (diaperguntas pagina unica)/www/dias.html"><i class="fas fa-book"></i> Desafios</a>
+      <a href="contactpt.html"><i class="fas fa-envelope"></i> Contato</a>
+      <a href="/www/index.html"><i class="fas fa-sign-out-alt"></i> Sair</a>
     </div>
   </div>
+
+  <div class="main-content">
+    <div class="header">
+      Comece sua jornada de aprendizado de idiomas
+    </div>
+
+
+    <div class="progress-section">
+
+
+      <div class="progress-card">
+        <a href="intro.html">
+          <div class="progress-card-content">
+            <img src="images/art-show.gif" alt="Introdução" class="intro-image">
+            <h3>Introdução ao Curso</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+      
+      <div class="progress-card">
+        <a href="abc/LESSONCARDSABC.html">
+          <div class="progress-card-content">
+            <img src="images/blackboard.gif" alt="Aprender o alfabeto">
+            <h3>Aprender o Alfabeto</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="LESSONCARD123.html">
+          <div class="progress-card-content">
+            <img src="images/countdown.gif" alt="Aprender 123">
+            <h3>Aprender 123</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="intrucaodequiz/introducao.html">
+          <div class="progress-card-content">
+            <img src="images/message.gif" alt="Introdução">
+            <h3>Cumprimentos</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="BASIC GRAMMAR/LESSONCARD_BASICGRAMMAR.html">
+          <div class="progress-card-content">
+            <img src="images/dictionary.gif" alt="Gramática básica">
+            <h3>Gramática Básica</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="colors&lang.html">
+          <div class="progress-card-content">
+            <img src="images/palette.gif" alt="Aprender Cores">
+            <h3>Aprender Cores</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="daysandmonth/lessoncard_days&month.html">
+          <div class="progress-card-content">
+            <img src="images/calendar.gif" alt="Aprender dias e mes">
+            <h3>Aprender dias,semanas,mes</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="country&lang.html">
+          <div class="progress-card-content">
+            <img src="images/global (1).gif" alt="País e Língua">
+            <h3>País e Língua</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="viagens/viagens.html">
+          <div class="progress-card-content">
+            <img src="images/visit-world.gif" alt="travel">
+            <h3> Viagens </h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="FRUITS/FRUITS.HTML">
+          <div class="progress-card-content">
+            <img src="images/fruit.gif" alt="fruits">
+            <h3> Frutos </h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="VEGETABLES/vegetables.html">
+          <div class="progress-card-content">
+            <img src="images/vegetables.gif" alt="vegetables">
+            <h3> Legumes</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="drinks/drinks.html">
+          <div class="progress-card-content">
+            <img src="images/coffee.gif" alt="Bebidas">
+            <h3>Bebidas</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="ESTACOESECLIMA/seasons.html">
+          <div class="progress-card-content">
+            <img src="images/climate.gif" alt="Estações e Clima">
+            <h3>Estações e Clima</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="animais/animais.html">
+          <div class="progress-card-content">
+            <img src="images/koi-fish.gif" alt="Animais">
+            <h3> Animais </h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="family/family.html">
+          <div class="progress-card-content">
+            <img src="images/family.gif" alt="Animais">
+            <h3> Família </h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="music/music.html">
+          <div class="progress-card-content">
+            <img src="images/music.gif" alt="Música & Canções">
+            <h3>Paquistão em Cena</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="TrabalhoProfissões/trabalho.html">
+          <div class="progress-card-content">
+            <img src="images/candidate.gif" alt="Música & Canções">
+            <h3>Trabalho & Profissões</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+
+      <div class="progress-card">
+        <a href="Flowers/flowers.html">
+          <div class="progress-card-content">
+            <img src="images/spring.gif" alt="Flowers">
+            <h3>Flores</h3>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="lesson-status status-not-started">
+            <i class="fas fa-lock"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Confirmation -->
+  <div id="logoutModal" class="modal">
+    <div class="modal-content">
+      <div class="sad-face">😢</div>
+      <h3>Você tem certeza que deseja sair?</h3>
+      <div class="modal-actions">
+        <button id="confirmLogout" class="confirm-btn">
+          <i class="fas fa-check"></i> Confirmar
+        </button>
+        <button id="cancelLogout" class="cancel-btn">
+          <i class="fas fa-times"></i> Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Firebase SDK before the closing body tag -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
   <script>
-    function confirmLogout() {
-      if (confirm("Você realmente deseja sair?")) {
-        window.location.href = "/www/index.html";
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+      authDomain: "appsitesync.firebaseapp.com",
+      projectId: "appsitesync",
+      storageBucket: "appsitesync.firebasestorage.app",
+      messagingSenderId: "357510439971",
+      appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+      measurementId: "G-T0SX0NH50K"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    // Lesson tracking functionality with Firebase
+    const lessonProgress = {
+      // Initialize progress data
+      data: {},
+
+      // Update lesson progress
+      updateProgress: async function(lessonId, increment = 25) {
+        if (!auth.currentUser) {
+          console.log('User not logged in');
+          return;
+        }
+
+        try {
+          // First get the latest data from Firebase
+          const doc = await db.collection('userProgress')
+            .doc(auth.currentUser.uid)
+            .get();
+
+          // Get current progress from Firebase or local data
+          let currentProgress = 0;
+          if (doc.exists && doc.data()[lessonId]) {
+            currentProgress = doc.data()[lessonId];
+          } else if (this.data[lessonId]) {
+            currentProgress = this.data[lessonId];
+          }
+
+          // Calculate new progress (max 100)
+          const newProgress = Math.min(currentProgress + increment, 100);
+          
+          // Update local data
+          this.data[lessonId] = newProgress;
+          
+          // Update in Firebase - now we update the specific lesson
+          await db.collection('userProgress')
+            .doc(auth.currentUser.uid)
+            .set({
+              [lessonId]: newProgress
+            }, { merge: true });
+          
+          // Update UI
+          this.updateUI(lessonId);
+          
+          return newProgress;
+        } catch (error) {
+          console.error('Error updating progress:', error);
+        }
+      },
+
+      // Get lesson progress
+      getProgress: function(lessonId) {
+        return this.data[lessonId] || 0;
+      },
+
+      // Load user progress from Firebase
+      loadProgress: async function() {
+        if (!auth.currentUser) {
+          console.log('User not logged in');
+          return;
+        }
+
+        try {
+          const doc = await db.collection('userProgress')
+            .doc(auth.currentUser.uid)
+            .get();
+            
+          if (doc.exists) {
+            this.data = doc.data() || {};
+            this.updateAllUI();
+          }
+        } catch (error) {
+          console.error('Error loading progress:', error);
+        }
+      },
+
+      // Update UI elements
+      updateUI: function(lessonId) {
+        const card = document.querySelector(`[data-lesson-id="${lessonId}"]`);
+        if (!card) return;
+
+        const progress = this.getProgress(lessonId);
+        const progressBar = card.querySelector('.progress-bar');
+        const statusIndicator = card.querySelector('.lesson-status');
+
+        // Update progress bar width
+        progressBar.style.width = `${progress}%`;
+
+        // Update status indicator
+        if (progress === 100) {
+          statusIndicator.className = 'lesson-status status-completed';
+          statusIndicator.innerHTML = '<i class="fas fa-check"></i>';
+        } else if (progress > 0) {
+          statusIndicator.className = 'lesson-status status-in-progress';
+          statusIndicator.innerHTML = '<i class="fas fa-clock"></i>';
+        } else {
+          statusIndicator.className = 'lesson-status status-not-started';
+          statusIndicator.innerHTML = '<i class="fas fa-lock"></i>';
+        }
+      },
+
+      // Update all UI elements
+      updateAllUI: function() {
+        const cards = document.querySelectorAll('.progress-card');
+        cards.forEach(card => {
+          const lessonId = card.getAttribute('data-lesson-id');
+          if (lessonId) {
+            this.updateUI(lessonId);
+          }
+        });
       }
+    };
+
+    // Check authentication state and load progress
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        lessonProgress.loadProgress();
+      } else {
+        // Redirect to login page if not authenticated
+        window.location.href = '/www/index.html';
+      }
+    });
+
+    // Initialize lesson progress UI
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.progress-card');
+      cards.forEach(card => {
+        const lessonId = card.querySelector('a').getAttribute('href');
+        card.setAttribute('data-lesson-id', lessonId);
+      });
+
+      // Load progress if user is authenticated
+      if (auth.currentUser) {
+        lessonProgress.loadProgress();
+      }
+    });
+
+    // Track lesson visits
+    document.querySelectorAll('.progress-card a').forEach(link => {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault(); // Prevent navigation until progress is updated
+        
+        if (!auth.currentUser) {
+          alert('Please log in to access lessons');
+          return;
+        }
+
+        const lessonId = e.currentTarget.getAttribute('href');
+        await lessonProgress.updateProgress(lessonId, 25); // Increment by 25% each visit
+        
+        // Navigate to the lesson after progress is updated
+        window.location.href = lessonId;
+      });
+    });
+
+    // Update the logout functionality
+    document.querySelector('.sidebar-menu a[href="/www/index.html"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      confirmLogout();
+    });
+
+    function confirmLogout() {
+      const modal = document.getElementById('logoutModal');
+      const modalContent = document.querySelector('.modal-content');
+      
+      modal.classList.add('show');
+      setTimeout(() => {
+        modalContent.classList.add('show');
+      }, 10);
     }
-    gsap.to(".sidebar h2", { opacity: 1, y: 0, duration: 1, ease: "power3.out" });
-gsap.to(".sidebar ul li", { opacity: 1, x: 0, duration: 1, stagger: 0.2, ease: "power3.out" });
-gsap.to(".main-content", { opacity: 1, duration: 1, delay: 0.5, ease: "power3.out" });
-gsap.to(".header", { opacity: 1, duration: 1, delay: 0.7, ease: "power3.out" });
-gsap.to(".progress-card", { opacity: 1, y: 0, duration: 1, stagger: 0.2, delay: 0.9, ease: "power3.out" });
 
+    document.getElementById('cancelLogout').addEventListener('click', function() {
+      const modal = document.getElementById('logoutModal');
+      const modalContent = document.querySelector('.modal-content');
+      
+      modalContent.classList.remove('show');
+      setTimeout(() => {
+        modal.classList.remove('show');
+      }, 300);
+    });
 
+    document.getElementById('confirmLogout').addEventListener('click', async function() {
+      try {
+        await auth.signOut(); // Sign out from Firebase
+        setTimeout(() => {
+          window.location.href = "/www/index.html";
+        }, 300);
+      } catch (error) {
+        console.error('Error signing out:', error);
+      }
+    });
+
+    // Close modal when clicking outside
+    document.getElementById('logoutModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        document.getElementById('cancelLogout').click();
+      }
+    });
+
+    // Enhanced animations with GSAP
+    gsap.to(".sidebar h2", { 
+      opacity: 1, 
+      y: 0, 
+      duration: 1, 
+      ease: "power3.out" 
+    });
+
+    gsap.to(".sidebar ul li", { 
+      opacity: 1, 
+      x: 0, 
+      duration: 1, 
+      stagger: 0.2, 
+      ease: "power3.out" 
+    });
+
+    gsap.to(".main-content", { 
+      opacity: 1, 
+      duration: 1, 
+      delay: 0.5, 
+      ease: "power3.out" 
+    });
+
+    gsap.to(".header", { 
+      opacity: 1, 
+      duration: 1, 
+      delay: 0.7, 
+      ease: "power3.out" 
+    });
+
+    gsap.to(".progress-card", { 
+      opacity: 1, 
+      y: 0, 
+      duration: 1, 
+      stagger: 0.1, 
+      delay: 0.9, 
+      ease: "power3.out" 
+    });
+
+    // Update mobile menu toggle script
+    const menuToggle = document.querySelector('.menu-toggle');
+    const sidebar = document.querySelector('.sidebar');
+
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('active');
+    });
+
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768 && 
+          !e.target.closest('.sidebar') && 
+          !e.target.closest('.menu-toggle') && 
+          sidebar.classList.contains('active')) {
+        sidebar.classList.remove('active');
+      }
+    });
+
+    // Simple animation for cards appearing
+    document.querySelectorAll('.progress-card').forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, index * 100);
+    });
   </script>
 </body>
 </html>

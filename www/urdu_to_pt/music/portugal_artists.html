@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>پرتگالی موسیقی کے فنکار - روایتی اور جدید</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #006400;
+            --accent-color: #e74c3c;
+            --text-color: #2c3e50;
+            --light-bg: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Nastaliq Urdu', 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            direction: rtl;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #006400;
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-input {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 25px;
+            width: 300px;
+            font-size: 1rem;
+            direction: rtl;
+        }
+
+        .search-button {
+            background: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-button:hover {
+            background: #c0392b;
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .nav-links {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-box {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-box img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .category-box:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: 1.5rem;
+        }
+
+        .category-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .category-content p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-item i {
+            color: var(--secondary-color);
+        }
+
+        .styled-button {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .styled-button:hover {
+            background: #004d00;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .search-container {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>پرتگالی موسیقی کے فنکار</h1>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="تلاش کریں...">
+                <button class="search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-links">
+            <a href="portugal_music.html">موسیقی</a>
+            <a href="#classical">روایتی</a>
+            <a href="#contemporary">معاصر</a>
+            <a href="#bands">بینڈز</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Classical Artists Section -->
+        <section id="classical" class="category-section active">
+            <div class="section-header">
+                <h2>روایتی فنکار</h2>
+                <p>پرتگال کے مشہور روایتی موسیقی کے فنکار</p>
+            </div>
+            <div class="category-container">
+                <!-- Amália Rodrigues -->
+                <div class="category-box fade-in">
+                    <img src="img/amalia-rodrigues.jpg" alt="Amália Rodrigues">
+                    <div class="category-content">
+                        <h3>امالیا روڈریگز</h3>
+                        <p>فاڈو کی ملکہ، تمام زمانوں کی سب سے بڑی فاڈو گلوکارہ۔</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>فاڈو</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1920-1999</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/Amália_Rodrigues" target="_blank">
+                            <i class="fas fa-user"></i>
+                            پروفائل دیکھیں
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Carlos Paredes -->
+                <div class="category-box fade-in">
+                    <img src="img/carlos-paredes.jpg" alt="Carlos Paredes">
+                    <div class="category-content">
+                        <h3>کارلوس پاریدس</h3>
+                        <p>پرتگال کے سب سے بڑے گٹار نواز۔</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>پرتگالی گٹار</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1925-2004</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/Carlos_Paredes" target="_blank">
+                            <i class="fas fa-user"></i>
+                            پروفائل دیکھیں
+                        </a>
+                    </div>
+                </div>
+
+                <!-- José Afonso -->
+                <div class="category-box fade-in">
+                    <img src="img/jose-afonso.jpg" alt="José Afonso">
+                    <div class="category-content">
+                        <h3>جوز افونسو</h3>
+                        <p>پرتگال کے سب سے اہم گلوکار اور موسیقار۔</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>احتجاجی موسیقی</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1929-1987</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/José_Afonso" target="_blank">
+                            <i class="fas fa-user"></i>
+                            پروفائل دیکھیں
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contemporary Artists Section -->
+        <section id="contemporary" class="category-section">
+            <div class="section-header">
+                <h2>معاصر فنکار</h2>
+                <p>پرتگال کے مشہور معاصر موسیقی کے فنکار</p>
+            </div>
+            <div class="category-container">
+                <!-- Mariza -->
+                <div class="category-box fade-in">
+                    <img src="img/mariza.jpg" alt="Mariza">
+                    <div class="category-content">
+                        <h3>ماریزا</h3>
+                        <p>معاصر فاڈو کی سب سے مشہور گلوکارہ۔</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>فاڈو</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1973-تاحال</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/Mariza" target="_blank">
+                            <i class="fas fa-user"></i>
+                            پروفائل دیکھیں
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Salvador Sobral -->
+                <div class="category-box fade-in">
+                    <img src="img/salvador.jpg" alt="Salvador Sobral">
+                    <div class="category-content">
+                        <h3>سالواڈور سوبرال</h3>
+                        <p>یوروویژن 2017 کے فاتح۔</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>پاپ/جاز</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1989-تاحال</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/Salvador_Sobral" target="_blank">
+                            <i class="fas fa-user"></i>
+                            پروفائل دیکھیں
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bands Section -->
+        <section id="bands" class="category-section">
+            <div class="section-header">
+                <h2>مشہور بینڈز</h2>
+                <p>پرتگال کی مشہور موسیقی بینڈز</p>
+            </div>
+            <div class="category-container">
+                <!-- Madredeus -->
+                <div class="category-box fade-in">
+                    <img src="img/madredeus.jpg" alt="Madredeus">
+                    <div class="category-content">
+                        <h3>مادر دیوس</h3>
+                        <p>پرتگالی موسیقی میں انقلابی تبدیلی لانے والی بینڈ۔</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>معاصر موسیقی</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1985-تاحال</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/Madredeus" target="_blank">
+                            <i class="fas fa-user"></i>
+                            پروفائل دیکھیں
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Xutos & Pontapés -->
+                <div class="category-box fade-in">
+                    <img src="img/xutos.jpg" alt="Xutos & Pontapés">
+                    <div class="category-content">
+                        <h3>زوتوس اینڈ پونٹاپیس</h3>
+                        <p>پرتگال کی سب سے مشہور راک بینڈ۔</p>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <i class="fas fa-music"></i>
+                                <span>راک</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-star"></i>
+                                <span>1978-تاحال</span>
+                            </div>
+                        </div>
+                        <a class="styled-button" href="https://pt.wikipedia.org/wiki/Xutos_%26_Pontapés" target="_blank">
+                            <i class="fas fa-user"></i>
+                            پروفائل دیکھیں
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-input').value.toLowerCase();
+            const contentBoxes = document.querySelectorAll('.category-box');
+            
+            contentBoxes.forEach(box => {
+                const title = box.querySelector('h3').textContent.toLowerCase();
+                const description = box.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Category Navigation
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and sections
+                    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                    document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked link and corresponding section
+                    this.classList.add('active');
+                    const targetId = this.getAttribute('href').substring(1);
+                    document.getElementById(targetId).classList.add('active');
+
+                    // Save the active section to local storage
+                    localStorage.setItem('lastActiveSection', targetId);
+                }
+            });
+        });
+
+        // Restore the last active section when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const lastActiveSection = localStorage.getItem('lastActiveSection');
+            if (lastActiveSection) {
+                // Remove active class from all links and sections
+                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.category-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to the last active section and its link
+                const activeLink = document.querySelector(`.nav-links a[href="#${lastActiveSection}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    document.getElementById(lastActiveSection).classList.add('active');
+                } else {
+                    // If the saved section doesn't exist, default to first section
+                    document.querySelector('.nav-links a').click();
+                }
+            } else {
+                // If no saved section, default to first section
+                document.querySelector('.nav-links a').click();
+            }
+        });
+    </script>
+</body>
+</html> 

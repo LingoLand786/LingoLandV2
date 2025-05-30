@@ -57,6 +57,48 @@
             background-color: #555;
         }
 
+            /* Menu Principal Button */
+    .menu-principal-container {
+      margin-top: 60px;
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .menu-principal-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 15px;
+background: linear-gradient(135deg, #002D62, #4a90e2);
+      color: white;
+      padding: 18px 40px;
+      border-radius: 35px;
+      font-size: 1.3em;
+      text-decoration: none;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 20px var(--shadow-color);
+    }
+
+    .menu-principal-button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px var(--shadow-color);
+    }
+
+    .menu-principal-button i {
+      font-size: 1.2em;
+      transition: transform 0.4s ease;
+    }
+
+    .menu-principal-button:hover i {
+      transform: scale(1.2);
+    }
+
         .category-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -78,6 +120,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            height: 450px; /* Adjust the height to make it taller */
+           
         }
 
         /* Center the video properly inside the card */
@@ -193,11 +237,9 @@
 <body>
 
 <header class="fade-in">
-    <p>Inicie sua jornada educacional hoje, projetada para o sucesso</p>
+    <p>Aprenda os Dias da Semana</p>
 </header>
 
-<!-- Dark Mode Toggle -->
-<div class="dark-mode-toggle" onclick="toggleDarkMode()">Modo Escuro</div>
 
 <!-- Lesson Cards -->
 <div class="category-container fade-in">
@@ -228,6 +270,14 @@
         </div>
     </div>
 </div>
+
+ <div class="menu-principal-container">
+    <a href="../mainmenuptur.html" class="menu-principal-button">
+      <i class="fas fa-home"></i>
+      Menu Principal
+    </a>
+    </div>
+
 
 <!-- Modal Window (for Lesson Details) -->
 <div class="modal" id="lessonModal">

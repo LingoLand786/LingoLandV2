@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Lingoland - Contact Us">
-    <title>Contact Us - Lingoland</title>
+    <meta name="keywords" content="contact, support, help">
+    <meta name="author" content="Lingoland Team">
+    <title>Lingoland - Contact Us</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -15,153 +20,378 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #ffffff, #d9e8fc);
+            background: #ffffff;
             color: #333;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             min-height: 100vh;
-            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .heavenly-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,248,255,0.9));
+            z-index: -1;
+        }
+
+        .floating-clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M25,60 Q40,50 55,60 T85,60" stroke="%23004a99" fill="none"/></svg>') repeat;
+            animation: floatClouds 30s linear infinite;
+        }
+
+        @keyframes floatClouds {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 0; }
         }
 
         header {
             background: linear-gradient(135deg, #004a99, #002D62);
-            padding: 25px;
+            padding: 20px;
             width: 100%;
             color: white;
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 1s ease-in-out;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
         }
 
-        .contact-container {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(15px);
-            width: 90%;
-            max-width: 650px;
-            margin: 50px auto;
-            padding: 50px;
-            border-radius: 25px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            transition: transform 0.3s ease;
-            animation: fadeIn 1s ease-out;
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .contact-container:hover {
-            transform: scale(1.02);
+        .language-select {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        input, textarea {
-            width: 100%;
-            padding: 16px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            border: 2px solid transparent;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: #fff;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input:focus, textarea:focus {
-            border-color: #004a99;
-            box-shadow: 0 0 12px rgba(0, 74, 153, 0.6);
+        .language-select select {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
             outline: none;
         }
 
-        button {
+        .language-select label {
+            margin-right: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 120px auto 40px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #004a99, #002D62);
+        }
+
+        .contact-heading {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #004a99;
+            font-size: 2.5rem;
+            font-weight: 700;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .contact-description {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #666;
+            font-size: 1.1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #004a99;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #004a99;
+            box-shadow: 0 0 0 3px rgba(0, 74, 153, 0.1);
+            outline: none;
+            background: #fff;
+        }
+
+        .submit-button {
             background: linear-gradient(135deg, #004a99, #002D62);
             color: white;
+            padding: 15px 30px;
             border: none;
-            padding: 18px 0;
-            border-radius: 12px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 1.3rem;
-            font-weight: 700;
             width: 100%;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
         }
 
-        button:hover {
-            transform: scale(1.07);
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 74, 153, 0.3);
         }
 
-        button:active {
-            transform: scale(0.98);
+        .back-button {
+            display: block;
+            text-align: center;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #004a99;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: rgba(76, 175, 80, 0.1);
+            animation: fadeIn 0.5s ease-out;
         }
     </style>
 </head>
 <body>
-<header>
-     Contact the Lingoland Team 📩
-</header>
+    <div class="heavenly-bg"></div>
+    <div class="floating-clouds"></div>
 
-<main>
-    <div class="contact-container">
-        <h1> We'd Love to Hear from You!💬</h1>
-        <p> Have questions❓,  feedback 💡, or just want to connect? 🤝</p>
+    <header>
+        <div class="header-content">
+            <span style="font-size: 1.5rem; font-weight: 600;">Lingoland</span>
+            <div class="language-select">
+                <label for="language">Idioma:</label>
+                <select id="language">
+                    <option value="pt" selected>Português</option>
+                    <option value="ur">Urdu</option>
+                </select>
+            </div>
+        </div>
+    </header>
 
-        <form id="contact-form">
-            <label for="name">👤 Your Name:</label>
-            <input type="text" id="name" name="from_name" placeholder="Enter your name" required>
-
-            <label for="email">📧 Your Email:</label>
-            <input type="email" id="email" name="from_email" placeholder="Enter your email" required>
-
-            <label for="message">✍️ Your Message:</label>
-            <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-
-            <button type="submit"> Send Your Message 📨 </button>
+    <main class="contact-content">
+        <h1 id="contact-heading" class="contact-heading">Contact Us</h1>
+        <p id="contact-description" class="contact-description">We'd love to hear from you! Please fill out the form below.</p>
+        
+        <form class="contact-form" id="contact-form">
+            <div class="form-group">
+                <label for="name" id="name-label">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email" id="email-label">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message" id="message-label">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-button" id="submit-button">Send Message</button>
+            <div id="success-message" class="success-message"></div>
         </form>
-        <div id="response-message" class="message-box"></div>
-    </div>
-</main>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-    (function(){
-        emailjs.init("obUx4ADwk2qJTyRh1");
-    })();
+        <a href="index.html" class="back-button" id="back-button">Back to Home</a>
+    </main>
 
-    document.getElementById("contact-form").addEventListener("submit", function(event) {
-        event.preventDefault();
+    <footer>
+        <span id="footer-text">&copy; 2024 <a href="contact.html" id="footer-link">Lingoland</a>. <span id="rights-text">Todos os direitos reservados.</span></span>
+    </footer>
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
-        const responseMessage = document.getElementById("response-message");
-        const submitButton = document.querySelector("button");
-
-        submitButton.textContent = "Sending...";
-        submitButton.disabled = true;
-
-        const params = {
-            from_name: name,
-            from_email: email,
-            message: message
+    <script>
+        const translations = {
+            pt: {
+                back: "Voltar para o Início",
+                heading: "Entre em Contato",
+                description: "Adoraríamos ouvir de você! Por favor, preencha o formulário abaixo.",
+                name: "Nome:",
+                email: "Email:",
+                message: "Mensagem:",
+                send: "Enviar Mensagem",
+                rights: "Todos os direitos reservados.",
+                success: "Mensagem enviada com sucesso!"
+            },
+            ur: {
+                back: "\u0648\u0627\u067e\u0633 \u062c\u0626\u06cc\u06ba",
+                heading: "\u06c1\u0645\u0633\u06d2 \u0631\u0627\u0628\u0637 \u06a9\u0631\u06cc\u06ba",
+                description: "\u06c1\u0645 \u0622\u067e \u0633\u06d2 \u0633\u0646\u0646\u0627 \u067e\u0633\u0646\u062f \u06a9\u0631\u06cc\u06ba \u06af\u06d2! \u0628\u0631\u0627\u06c1 \u06a9\u0631\u0645 \u0646\u06cc\u0686\u06d2 \u062f\u06cc\u06d2 \u06af\u0626\u06d2 \u0641\u0627\u0631\u0645 \u06a9\u0648 \u0628\u0631\u0646\u06cc\u06ba\u06d4",
+                name: "\u0646\u0627\u0645:",
+                email: "\u0627\u06cc \u0645\u06cc\u0644:",
+                message: "\u067e\u06cc\u063a\u0627\u0645:",
+                send: "\u067e\u06cc\u063a\u0627\u0645 \u0628\u06be\u06cc\u062c\u06cc\u06ba",
+                rights: "\u062c\u0645\u06cc\u0639 \u062d\u0642\u0648\u0642 \u0645\u062d\u0641\u0648\u0638 \u06c1\u06cc\u06ba\u06d4",
+                success: "\u067e\u06cc\u063a\u0627\u0645 \u06a9\u0627\u0645\u06cc\u0627\u0628\u06cc \u0633\u06d2 \u0628\u06be\u06cc\u062c\u0627 \u06af\u06cc\u0627!"
+            }
         };
 
-        emailjs.send("service_c6ynbmy", "template_717ryz5", params)
-        .then(function() {
-            responseMessage.textContent = "✅ Message sent successfully!";
-            responseMessage.style.color = "green";
-            document.getElementById("contact-form").reset();
-        })
-        .catch(function() {
-            responseMessage.textContent = "❌ Error sending message.";
-            responseMessage.style.color = "red";
-        })
-        .finally(() => {
-            submitButton.textContent = "📨 Send Your Message";
-            submitButton.disabled = false;
+        const languageSelector = document.getElementById('language');
+        const backButton = document.getElementById('back-button');
+        const contactHeading = document.getElementById('contact-heading');
+        const contactDescription = document.getElementById('contact-description');
+        const nameLabel = document.getElementById('name-label');
+        const emailLabel = document.getElementById('email-label');
+        const messageLabel = document.getElementById('message-label');
+        const submitButton = document.getElementById('submit-button');
+        const rightsText = document.getElementById('rights-text');
+        const footerLink = document.getElementById('footer-link');
+        const successMessage = document.getElementById('success-message');
+
+        function updateLanguage(lang) {
+            const translation = translations[lang];
+            if (translation) {
+                backButton.textContent = translation.back;
+                contactHeading.textContent = translation.heading;
+                contactDescription.textContent = translation.description;
+                nameLabel.textContent = translation.name;
+                emailLabel.textContent = translation.email;
+                messageLabel.textContent = translation.message;
+                submitButton.textContent = translation.send;
+                rightsText.textContent = translation.rights;
+
+                // Update links to pass the selected language
+                backButton.href = `index.html?lang=${lang}`;
+                footerLink.href = `contact.html?lang=${lang}`;
+                
+                // Store the language preference
+                localStorage.setItem('preferredLanguage', lang);
+            }
+        }
+
+        // Get language from URL parameter or stored preference
+        function getLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang') || localStorage.getItem('preferredLanguage') || 'pt';
+        }
+
+        // Set language based on URL parameter or stored preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const lang = getLanguage();
+            languageSelector.value = lang;
+            updateLanguage(lang);
         });
-        
-    });
-    
-</script>
+
+        languageSelector.addEventListener('change', (event) => {
+            const selectedLanguage = event.target.value;
+            updateLanguage(selectedLanguage);
+        });
+
+        // Form submission handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const lang = getLanguage();
+            const translation = translations[lang];
+            
+            // Show success message
+            successMessage.textContent = translation.success;
+            successMessage.style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+    </script>
 </body>
 </html>

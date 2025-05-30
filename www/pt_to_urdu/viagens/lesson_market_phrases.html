@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Frases de Emergência - Mercado</title>
+    <title>Lição - Frases no Mercado</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,289 +14,446 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #001b40;
+            --accent-color: #4CAF50;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: var(--text-color);
+            line-height: 1.6;
         }
 
         header {
-            background: linear-gradient(90deg, #001d4d, #0056b3);
-            color: white;
-            padding: 40px 0;
             text-align: center;
-            border-bottom: 4px solid #0056b3;
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin-right: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            padding: 10px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #d1e3f3;
-            border-bottom: 2px solid #d1e3f3;
-        }
-
-        main {
-            padding: 30px 10%;
-        }
-
-        .category-box,
-        .phrases-box,
-        .quiz-section,
-        .about-section {
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            position: relative;
+            overflow: hidden;
             margin-bottom: 40px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            background: #ffffff;
-            padding: 20px;
-            transition: 0.3s;
         }
 
-        .category-box:hover,
-        .phrases-box:hover,
-        .quiz-section:hover {
-            transform: scale(1.05);
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            animation: shine 3s infinite;
         }
 
-        .category-content h3 {
-            font-size: 2em;
-            color: #001d4d;
-            margin-bottom: 10px;
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
-        .category-content p {
-            font-size: 1.1em;
-            color: #333;
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
             margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
         }
 
-        .category-content a {
-            text-decoration: none;
-            background-color: #0056b3;
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        section {
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .phrase-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .phrase-table th, .phrase-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .phrase-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
         }
 
-        .category-content a:hover {
-            background-color: #003f7d;
+        .phrase-table td {
+            background: white;
+            transition: var(--transition);
         }
 
-        .phrases-box h4,
-        .quiz-section h4,
-        .about-section h4 {
-            font-size: 2em;
-            color: #001d4d;
+        .phrase-table tr:hover td {
+            background: var(--light-bg);
+        }
+
+        .audio-btn {
+            background: var(--accent-color);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary-color);
+        }
+
+        .practice-section {
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-top: 50px;
+        }
+
+        .quiz-container {
+            margin-top: 30px;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            color: var(--primary-color);
             margin-bottom: 20px;
         }
 
-        .phrases-box p,
-        .quiz-section .question {
-            font-size: 1.2em;
-            color: #333;
-            margin: 10px 0;
+        .quiz-options {
+            display: grid;
+            gap: 15px;
         }
 
-        .phrases-box button,
-        .quiz-section button {
-            background-color: #001d4d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
+        .quiz-option {
+            padding: 20px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
             cursor: pointer;
-            font-size: 1em;
-            transition: 0.3s;
+            transition: var(--transition);
         }
 
-        .phrases-box button:hover,
-        .quiz-section button:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            background: #001d4d;
+        .quiz-option:hover {
+            background: var(--primary-color);
             color: white;
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            transform: translateX(10px);
         }
 
-        /* Mobile Styles */
+        .floating-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .floating-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .floating-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
         @media (max-width: 768px) {
-            main {
-                padding: 20px;
+            .navigation-buttons {
+                flex-direction: column;
             }
 
-            .category-box,
-            .phrases-box,
-            .quiz-section,
-            .about-section {
-                padding: 15px;
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
 </head>
 <body>
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
     <header>
-        <h1> Frases de Mercado</h1>
-        <nav>
-            <ul>
-                <li><a href="#categoria">Categoria</a></li>
-                <li><a href="#frases">Frases</a></li>
-                <li><a href="#quiz">Quiz</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-            </ul>
-        </nav>
+        <h1>Frases em Urdu para Mercados</h1>
+        <p>Aprenda frases essenciais em Urdu para fazer compras nos mercados do Paquistão</p>
     </header>
 
-    <main>
-        <section id="categoria">
-            <div class="category-box">
-                <div class="category-content">
-                    <h3>Frases de Mercado</h3>
-                    <p>Aprenda frases essenciais para compras em Urdu.</p>
-                    <a href="lesson_market_phrases.html">Iniciar Aula</a>
+    <nav class="floating-nav">
+        <a href="#basic-phrases"><i class="fas fa-shopping-cart"></i> Frases Básicas</a>
+        <a href="#prices"><i class="fas fa-tags"></i> Preços</a>
+        <a href="#food"><i class="fas fa-utensils"></i> Comida</a>
+        <a href="#clothing"><i class="fas fa-tshirt"></i> Roupas</a>
+        <a href="#practice"><i class="fas fa-tasks"></i> Prática</a>
+    </nav>
+
+    <div class="lesson-container">
+        <section id="basic-phrases">
+            <h2>Frases Básicas</h2>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Português</th>
+                        <th>Urdu</th>
+                        <th>Áudio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quanto custa?</td>
+                        <td>یہ کتنے کا ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/price')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Posso ver isso?</td>
+                        <td>کیا میں یہ دیکھ سکتا/سکتی ہوں؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/see')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Você tem outro tamanho?</td>
+                        <td>کیا آپ کے پاس دوسرا سائز ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/size')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Onde posso encontrar...?</td>
+                        <td>... کہاں ملے گا؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/where')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="prices">
+            <h2>Preços</h2>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Português</th>
+                        <th>Urdu</th>
+                        <th>Áudio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Está muito caro</td>
+                        <td>یہ بہت مہنگا ہے</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/expensive')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Pode fazer um desconto?</td>
+                        <td>کیا آپ کم کر سکتے ہیں؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/discount')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Quero comprar dois</td>
+                        <td>میں دو خریدنا چاہتا/چاہتی ہوں</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/two')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="food">
+            <h2>Comida</h2>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Português</th>
+                        <th>Urdu</th>
+                        <th>Áudio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Quanto custa o quilo?</td>
+                        <td>ایک کلو کتنے کا ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/kilogram')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Está fresco?</td>
+                        <td>کیا یہ تازہ ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/fresh')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Posso provar?</td>
+                        <td>کیا میں چکھ سکتا/سکتی ہوں؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/taste')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="clothing">
+            <h2>Roupas</h2>
+            <table class="phrase-table">
+                <thead>
+                    <tr>
+                        <th>Português</th>
+                        <th>Urdu</th>
+                        <th>Áudio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Posso experimentar?</td>
+                        <td>کیا میں ٹرائی کر سکتا/سکتی ہوں؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/try')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Você tem em outra cor?</td>
+                        <td>کیا آپ کے پاس دوسرے رنگ میں ہے؟</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/color')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>É muito grande/pequeno</td>
+                        <td>یہ بہت بڑا/چھوٹا ہے</td>
+                        <td><button class="audio-btn" onclick="playAudio('market/size-feedback')"><i class="fas fa-play"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="practice" class="practice-section">
+            <h2>Prática</h2>
+            <div class="quiz-container">
+                <div class="quiz-question">
+                    Como se diz "Quanto custa?" em Urdu?
+                </div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, 'correct')">یہ کتنے کا ہے؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'wrong')">کیا میں یہ دیکھ سکتا ہوں؟</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, 'wrong')">کیا آپ کم کر سکتے ہیں؟</div>
                 </div>
             </div>
         </section>
+    </div>
 
-        <section id="frases">
-            <div class="phrases-box">
-                <h4>Frases Importantes para o Mercado</h4>
-                <p><span>Quanto custa isso?</span> – یہ کتنے کا ہے؟ (Yeh kitne ka hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios1.mp3')">Ouvir</button>
-        
-                <p><span>Você aceita cartão de crédito?</span> – کیا آپ کریڈٹ کارڈ قبول کرتے ہیں؟ (Kya aap credit card qabool karte hain?)</p>
-                <button onclick="playAudio('market_audios/market_audios2.mp3')">Ouvir</button>
-        
-                <p><span>Você tem isso em outro tamanho?</span> – کیا یہ دوسرے سائز میں ہے؟ (Kya yeh doosre size mein hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios3.mp3')">Ouvir</button>
-        
-                <p><span>Onde está a seção de vegetais?</span> – سبزیوں کا سیکشن کہاں ہے؟ (Sabziyon ka section kahaan hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios4.mp3')">Ouvir</button>
-        
-                <p><span>Eu gostaria de um desconto.</span> – مجھے رعایت چاہیے۔ (Mujhe riayat chahiye.)</p>
-                <button onclick="playAudio('market_audios/market_audios5.mp3')">Ouvir</button>
-        
-                <p><span>Onde fica o caixa?</span> – کاؤنٹر کہاں ہے؟ (Counter kahaan hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios6.mp3')">Ouvir</button>
-        
-                <p><span>Vocês vendem frutas frescas?</span> – کیا آپ تازہ پھل بیچتے ہیں؟ (Kya aap taaza phal bechte hain?)</p>
-                <button onclick="playAudio('market_audios/market_audios7.mp3')">Ouvir</button>
-        
-                <p><span>Qual é o horário de funcionamento?</span> – آپ کے اوقاتِ کار کیا ہیں؟ (Aap ke auqaat-e-kar kya hain?)</p>
-                <button onclick="playAudio('market_audios/market_audios8.mp3')">Ouvir</button>
-        
-                <p><span>Tem sacolas disponíveis?</span> – کیا بیگز دستیاب ہیں؟ (Kya bags dastiyab hain?)</p>
-                <button onclick="playAudio('market_audios/market_audios9.mp3')">Ouvir</button>
-        
-                <p><span>Eu preciso de ajuda.</span> – مجھے مدد کی ضرورت ہے۔ (Mujhe madad ki zarurat hai.)</p>
-                <button onclick="playAudio('market_audios/market_audios10.mp3')">Ouvir</button>
-        
-                <p><span>Posso pagar com dinheiro?</span> – کیا میں نقد ادائیگی کر سکتا ہوں؟ (Kya main naqad adaigi kar sakta hoon?)</p>
-                <button onclick="playAudio('market_audios/market_audios11.mp3')">Ouvir</button>
-        
-                <p><span>Onde está a seção de laticínios?</span> – دودھ کے سیکشن کہاں ہے؟ (Doodh ke section kahaan hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios12.mp3')">Ouvir</button>
-        
-                <p><span>Este produto está em promoção?</span> – کیا یہ پروڈکٹ رعایتی ہے؟ (Kya yeh product riayati hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios13.mp3')">Ouvir</button>
-        
-                <p><span>Vocês entregam em casa?</span> – کیا آپ ہوم ڈلیوری کرتے ہیں؟ (Kya aap home delivery karte hain?)</p>
-                <button onclick="playAudio('market_audios/market_audios14.mp3')">Ouvir</button>
-        
-                <p><span>Onde está o estacionamento?</span> – پارکنگ کہاں ہے؟ (Parking kahaan hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios15.mp3')">Ouvir</button>
-        
-                <p><span>Qual é o preço por quilo?</span> – فی کلو قیمت کیا ہے؟ (Fi kilo qeemat kya hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios16.mp3')">Ouvir</button>
-        
-                <p><span>Posso experimentar isso?</span> – کیا میں یہ آزما سکتا ہوں؟ (Kya main yeh azma sakta hoon?)</p>
-                <button onclick="playAudio('market_audios/market_audios17.mp3')">Ouvir</button>
-        
-                <p><span>Há um produto mais barato?</span> – کیا کوئی سستا پروڈکٹ ہے؟ (Kya koi sasta product hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios18.mp3')">Ouvir</button>
-        
-                <p><span>Quanto tempo demora para entregar?</span> – ترسیل میں کتنا وقت لگتا ہے؟ (Tarseel mein kitna waqt lagta hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios19.mp3')">Ouvir</button>
-        
-                <p><span>Vocês têm um catálogo?</span> – کیا آپ کے پاس کیٹلاگ ہے؟ (Kya aap ke paas catalog hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios20.mp3')">Ouvir</button>
-        
-                <p><span>Este produto tem garantia?</span> – کیا اس پروڈکٹ کی وارنٹی ہے؟ (Kya is product ki warranty hai?)</p>
-                <button onclick="playAudio('market_audios/market_audios21.mp3')">Ouvir</button>
-        
-                <p><span>Tem troco para este valor?</span> – کیا آپ کے پاس باقی پیسے ہیں؟ (Kya aap ke paas baqi paisay hain?)</p>
-                <button onclick="playAudio('market_audios/market_audios22.mp3')">Ouvir</button>
-            </div>
-        </section>
-        
-
-        <section id="quiz" class="quiz-section">
-            <h4>Teste Seus Conhecimentos</h4>
-            <div class="question">
-                <p><strong>Como se diz "Quanto custa isso?" em Urdu?</strong></p>
-                <button onclick="checkAnswer('Yeh kitne ka hai?')">Yeh kitne ka hai?</button>
-                <button onclick="checkAnswer('Yeh kahan hai?')">Yeh kahan hai?</button>
-            </div>
-            <div id="quiz-result" style="margin-top: 20px; font-size: 1.2em;"></div>
-        </section>
-
-        <section id="sobre" class="about-section">
-            <h4>Sobre o Curso</h4>
-            <p>Este curso oferece frases essenciais para situações no mercado, com áudios e um quiz interativo.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>Curso de Urdu - 2025</p>
-    </footer>
+    <div class="navigation-buttons">
+        <a href="viagens.html" class="nav-btn">
+            <i class="fas fa-home"></i>
+            Menu Principal
+        </a>
+        <a href="lesson_directions_phrases.html" class="nav-btn">
+            <span>Próxima Lição</span>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
 
     <script>
-        function playAudio(file) {
-            var audio = new Audio(file);
-            audio.play();
+        // Progress bar functionality
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+
+        // Audio playback functionality
+        function playAudio(audioId) {
+            const audio = new Audio(`${audioId}.mp3`);
+            audio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                alert('Desculpe, não foi possível reproduzir o áudio. Por favor, verifique se o arquivo de áudio existe.');
+            });
         }
 
-        function checkAnswer(answer) {
-            const correctAnswer = "Yeh kitne ka hai?";
-            const resultDiv = document.getElementById('quiz-result');
+        // Quiz functionality
+        function checkAnswer(element, type) {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.style.background = 'white';
+                option.style.color = 'var(--text-color)';
+            });
 
-            if (answer === correctAnswer) {
-                resultDiv.textContent = "Correto! Muito bem!";
-                resultDiv.style.color = "green";
+            if (type === 'correct') {
+                element.style.background = 'var(--accent-color)';
+                element.style.color = 'white';
             } else {
-                resultDiv.textContent = "Errado! Tente novamente.";
-                resultDiv.style.color = "red";
+                element.style.background = '#ff4444';
+                element.style.color = 'white';
             }
         }
     </script>

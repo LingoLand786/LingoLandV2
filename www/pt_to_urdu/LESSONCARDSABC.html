@@ -1,70 +1,220 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn ABC in Portuguese</title>
-    <style>
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
+        .modal-content {
             background: white;
-            color: #ffffff;
-        }
-        .container {
-            text-align: center;
-            width: 100%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        video {
-            width: 80%;
-            max-width: 700px;
-            margin-bottom: 20px;
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: zoomIn 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .button-container {
-            margin-top: 20px;
-        }
-        a.button {
-            display: inline-block;
-            background-color: #002D62;
-            color: #ffffff;
-            text-decoration: none;
-            padding: 15px 40px;
-            font-size: 1.4rem;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        a.button:hover {
-            background-color: #163c68;
-            transform: scale(1.05);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Video Section -->
-        <video autoplay controls>
-            <source src="learnabcinurdu.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
 
-        <!-- Button Section -->
-        <div class="button-container">
-            <a href="LESSONCARD123.html" class="button">Próxima Lição</a>
+        .modal-letter {
+            font-size: 6rem;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .modal-letter::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .modal-pronunciation {
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .letter-writing {
+            margin-top: 20px;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .letter-writing h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .letter-writing h3::before {
+            content: '✍️';
+            font-size: 1.5rem;
+        }
+
+        .letter-writing p {
+            margin: 5px 0;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .modal-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .example-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .example-card .urdu-text {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .example-card p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        .audio-controls {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--light-bg);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .audio-controls audio {
+            flex: 1;
+            height: 40px;
+        }
+
+        .audio-controls button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .audio-controls button:hover {
+            background: #45a049;
+        }
+
+        <div class="modal" id="letter-modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <div class="modal-letter" id="modal-letter"></div>
+                <div class="modal-pronunciation" id="modal-pronunciation"></div>
+                <div class="letter-writing">
+                    <h3>Como Escrever</h3>
+                    <p id="modal-writing"></p>
+                </div>
+                <div class="modal-examples" id="modal-examples"></div>
+                <div class="audio-controls">
+                    <audio id="letter-audio" controls></audio>
+                    <button onclick="playAudio()">🔊 Ouvir</button>
+                </div>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+
+        <script>
+            const letterData = {
+                alif: {
+                    letter: 'ا',
+                    pronunciation: 'Alif',
+                    writing: 'Comece do topo e desenhe uma linha vertical para baixo.',
+                    examples: [
+                        { urdu: 'آسمان', portuguese: 'céu' },
+                        { urdu: 'انار', portuguese: 'romã' }
+                    ],
+                    audio: 'sounds/alif.mp3'
+                },
+                bay: {
+                    letter: 'ب',
+                    pronunciation: 'Bay',
+                    writing: 'Comece do topo, desenhe uma linha horizontal e adicione um ponto abaixo.',
+                    examples: [
+                        { urdu: 'بچہ', portuguese: 'criança' },
+                        { urdu: 'باغ', portuguese: 'jardim' }
+                    ],
+                    audio: 'sounds/bay.mp3'
+                },
+                // ... continue with other letters, removing image properties ...
+            };
+
+            function showLetterDetails(letter) {
+                const modal = document.getElementById('letter-modal');
+                const modalLetter = document.getElementById('modal-letter');
+                const modalPronunciation = document.getElementById('modal-pronunciation');
+                const modalWriting = document.getElementById('modal-writing');
+                const modalExamples = document.getElementById('modal-examples');
+                const letterAudio = document.getElementById('letter-audio');
+
+                const data = letterData[letter];
+                if (!data) return;
+
+                modalLetter.textContent = data.letter;
+                modalPronunciation.textContent = `Pronúncia: ${data.pronunciation}`;
+                modalWriting.textContent = data.writing;
+                letterAudio.src = data.audio;
+
+                // Clear previous examples
+                modalExamples.innerHTML = '';
+
+                // Add new examples
+                data.examples.forEach(example => {
+                    const exampleCard = document.createElement('div');
+                    exampleCard.className = 'example-card';
+                    exampleCard.innerHTML = `
+                        <div class="urdu-text">${example.urdu}</div>
+                        <p>${example.portuguese}</p>
+                    `;
+                    modalExamples.appendChild(exampleCard);
+                });
+
+                modal.style.display = 'flex';
+                learnedLetters.add(letter);
+                updateProgress();
+                practiceCount++;
+                document.getElementById('practice-count').textContent = practiceCount;
+            }
+
+            function playAudio() {
+                const audio = document.getElementById('letter-audio');
+                audio.play();
+            }
+
+            // ... rest of the existing code ... 
+        </script> 

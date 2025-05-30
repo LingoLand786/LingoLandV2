@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verb Learn - Master Portuguese Verbs</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1>Master Portuguese Verbs</h1>
+        <p>Learn and practice verbs with fun and interactivity!</p>
+        <a href="#menu" class="btn btn-primary">Start Learning</a>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav id="menu" class="menu sticky">
+        <ul>
+            <li><a href="#daily-challenge">Verb of the Day</a></li>
+            <li><a href="#search">Search Verbs</a></li>
+            <li><a href="#flashcards">Flashcards</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content">
+        <!-- Verb of the Day -->
+        <section id="daily-challenge" class="daily-challenge">
+            <h2>Verb of the Day</h2>
+            <div id="verb-of-the-day" class="verb-card"></div>
+        </section>
+
+        <!-- Search Verbs -->
+        <section id="search" class="search">
+            <h2>Search for Verbs</h2>
+            <input type="text" id="verb-search" placeholder="Type a verb..." onkeyup="searchVerbs()">
+            <div id="search-results" class="results"></div>
+        </section>
+
+        <!-- Flashcards -->
+        <section id="flashcards" class="flashcards">
+            <h2>Practice with Flashcards</h2>
+            <div class="flashcard-grid">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">Comer</div>
+                    <div class="back">To eat</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">Beber</div>
+                    <div class="back">To drink</div>
+                </div>
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">Abrir</div>
+                    <div class="back">To open</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz -->
+        <section id="quiz" class="quiz">
+            <h2>Take a Quick Quiz</h2>
+            <div id="quiz-container">
+                <p id="quiz-question">Loading question...</p>
+                <button class="btn" onclick="checkAnswer('A')">Option A</button>
+                <button class="btn" onclick="checkAnswer('B')">Option B</button>
+                <button class="btn" onclick="checkAnswer('C')">Option C</button>
+                <p id="quiz-feedback"></p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Verb Learn. All rights reserved.</p>
+    </footer>
+</body>
+</html>

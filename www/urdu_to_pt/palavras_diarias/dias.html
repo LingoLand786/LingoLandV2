@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.x.x/firebase-auth.js"></script>
+    <title>Dias de Aprendizagem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        :root {
+            --primary-color: #0a192f;
+            --secondary-color: #112240;
+            --accent-color: #64ffda;
+            --text-color: #ccd6f6;
+            --text-secondary: #8892b0;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --neon-glow: 0 0 10px rgba(100, 255, 218, 0.5);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(100, 255, 218, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(100, 255, 218, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        header {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            font-size: 40px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            height: 60px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        .points-container {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: normal;
+            margin-right: 25px;
+            gap: 10px;
+            background: rgba(100, 255, 218, 0.1);
+            padding: 10px 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .points-container:hover {
+            background: rgba(100, 255, 218, 0.15);
+            transform: scale(1.05);
+            box-shadow: var(--neon-glow);
+        }
+
+        .score-value {
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 24px;
+            text-shadow: var(--neon-glow);
+        }
+        
+        .day-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: auto;
+            animation: fadeIn 0.8s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .day-box {
+            background: var(--secondary-color) !important;
+            color: var(--text-color);
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: scaleIn 0.5s ease-out;
+            animation-fill-mode: both;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .day-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(100, 255, 218, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .day-box:hover::after {
+            transform: translateX(100%);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .day-box.locked {
+            background: rgba(17, 34, 64, 0.7) !important;
+            cursor: not-allowed;
+            animation: shake 0.5s ease-in-out;
+            border-color: rgba(100, 255, 218, 0.05);
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .day-box.locked a {
+            pointer-events: none;
+            color: var(--text-secondary);
+        }
+
+        .day-box:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--neon-glow);
+            border-color: rgba(100, 255, 218, 0.3);
+        }
+
+        .day-box a {
+            color: var(--text-color);
+            text-decoration: none;
+            display: block;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .day-box:hover a {
+            color: var(--accent-color);
+            text-shadow: var(--neon-glow);
+        }
+
+        .day-score {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--neon-glow);
+            z-index: 3;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            border: 2px solid var(--primary-color);
+        }
+
+        .day-box:hover .day-score {
+            transform: scale(1.2) rotate(360deg);
+            background: var(--primary-color);
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* Loading Animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeOut 0.5s ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        .loading::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(100, 255, 218, 0.2) 0%, transparent 70%);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--text-secondary);
+            border-top: 3px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-spinner::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: var(--accent-color);
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                font-size: 28px;
+                padding: 15px 20px;
+            }
+
+            .points-container {
+                font-size: 18px;
+                padding: 8px 15px;
+            }
+
+            .day-container {
+                padding: 30px 20px;
+                gap: 15px;
+            }
+
+            .day-box {
+                padding: 20px;
+                font-size: 20px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header>
+        <span style="color: var(--accent-color);">[</span> Dias diários <span style="color: var(--accent-color);">]</span>
+        <div class="points-container">
+            <span>Classificação: </span>
+            <span class="score-value" id="scoreDisplay">0</span>
+        </div>
+    </header>
+   
+    <div class="day-container">
+        <div class="day-box">
+            <a href="dia.html?dia=1">Dia 1</a>
+            <div class="day-score" id="score-1">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=2">Dia 2</a>
+            <div class="day-score" id="score-2">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=3">Dia 3</a>
+            <div class="day-score" id="score-3">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=4">Dia 4</a>
+            <div class="day-score" id="score-4">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=5">Dia 5</a>
+            <div class="day-score" id="score-5">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=6">Dia 6</a>
+            <div class="day-score" id="score-6">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=7">Dia 7</a>
+            <div class="day-score" id="score-7">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=8">Dia 8</a>
+            <div class="day-score" id="score-8">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=9">Dia 9</a>
+            <div class="day-score" id="score-9">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=10">Dia 10</a>
+            <div class="day-score" id="score-10">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=11">Dia 11</a>
+            <div class="day-score" id="score-11">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=12">Dia 12</a>
+            <div class="day-score" id="score-12">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=13">Dia 13</a>
+            <div class="day-score" id="score-13">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=14">Dia 14</a>
+            <div class="day-score" id="score-14">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=15">Dia 15</a>
+            <div class="day-score" id="score-15">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=16">Dia 16</a>
+            <div class="day-score" id="score-16">0</div>
+        </div>
+        <div class="day-box">
+            <a href="dia.html?dia=17">Dia 17</a>
+            <div class="day-score" id="score-17">0</div>
+        </div>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+            authDomain: "appsitesync.firebaseapp.com",
+            projectId: "appsitesync",
+            storageBucket: "appsitesync.firebasestorage.app",
+            messagingSenderId: "357510439971",
+            appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+            measurementId: "G-T0SX0NH50K"
+        };
+
+        // Enhanced score update function with animations
+        function atualizarScore() {
+            const params = new URLSearchParams(window.location.search);
+            const novoScore = params.get('score');
+            const diaFinalizado = params.get('diaFinalizado');
+            
+            if (novoScore && diaFinalizado) {
+                const scoreKey = `score_dia_${diaFinalizado}`;
+                const melhorScoreDia = parseInt(localStorage.getItem(scoreKey) || '0');
+                const scoreAtual = parseInt(novoScore);
+                
+                if (scoreAtual > melhorScoreDia) {
+                    localStorage.setItem(scoreKey, scoreAtual);
+                    // Animate score update with particle effect
+                    const scoreElement = document.getElementById(`score-${diaFinalizado}`);
+                    scoreElement.classList.add('animate__animated', 'animate__bounceIn');
+                    createParticles(scoreElement);
+                    setTimeout(() => {
+                        scoreElement.classList.remove('animate__animated', 'animate__bounceIn');
+                    }, 1000);
+                }
+            }
+            
+            let scoreTotal = 0;
+            for (let i = 1; i <= 365; i++) {
+                const scoreKey = `score_dia_${i}`;
+                const scoreDia = parseInt(localStorage.getItem(scoreKey) || '0');
+                try {
+                    const scoreElement = document.getElementById(`score-${i}`);
+                    if (scoreElement) {
+                        scoreElement.textContent = scoreDia;
+                        if (scoreDia > 0) {
+                            scoreElement.style.background = 'var(--accent-color)';
+                            scoreElement.style.boxShadow = 'var(--neon-glow)';
+                        }
+                    }
+                } catch (e) {
+                    console.error(`Error updating score for day ${i}:`, e);
+                }
+                scoreTotal += scoreDia;
+            }
+            
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            scoreDisplay.textContent = scoreTotal;
+            scoreDisplay.classList.add('animate__animated', 'animate__fadeIn');
+            setTimeout(() => {
+                scoreDisplay.classList.remove('animate__animated', 'animate__fadeIn');
+            }, 1000);
+        }
+
+        // Particle effect function
+        function createParticles(element) {
+            const rect = element.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 10; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.width = '4px';
+                particle.style.height = '4px';
+                particle.style.background = 'var(--accent-color)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = centerX + 'px';
+                particle.style.top = centerY + 'px';
+                particle.style.zIndex = '1000';
+                document.body.appendChild(particle);
+
+                const angle = (i / 10) * Math.PI * 2;
+                const velocity = 2;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+
+                let x = 0;
+                let y = 0;
+                let opacity = 1;
+
+                const animate = () => {
+                    x += vx;
+                    y += vy;
+                    opacity -= 0.02;
+
+                    particle.style.transform = `translate(${x}px, ${y}px)`;
+                    particle.style.opacity = opacity;
+
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        particle.remove();
+                    }
+                };
+
+                animate();
+            }
+        }
+
+        // Initialize with staggered animations for day boxes
+        document.addEventListener('DOMContentLoaded', () => {
+            const dayBoxes = document.querySelectorAll('.day-box');
+            dayBoxes.forEach((box, index) => {
+                box.style.animationDelay = `${index * 0.1}s`;
+            });
+            atualizarScore();
+        });
+
+        // Add hover sound effect
+        const hoverSound = new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YU');
+        document.querySelectorAll('.day-box').forEach(box => {
+            box.addEventListener('mouseenter', () => {
+                hoverSound.currentTime = 0;
+                hoverSound.play().catch(() => {});
+            });
+        });
+    </script>
+</body>
+</html> 

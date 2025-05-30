@@ -1,0 +1,649 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1448c2;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    flex-direction: column;
+    position: relative;
+}
+
+.borda-superior, .borda-inferior {
+    width: 100%;
+    height: 80px;
+    background-color: #002a93;
+    position: absolute;
+    left: 0;
+    box-shadow: 0 0 15px 3px #002a93;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.borda-superior {
+    top: 0;
+    display: grid;
+    grid-template-columns: 100px 1fr 150px;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.borda-inferior {
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+}
+
+.titulo-borda {
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    justify-self: center;
+}
+
+.quadrado {
+    background-color: #ffffff;
+    width: 90%;
+    max-width: 500px;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    margin: 100px 0;
+    position: relative;
+}
+
+.quadrado.com-imagens {
+    max-width: 700px;
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 18px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    font-size: 20px;
+    font-weight: 400;
+    color: #555555;
+    margin-bottom: 22px;
+}
+
+/* Estilos para botões padrão */
+button, .letra {
+    background-color: #638ce4;
+    color: #333333;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 25px;
+    border: 2px solid #638ce4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 5px;
+    min-width: 120px;
+    max-width: 180px;
+    white-space: nowrap;
+}
+.letra {
+   min-width: 45px !important;
+   min-height: 45px !important;    
+}
+
+button:hover:not(:disabled), .letra:hover:not(:disabled) {
+    background-color: #638ce4;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #638ce4;
+    border-color: #638ce4;
+}
+
+button:disabled, .letra:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Container de botões para múltipla escolha */
+.botoes-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 15px 0;
+    width: 100%;
+}
+
+.botoes-grid {
+    display: grid;
+    gap: 15px;
+    margin: 10px 0;
+    width: fit-content;
+    max-width: 600px;
+    justify-content: center;
+}
+
+/* Grid de 2x2 para 4 opções */
+.botoes-grid.grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Grid de 3x1 para 3 opções */
+.botoes-grid.grid-3 {
+    grid-template-columns: repeat(3, auto);
+    gap: 20px;
+}
+
+/* Estilos para seleção de imagens */
+.imagens-container {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    margin: 18px 0;
+    flex-wrap: wrap;
+}
+
+.imagem-opcao {
+    width: 160px;
+    height: 160px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.imagem-opcao:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para formação de palavras */
+.espacos-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.letra-espaco {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-bottom: 2px solid #333333;
+    margin: 0 10px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 40px;
+}
+
+/* Estilos para áudio */
+.audio-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.audio-btn {
+    background-color: #638ce4;
+    color: #333333;
+    padding: 15px 20px;
+    font-size: 19px;
+    border-radius: 35px;
+    border: 2px solid #638ce4;
+    margin: 20px auto;
+    width: 200px;
+    height: 60px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audio-btn:hover {
+    background-color: #638ce4;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #638ce4;
+    border-color: #638ce4;
+}
+
+/* Camadas para animação do botão de áudio */
+.audio-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 20, 231, 0.5);
+    transform: skewX(-45deg);
+    transition: left 0.5s ease-in-out 0.3s;
+    border-radius: 35px;
+}
+
+.audio-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(114, 51, 215, 0.477);
+    transform: skewX(-45deg);
+    transition: left 0.5s ease-in-out;
+    border-radius: 35px;
+}
+
+.audio-btn .layer-green {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(48, 103, 224, 0.742);
+    transform: skewX(-45deg);
+    transition: left 0.5s ease-in-out 0.6s;
+    border-radius: 35px;
+}
+
+.audio-btn .layer-orange {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(147, 205, 224, 0.5);
+    transform: skewX(-45deg);
+    transition: left 0.5s ease-in-out 0.9s;
+    border-radius: 35px;
+}
+
+.audio-btn:hover::after {
+    left: 100%;
+}
+
+.audio-btn:hover::before {
+    left: 100%;
+}
+
+.audio-btn:hover .layer-green {
+    left: 100%;
+}
+
+.audio-btn:hover .layer-orange {
+    left: 100%;
+}
+
+/* Feedback e mensagens */
+#feedback, #mensagem, .feedback-mensagem {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 20px 0;
+    color: #333333;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Botão próximo e sair */
+#botaoProximo {
+    display: none;
+    background-color: #6b92e0;
+    color: white;
+    padding: 12px 25px;
+    font-size: 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 150px;
+    height: 50px;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(107, 146, 224, 0.3);
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+#botaoProximo:hover {
+    background-color: #6986e7;
+    box-shadow: 0 0 20px rgba(107, 146, 224, 0.8);
+    transform: scale(1.05);
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+#botaoSair {
+    position: relative;
+    left: 0;
+    font-size: 16px;
+    padding: 8px 15px;
+    background-color: #a8c4f3;
+    color: #1e4b8f;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 38px;
+    width: 80px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(30, 75, 143, 0.2),
+                inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(168, 196, 243, 0.8);
+}
+
+#botaoSair:hover {
+    background-color: #c5d8f7;
+    box-shadow: 0 4px 12px rgba(30, 75, 143, 0.3),
+                inset 0 1px 3px rgba(255, 255, 255, 0.9);
+    transform: translateY(-1px);
+    border: 1px solid rgba(168, 196, 243, 0.9);
+    color: #153661;
+}
+
+/* Estilo para modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 310px;
+    width: 90%;
+    position: relative;
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-content p {
+    font-size: 19px;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 400;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-button {
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    /* cursor: pointer; */
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.modal-button.cancelar {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+}
+
+.modal-button.ok {
+    background-color: #1e4b8f;
+    color: white;
+    border: none;
+}
+
+.modal-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.modal-button.cancelar:hover {
+    background-color: #d0d0d0;
+}
+
+.modal-button.ok:hover {
+    background-color: #153661;
+}
+
+/* Estilos para indicar resposta correta/incorreta */
+.botao-correto {
+    background-color: #638ce4!important;
+    border-color: #638ce4 !important;
+    box-shadow: 0 0 35px rgba(18, 167, 23, 0.8) !important;
+}
+
+.botao-incorreto {
+    background-color: #638ce4 !important;
+    border-color: #638ce4 !important;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8) !important;
+}
+
+/* Estilos para área clicável na imagem */
+.area-clicavel {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+.imagem-area {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.imagem-area:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Feedback visual para área clicável */
+.area-feedback {
+    position: absolute;
+    pointer-events: none;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.area-feedback.correta {
+    border-color: rgba(0, 255, 0, 0.5);
+    background-color: rgba(0, 255, 0, 0.2);
+}
+
+.area-feedback.incorreta {
+    border-color: rgba(255, 0, 0, 0.5);
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+/* Responsividade para área clicável */
+@media (max-width: 768px) {
+    .area-clicavel {
+        max-width: 100%;
+    }
+    
+    .imagem-area {
+        max-height: 400px;
+    }
+}
+
+/* Estilos para entrada de texto */
+.texto-input {
+    width: 90%;
+    max-width: 400px;
+    padding: 12px;
+    margin: 15px auto;
+    border: 2px solid #638ce4;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.texto-input:focus {
+    border-color: #1448c2;
+    box-shadow: 0 0 8px rgba(20, 72, 194, 0.5);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .quadrado {
+        width: 90%;
+        margin: 100px 20px;
+        padding: 20px;
+    }
+
+    .botoes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .linha {
+        flex-direction: column;
+    }
+
+    .imagens-container {
+        gap: 15px;
+    }
+
+    img {
+        width: 120px;
+        height: 120px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    h2, h3 {
+        font-size: 18px;
+    }
+
+    .linha button {
+        width: 120px;
+        height: 50px;
+    }
+
+    .letra {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+}
+
+/* Estilos para letras */
+.letra {
+    width: 55px !important;
+    height: 55px !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: #638ce4;
+    color: #333333;
+    border: 2px solid #638ce4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Container para letras em linha única */
+.letras-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.points-container {
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    font-weight: normal;
+    gap: 10px;
+    color: white;
+    justify-self: end;
+}
+
+.score-value {
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.feedback-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.feedback-icon {
+    height: 24px;
+    width: auto;
+    vertical-align: middle;
+}
+
+.feedback-text {
+    font-size: 20px;
+    color: #333;
+    font-weight: 600;
+}

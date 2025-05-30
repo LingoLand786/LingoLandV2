@@ -4,165 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Estações e Clima</title>
+    <title>Clima e Tempo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #ffffff;
+            --accent-color: #008080;
+            --text-color: #333333;
+            --light-gray: #f5f5f5;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
         }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f7f9fc;
-            color: #333;
-        }
-
-        header {
-            background: linear-gradient(90deg, #001d4d, #0fb300);
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-            border-bottom: 4px solid #0056b3;
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        nav ul li {
-            display: inline-block;
-            margin-right: 30px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.5em;
-            font-weight: bold;
-            padding: 10px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: #d1e3f3;
-            border-bottom: 2px solid #d1e3f3;
-        }
-
-        main {
-            padding: 30px 10%;
-        }
-
-        .category-box,
-        .phrases-box,
-        .quiz-section,
-        .about-section {
-            margin-bottom: 40px;
-            border-radius: 8px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            background: #ffffff;
-            padding: 20px;
-            transition: 0.3s;
-        }
-
-        .category-box:hover,
-        .phrases-box:hover,
-        .quiz-section:hover {
-            transform: scale(1.05);
-        }
-
-        .category-content h3 {
-            font-size: 2em;
-            color: #001d4d;
-            margin-bottom: 10px;
-        }
-
-        .category-content p {
-            font-size: 1.1em;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .category-content a {
-            text-decoration: none;
-            background-color: #0056b3;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .category-content a:hover {
-            background-color: #003f7d;
-        }
-
-        .category-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .category-box img {
-            width: 100%;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-
-        .category-box:hover img {
-            transform: scale(1.05);
-        }
-
-        .category-box:hover {
-            transform: scale(1.05);
-        }
-
-        footer {
-            background: #001d4d;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            main {
-                padding: 20px;
-            }
-
-            nav ul li {
-                margin-right: 15px;
-            }
-
-            .category-box,
-            .phrases-box,
-            .quiz-section,
-            .about-section {
-                padding: 15px;
-            }
-
-            .category-box img {
-                width: 120px;
-            }
-
-            .category-container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
         * {
             margin: 0;
             padding: 0;
@@ -171,298 +27,1069 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f1f2f6, #c9cfd7);
-            color: #002D62;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
             line-height: 1.6;
-            transition: background-color 0.3s;
         }
 
-        /* Header Section */
         header {
-            padding: 30px 30px;
-            background: #002D62;
-            color: white;
+            background: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 2rem;
             text-align: center;
-            font-size: 3.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             position: relative;
-            z-index: 1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         header h1 {
-            font-size: 4.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-        }
-
-        header p {
-            font-size: 1.4rem;
-            letter-spacing: 0.8px;
-            color: #f0f0f0;
-        }
-
-        .category-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
-            padding: 60px 50px;
-            justify-items: center;
-        }
-
-        .category-box {
-            position: relative;
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.4s, box-shadow 0.4s;
-            text-align: center;
-            background: linear-gradient(135deg, #ffffff 0%, #e8f2f8 100%);
-        }
-
-        .category-box img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.4s, opacity 0.3s;
-        }
-
-        .category-box:hover img {
-            transform: scale(1.1);
-            opacity: 0.8;
-        }
-
-        .category-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .category-content {
-            padding: 20px;
-        }
-
-        .category-box h3 {
-            font-size: 2.2rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             font-weight: 700;
-            margin-top: 20px;
-            color: #333;
-            letter-spacing: 1px;
         }
 
-        .category-box p {
-            font-size: 1.1rem;
-            color: #666;
-            margin: 10px 0;
+        nav {
+            margin-top: 1rem;
         }
 
-        .category-box a {
-            padding: 14px 35px;
-            background-color: #008080;
-            color: white;
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--secondary-color);
             text-decoration: none;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: background-color 0.3s, transform 0.3s;
-            margin-top: 20px;
-            display: inline-block;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
         }
 
-        .category-box a:hover {
-            background-color: #006666;
-            transform: translateY(-5px);
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
         }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .weather-summary {
+            background: linear-gradient(135deg, var(--primary-color), #004080);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        .pakistan-climate {
+            background: var(--light-gray);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .climate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .month-selector {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .month-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            background: var(--secondary-color);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .month-button.active {
+            background: var(--primary-color);
+            color: var(--secondary-color);
+        }
+
+        .month-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .climate-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .climate-card {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .climate-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .climate-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .season-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            border-radius: 5px;
+            background: rgba(0, 45, 98, 0.1);
+        }
+
+        .season-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .climate-map {
+            width: 100%;
+            height: 400px;
+            background: var(--secondary-color);
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            padding: 1rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pakistan-map {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .climate-region {
+            position: absolute;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .climate-region:hover {
+            filter: brightness(1.2);
+        }
+
+        .region-tooltip {
+            position: absolute;
+            background: rgba(0, 45, 98, 0.9);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .region-tooltip.active {
+            opacity: 1;
+        }
+
+        .region-info {
+            background: var(--secondary-color);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .region-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .region-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .climate-tips {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--secondary-color);
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .tips-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .tips-list {
+            list-style: none;
+        }
+
+        .tips-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .tips-list li:before {
+            content: "•";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .summary-item {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .summary-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-item p {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .weather-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .weather-card {
+            background: var(--secondary-color);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .weather-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .weather-icon {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .weather-card:hover .weather-icon {
+            transform: scale(1.05);
+        }
+
+        .weather-content {
+            padding: 1.5rem;
+        }
+
+        .weather-content h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .weather-content p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .temperature {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .temperature-range {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .temp-min, .temp-max {
+            font-size: 1.2rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+        }
+
+        .temp-min {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .temp-max {
+            background-color: #ffebee;
+            color: #d32f2f;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .audio-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .styled-button {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .styled-button:hover {
+            background-color: #006666;
+            transform: translateY(-2px);
+        }
+
+        .audio-progress {
+            flex-grow: 1;
+            height: 4px;
+            background-color: var(--light-gray);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            position: absolute;
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 2px;
+            width: 0%;
+        }
+
+        .weather-tag {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: white;
+        }
+
+        .tag-normal { background-color: var(--success-color); }
+        .tag-warning { background-color: var(--warning-color); }
+        .tag-danger { background-color: var(--danger-color); }
 
         footer {
-            background-color: #333;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
             text-align: center;
-            padding: 20px;
-            font-size: 1rem;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            padding: 1.5rem;
+            margin-top: 3rem;
         }
 
-        footer p {
-            margin: 10px 0;
+        @media (max-width: 768px) {
+            .weather-container {
+                grid-template-columns: 1fr;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
         }
 
-        /* Animations for elements */
+        /* Animation classes */
         .fade-in {
             opacity: 0;
-            animation: fadeIn 2s forwards;
+            animation: fadeIn 0.5s ease forwards;
         }
-        .styled-button {
-    padding: 14px 35px;
-    background-color: #008080;
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    border-radius: 50px;
-    transition: background-color 0.3s, transform 0.3s;
-    margin-top: 20px;
-    display: inline-block;
-    border: none;
-    cursor: pointer;
-}
-
-.styled-button:hover {
-    background-color: #006666;
-    transform: translateY(-5px);
-}
-
 
         @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Button Animations */
-        .category-box a {
-            transition: transform 0.2s ease, background-color 0.3s ease;
+        /* Loading animation */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--light-gray);
+            border-top: 4px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
         }
 
-        .category-box a:hover {
-            transform: translateY(-5px);
-            background-color: #006666;
-        }
-
-        /* Box shadow effect on hover */
-        .category-box:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Image hover effect */
-        .category-box img {
-            transition: transform 0.4s ease, opacity 0.3s ease;
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1> Clima</h1>
+        <div class="header-content">
+            <h1>Clima e Tempo</h1>
+            <nav>
+                <ul>
+                    <li><a href="seasons.html"><i class="fas fa-leaf"></i> Estações</a></li>
+                    <li><a href="#clima"><i class="fas fa-cloud-sun"></i> Clima</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-       <!-- Lesson Cards -->
-       <div class="category-container fade-in">
-        <!-- Sol -->
-        <div class="category-box">
-            <img src="clima/sol.jpg" alt="Sol">
-            <div class="category-content">
-                <h3>Sol - سورج</h3>
-                <p>O Sol é a fonte de luz e calor do nosso sistema solar. Sem ele, não haveria vida na Terra.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio1.mp3')">Ouvir em Urdu</button>
+        <div class="weather-summary">
+            <h2>Resumo do Clima</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <h3>Temperatura Média</h3>
+                    <p>22°C</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Umidade Média</h3>
+                    <p>65%</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Velocidade do Vento</h3>
+                    <p>12 km/h</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Precipitação</h3>
+                    <p>45mm</p>
+                </div>
             </div>
         </div>
-    
-        <!-- Chuva -->
-        <div class="category-box">
-            <img src="clima/chuva.jpg" alt="Chuva">
-            <div class="category-content">
-                <h3>Chuva - بارش</h3>
-                <p>A Chuva ocorre quando as gotas de água caem do céu devido à condensação da umidade na atmosfera.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio2.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    
-        <!-- Vento -->
-        <div class="category-box">
-            <img src="clima/vento.jpg" alt="Vento">
-            <div class="category-content">
-                <h3>Vento - ہوا</h3>
-                <p>O Vento é o movimento do ar causado pela diferença de pressão atmosférica na Terra.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio3.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    
-        <!-- Neve -->
-        <div class="category-box">
-            <img src="clima/neve.jpg" alt="Neve">
-            <div class="category-content">
-                <h3>Neve - برف</h3>
-                <p>A Neve é formada pela cristalização de água na atmosfera, ocorrendo em temperaturas abaixo de zero.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio4.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    
-        <!-- Nuvem -->
-        <div class="category-box">
-            <img src="clima/nuvem.jpg" alt="Nuvem">
-            <div class="category-content">
-                <h3>Nuvem - بادل</h3>
-                <p>As Nuvens são formadas por partículas de água ou cristais de gelo suspensos na atmosfera.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio5.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    
-        <!-- Tornado -->
-        <div class="category-box">
-            <img src="clima/tornado.jpg" alt="Tornado">
-            <div class="category-content">
-                <h3>Tornado - طوفان</h3>
-                <p>Os Tornados são fenômenos meteorológicos violentos e destrutivos, com ventos giratórios muito fortes.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio6.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    
-        <!-- Adicionando mais Clima -->
-    
-        <!-- Relâmpago -->
-        <div class="category-box">
-            <img src="clima/Relâmpago.jpg" alt="Relâmpago">
-            <div class="category-content">
-                <h3>Relâmpago - آسمانی بجلی</h3>
-                <p>Relâmpago é uma descarga elétrica na atmosfera durante tempestades.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio7.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    
-        <!-- Arco-íris -->
-        <div class="category-box">
-            <img src="clima/Arco-íris.jpg" alt="Arco-íris">
-            <div class="category-content">
-                <h3>Arco-íris - قوس قزح</h3>
-                <p>O Arco-íris ocorre quando a luz do sol reflete e se refrata nas gotas de chuva, criando um espectro de cores.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio8.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    
-        <!-- Neblina -->
-        <div class="category-box">
-            <img src="clima/neblina.jpg" alt="Neblina">
-            <div class="category-content">
-                <h3>Neblina - کہر</h3>
-                <p>A Neblina é uma formação densa de vapor de água no ar, causando baixa visibilidade.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio9.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    
-        <!-- Geada -->
-        <div class="category-box">
-            <img src="clima/geada.jpg" alt="Geada">
-            <div class="category-content">
-                <h3>Geada - شبنم</h3>
-                <p>A Geada ocorre quando o vapor de água na atmosfera se congela em superfícies frias.</p>
-                <button class="styled-button" onclick="playAudio('vocabulário/audio10.mp3')">Ouvir em Urdu</button>
-            </div>
-        </div>
-    </div>
-    
-    </div>
-</div>
-<script>
-    function playAudio(filePath) {
-    var audio = new Audio(filePath);
-    audio.play();
-}
 
-</script>
+        <div class="pakistan-climate">
+            <div class="climate-header">
+                <h2>Clima do Paquistão</h2>
+                <div class="season-indicator">
+                    <i class="fas fa-sun season-icon"></i>
+                    <span>Estação Atual: Verão</span>
+                </div>
+            </div>
 
+            <div class="month-selector">
+                <button class="month-button active" data-month="jan">Janeiro</button>
+                <button class="month-button" data-month="feb">Fevereiro</button>
+                <button class="month-button" data-month="mar">Março</button>
+                <button class="month-button" data-month="apr">Abril</button>
+                <button class="month-button" data-month="may">Maio</button>
+                <button class="month-button" data-month="jun">Junho</button>
+                <button class="month-button" data-month="jul">Julho</button>
+                <button class="month-button" data-month="aug">Agosto</button>
+                <button class="month-button" data-month="sep">Setembro</button>
+                <button class="month-button" data-month="oct">Outubro</button>
+                <button class="month-button" data-month="nov">Novembro</button>
+                <button class="month-button" data-month="dec">Dezembro</button>
+            </div>
 
+            <div class="climate-details">
+                <div class="climate-card">
+                    <h3><i class="fas fa-temperature-high"></i> Temperatura</h3>
+                    <div class="climate-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">35°C</span>
+                            <span class="stat-label">Máxima</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">25°C</span>
+                            <span class="stat-label">Mínima</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">30°C</span>
+                            <span class="stat-label">Média</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">+5°C</span>
+                            <span class="stat-label">Variação</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="climate-card">
+                    <h3><i class="fas fa-tint"></i> Precipitação</h3>
+                    <div class="climate-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">150mm</span>
+                            <span class="stat-label">Mensal</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">85%</span>
+                            <span class="stat-label">Umidade</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">12</span>
+                            <span class="stat-label">Dias de Chuva</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">8h</span>
+                            <span class="stat-label">Sol/Dia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="climate-map">
+                <div class="map-container">
+                    <img src="clima/The-annual-average-thermal-classification-of-Pakistan-shows-Tundra-to-Megathermal-climate.png" alt="Mapa do Paquistão" class="pakistan-map">
+                    <div class="region-tooltip"></div>
+                </div>
+                <div class="region-info">
+                    <h4>Regiões Climáticas do Paquistão</h4>
+                    <p>Clique nas diferentes regiões do mapa para ver informações detalhadas sobre o clima local.</p>
+                </div>
+            </div>
+
+            <div class="climate-tips">
+                <div class="tips-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Dicas para o Clima Atual</h3>
+                </div>
+                <ul class="tips-list">
+                    <li>Use roupas leves e claras durante o dia</li>
+                    <li>Mantenha-se hidratado, beba bastante água</li>
+                    <li>Use protetor solar com FPS alto</li>
+                    <li>Evite atividades ao ar livre entre 12h e 15h</li>
+                    <li>Use chapéu ou guarda-chuva para proteção solar</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="weather-container">
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-normal">Normal</span>
+                <img src="clima/sol.jpg" alt="Sol" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-sun"></i> Ensolarado - دھوپ</h3>
+                    <p>Dias claros e ensolarados, perfeitos para atividades ao ar livre.</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-high"></i> 25°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">Min: 18°C</span>
+                        <span class="temp-max">Max: 32°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>Vento: 10 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Umidade: 45%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio1.mp3')">
+                            <i class="fas fa-play"></i> Ouvir em Urdu
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-warning">Chuva</span>
+                <img src="clima/chuva.jpg" alt="Chuva" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-cloud-rain"></i> Chuvoso - بارش</h3>
+                    <p>Dias nublados com chuva, ideal para ficar em casa e relaxar.</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-low"></i> 18°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">Min: 15°C</span>
+                        <span class="temp-max">Max: 22°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>Vento: 15 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Umidade: 85%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio2.mp3')">
+                            <i class="fas fa-play"></i> Ouvir em Urdu
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-normal">Normal</span>
+                <img src="clima/nuvem.jpg" alt="Nublado" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-cloud"></i> Nublado - ابر آلود</h3>
+                    <p>Céu coberto por nuvens, com possibilidade de chuva leve.</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-half"></i> 20°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">Min: 16°C</span>
+                        <span class="temp-max">Max: 24°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>Vento: 12 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Umidade: 65%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio3.mp3')">
+                            <i class="fas fa-play"></i> Ouvir em Urdu
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-danger">Frio</span>
+                <img src="clima/neve.jpg" alt="Neve" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-snowflake"></i> Neve - برف</h3>
+                    <p>Temperaturas baixas com neve, perfeito para esportes de inverno.</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-empty"></i> -5°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">Min: -8°C</span>
+                        <span class="temp-max">Max: -2°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>Vento: 8 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Umidade: 75%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio4.mp3')">
+                            <i class="fas fa-play"></i> Ouvir em Urdu
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-warning">Tempestade</span>
+                <img src="clima/tornado.jpg" alt="Tempestade" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-bolt"></i> Tempestade - طوفان</h3>
+                    <p>Condições severas com trovões e relâmpagos, evite sair de casa.</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-half"></i> 22°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">Min: 18°C</span>
+                        <span class="temp-max">Max: 26°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>Vento: 25 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Umidade: 90%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio5.mp3')">
+                            <i class="fas fa-play"></i> Ouvir em Urdu
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="weather-card fade-in">
+                <span class="weather-tag tag-normal">Normal</span>
+                <img src="clima/vento.jpg" alt="Vento" class="weather-icon">
+                <div class="weather-content">
+                    <h3><i class="fas fa-wind"></i> Ventoso - ہوا</h3>
+                    <p>Dias com ventos fortes, ideal para atividades como kitesurf.</p>
+                    <div class="temperature">
+                        <i class="fas fa-temperature-half"></i> 19°C
+                    </div>
+                    <div class="temperature-range">
+                        <span class="temp-min">Min: 16°C</span>
+                        <span class="temp-max">Max: 22°C</span>
+                    </div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>Vento: 30 km/h</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Umidade: 55%</span>
+                        </div>
+                    </div>
+                    <div class="audio-controls">
+                        <button class="styled-button" onclick="playAudio('clima/audio6.mp3')">
+                            <i class="fas fa-play"></i> Ouvir em Urdu
+                        </button>
+                        <div class="audio-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+ 
+
+    <script>
+        // Audio player functionality
+        let currentAudio = null;
+        let progressBars = document.querySelectorAll('.progress-bar');
+
+        function playAudio(filePath) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+
+            currentAudio = new Audio(filePath);
+            currentAudio.play();
+
+            // Update progress bar
+            currentAudio.addEventListener('timeupdate', function() {
+                const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+                progressBars.forEach(bar => {
+                    bar.style.width = progress + '%';
+                });
+            });
+
+            // Reset progress bar when audio ends
+            currentAudio.addEventListener('ended', function() {
+                progressBars.forEach(bar => {
+                    bar.style.width = '0%';
+                });
+            });
+        }
+
+        // Add fade-in animation to elements as they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.weather-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Update weather summary with real-time data
+        function updateWeatherSummary() {
+            const temperatures = document.querySelectorAll('.temperature');
+            const humidities = document.querySelectorAll('.detail-item:nth-child(2) span');
+            const winds = document.querySelectorAll('.detail-item:nth-child(1) span');
+
+            let totalTemp = 0;
+            let totalHumidity = 0;
+            let totalWind = 0;
+            let count = temperatures.length;
+
+            temperatures.forEach(temp => {
+                const tempValue = parseInt(temp.textContent.match(/-?\d+/)[0]);
+                totalTemp += tempValue;
+            });
+
+            humidities.forEach(humidity => {
+                const humidityValue = parseInt(humidity.textContent.match(/\d+/)[0]);
+                totalHumidity += humidityValue;
+            });
+
+            winds.forEach(wind => {
+                const windValue = parseInt(wind.textContent.match(/\d+/)[0]);
+                totalWind += windValue;
+            });
+
+            document.querySelector('.summary-item:nth-child(1) p').textContent = 
+                Math.round(totalTemp / count) + '°C';
+            document.querySelector('.summary-item:nth-child(2) p').textContent = 
+                Math.round(totalHumidity / count) + '%';
+            document.querySelector('.summary-item:nth-child(3) p').textContent = 
+                Math.round(totalWind / count) + ' km/h';
+        }
+
+        // Update summary on page load
+        window.addEventListener('load', updateWeatherSummary);
+
+        // Pakistan Climate Functionality
+        const monthButtons = document.querySelectorAll('.month-button');
+        const climateData = {
+            jan: { temp: { max: 20, min: 7, avg: 13 }, rain: 25, humidity: 65 },
+            feb: { temp: { max: 22, min: 9, avg: 15 }, rain: 30, humidity: 60 },
+            mar: { temp: { max: 27, min: 14, avg: 20 }, rain: 40, humidity: 55 },
+            apr: { temp: { max: 33, min: 19, avg: 26 }, rain: 20, humidity: 45 },
+            may: { temp: { max: 38, min: 24, avg: 31 }, rain: 15, humidity: 40 },
+            jun: { temp: { max: 40, min: 27, avg: 33 }, rain: 50, humidity: 50 },
+            jul: { temp: { max: 38, min: 26, avg: 32 }, rain: 200, humidity: 75 },
+            aug: { temp: { max: 37, min: 25, avg: 31 }, rain: 180, humidity: 80 },
+            sep: { temp: { max: 36, min: 24, avg: 30 }, rain: 90, humidity: 70 },
+            oct: { temp: { max: 33, min: 19, avg: 26 }, rain: 10, humidity: 55 },
+            nov: { temp: { max: 28, min: 14, avg: 21 }, rain: 5, humidity: 50 },
+            dec: { temp: { max: 22, min: 9, avg: 15 }, rain: 15, humidity: 60 }
+        };
+
+        function updateClimateData(month) {
+            const data = climateData[month];
+            document.querySelector('.stat-value:nth-child(1)').textContent = data.temp.max + '°C';
+            document.querySelector('.stat-value:nth-child(2)').textContent = data.temp.min + '°C';
+            document.querySelector('.stat-value:nth-child(3)').textContent = data.temp.avg + '°C';
+            document.querySelector('.stat-value:nth-child(5)').textContent = data.rain + 'mm';
+            document.querySelector('.stat-value:nth-child(6)').textContent = data.humidity + '%';
+        }
+
+        monthButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                monthButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                updateClimateData(button.dataset.month);
+            });
+        });
+
+        // Update season indicator based on current month
+        function updateSeasonIndicator() {
+            const month = new Date().getMonth();
+            const seasonIcon = document.querySelector('.season-icon');
+            const seasonText = document.querySelector('.season-indicator span:last-child');
+            
+            if (month >= 2 && month <= 4) {
+                seasonIcon.className = 'fas fa-leaf season-icon';
+                seasonText.textContent = 'Estação Atual: Primavera';
+            } else if (month >= 5 && month <= 7) {
+                seasonIcon.className = 'fas fa-sun season-icon';
+                seasonText.textContent = 'Estação Atual: Verão';
+            } else if (month >= 8 && month <= 10) {
+                seasonIcon.className = 'fas fa-wind season-icon';
+                seasonText.textContent = 'Estação Atual: Outono';
+            } else {
+                seasonIcon.className = 'fas fa-snowflake season-icon';
+                seasonText.textContent = 'Estação Atual: Inverno';
+            }
+        }
+
+        // Initialize climate data and season indicator
+        updateClimateData('jan');
+        updateSeasonIndicator();
+
+        // Map Interaction
+        const regions = [
+            {
+                name: "Norte - Região Montanhosa",
+                description: "Clima alpino com invernos frios e verões amenos. Área das cordilheiras do Himalaia, Karakoram e Hindu Kush.",
+                climate: "Temperatura: -10°C a 15°C\nPrecipitação anual: 1000-2000mm",
+                coordinates: { x: 50, y: 20, width: 30, height: 20 }
+            },
+            {
+                name: "Centro - Planalto",
+                description: "Clima continental com grandes variações de temperatura. Região do Punjab e áreas centrais.",
+                climate: "Temperatura: 0°C a 45°C\nPrecipitação anual: 250-500mm",
+                coordinates: { x: 40, y: 40, width: 30, height: 30 }
+            },
+            {
+                name: "Sul - Região Costeira",
+                description: "Clima tropical com influência marítima. Região de Sindh e costa do Mar Arábico.",
+                climate: "Temperatura: 15°C a 40°C\nPrecipitação anual: 100-200mm",
+                coordinates: { x: 30, y: 70, width: 40, height: 20 }
+            },
+            {
+                name: "Oeste - Região Árida",
+                description: "Clima desértico e semiárido. Região do Baluchistão.",
+                climate: "Temperatura: 5°C a 45°C\nPrecipitação anual: 50-100mm",
+                coordinates: { x: 20, y: 50, width: 30, height: 30 }
+            }
+        ];
+
+        function createRegionElements() {
+            const mapContainer = document.querySelector('.map-container');
+            const tooltip = document.querySelector('.region-tooltip');
+            const regionInfo = document.querySelector('.region-info');
+
+            regions.forEach(region => {
+                const element = document.createElement('div');
+                element.className = 'climate-region';
+                element.style.left = region.coordinates.x + '%';
+                element.style.top = region.coordinates.y + '%';
+                element.style.width = region.coordinates.width + '%';
+                element.style.height = region.coordinates.height + '%';
+                element.style.background = 'rgba(0, 45, 98, 0.2)';
+                element.style.border = '2px solid rgba(0, 45, 98, 0.5)';
+
+                element.addEventListener('mouseover', (e) => {
+                    tooltip.textContent = region.name;
+                    tooltip.style.left = e.pageX + 'px';
+                    tooltip.style.top = (e.pageY - 30) + 'px';
+                    tooltip.classList.add('active');
+                });
+
+                element.addEventListener('mouseout', () => {
+                    tooltip.classList.remove('active');
+                });
+
+                element.addEventListener('click', () => {
+                    regionInfo.innerHTML = `
+                        <h4>${region.name}</h4>
+                        <p>${region.description}</p>
+                        <p><strong>Dados Climáticos:</strong><br>${region.climate}</p>
+                    `;
+                });
+
+                mapContainer.appendChild(element);
+            });
+        }
+
+        // Initialize map regions
+        createRegionElements();
+    </script>
 </body>
 </html>

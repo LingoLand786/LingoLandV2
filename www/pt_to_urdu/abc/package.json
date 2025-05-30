@@ -1,0 +1,12 @@
+{
+  "name": "urdu-learning-app",
+  "version": "1.0.0",
+  "description": "Urdu Learning Application with Firebase Integration",
+  "main": "setup-firebase-rules.js",
+  "scripts": {
+    "setup-rules": "node setup-firebase-rules.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.11.0"
+  }
+} 

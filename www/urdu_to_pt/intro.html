@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bem-vindo ao Curso de Urdu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #f5f7fa;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #002D62;
+
+            overflow-x: hidden;
+        }
+        .welcome-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 3rem;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .title {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 1s ease;
+            position: relative;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .course-section {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .course-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: #3498db;
+        }
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .section-title i {
+            color: #002D62;
+            font-size: 2rem;
+        }
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1.2rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e1e8ed;
+        }
+        .feature-item:hover {
+            background: #f1f5f9;
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .feature-icon {
+            margin-right: 1.5rem;
+            color: #002D62;
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
+        }
+        .feature-item:hover .feature-icon {
+            transform: scale(1.2);
+        }
+        .start-button {
+            display: block;
+            width: 250px;
+            margin: 2rem auto;
+            padding: 1.2rem 2.5rem;
+            background: #002D62;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.3rem;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .start-button:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            color: white;
+        }
+        .game-container {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e1e8ed;
+            position: relative;
+        }
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #002D62;
+            padding: 0.5rem 1rem;
+            border-radius: 10px 10px 0 0;
+            margin: -2rem -2rem 1rem -2rem;
+        }
+        .game-score-display {
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .game-score-display i {
+            color: #e74c3c;
+        }
+        .game-controls-top {
+            display: flex;
+            gap: 1rem;
+        }
+        .game-control-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.2s;
+        }
+        .game-control-btn:hover {
+            transform: scale(1.1);
+        }
+        .game-control-btn i {
+            font-size: 1.2rem;
+        }
+        .game-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .game-instructions {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        #gameCanvas {
+            background: #ffffff;
+            border-radius: 10px;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .game-controls {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .control-btn {
+            background: #002D62;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .control-btn:hover {
+            background: #002D62;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        .game-score {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+        .fact-box {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1rem 0;
+            border: 1px solid #e1e8ed;
+        }
+        .fact-box h4 {
+            color: #002D62;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        .fact-box p {
+            color: #64748b;
+            margin-bottom: 0;
+        }
+        .motivation-text {
+            text-align: center;
+            font-style: italic;
+            color: #64748b;
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e1e8ed;
+        }
+        .game-message {
+            position: absolute;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #002D62, #004080);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 3px 15px rgba(0, 45, 98, 0.2);
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1 class="title">Bem-vindo ao Curso de Urdu</h1>
+        
+        <div class="course-section">
+            <h2 class="section-title">
+                <i class="fas fa-globe"></i>
+                Sobre o Urdu
+            </h2>
+            <p>O Urdu é uma língua rica e poética, falada por milhões de pessoas no Paquistão e na Índia. 
+            É conhecida por sua beleza literária e é a língua oficial do Paquistão. 
+            Aprender urdu abrirá portas para uma cultura fascinante e uma nova forma de se expressar.</p>
+            
+            <div class="fact-box">
+                <h4>Facto Interessante #1</h4>
+                <p>O Urdu é uma língua que combina elementos do persa, árabe e turco, criando um rico vocabulário e uma estrutura gramatical única.</p>
+            </div>
+            
+            <div class="fact-box">
+                <h4>Facto Interessante #2</h4>
+                <p>O Urdu é a língua oficial do Paquistão e é falado por mais de 100 milhões de pessoas em todo o mundo.</p>
+            </div>
+            
+            <div class="fact-box">
+                <h4>Facto Interessante #3</h4>
+                <p>A literatura urdu é famosa por sua poesia, especialmente o ghazal, um gênero poético que expressa sentimentos de amor e perda.</p>
+            </div>
+        </div>
+
+        <div class="game-container">
+            <div class="game-header">
+                <div class="game-score-display">
+                    <i class="fas fa-apple-alt"></i>
+                    <span id="score">0</span>
+                </div>
+                <div class="game-controls-top">
+                    <button class="game-control-btn" onclick="toggleFullscreen()">
+                        <i class="fas fa-expand"></i>
+                    </button>
+                    <button class="game-control-btn" onclick="toggleAudio()">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <button class="game-control-btn" onclick="closeGame()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <h2 class="game-title">Pronto para uma Aventura?</h2>
+            <p class="game-instructions">Antes de começar sua jornada de aprendizado, que tal jogar um jogo divertido para se familiarizar com as letras em Urdu?</p>
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            <div class="game-controls">
+                <button class="control-btn" onclick="startGame()">Iniciar Jogo</button>
+                <button class="control-btn" onclick="pauseGame()">Pausar</button>
+            </div>
+            <div class="game-message"></div>
+        </div>
+
+        <div class="course-section">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Sobre o Curso
+            </h2>
+            <p>Este curso foi especialmente desenvolvido para falantes de português que desejam aprender urdu. 
+            Através de uma abordagem estruturada e interativa, você aprenderá desde o básico até a fluência no idioma.</p>
+            <p class="motivation-text">"Cada nova língua é uma nova vida!"</p>
+        </div>
+
+        <div class="course-section">
+            <h2 class="section-title">
+                <i class="fas fa-book"></i>
+                Estrutura do Curso
+            </h2>
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <i class="fas fa-font feature-icon"></i>
+                    <span>Alfabeto e Pronunciação</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-language feature-icon"></i>
+                    <span>Gramática Básica e Avançada</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-comments feature-icon"></i>
+                    <span>Vocabulário do Dia a Dia</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-tasks feature-icon"></i>
+                    <span>Exercícios Práticos</span>
+                </li>
+                <li class="feature-item">
+                    <i class="fas fa-theater-masks feature-icon"></i>
+                    <span>Conversação e Expressões</span>
+                </li>
+            </ul>
+        </div>
+
+        <a href="abc/LESSONCARDSABC.html" class="start-button">Começar Aprender</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Snake Game Logic
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const gridSize = 20;
+        const tileCount = canvas.width / gridSize;
+
+        let snake = [
+            {x: 10, y: 10}
+        ];
+        let food = {x: 15, y: 15};
+        let dx = 0;
+        let dy = 0;
+        let score = 0;
+        let gameLoop;
+        let isPaused = false;
+        let level = 1;
+        let messages = [
+            { score: 0, message: "Vamos começar! 🚀" },
+            { score: 50, message: "Ótimo progresso! 🌟" },
+            { score: 100, message: "Você está indo muito bem! ⭐" },
+            { score: 150, message: "Impressionante! 🌠" },
+            { score: 200, message: "Você é incrível! 🏆" },
+            { score: 250, message: "Nível Mestre alcançado! 👑" }
+        ];
+
+        const urduLetters = ['ا', 'ب', 'ت', 'ث', 'ج', 'ح', 'خ', 'د', 'ذ', 'ر', 'ز', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف'];
+
+        function showMessage(message) {
+            let messageElement = document.querySelector('.game-message');
+            if (!messageElement) {
+                messageElement = document.createElement('div');
+                messageElement.className = 'game-message';
+                document.querySelector('.game-container').appendChild(messageElement);
+            }
+            
+            messageElement.textContent = message;
+            messageElement.style.opacity = '1';
+            
+            setTimeout(() => {
+                messageElement.style.opacity = '0';
+            }, 1500);
+        }
+
+        function startGame() {
+            if (gameLoop) clearInterval(gameLoop);
+            snake = [{x: 10, y: 10}];
+            dx = 0;
+            dy = 0;
+            score = 0;
+            level = 1;
+            document.getElementById('score').textContent = `Nível ${level} - Pontuação: ${score}`;
+            generateFood();
+            gameLoop = setInterval(update, 100);
+            showMessage("Vamos começar! 🚀");
+        }
+
+        function pauseGame() {
+            isPaused = !isPaused;
+            if (isPaused) {
+                showMessage("Jogo Pausado");
+            } else {
+                showMessage("Jogo Continuado");
+            }
+        }
+
+        function generateFood() {
+            food = {
+                x: Math.floor(Math.random() * tileCount),
+                y: Math.floor(Math.random() * tileCount)
+            };
+        }
+
+        function update() {
+            if (isPaused) return;
+
+            const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+
+            // Check collision with walls
+            if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
+                gameOver();
+                return;
+            }
+
+            // Check collision with self
+            for (let i = 1; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
+                    gameOver();
+                    return;
+                }
+            }
+
+            snake.unshift(head);
+
+            // Check if food is eaten
+            if (head.x === food.x && head.y === food.y) {
+                score += 10;
+                // Check for level up
+                if (score % 50 === 0) {
+                    level++;
+                    showMessage(`Nível ${level} alcançado! 🌟`);
+                }
+                // Check for encouraging messages
+                messages.forEach(msg => {
+                    if (score === msg.score) {
+                        showMessage(msg.message);
+                    }
+                });
+                document.getElementById('score').textContent = `Nível ${level} - Pontuação: ${score}`;
+                generateFood();
+            } else {
+                snake.pop();
+            }
+
+            draw();
+        }
+
+        function draw() {
+            // Clear canvas
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw grid with gradient
+            ctx.strokeStyle = '#f1f5f9';
+            for (let i = 0; i < tileCount; i++) {
+                ctx.beginPath();
+                ctx.moveTo(i * gridSize, 0);
+                ctx.lineTo(i * gridSize, canvas.height);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(0, i * gridSize);
+                ctx.lineTo(canvas.width, i * gridSize);
+                ctx.stroke();
+            }
+
+            // Draw snake with gradient and rounded corners
+            snake.forEach((segment, index) => {
+                const x = segment.x * gridSize;
+                const y = segment.y * gridSize;
+                const size = gridSize - 2;
+
+                // Create gradient for snake body
+                const gradient = ctx.createLinearGradient(x, y, x + size, y + size);
+                if (index === 0) {
+                    // Head color
+                    gradient.addColorStop(0, '#002D62');
+                    gradient.addColorStop(1, '#004080');
+                } else {
+                    // Body color
+                    gradient.addColorStop(0, '#3498db');
+                    gradient.addColorStop(1, '#2980b9');
+                }
+
+                // Draw rounded rectangle
+                ctx.beginPath();
+                ctx.roundRect(x, y, size, size, 5);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                ctx.strokeStyle = '#2980b9';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+
+                // Add eyes to head
+                if (index === 0) {
+                    ctx.fillStyle = '#ffffff';
+                    const eyeSize = 4;
+                    const eyeOffset = 6;
+                    
+                    // Position eyes based on direction
+                    let eyeX1, eyeX2, eyeY1, eyeY2;
+                    if (dx === 1) { // Right
+                        eyeX1 = eyeX2 = x + size - eyeOffset;
+                        eyeY1 = y + eyeOffset;
+                        eyeY2 = y + size - eyeOffset;
+                    } else if (dx === -1) { // Left
+                        eyeX1 = eyeX2 = x + eyeOffset;
+                        eyeY1 = y + eyeOffset;
+                        eyeY2 = y + size - eyeOffset;
+                    } else if (dy === -1) { // Up
+                        eyeX1 = x + eyeOffset;
+                        eyeX2 = x + size - eyeOffset;
+                        eyeY1 = eyeY2 = y + eyeOffset;
+                    } else { // Down
+                        eyeX1 = x + eyeOffset;
+                        eyeX2 = x + size - eyeOffset;
+                        eyeY1 = eyeY2 = y + size - eyeOffset;
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(eyeX1, eyeY1, eyeSize, 0, Math.PI * 2);
+                    ctx.arc(eyeX2, eyeY2, eyeSize, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    // Add pupils
+                    ctx.fillStyle = '#000000';
+                    ctx.beginPath();
+                    ctx.arc(eyeX1, eyeY1, eyeSize/2, 0, Math.PI * 2);
+                    ctx.arc(eyeX2, eyeY2, eyeSize/2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            });
+
+            // Draw food with glow effect
+            const foodX = food.x * gridSize + gridSize/2;
+            const foodY = food.y * gridSize + gridSize/2;
+            
+            // Create glow effect
+            const glow = ctx.createRadialGradient(foodX, foodY, 0, foodX, foodY, 15);
+            glow.addColorStop(0, 'rgba(231, 76, 60, 0.3)');
+            glow.addColorStop(1, 'rgba(231, 76, 60, 0)');
+            
+            ctx.beginPath();
+            ctx.arc(foodX, foodY, 15, 0, Math.PI * 2);
+            ctx.fillStyle = glow;
+            ctx.fill();
+
+            // Draw food letter
+            ctx.fillStyle = '#e74c3c';
+            ctx.font = 'bold 20px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(urduLetters[Math.floor(Math.random() * urduLetters.length)], foodX, foodY);
+        }
+
+        function gameOver() {
+            clearInterval(gameLoop);
+            const finalMessage = score > 200 ? 
+                "Incrível! Você dominou o jogo! 🏆" : 
+                score > 100 ? 
+                    "Boa tentativa! Continue praticando! 🌟" : 
+                    "Não desanime! Tente novamente! 💪";
+            
+            showMessage(finalMessage);
+            
+            setTimeout(() => {
+                if (confirm('Game Over! Deseja jogar novamente?')) {
+                    startGame();
+                }
+            }, 2000);
+        }
+
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowUp':
+                    if (dy !== 1) { dx = 0; dy = -1; }
+                    break;
+                case 'ArrowDown':
+                    if (dy !== -1) { dx = 0; dy = 1; }
+                    break;
+                case 'ArrowLeft':
+                    if (dx !== 1) { dx = -1; dy = 0; }
+                    break;
+                case 'ArrowRight':
+                    if (dx !== -1) { dx = 1; dy = 0; }
+                    break;
+            }
+        });
+
+        // Add entrance animation to sections
+        const sections = document.querySelectorAll('.course-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        sections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.5s ease';
+            observer.observe(section);
+        });
+
+        // Remove old animation styles and add new ones
+        const style = document.createElement('style');
+        style.textContent = `
+            .game-message {
+                animation: none;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add new game control functions
+        function toggleFullscreen() {
+            const gameContainer = document.querySelector('.game-container');
+            if (!document.fullscreenElement) {
+                gameContainer.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        let isAudioMuted = false;
+        function toggleAudio() {
+            isAudioMuted = !isAudioMuted;
+            const audioBtn = document.querySelector('.game-controls-top .fa-volume-up');
+            if (isAudioMuted) {
+                audioBtn.classList.remove('fa-volume-up');
+                audioBtn.classList.add('fa-volume-mute');
+            } else {
+                audioBtn.classList.remove('fa-volume-mute');
+                audioBtn.classList.add('fa-volume-up');
+            }
+        }
+
+        function closeGame() {
+            const gameContainer = document.querySelector('.game-container');
+            gameContainer.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

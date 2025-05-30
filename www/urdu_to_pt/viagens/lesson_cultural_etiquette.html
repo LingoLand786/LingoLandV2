@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lição - Etiqueta Cultural</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #002D62;
+            --secondary-color: #001b40;
+            --accent-color: #4CAF50;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --border-radius: 15px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .lesson-container {
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        section {
+            background: #fff;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+        }
+
+        .culture-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .culture-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .culture-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .culture-card p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .phrase-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .phrase-table th, .phrase-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .phrase-table th {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
+        }
+
+        .phrase-table td {
+            background: white;
+            transition: var(--transition);
+        }
+
+        .phrase-table tr:hover td {
+            background: var(--light-bg);
+        }
+
+        .audio-btn {
+            background: var(--accent-color);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.1);
+            background: var(--primary-color);
+        }
+
+        .floating-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .floating-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 15px;
+            margin: 5px 0;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .floating-nav a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .practice-section {
+            background: var(--light-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-top: 50px;
+        }
+
+        .quiz-container {
+            margin-top: 30px;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .quiz-option {
+            padding: 20px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .quiz-option:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 30px 20px;
+            }
+
+            .floating-nav {
+                display: none;
+            }
+
+            .quiz-option {
+                padding: 15px;
+            }
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .navigation-buttons {
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+</div>
+
+<div class="floating-nav">
+    <a href="#greetings"><i class="fas fa-handshake"></i> اسلامی سلام</a>
+    <a href="#customs"><i class="fas fa-globe"></i> پاکستانی روایات</a>
+    <a href="#taboos"><i class="fas fa-exclamation-triangle"></i> ثقافتی احترام</a>
+    <a href="#practice"><i class="fas fa-tasks"></i> مشق</a>
+</div>
+
+<header>
+    <h1>پاکستان کے ثقافتی آداب</h1>
+    <p>پاکستان کے اہم رسم و رواج اور ثقافتی رویوں کے بارے میں سیکھیں</p>
+</header>
+
+<div class="lesson-container">
+    <section id="greetings">
+        <h2>اسلامی سلام اور خیرمقدمی جملے</h2>
+        <div class="culture-card">
+            <h3>روایتی سلام</h3>
+            <p>پاکستان میں سب سے عام سلام "السلام علیکم" ہے (آپ پر سلامتی ہو)۔ مقامی رسم و رواج کا احترام ضروری ہے، جیسے کہ مرد و عورت کے درمیان مصافحہ سے گریز کرنا، جب تک کہ دوسرا شخص خود ہاتھ نہ بڑھائے۔</p>
+        </div>
+        <table class="phrase-table">
+            <thead>
+                <tr>
+                    <th>پرتگالی</th>
+                    <th>اردو</th>
+                    <th>آڈیو</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>A paz esteja com você</td>
+                    <td>السلام علیکم</td>
+                    <td><button class="audio-btn" onclick="playAudio('culture/salam')"><i class="fas fa-play"></i></button></td>
+                </tr>
+                <tr>
+                    <td>E com você esteja a paz</td>
+                    <td>وعلیکم السلام</td>
+                    <td><button class="audio-btn" onclick="playAudio('culture/walaikum')"><i class="fas fa-play"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Como você está?</td>
+                    <td>آپ کیسے ہیں؟</td>
+                    <td><button class="audio-btn" onclick="playAudio('culture/how-are-you')"><i class="fas fa-play"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="customs">
+        <h2>پاکستانی روایات</h2>
+        <div class="culture-card">
+            <h3>لباس</h3>
+            <p>پاکستان میں باوقار لباس پہننا اہم ہے۔ مرد عام طور پر رسمی مواقع پر شلوار قمیض پہنتے ہیں، جبکہ خواتین کو چاہیے کہ کندھے اور گھٹنے ڈھانپنے والے کپڑے پہنیں۔</p>
+        </div>
+        <div class="culture-card">
+            <h3>کھانے</h3>
+            <p>پاکستان میں عموماً دائیں ہاتھ سے کھایا جاتا ہے۔ کھانے کے اوقات سماجی رابطے کا ذریعہ ہوتے ہیں، اور میزبان کی مہمان نوازی قبول کرنا خوش اخلاقی سمجھا جاتا ہے۔ چائے (چائے/چائے) ثقافت کا اہم حصہ ہے۔</p>
+        </div>
+        <div class="culture-card">
+            <h3>مساجد</h3>
+            <p>مساجد میں داخل ہوتے وقت جوتے اتارنا ضروری ہوتا ہے، اور خواتین کو سر ڈھانپنا چاہیے۔ یہ مقدس مقامات ہیں، اس لیے وہاں خاموشی اور ادب کا مظاہرہ کرنا ضروری ہے۔</p>
+        </div>
+    </section>
+
+    <section id="taboos">
+        <h2>ثقافتی احترام اور رویے</h2>
+        <div class="culture-card">
+            <h3>سماجی میل جول</h3>
+            <p>پاکستانی ثقافت میں بزرگوں کا احترام انتہائی اہم ہے۔ ایسے افراد کے ساتھ جنہیں آپ ابھی جانتے ہیں، سیاست یا مذہب پر بات کرنے سے گریز کریں۔</p>
+        </div>
+        <table class="phrase-table">
+            <thead>
+                <tr>
+                    <th>صورتحال</th>
+                    <th>کیا نہ کریں</th>
+                    <th>کیا کریں</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>گھریلو ملاقاتیں</td>
+                    <td>جوتے پہن کر داخل ہونا</td>
+                    <td>دروازے پر جوتے اتارنا</td>
+                </tr>
+                <tr>
+                    <td>کھانے</td>
+                    <td>بائیں ہاتھ سے کھانا</td>
+                    <td>صرف دائیں ہاتھ سے کھانا</td>
+                </tr>
+                <tr>
+                    <td>سماجی ملاقاتیں</td>
+                    <td>چائے یا مہمان نوازی سے انکار</td>
+                    <td>کم از کم ایک کپ چائے قبول کریں</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="practice" class="practice-section">
+        <h2>مشق</h2>
+        <div class="quiz-container">
+            <div class="quiz-question">
+    پاکستان میں ' Olá' کیسے کہا جاتا ہے؟
+            </div>
+            <div class="quiz-options">
+                <div class="quiz-option" onclick="checkAnswer(this, 'correct')">السلام علیکم (Assalam-o-Alaikum)</div>
+                <div class="quiz-option" onclick="checkAnswer(this, 'wrong')">صبح بخیر (Subah Bakhair)</div>
+                <div class="quiz-option" onclick="checkAnswer(this, 'wrong')">شکریہ (Shukriya)</div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="navigation-buttons">
+    <a href="viagens.html" class="nav-btn">
+        <i class="fas fa-home"></i>
+        مرکزی مینو
+    </a>
+    <a href="lesson_emergency_phrases.html" class="nav-btn">
+        <span>اگلا سبق</span>
+        <i class="fas fa-arrow-right"></i>
+    </a>
+</div>
+
+    <script>
+        // Progress bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.scrollY;
+            const progress = (scrolled / documentHeight) * 100;
+            progressBar.style.width = progress + '%';
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Audio playback functionality
+        function playAudio(audioId) {
+            const audio = new Audio(`${audioId}.mp3`);
+            audio.play().catch(error => {
+                console.error('Error playing audio:', error);
+                alert('Desculpe, não foi possível reproduzir o áudio. Por favor, verifique se o arquivo de áudio existe.');
+            });
+        }
+
+        // Quiz functionality
+        function checkAnswer(element, type) {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.style.background = 'white';
+                option.style.color = 'var(--text-color)';
+            });
+
+            if (type === 'correct') {
+                element.style.background = 'var(--accent-color)';
+                element.style.color = 'white';
+            } else {
+                element.style.background = '#ff4444';
+                element.style.color = 'white';
+            }
+        }
+    </script>
+</body>
+</html>

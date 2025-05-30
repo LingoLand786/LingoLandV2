@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cumprimentos 2 </title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* Core styling */
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: white;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #ecf0f1;
+      overflow: hidden;
+    }
+
+    /* Premium quiz container */
+    .quiz-container {
+      background: #1C2833;
+      border-radius: 16px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+      padding: 40px 60px;
+      width: 80%;
+      max-width: 800px;
+      text-align: center;
+      position: relative;
+      animation: fadeIn 1s ease-out;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Title */
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.2rem;
+      color: #F39C12;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Question styling */
+    .question {
+      font-size: 1.6rem;
+      margin-bottom: 25px;
+      color: #ecf0f1;
+      font-weight: 700;
+    }
+
+    /* Answers style */
+    .answers label {
+      display: block;
+      margin: 15px 0;
+      padding: 20px;
+      background: #34495E;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      color: #ecf0f1;
+      font-weight: 500;
+      border: 2px solid transparent;
+    }
+
+    .answers label:hover {
+      background: #2ECC71;
+      transform: translateY(-5px);
+      border-color: #2ECC71;
+    }
+
+    /* Audio button styling */
+    #audioButton {
+      background: #F39C12;
+      color: white;
+      font-size: 1.2rem;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+    .card {
+  position: relative;         /* Make card the positioning parent */
+  padding: 20px;
+  background-color: #2C3E50;  /* Card color from the image */
+  border-radius: 10px;        /* Smooth rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;           /* Crop anything outside the card */
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #2C3E50;  /* Progress bar color */
+  border-radius: 5px;         /* Smooth edges for progress bar */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateY(-50%); /* Center vertically on top edge */
+}
+
+
+    #audioButton:hover {
+      background: #F1C40F;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Next button styling */
+    button {
+      background: #8E44AD;
+      color: white;
+      padding: 18px 35px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: none;
+    }
+
+    button:hover {
+      background: #9B59B6;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      height: 8px;
+      background-color: #2C3E50;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: #F39C12;
+      width: 0%;
+      border-radius: 5px;
+      transition: width 0.3s ease-out;
+    }
+
+    /* Feedback area */
+    #feedback {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .correct {
+      color: #27AE60;
+    }
+
+    .incorrect {
+      color: #E74C3C;
+    }
+
+    /* Transitions for elements */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .quiz-container {
+        padding: 30px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .question {
+        font-size: 1.3rem;
+      }
+      /* Enhanced result page styling */
+.results-container {
+  text-align: center;
+  padding: 30px;
+  background-color: #1C2833;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 1s ease-out;
+  color: #ecf0f1;
+  margin-top: 20px;
+}
+
+.results-container h2 {
+  font-size: 2.5rem;
+  color: #F39C12;
+  margin-bottom: 20px;
+}
+
+.results-container p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #ecf0f1;
+}
+
+.score-bar {
+  background-color: #34495E;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.score-bar-fill {
+  height: 20px;
+  background-color: #F39C12;
+  width: 0;
+  border-radius: 10px;
+  transition: width 1s ease-out;
+}
+
+.score-feedback {
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+.score-feedback.excellent {
+  color: #2ECC71;
+}
+
+.score-feedback.good {
+  color: #F1C40F;
+}
+
+.score-feedback.try-again {
+  color: #E74C3C;
+}
+
+.results-buttons {
+  margin-top: 20px;
+}
+
+.results-buttons button {
+  background: #8E44AD;
+  color: white;
+  padding: 12px 25px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.results-buttons button:hover {
+  background: #9B59B6;
+  transform: translateY(-3px);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(50px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+      button {
+        width: 100%;
+      }
+      #audioButton {
+  background: #F39C12;
+  color: white;
+  font-size: 1.2rem;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div class="progress-bar">
+      <div id="progressBar" class="progress"></div>
+    </div>
+    <h1>Lição 3: Cumprimentos</h1>
+    <div id="quiz">
+      <!-- Perguntas aparecerão aqui -->
+    </div>
+    <div id="feedback"></div>
+    <button id="next" style="display: none;">Próximo</button>
+    <div id="results"></div>
+  </div>
+
+  <script>
+   const quizData = [
+  {
+    question: "Como você diz 'Eu sou de [....]' em português?",
+    answers: {
+      a: "میں [...........] سے ہوں۔",  // Correct
+      b: "میں [...........] رہتا ہوں۔",  // Incorrect
+      c: "میں [...........] کا دوست ہوں۔",  // Incorrect
+    },
+    correct: "a",  // Correct answer
+    audio: "answers_audio/answer_1.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como se diz 'Boa tarde' em português?",
+    answers: {
+      a: "صبح بخیر",  // Incorrect
+      b: "دوپہر بخیر",  // Correct
+      c: "رات بخیر",  // Incorrect
+    },
+    correct: "b",  // Correct answer
+    audio: "answers_audio/answer_2.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como você pergunta 'Quantas horas sâo?' em português?",
+    answers: {
+      a: "کیا وقت ہوا ہے؟",  // Correct (translated to Urdu: "Que horas são?" in Portuguese)
+      b: "آج کیا دن ہے؟",  // Incorrect (translated to Urdu: "Que dia é hoje?")
+      c: "گھڑی کہاں ہے؟",  // Incorrect (translated to Urdu: "Onde está o relógio?")
+    },
+    correct: "a",  // Correct answer
+    audio: "answers_audio/answer_3.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como você diz 'O que você está fazer?' em português?",
+    answers: {
+      a: " یہ اچھا ہے",  // Incorrect (translated to Urdu: "O que você faz?")
+      b: "آپ کیا کر رہے ہیں؟",  // Correct (translated to Urdu: "O que você está fazendo?")
+      c: "آپ کیا کرنا چاہتے ہیں؟",  // Incorrect (translated to Urdu: "O que você quer fazer?")
+    },
+    correct: "b",  // Correct answer
+    audio: "answers_audio/answer_4.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como se diz 'É um prazer' em português?",
+    answers: {
+      a: "یہ ایک خوشی کی بات ہے", // Correct (translated to Urdu: "É um prazer")
+      b: "یہ اچھا ہے",  // Incorrect (translated to Urdu: "É bom")
+      c: "مجھے پسند ہے",  // Incorrect (translated to Urdu: "Eu gosto")
+    },
+    correct: "a",  // Correct answer
+    audio: "answers_audio/answer_5.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como se pergunta 'Você está bem?' em português?",
+    answers: {
+      a: "آپ ٹھیک ہیں؟",  // Correct (translated to Urdu: "Você está bem?")
+      b: "آپ خوش ہیں؟",  // Incorrect (translated to Urdu: "Você está feliz?")
+      c: "کیا آپ جانا چاہتے ہیں؟",  // Incorrect (translated to Urdu: "Você quer sair?")
+    },
+    correct: "a",  // Correct answer
+    audio: "answers_audio/answer_6.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como se diz 'Eu estou triste' em português?",
+    answers: {
+      a: "میں ٹھیک ہوں", // Correct (translated to Urdu: "Eu estou bem")
+      b: "میں بُرا ہوں",  // Incorrect (translated to Urdu: "Eu estou mal")
+      c: "میں اداس ہوں",  // Incorrect (translated to Urdu: "Eu estou triste")
+    },
+    correct: "c",  // Correct answer
+    audio: "answers_audio/answer_7.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como você pergunta 'Há quanto tempo?' em português?",
+    answers: {
+      a: "کتنی دیر ہو چکی ہے؟",  // Correct (translated to Urdu: "Há quanto tempo!")
+      b: "کتنا وقت باقی ہے؟",  // Incorrect (translated to Urdu: "Quanto tempo falta?")
+      c: "آپ کیسے ہیں؟",  // Incorrect (translated to Urdu: "Como você está?")
+    },
+    correct: "a",  // Correct answer
+    audio: "answers_audio/answer_8.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como se diz 'Cuida de ti' em português?",
+    answers: {
+      a: "خود کا خیال رکھیں", // Correct (translated to Urdu: "Cuida de ti")
+      b: "الوداع",  // Incorrect (translated to Urdu: "Até logo")
+      c: "اللہ آپ کا حافظ",  // Incorrect (translated to Urdu: "Boa sorte")
+    },
+    correct: "a",  // Correct answer
+    audio: "answers_audio/answer_9.mp3",  // Audio for the correct answer
+  },
+  {
+    question: "Como se diz 'Bom te ver' em português?",
+    answers: {
+      a: "آپ کو دیکھ کر خوشی ہوئی",  // Correct (translated to Urdu: "Bom te ver")
+      b: "آپ سے مل کر خوشی ہوئی",  // Incorrect (translated to Urdu: "Prazer em ver você")
+      c: "ہیلو",  // Incorrect (translated to Urdu: "Olá")
+    },
+    correct: "a",  // Correct answer
+    audio: "answers_audio/answer_10.mp3",  // Audio for the correct answer
+  },
+];
+
+
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let isAnswered = false;
+
+    function showQuestion() {
+  isAnswered = false;
+  const quizContainer = document.getElementById("quiz");
+  const feedbackContainer = document.getElementById("feedback");
+  const nextButton = document.getElementById("next");
+  const progressBar = document.getElementById("progressBar");
+
+  feedbackContainer.innerHTML = "";
+  feedbackContainer.style.opacity = "0";
+  nextButton.style.display = "none";
+
+  const currentQuestion = quizData[currentQuestionIndex];
+  const answers = Object.keys(currentQuestion.answers).map(
+    (key) => `<label onclick="checkAnswer('${key}')">${key}: ${currentQuestion.answers[key]}</label>`
+  );
+
+  // Dynamically adding the audio button each time
+  quizContainer.innerHTML = `
+    <div class="question">${currentQuestion.question}</div>
+    <div class="answers">${answers.join("")}</div>
+    <button id="audioButton" onclick="playAudio('${currentQuestion.audio}')">🔊 Reproduzir áudio</button>
+  `;
+
+  // Progress bar animation
+  progressBar.style.width = `${(currentQuestionIndex / quizData.length) * 100}%`;
+
+  // Ensuring the audio button appears after it's dynamically added
+  const audioButton = document.getElementById("audioButton");
+  if (audioButton) {
+    audioButton.style.display = "inline-block";  // Ensure it is displayed
+  }
+}
+
+
+
+function playAudio(audioPath) {
+  if (!isAnswered) {
+    const audio = new Audio(audioPath);
+    audio.play();
+  }
+}
+setTimeout(() => {
+  const audioButton = document.getElementById("audioButton");
+  if (audioButton) {
+    audioButton.style.display = "inline-block";  // Ensure it is displayed
+  }
+}, 100);  // Wait 100ms to ensure the DOM is updated before showing the button
+
+
+    function checkAnswer(selectedAnswer) {
+      if (isAnswered) return;
+
+      const currentQuestion = quizData[currentQuestionIndex];
+      const feedbackContainer = document.getElementById("feedback");
+      const nextButton = document.getElementById("next");
+
+      isAnswered = true;
+
+      if (selectedAnswer === currentQuestion.correct) {
+        score++;
+        feedbackContainer.innerHTML = "Resposta correta!";
+        feedbackContainer.className = "correct";
+      } else {
+        feedbackContainer.innerHTML = `Resposta incorreta! Resposta correta: ${currentQuestion.correct.toUpperCase()}`;
+        feedbackContainer.className = "incorrect";
+      }
+
+      feedbackContainer.style.opacity = "1";
+      nextButton.style.display = "block";
+    }
+
+    document.getElementById("next").addEventListener("click", () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < quizData.length) {
+        showQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    function showResults() {
+  const quizContainer = document.getElementById("quiz");
+  const resultsContainer = document.getElementById("results");
+  const progressBar = document.getElementById("progressBar");
+
+  quizContainer.style.display = "none";
+  progressBar.style.display = "none";
+
+  let feedbackText = "";
+  let feedbackClass = "";
+
+  const scorePercentage = (score / quizData.length) * 100;
+
+  if (scorePercentage >= 80) {
+    feedbackText = "Excelente! 🎉";
+    feedbackClass = "excellent";
+  } else if (scorePercentage >= 50) {
+    feedbackText = "Bom trabalho! 👍";
+    feedbackClass = "good";
+  } else {
+    feedbackText = "Continue praticando! 💪";
+    feedbackClass = "try-again";
+  }
+
+  // Inject the results into the results container
+  resultsContainer.innerHTML = `
+    <div class="results-container">
+      <h2>Resultado Final</h2>
+      <div class="score-bar">
+        <div class="score-bar-fill" style="width: ${scorePercentage}%;"></div>
+      </div>
+      <p>Você acertou <strong>${score}</strong> de <strong>${quizData.length}</strong> perguntas.</p>
+      <p class="score-feedback ${feedbackClass}">${feedbackText}</p>
+      <div class="results-buttons">
+        <button onclick="restartQuiz()">🔄 Reiniciar</button>
+        <button onclick="goToPage('index.html')">🏠 Voltar</button>
+        <button id="nextLessonButton">➡️ Próxima Lição</button>
+      </div>
+    </div>
+  `;
+
+  // Animate score bar fill
+  setTimeout(() => {
+    document.querySelector(".score-bar-fill").style.width = `${scorePercentage}%`;
+  }, 300);
+
+  // Add event listener to the "Próxima Lição" button after it's rendered
+  const nextLessonButton = document.getElementById('nextLessonButton');
+  nextLessonButton.addEventListener('click', function () {
+    goToPage('les_2_hellopt.html');
+  });
+}
+
+function goToPage(page) {
+  window.location.href = page; // This will navigate to 'les_2_hello.html'
+}
+
+
+showQuestion();  // Call this to display the first question
+
+
+
+
+ 
+
+  </script>
+</body>
+</html>

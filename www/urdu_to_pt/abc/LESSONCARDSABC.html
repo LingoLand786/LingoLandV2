@@ -1,0 +1,2796 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اردو سے پرتگالی حروف تہجی سیکھیں</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #43a047;
+            --text-color: #212121;
+            --light-bg: #f5f7fa;
+            --card-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--light-bg) 0%, #e8eaf6 100%);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease;
+            position: relative;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: 1px;
+        }
+
+        .progress-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 3rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: #e0e0e0;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), #66bb6a);
+            transition: width 0.5s ease-in-out;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: transform var(--transition-speed);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .abc-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            perspective: 1000px;
+        }
+
+        .abc-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .abc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .abc-card:hover {
+            transform: translateY(-10px) scale(1.02) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .abc-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .abc-card.learned {
+            background: linear-gradient(135deg, var(--accent-color), #66bb6a);
+            color: white;
+        }
+
+        .abc-card h3 {
+            font-size: 4rem;
+            margin: 0;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .abc-card p {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            overflow-y: auto;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: modalSlideIn 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
+            margin: auto;
+            max-height: calc(100vh - 4rem);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .letter-details {
+            padding: 2rem;
+            text-align: center;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .letter-display {
+            background: var(--light-bg);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            border: 2px dashed var(--primary-color);
+            position: relative;
+        }
+
+        .letter-display h3 {
+            font-size: 8rem;
+            margin: 0;
+            color: var(--primary-color);
+            line-height: 1;
+            font-family: 'Noto Nastaliq Urdu', serif;
+        }
+
+        .pronunciation {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin: 1rem 0;
+        }
+
+        .letter-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 0 1rem;
+        }
+
+        .control-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .examples-section {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .example-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .example-list li {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .urdu-text {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            font-family: 'Noto Nastaliq Urdu', serif;
+            text-align: right;
+            direction: rtl;
+            flex: 1;
+        }
+
+        .meaning-text {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-left: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                padding: 1rem;
+            }
+
+            .modal-content {
+                max-height: calc(100vh - 2rem);
+            }
+
+            .letter-display h3 {
+                font-size: 6rem;
+            }
+
+            .urdu-text {
+                font-size: 2rem;
+            }
+
+            .control-btn {
+                width: 100%;
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .drawing-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 3000;
+            display: none;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+        }
+
+        .drawing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .drawing-nav {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .back-btn:hover {
+            background: var(--light-bg);
+            transform: translateX(-2px);
+        }
+
+        .close-drawing {
+            background: none;
+            border: none;
+            color: #f44336;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+        }
+
+        .close-drawing:hover {
+            background: #ffebee;
+            transform: rotate(90deg);
+        }
+
+        .letter-preview {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 1rem 0;
+            border: 2px dashed var(--primary-color);
+        }
+
+        .letter-preview h2 {
+            font-size: 6rem;
+            color: var(--primary-color);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .letter-preview p {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin: 0.5rem 0;
+        }
+
+        .letter-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        .info-card h4 {
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card p {
+            margin: 0;
+            color: var(--text-color);
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .drawing-container.active {
+            display: block;
+            animation: slideInRight 0.3s ease;
+        }
+
+        .drawing-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .drawing-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .drawing-title i {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .canvas-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            margin: 1rem 0;
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        #drawingCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+        }
+
+        .drawing-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .drawing-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .drawing-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .drawing-btn i {
+            font-size: 1.2rem;
+        }
+
+        .drawing-btn.clear {
+            background: #f44336;
+        }
+
+        .drawing-btn.clear:hover {
+            background: #d32f2f;
+        }
+
+        .drawing-feedback {
+            text-align: center;
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 500;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .drawing-feedback.success {
+            background: #e8f5e9;
+            color: var(--accent-color);
+        }
+
+        .drawing-feedback.error {
+            background: #ffebee;
+            color: #f44336;
+        }
+
+        .drawing-tools {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tool-btn {
+            background: var(--light-bg);
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .tool-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .practice-guide {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .practice-guide h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .practice-guide ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .practice-guide li {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .practice-stats {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .stat-badge i {
+            color: var(--accent-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .auth-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .auth-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .auth-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .auth-status {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .video-container.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .video-wrapper {
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        .video-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .video-controls {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .video-control-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .video-control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .video-player {
+            width: 100%;
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+        }
+
+        .video-player video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .letter-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            background: var(--light-bg);
+            border-radius: 10px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .letter-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .learning-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 0 1rem;
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 1;
+        }
+
+        .option-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .option-card:hover::before {
+            opacity: 0.02;
+        }
+
+        .option-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            padding: 1rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--light-bg), #ffffff);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover .option-icon {
+            transform: scale(1.1) rotate(-5deg);
+            color: var(--accent-color);
+        }
+
+        .option-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin: 1rem 0;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .option-description {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 0;
+            opacity: 0.85;
+            position: relative;
+            z-index: 2;
+        }
+
+        .option-card::after {
+            content: '→';
+            position: absolute;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .option-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .learning-options {
+                grid-template-columns: 1fr;
+                padding: 0;
+            }
+
+            .option-card {
+                padding: 2rem;
+            }
+
+            .option-icon {
+                font-size: 2.5rem;
+            }
+
+            .option-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .drawing-container {
+            background: linear-gradient(135deg, #ffffff 0%, var(--light-bg) 100%);
+        }
+
+        .drawing-header {
+            background: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .drawing-title {
+            font-size: 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .letter-preview {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 2px dashed var(--primary-color);
+            margin: 2rem 0;
+        }
+
+        .letter-preview h2 {
+            font-size: 8rem;
+            margin: 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .canvas-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: none;
+        }
+
+        .tool-btn {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tool-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .tool-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .drawing-btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .practice-stats {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            margin: 2rem 0;
+        }
+
+        .stat-badge {
+            background: var(--light-bg);
+            padding: 0.8rem 1.5rem;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .stat-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .drawing-feedback {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn, .close-drawing {
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
+            background: var(--light-bg);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover, .close-drawing:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .close-drawing {
+            color: #f44336;
+            background: #ffebee;
+        }
+
+        .close-drawing:hover {
+            background: #f44336;
+            color: white;
+        }
+
+        .writing-guide {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .guide-section {
+            margin-bottom: 2rem;
+        }
+
+        .guide-section h4 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stroke-order {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stroke-step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .writing-tips {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .writing-tips li {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .writing-tips li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+
+        .tools-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+        }
+
+        .tools-section h4 {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .tool-options, .guide-options {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .guide-btn {
+            background: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .guide-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .guide-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .canvas-container {
+            position: relative;
+        }
+
+        .canvas-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+
+        .drawing-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .drawing-btn.undo {
+            background: var(--secondary-color);
+        }
+
+        .drawing-btn.undo:hover {
+            background: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .stroke-order {
+                flex-direction: column;
+            }
+
+            .writing-tips {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pronunciation-keyboard {
+            display: inline-block;
+            background: #2962ff;
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 0.2em 1em;
+            margin: 0.5em 0 0.5em 0;
+            box-shadow: 0 2px 8px rgba(41,98,255,0.08);
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>اردو سے پرتگالی حروف تہجی سیکھیں</h1>
+            <p>اردو حروف تہجی کو انٹرایکٹو طریقے سے سیکھیں</p>
+        </div>
+
+        <div class="progress-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-number" id="learned-count">0</div>
+                <div>سیکھے گئے حروف</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="total-letters">36</div>
+                <div>کل حروف</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="practice-count">0</div>
+                <div>مکمل مشقیں</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="learning-options">
+            <div class="option-card" onclick="showVideo()">
+                <i class="fas fa-play-circle option-icon"></i>
+                <h3 class="option-title">ویڈیو کے ذریعے سیکھیں</h3>
+                <p class="option-description">
+                    مقامی تلفظ اور عملی مثالوں کے ساتھ ویڈیوز کے ذریعے اردو حروف تہجی سیکھیں۔ 
+                    ہمارے پیشہ ورانہ ٹیوٹوریلز کے ساتھ ہر حرف کو قدم بہ قدم سیکھیں۔
+                </p>
+            </div>
+            <div class="option-card" onclick="showCards()">
+                <i class="fas fa-layer-group option-icon"></i>
+                <h3 class="option-title">مطالعہ کارڈز</h3>
+                <p class="option-description">
+                    انٹرایکٹو کارڈز کے ساتھ ہر حرف کو انفرادی طور پر سیکھیں۔ لکھنے کی مشق کریں، 
+                    تلفظ سنیں اور سیاق و سباق کے ساتھ مثالوں سے سیکھیں۔
+                </p>
+            </div>
+        </div>
+
+        <div id="video-container" class="video-container">
+            <button class="close-video" onclick="closeVideo()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-wrapper">
+                <div class="video-header">
+                    <h2>Tutorial do Alfabeto Urdu</h2>
+                    <div class="video-controls">
+                        <button class="video-control-btn" onclick="toggleFullscreen()">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="video-player">
+                    <video id="urduVideo" controls>
+                        <source src="learnabc.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeo.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <div class="abc-cards" id="abc-cards">
+            <div class="abc-card" onclick="showLetterDetails('a')">
+                <h3>A</h3>
+                <div class="pronunciation-keyboard">A</div>
+                <div class="example-word">آسمان (céu)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('b')">
+                <h3>B</h3>
+                <div class="pronunciation-keyboard">B</div>
+                <div class="example-word">بچہ (criança)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('c')">
+                <h3>C</h3>
+                <div class="pronunciation-keyboard">C</div>
+                <div class="example-word">کتاب (livro)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('d')">
+                <h3>D</h3>
+                <div class="pronunciation-keyboard">D</div>
+                <div class="example-word">دوست (amigo)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('e')">
+                <h3>E</h3>
+                <div class="pronunciation-keyboard">E</div>
+                <div class="example-word">انڈا (ovo)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('f')">
+                <h3>F</h3>
+                <div class="pronunciation-keyboard">F</div>
+                <div class="example-word">فصل (estação)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('g')">
+                <h3>G</h3>
+                <div class="pronunciation-keyboard">G</div>
+                <div class="example-word">گھر (casa)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('h')">
+                <h3>H</h3>
+                <div class="pronunciation-keyboard">H</div>
+                <div class="example-word">ہوا (vento)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('i')">
+                <h3>I</h3>
+                <div class="pronunciation-keyboard">I</div>
+                <div class="example-word">انسان (humano)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('j')">
+                <h3>J</h3>
+                <div class="pronunciation-keyboard">J</div>
+                <div class="example-word">جگنو (vagalume)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('k')">
+                <h3>K</h3>
+                <div class="pronunciation-keyboard">K</div>
+                <div class="example-word">کتاب (livro)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('l')">
+                <h3>L</h3>
+                <div class="pronunciation-keyboard">L</div>
+                <div class="example-word">لڑکا (menino)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('m')">
+                <h3>M</h3>
+                <div class="pronunciation-keyboard">M</div>
+                <div class="example-word">ماں (mãe)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('n')">
+                <h3>N</h3>
+                <div class="pronunciation-keyboard">N</div>
+                <div class="example-word">نور (luz)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('o')">
+                <h3>O</h3>
+                <div class="pronunciation-keyboard">O</div>
+                <div class="example-word">اوپر (acima)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('p')">
+                <h3>P</h3>
+                <div class="pronunciation-keyboard">P</div>
+                <div class="example-word">پانی (água)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('q')">
+                <h3>Q</h3>
+                <div class="pronunciation-keyboard">Q</div>
+                <div class="example-word">قدر (valor)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('r')">
+                <h3>R</h3>
+                <div class="pronunciation-keyboard">R</div>
+                <div class="example-word">روز (dia)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('s')">
+                <h3>S</h3>
+                <div class="pronunciation-keyboard">S</div>
+                <div class="example-word">سورج (sol)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('t')">
+                <h3>T</h3>
+                <div class="pronunciation-keyboard">T</div>
+                <div class="example-word">تارا (estrela)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('u')">
+                <h3>U</h3>
+                <div class="pronunciation-keyboard">U</div>
+                <div class="example-word">اونچا (alto)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('v')">
+                <h3>V</h3>
+                <div class="pronunciation-keyboard">V</div>
+                <div class="example-word">وادی (vale)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('w')">
+                <h3>W</h3>
+                <div class="pronunciation-keyboard">W</div>
+                <div class="example-word">وقت (tempo)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('x')">
+                <h3>X</h3>
+                <div class="pronunciation-keyboard">X</div>
+                <div class="example-word">کس (quem)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('y')">
+                <h3>Y</h3>
+                <div class="pronunciation-keyboard">Y</div>
+                <div class="example-word">یاد (memória)</div>
+            </div>
+            <div class="abc-card" onclick="showLetterDetails('z')">
+                <h3>Z</h3>
+                <div class="pronunciation-keyboard">Z</div>
+                <div class="example-word">زمانہ (tempo)</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="letter-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>حرف کی تفصیلات</h2>
+                <button class="close-modal" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="letter-details">
+                <div class="letter-display">
+                    <h3 id="modal-letter"></h3>
+                    <div class="letter-controls">
+                        <button class="control-btn" onclick="playAudio(currentLetter)">
+                            <i class="fas fa-volume-up"></i>
+                            تلفظ سنیں
+                        </button>
+                        <button class="control-btn" onclick="togglePractice()">
+                            <i class="fas fa-pen"></i>
+                            مشق کریں
+                        </button>
+                    </div>
+                </div>
+                <div class="letter-examples">
+                    <h3>مثالیں</h3>
+                    <ul class="example-list" id="modal-examples"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="drawing-container" id="drawingContainer">
+        <div class="drawing-header">
+            <div class="drawing-nav">
+                <button class="back-btn" onclick="goBackToLetter()">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h3 class="drawing-title">
+                    <i class="fas fa-pen-fancy"></i>
+                    مشق کریں
+                </h3>
+            </div>
+            <button class="close-drawing" onclick="closeDrawing()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="drawing-content">
+            <div class="letter-preview">
+                <h2 id="practice-letter"></h2>
+                <p id="practice-letter-name"></p>
+            </div>
+            
+            <div class="writing-guide">
+                <div class="guide-section">
+                    <h4><i class="fas fa-pencil-alt"></i> کیسے لکھیں</h4>
+                    <div class="stroke-order">
+                        <div class="stroke-step">
+                            <span class="step-number">1</span>
+                            <p>دائیں سے بائیں شروع کریں</p>
+                        </div>
+                        <div class="stroke-step">
+                            <span class="step-number">2</span>
+                            <p>45° کا زاویہ برقرار رکھیں</p>
+                        </div>
+                        <div class="stroke-step">
+                            <span class="step-number">3</span>
+                            <p>نقطے اور نشانات مکمل کریں</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="guide-section">
+                    <h4><i class="fas fa-lightbulb"></i> اہم نکات</h4>
+                    <ul class="writing-tips">
+                        <li>لکھتے وقت مستقل رفتار برقرار رکھیں</li>
+                        <li>لکیروں کی سمت اور ترتیب پر توجہ دیں</li>
+                        <li>حرف کے ہر حصے کی الگ سے مشق کریں</li>
+                        <li>سائز اور تناسب پر توجہ دیں</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="drawing-tools">
+                <div class="tools-section">
+                    <h4>لکھنے کے اوزار</h4>
+                    <div class="tool-options">
+                        <button class="tool-btn" data-size="2">
+                            <i class="fas fa-pen"></i> پتلا
+                        </button>
+                        <button class="tool-btn" data-size="4">
+                            <i class="fas fa-pen-fancy"></i> درمیانہ
+                        </button>
+                        <button class="tool-btn" data-size="6">
+                            <i class="fas fa-paint-brush"></i> موٹا
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="tools-section">
+                    <h4>لکھنے کی رہنمائی</h4>
+                    <div class="guide-options">
+                        <button class="guide-btn" onclick="toggleGrid()">
+                            <i class="fas fa-border-all"></i> گرڈ دکھائیں
+                        </button>
+                        <button class="guide-btn" onclick="toggleGuideLines()">
+                            <i class="fas fa-grip-lines"></i> رہنمائی لکیریں
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="drawingCanvas"></canvas>
+                <div class="canvas-overlay" id="gridOverlay"></div>
+            </div>
+
+            <div class="drawing-controls">
+                <button class="drawing-btn clear" onclick="clearCanvas()">
+                    <i class="fas fa-eraser"></i>
+                    صاف کریں
+                </button>
+                <button class="drawing-btn undo" onclick="undoStroke()">
+                    <i class="fas fa-undo"></i>
+                    واپس لیں
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAfICxStkTUF3GVdKTlHZTHTJ47XIbath8",
+            authDomain: "appsitesync.firebaseapp.com",
+            projectId: "appsitesync",
+            storageBucket: "appsitesync.firebasestorage.app",
+            messagingSenderId: "357510439971",
+            appId: "1:357510439971:web:670c5fd57222ae3d2cbd96",
+            measurementId: "G-T0SX0NH50K"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const storage = firebase.storage();
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let learnedLetters = new Set();
+        let practiceCount = 0;
+        let currentLetter = '';
+        let currentPenSize = 2;
+        let currentUser = null;
+
+        // Letter data with proper pronunciation and examples
+        const letterData = {
+            a: {
+                letter: 'A',
+                pronunciationGuide: 'Ah',
+                examples: [
+                    'آب (água)',
+                    'آرزو (aroma)'
+                ]
+            },
+            b: {
+                letter: 'B',
+                pronunciationGuide: 'Beh',
+                examples: [
+                    'بال (bola)',
+                    'بینک (banco)'
+                ]
+            },
+            c: {
+                letter: 'C',
+                pronunciationGuide: 'Kaaf',
+                examples: [
+                    'کتاب (casa)',
+                    'کپ (copo)'
+                ]
+            },
+            d: {
+                letter: 'D',
+                pronunciationGuide: 'Daal',
+                examples: [
+                    'درخت (doce)',
+                    'دن (dia)'
+                ]
+            },
+            e: {
+                letter: 'E',
+                pronunciationGuide: 'Alif',
+                examples: [
+                    'امید (esperança)',
+                    'انسان (escola)'
+                ]
+            },
+            f: {
+                letter: 'F',
+                pronunciationGuide: 'Feh',
+                examples: [
+                    'فصل (foca)',
+                    'فرشتہ (fada)'
+                ]
+            },
+            g: {
+                letter: 'G',
+                pronunciationGuide: 'Gaaf',
+                examples: [
+                    'گلاب (gato)',
+                    'گھنٹی (gelo)'
+                ]
+            },
+            h: {
+                letter: 'H',
+                pronunciationGuide: 'Heh',
+                examples: [
+                    'ہوا (hora)',
+                    'ہاتھی (hipopótamo)'
+                ]
+            },
+            i: {
+                letter: 'I',
+                pronunciationGuide: 'Alif',
+                examples: [
+                    'ایمان (ideia)',
+                    'ایجاد (igreja)'
+                ]
+            },
+            j: {
+                letter: 'J',
+                pronunciationGuide: 'Jeem',
+                examples: [
+                    'جان (janela)',
+                    'جوتا (jogo)'
+                ]
+            },
+            k: {
+                letter: 'K',
+                pronunciationGuide: 'Kaaf',
+                examples: [
+                    'کبوتر (kiwi)',
+                    'کمرہ (kilo)'
+                ]
+            },
+            l: {
+                letter: 'L',
+                pronunciationGuide: 'Laam',
+                examples: [
+                    'لڑکا (livro)',
+                    'لکیر (luz)'
+                ]
+            },
+            m: {
+                letter: 'M',
+                pronunciationGuide: 'Meem',
+                examples: [
+                    'ماں (mãe)',
+                    'مکان (mesa)'
+                ]
+            },
+            n: {
+                letter: 'N',
+                pronunciationGuide: 'Noon',
+                examples: [
+                    'ندی (navio)',
+                    'نمک (noite)'
+                ]
+            },
+            o: {
+                letter: 'O',
+                pronunciationGuide: 'Wao',
+                examples: [
+                    'وقت (ouro)',
+                    'وصل (olho)'
+                ]
+            },
+            p: {
+                letter: 'P',
+                pronunciationGuide: 'Peh',
+                examples: [
+                    'پانی (pato)',
+                    'پتنگ (porta)'
+                ]
+            },
+            q: {
+                letter: 'Q',
+                pronunciationGuide: 'Qaaf',
+                examples: [
+                    'قلم (quadro)',
+                    'قافلہ (quilo)'
+                ]
+            },
+            r: {
+                letter: 'R',
+                pronunciationGuide: 'Reh',
+                examples: [
+                    'راستہ (rua)',
+                    'روشنی (rosa)'
+                ]
+            },
+            s: {
+                letter: 'S',
+                pronunciationGuide: 'Seen',
+                examples: [
+                    'سورج (sol)',
+                    'سکول (sapato)'
+                ]
+            },
+            t: {
+                letter: 'T',
+                pronunciationGuide: 'Teh',
+                examples: [
+                    'تخت (tigre)',
+                    'تارا (tempo)'
+                ]
+            },
+            u: {
+                letter: 'U',
+                pronunciationGuide: 'Ain',
+                examples: [
+                    'عمر (uva)',
+                    'عالم (urso)'
+                ]
+            },
+            v: {
+                letter: 'V',
+                pronunciationGuide: 'Wao',
+                examples: [
+                    'وقت (vaca)',
+                    'وادی (vela)'
+                ]
+            },
+            w: {
+                letter: 'W',
+                pronunciationGuide: 'Wao',
+                examples: [
+                    'وطن (web)',
+                    'وقت (wifi)'
+                ]
+            },
+            x: {
+                letter: 'X',
+                pronunciationGuide: 'Sheen',
+                examples: [
+                    'شخص (xaxim)',
+                    'شکر (xarope)'
+                ]
+            },
+            y: {
+                letter: 'Y',
+                pronunciationGuide: 'Yeh',
+                examples: [
+                    'یاقوت (yoga)',
+                    'یاد (yakisoba)'
+                ]
+            },
+            z: {
+                letter: 'Z',
+                pronunciationGuide: 'Zeh',
+                examples: [
+                    'زمین (zebra)',
+                    'زبان (zero)'
+                ]
+            }
+        };
+
+        // Authentication state observer
+        auth.onAuthStateChanged((user) => {
+            currentUser = user;
+            if (user) {
+                document.getElementById('auth-status').textContent = `Bem-vindo, ${user.email}`;
+                document.getElementById('auth-buttons').style.display = 'none';
+                document.getElementById('user-profile').style.display = 'block';
+            } else {
+                document.getElementById('auth-status').textContent = 'Não autenticado';
+                document.getElementById('auth-buttons').style.display = 'block';
+                document.getElementById('user-profile').style.display = 'none';
+            }
+        });
+
+        function updateProgress() {
+            const progress = (learnedLetters.size / 36) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+            document.getElementById('learned-count').textContent = learnedLetters.size;
+        }
+
+        function showVideo() {
+            const videoContainer = document.getElementById('video-container');
+            const video = document.getElementById('urduVideo');
+            videoContainer.classList.add('active');
+            video.play();
+        }
+
+        function showCards() {
+            const cardsSection = document.getElementById('abc-cards');
+            cardsSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function playAudio(letter) {
+            const data = letterData[letter];
+            if (!data) return;
+
+            // First speak the English pronunciation
+            const englishSpeech = new SpeechSynthesisUtterance();
+            englishSpeech.text = data.pronunciation;
+            englishSpeech.lang = 'en-US';
+            englishSpeech.rate = 0.8;
+            englishSpeech.pitch = 1;
+
+            // Then speak the Urdu pronunciation
+            const urduSpeech = new SpeechSynthesisUtterance();
+            urduSpeech.text = getUrduPronunciation(letter);
+            urduSpeech.lang = 'ur-PK';
+            urduSpeech.rate = 0.8;
+            urduSpeech.pitch = 1;
+
+            // Queue the speeches
+            window.speechSynthesis.speak(englishSpeech);
+            setTimeout(() => {
+                window.speechSynthesis.speak(urduSpeech);
+            }, 1000);
+        }
+
+        function showLetterDetails(letter) {
+            currentLetter = letter;
+            const data = letterData[letter] || { letter: '?', pronunciation: 'Unknown', examples: [] };
+            
+            const modalContent = `
+                <div class="modal-header">
+                    <h2>${data.pronunciation}</h2>
+                    <button class="close-modal" onclick="closeModal()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="letter-details">
+                    <div class="letter-display">
+                        <h3>${data.letter}</h3>
+                        <div class="pronunciation">${data.pronunciationGuide}</div>
+                    </div>
+                    
+                    <div class="letter-controls">
+                        <button class="control-btn" onclick="playAudio('${letter}')">
+                            <i class="fas fa-volume-up"></i>
+                            تلفظ سنیں
+                        </button>
+                        <button class="control-btn" onclick="togglePractice()">
+                            <i class="fas fa-pen"></i>
+                            مشق کریں
+                        </button>
+                    </div>
+
+                    <div class="examples-section">
+                        <h4>مثالیں</h4>
+                        <ul class="example-list">
+                            ${data.examples.map(ex => {
+                                const [urdu, meaning] = ex.split(' (');
+                                return `
+                                    <li>
+                                        <span class="urdu-text">${urdu}</span>
+                                        <span class="meaning-text">(${meaning}</span>
+                                    </li>
+                                `;
+                            }).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.getElementById('letter-modal');
+            const modalContentDiv = modal.querySelector('.modal-content');
+            modalContentDiv.innerHTML = modalContent;
+            modal.style.display = 'flex';
+            
+            learnedLetters.add(letter);
+            updateProgress();
+        }
+
+        function closeModal() {
+            document.getElementById('letter-modal').style.display = 'none';
+        }
+
+        function togglePractice() {
+            const drawingContainer = document.getElementById('drawingContainer');
+            const practiceLetter = document.getElementById('practice-letter');
+            const practiceLetterName = document.getElementById('practice-letter-name');
+            
+            if (currentLetter && letterData[currentLetter]) {
+                practiceLetter.textContent = letterData[currentLetter].letter;
+                practiceLetterName.textContent = letterData[currentLetter].pronunciation;
+                document.getElementById('letter-modal').style.display = 'none';
+            }
+            
+            drawingContainer.classList.toggle('active');
+            
+            if (drawingContainer.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    resizeCanvas();
+                    changePenSize(2);
+                    updatePracticeStats();
+                }, 100);
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeVideo() {
+            const videoContainer = document.getElementById('video-container');
+            const video = document.getElementById('urduVideo');
+            videoContainer.classList.remove('active');
+            video.pause();
+        }
+
+        function toggleFullscreen() {
+            const videoWrapper = document.querySelector('.video-wrapper');
+            if (!document.fullscreenElement) {
+                if (videoWrapper.requestFullscreen) {
+                    videoWrapper.requestFullscreen();
+                } else if (videoWrapper.webkitRequestFullscreen) {
+                    videoWrapper.webkitRequestFullscreen();
+                } else if (videoWrapper.msRequestFullscreen) {
+                    videoWrapper.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('video-container').classList.contains('active')) {
+                closeVideo();
+            }
+        });
+
+        document.getElementById('video-container').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideo();
+            }
+        });
+
+        // Update the card creation code to ensure it only runs once
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardsContainer = document.getElementById('abc-cards');
+            // Clear any existing content
+            cardsContainer.innerHTML = '';
+            
+            Object.entries(letterData).forEach(([key, data]) => {
+                const card = document.createElement('div');
+                card.className = 'abc-card';
+                card.onclick = () => showLetterDetails(key);
+                card.innerHTML = `
+                    <h3>${data.letter}</h3>
+                    <div class="pronunciation-keyboard">${data.pronunciationGuide}</div>
+                    <div class="example-word">${data.examples[0]}</div>
+                `;
+                cardsContainer.appendChild(card);
+            });
+        });
+
+        const canvas = document.getElementById('drawingCanvas');
+        const signaturePad = new SignaturePad(canvas, {
+            backgroundColor: 'white',
+            penColor: 'black',
+            minWidth: 2,
+            maxWidth: 4,
+            velocityFilterWeight: 0.7
+        });
+
+        function changePenSize(size) {
+            currentPenSize = size;
+            signaturePad.minWidth = size;
+            signaturePad.maxWidth = size + 2;
+            
+            const buttons = document.querySelectorAll('.tool-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            const activeButton = document.querySelector(`.tool-btn[data-size="${size}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
+            }
+        }
+
+        function updatePracticeStats() {
+            const attempts = document.getElementById('attempts-count');
+            const timeSpent = document.getElementById('time-spent');
+            const accuracy = document.getElementById('accuracy');
+
+            if (attempts && timeSpent && accuracy) {
+                attempts.textContent = `${practiceCount} Tentativas`;
+                timeSpent.textContent = `${Math.floor(practiceCount * 2)} min`;
+                accuracy.textContent = `${Math.min(100, Math.floor((practiceCount / 10) * 100))}% Precisão`;
+            }
+        }
+
+        function clearCanvas() {
+            signaturePad.clear();
+            strokeHistory = [];
+            const feedback = document.getElementById('drawingFeedback');
+            if (feedback) {
+                feedback.textContent = '';
+                feedback.className = 'drawing-feedback';
+            }
+        }
+
+        // Remove Firebase initialization since we're not using it
+        // Initialize canvas and tools
+        window.addEventListener('load', () => {
+            resizeCanvas();
+            // Set initial pen size
+            changePenSize(2);
+        });
+
+        // Update drawing container styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .drawing-btn.save {
+                background: #4CAF50;
+                transition: all 0.3s ease;
+            }
+            .drawing-btn.save:hover {
+                background: #45a049;
+                transform: translateY(-2px);
+            }
+            .drawing-feedback.success {
+                background: #E8F5E9;
+                color: #2E7D32;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 15px;
+            }
+            .drawing-feedback.error {
+                background: #FFEBEE;
+                color: #C62828;
+                padding: 10px;
+                border-radius: 5px;
+                margin-top: 15px;
+            }
+        `;
+        document.head.appendChild(style);
+
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            
+            canvas.width = container.offsetWidth * ratio;
+            canvas.height = container.offsetHeight * ratio;
+            canvas.style.width = `${container.offsetWidth}px`;
+            canvas.style.height = `${container.offsetHeight}px`;
+            
+            const ctx = canvas.getContext("2d");
+            ctx.scale(ratio, ratio);
+            signaturePad.clear();
+        }
+
+        // Event Listeners
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', resizeCanvas);
+
+        // Initialize tool buttons
+        document.querySelectorAll('.tool-btn').forEach(btn => {
+            const size = parseInt(btn.getAttribute('data-size') || '2');
+            btn.addEventListener('click', () => changePenSize(size));
+        });
+
+        // Add authentication functions
+        async function signIn() {
+            const email = prompt('Digite seu email:');
+            const password = prompt('Digite sua senha:');
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+            } catch (error) {
+                alert('Erro ao fazer login: ' + error.message);
+            }
+        }
+
+        async function signUp() {
+            const email = prompt('Digite seu email:');
+            const password = prompt('Digite sua senha:');
+            try {
+                await auth.createUserWithEmailAndPassword(email, password);
+            } catch (error) {
+                alert('Erro ao cadastrar: ' + error.message);
+            }
+        }
+
+        async function signOut() {
+            try {
+                await auth.signOut();
+            } catch (error) {
+                alert('Erro ao sair: ' + error.message);
+            }
+        }
+
+        // Add styles for authentication UI
+        const authStyles = document.createElement('style');
+        authStyles.textContent = `
+            .auth-container {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+            .auth-btn {
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 0.5rem 1rem;
+                border-radius: 8px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: all 0.3s ease;
+            }
+            .auth-btn:hover {
+                background: var(--secondary-color);
+                transform: translateY(-2px);
+            }
+            .auth-status {
+                color: var(--primary-color);
+                font-weight: 500;
+            }
+        `;
+        document.head.appendChild(authStyles);
+
+        // Enhance video player styles
+        const videoStyles = document.createElement('style');
+        videoStyles.textContent = `
+            .video-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                display: none;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+            .video-container.active {
+                display: flex;
+                animation: fadeIn 0.3s ease;
+            }
+            .video-wrapper {
+                width: 90%;
+                max-width: 1200px;
+                background: white;
+                border-radius: 20px;
+                overflow: hidden;
+                box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            }
+            .video-header {
+                background: var(--primary-color);
+                color: white;
+                padding: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .video-controls {
+                display: flex;
+                gap: 1rem;
+            }
+            .video-control-btn {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.2rem;
+                cursor: pointer;
+                padding: 0.5rem;
+                transition: transform 0.3s ease;
+            }
+            .video-control-btn:hover {
+                transform: scale(1.1);
+            }
+            .video-player {
+                width: 100%;
+                position: relative;
+                padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            }
+            .video-player video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+        `;
+        document.head.appendChild(videoStyles);
+
+        function closeDrawing() {
+            const drawingContainer = document.getElementById('drawingContainer');
+            drawingContainer.classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('letter-modal').style.display = 'flex';
+        }
+
+        function goBackToLetter() {
+            closeDrawing();
+        }
+
+        // Add error handling for images
+        // Add error handling for images
+        document.addEventListener('error', function(e) {
+            if (e.target.tagName.toLowerCase() === 'img') {
+                e.target.src = 'assets/images/placeholder.svg';
+                e.target.alt = 'Imagem não disponível';
+                e.target.style.width = '200px';
+                e.target.style.height = '200px';
+                e.target.style.objectFit = 'contain';
+            }
+        }, true);
+
+        // Add styles for placeholder image
+        const placeholderStyles = document.createElement('style');
+        placeholderStyles.textContent = `
+            .letter-image {
+                width: 200px;
+                height: 200px;
+                object-fit: contain;
+                background: var(--light-bg);
+                border-radius: 10px;
+                padding: 1rem;
+                transition: all 0.3s ease;
+            }
+            .letter-image:hover {
+                transform: scale(1.05);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+        `;
+        document.head.appendChild(placeholderStyles);
+
+        // Update modal styles
+        const modalStyles = document.createElement('style');
+        modalStyles.textContent = `
+            .modal-content {
+                background: white;
+                border-radius: 25px;
+                max-width: 600px;
+                width: 90%;
+                position: relative;
+                animation: modalSlideIn 0.4s ease;
+                box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+                overflow: hidden;
+            }
+
+            .letter-details {
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .letter-display {
+                background: var(--light-bg);
+                padding: 3rem 2rem;
+                border-radius: 20px;
+                margin-bottom: 2rem;
+                border: 2px dashed var(--primary-color);
+            }
+
+            .letter-display h3 {
+                font-size: 8rem;
+                margin: 0;
+                color: var(--primary-color);
+                line-height: 1;
+                font-family: 'Noto Nastaliq Urdu', serif;
+            }
+
+            .pronunciation {
+                font-size: 1.5rem;
+                color: var(--secondary-color);
+                margin: 1rem 0;
+            }
+
+            .letter-controls {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                margin: 2rem 0;
+            }
+
+            .control-btn {
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 1rem 2rem;
+                border-radius: 15px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                transition: all 0.3s ease;
+                font-size: 1.1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            .control-btn:hover {
+                background: var(--secondary-color);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            }
+
+            .examples-section {
+                background: var(--light-bg);
+                padding: 2rem;
+                border-radius: 15px;
+                margin-top: 2rem;
+            }
+
+            .examples-section h4 {
+                color: var(--primary-color);
+                margin: 0 0 1rem 0;
+                font-size: 1.3rem;
+            }
+
+            .example-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .example-list li {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            }
+
+            .urdu-text {
+                font-size: 2.5rem;
+                color: var(--primary-color);
+                font-family: 'Noto Nastaliq Urdu', serif;
+                text-align: right;
+                direction: rtl;
+                flex: 1;
+            }
+
+            .meaning-text {
+                font-size: 1.1rem;
+                color: var(--text-color);
+                margin-left: 1rem;
+            }
+        `;
+        document.head.appendChild(modalStyles);
+
+        // Add Noto Nastaliq Urdu font for better Urdu text rendering
+        const fontLink = document.createElement('link');
+        fontLink.href = 'https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap';
+        fontLink.rel = 'stylesheet';
+        document.head.appendChild(fontLink);
+
+        // Enhanced styles for the practice interface
+        const enhancedStyles = document.createElement('style');
+        enhancedStyles.textContent = `
+            .drawing-container {
+                background: linear-gradient(135deg, #ffffff 0%, var(--light-bg) 100%);
+            }
+
+            .drawing-header {
+                background: white;
+                padding: 1.5rem 2rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            }
+
+            .drawing-title {
+                font-size: 2rem;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: 600;
+            }
+
+            .letter-preview {
+                background: white;
+                padding: 3rem;
+                border-radius: 30px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+                border: 2px dashed var(--primary-color);
+                margin: 2rem 0;
+            }
+
+            .letter-preview h2 {
+                font-size: 8rem;
+                margin: 0;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .info-card {
+                background: white;
+                padding: 2rem;
+                border-radius: 20px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+                transition: all 0.3s ease;
+            }
+
+            .info-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            }
+
+            .canvas-container {
+                background: white;
+                padding: 1rem;
+                border-radius: 30px;
+                box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+                border: none;
+            }
+
+            .tool-btn {
+                background: white;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+                padding: 1rem 1.5rem;
+                border-radius: 12px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+
+            .tool-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            }
+
+            .tool-btn.active {
+                background: var(--primary-color);
+                color: white;
+                transform: translateY(-2px);
+            }
+
+            .drawing-btn {
+                padding: 1.2rem 2.5rem;
+                border-radius: 15px;
+                font-weight: 500;
+                letter-spacing: 0.5px;
+                text-transform: uppercase;
+                font-size: 0.9rem;
+            }
+
+            .practice-stats {
+                background: white;
+                padding: 1.5rem;
+                border-radius: 20px;
+                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+                margin: 2rem 0;
+            }
+
+            .stat-badge {
+                background: var(--light-bg);
+                padding: 0.8rem 1.5rem;
+                border-radius: 15px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+
+            .stat-badge:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+
+            .drawing-feedback {
+                margin-top: 2rem;
+                padding: 1.5rem;
+                border-radius: 15px;
+                font-weight: 500;
+                text-align: center;
+                transition: all 0.3s ease;
+            }
+
+            .back-btn, .close-drawing {
+                width: 50px;
+                height: 50px;
+                border-radius: 15px;
+                background: var(--light-bg);
+                transition: all 0.3s ease;
+            }
+
+            .back-btn:hover, .close-drawing:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
+
+            .close-drawing {
+                color: #f44336;
+                background: #ffebee;
+            }
+
+            .close-drawing:hover {
+                background: #f44336;
+                color: white;
+            }
+        `;
+        document.head.appendChild(enhancedStyles);
+
+        // Add new functions for the enhanced practice interface
+        let strokeHistory = [];
+        let showGrid = false;
+        let showGuideLines = false;
+
+        function undoStroke() {
+            if (strokeHistory.length > 0) {
+                strokeHistory.pop();
+                redrawCanvas();
+            }
+        }
+
+        function toggleGrid() {
+            showGrid = !showGrid;
+            const gridOverlay = document.getElementById('gridOverlay');
+            if (showGrid) {
+                gridOverlay.style.backgroundImage = 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)';
+                gridOverlay.style.backgroundSize = '20px 20px';
+            } else {
+                gridOverlay.style.backgroundImage = 'none';
+            }
+        }
+
+        function toggleGuideLines() {
+            showGuideLines = !showGuideLines;
+            const gridOverlay = document.getElementById('gridOverlay');
+            if (showGuideLines) {
+                gridOverlay.style.backgroundImage = 'linear-gradient(#000 1px, transparent 1px)';
+                gridOverlay.style.backgroundSize = '100% 40px';
+            } else {
+                gridOverlay.style.backgroundImage = 'none';
+            }
+        }
+
+        function redrawCanvas() {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            strokeHistory.forEach(stroke => {
+                ctx.putImageData(stroke, 0, 0);
+            });
+        }
+
+        // Update the signature pad options
+        signaturePad.addEventListener('endStroke', () => {
+            strokeHistory.push(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height));
+        });
+
+        // Add styles for letter display
+        const letterStyles = document.createElement('style');
+        letterStyles.textContent = `
+            .abc-card h3 {
+                font-size: 4rem;
+                margin: 0;
+                color: var(--primary-color);
+                transition: transform 0.3s ease;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+                font-family: 'Noto Nastaliq Urdu', serif;
+                line-height: 1.2;
+                padding: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 80px;
+            }
+
+            .letter-display h3 {
+                font-size: 8rem;
+                margin: 0;
+                color: var(--primary-color);
+                line-height: 1;
+                font-family: 'Noto Nastaliq Urdu', serif;
+                text-align: center;
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 200px;
+            }
+
+            .letter-preview h2 {
+                font-size: 8rem;
+                margin: 0;
+                background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-family: 'Noto Nastaliq Urdu', serif;
+                text-align: center;
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 200px;
+            }
+
+            @font-face {
+                font-family: 'Noto Nastaliq Urdu';
+                src: url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+            }
+        `;
+        document.head.appendChild(letterStyles);
+
+        // Add a function to speak the letter name in Urdu
+        function speakUrduLetter(letter) {
+            const urduPronunciations = {
+                'a': 'الف',
+                'b': 'بے',
+                'c': 'پے',
+                'd': 'تے',
+                'e': 'ثے',
+                'f': 'جیم',
+                'g': 'چے',
+                'h': 'حے',
+                'i': 'خے',
+                'j': 'دال',
+                'k': 'ذال',
+                'l': 'رے',
+                'm': 'زے',
+                'n': 'سین',
+                'o': 'شین',
+                'p': 'صاد',
+                'q': 'ضاد',
+                'r': 'طے',
+                's': 'ظے',
+                't': 'عین',
+                'u': 'غین',
+                'v': 'فے',
+                'w': 'قاف',
+                'x': 'کاف',
+                'y': 'گاف',
+                'z': 'لام',
+                'aa': 'میم',
+                'bb': 'نون',
+                'cc': 'واؤ',
+                'dd': 'ہے',
+                'ee': 'ہمزہ',
+                'ff': 'چھوٹی یے',
+                'gg': 'بڑی یے'
+            };
+
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = urduPronunciations[letter] || '';
+            speech.lang = 'ur-PK';
+            speech.rate = 0.8;
+            speech.pitch = 1;
+            window.speechSynthesis.speak(speech);
+        }
+
+        // Update the playAudio function to speak both English and Urdu pronunciations
+        function playAudio(letter) {
+            const data = letterData[letter];
+            if (!data) return;
+
+            // First speak the English pronunciation
+            const englishSpeech = new SpeechSynthesisUtterance();
+            englishSpeech.text = data.pronunciation;
+            englishSpeech.lang = 'en-US';
+            englishSpeech.rate = 0.8;
+            englishSpeech.pitch = 1;
+
+            // Then speak the Urdu pronunciation
+            const urduSpeech = new SpeechSynthesisUtterance();
+            urduSpeech.text = getUrduPronunciation(letter);
+            urduSpeech.lang = 'ur-PK';
+            urduSpeech.rate = 0.8;
+            urduSpeech.pitch = 1;
+
+            // Queue the speeches
+            window.speechSynthesis.speak(englishSpeech);
+            setTimeout(() => {
+                window.speechSynthesis.speak(urduSpeech);
+            }, 1000);
+        }
+
+        function getUrduPronunciation(letter) {
+            const urduPronunciations = {
+                'a': 'الف',
+                'b': 'بے',
+                'c': 'پے',
+                'd': 'تے',
+                'e': 'ثے',
+                'f': 'جیم',
+                'g': 'چے',
+                'h': 'حے',
+                'i': 'خے',
+                'j': 'دال',
+                'k': 'ذال',
+                'l': 'رے',
+                'm': 'زے',
+                'n': 'سین',
+                'o': 'شین',
+                'p': 'صاد',
+                'q': 'ضاد',
+                'r': 'طے',
+                's': 'ظے',
+                't': 'عین',
+                'u': 'غین',
+                'v': 'فے',
+                'w': 'قاف',
+                'x': 'کاف',
+                'y': 'گاف',
+                'z': 'لام',
+                'aa': 'میم',
+                'bb': 'نون',
+                'cc': 'واؤ',
+                'dd': 'ہے',
+                'ee': 'ہمزہ',
+                'ff': 'چھوٹی یے',
+                'gg': 'بڑی یے'
+            };
+            return urduPronunciations[letter] || '';
+        }
+    </script>
+</body>
+</html>
