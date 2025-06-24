@@ -235,14 +235,13 @@ const auth = firebase.auth();
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
 
-            auth.signInWithEmailAndPassword(email, password)
+            auth.setPersistence(firebase.auth.Auth.Persistence.SESSION)
+                .then(() => {
+                    // After setting persistence, sign the user in
+                    return auth.signInWithEmailAndPassword(email, password);
+                })
                 .then((userCredential) => {
                     var user = userCredential.user;
-                    if (!user.emailVerified) {
-                        alert('Por favor, verifique seu email antes de fazer login.');
-                        auth.signOut();
-                        return;
-                    }
                     // Update lastLogin timestamp in Firestore
                     db.collection("users").doc(user.uid).update({
                         lastLogin: firebase.firestore.FieldValue.serverTimestamp()
