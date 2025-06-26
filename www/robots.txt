@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://officiallingolandv2.netlify.app/sitemap.xml
